@@ -1,5 +1,7 @@
 package enity;
 
+import java.util.Objects;
+
 public class User {
     private String userName;
     private String userEmail;
@@ -43,6 +45,19 @@ public class User {
 
     public void setUserID(int userID) {
         this.userID = userID;
+    }
+
+    @Override
+    public int hashCode(){
+        return Objects.hash(userName, userEmail, userAge, userID);
+    }
+
+    @Override
+    public boolean equals(Object obj){
+        if(this == obj) return true;
+        if ((obj == null) || !(obj instanceof User)) return false;
+        User user = (User) obj;
+        return Objects.equals(userName, user.userName) && Objects.equals(userEmail, user.userEmail) && userAge == user.userAge && userID == user.userID;
     }
 
     @Override

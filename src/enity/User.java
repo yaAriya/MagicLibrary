@@ -61,6 +61,11 @@ public class User {
     }
 
     @Override
+    public Object clone() throws CloneNotSupportedException{
+        return super.clone();
+    }
+
+    @Override
     public String toString(){
         return userName + ", " + userEmail + ", " + userAge + ", " + userID;
     }

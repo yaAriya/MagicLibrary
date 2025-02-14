@@ -79,6 +79,11 @@ public class Book {
         return Objects.equals(bookName, book.bookName) && Objects.equals(author, book.author) && pagesNumber == book.pagesNumber && Objects.equals(userName, book.userName) && Objects.equals(userEmail, book.userEmail) && userID == book.userID;
     }
 
+    @Override
+    public Object clone() throws CloneNotSupportedException{
+        return super.clone();
+    }
+
 
     @Override
     public String toString(){

@@ -12,4 +12,36 @@ public class User {
         this.userAge = userAge;
         this.userID = userID;
     }
+
+    public String getUserName(){
+        return userName;
+    }
+
+    public void setUserName(String userName){
+        this.userName = userName;
+    }
+
+    public String getUserEmail(){
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail){
+        this.userEmail = userEmail;
+    }
+
+    public int getUserAge(){
+        return userAge;
+    }
+
+    public void setUserAge(int userAge){
+        this.userAge = userAge;
+    }
+
+    public int getUserID(){
+        return userID;
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
+    }
 }

@@ -64,11 +64,8 @@ public class Book {
         this.userID = userID;
     }
 
-
-
-
-
-
-
-
+    @Override
+    public String toString(){
+        return bookName + ", " + author + ", " + pagesNumber + ", " + userName + ", " + userEmail + ", " + userID;
+    }
 }

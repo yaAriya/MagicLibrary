@@ -6,18 +6,23 @@ public class Book {
     private String bookName;
     private String author;
     private int pagesNumber;
-    private String userName;
-    private String userEmail;
-    private int userID;
+    private User user;
 
-    public Book (String bookName, String author, int pagesNumber, String userName, String userEmail, int userID){
+    public Book (String bookName, String author, int pagesNumber, User user) {
         this.bookName = bookName;
         this.author = author;
         this.pagesNumber = pagesNumber;
-        this.userName = userName;
-        this.userEmail = userEmail;
-        this.userID = userID;
+        this.user = user;
+
+        /*if(getUser() != null){
+
+        }
+        if (bookName == null){
+         //   new Exception("Your parameter is/are incorrect ");
+        } проверка на налл */
     }
+
+
 
     public String getBookName(){
         return  bookName;
@@ -43,32 +48,16 @@ public class Book {
         this.pagesNumber = pagesNumber;
     }
 
-    public String getUserName(){
-        return userName;
+    public User getUser() {
+        return user;
     }
-    public void setUserName(String userName){
-        this.userName = userName;
-    }
-
-    public String getUserEmail(){
-        return  userEmail;
-    }
-
-    public void setUserEmail(String userEmail){
-        this.userEmail = userEmail;
-    }
-
-    public int getUserID(){
-        return userID;
-    }
-
-    public void setUserID(int userID){
-        this.userID = userID;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override
     public int hashCode(){
-        return Objects.hash(bookName, author, pagesNumber, userName, userEmail, userID);
+        return Objects.hash(bookName, author, pagesNumber, user);
     }
 
     @Override
@@ -76,7 +65,8 @@ public class Book {
         if(this == obj) return true;
         if ((obj == null) || !(obj instanceof Book)) return false;
         Book book = (Book) obj;
-        return Objects.equals(bookName, book.bookName) && Objects.equals(author, book.author) && pagesNumber == book.pagesNumber && Objects.equals(userName, book.userName) && Objects.equals(userEmail, book.userEmail) && userID == book.userID;
+        return Objects.equals(bookName, book.bookName) && Objects.equals(author, book.author) && pagesNumber == book.pagesNumber && Objects.equals(user, book.user);
+                //Objects.equals(user, book.user.getUserName()) && Objects.equals(user, book.user.getUserEmail()) && user == book.user.getUserID();
     }
 
     @Override
@@ -87,6 +77,8 @@ public class Book {
 
     @Override
     public String toString(){
-        return bookName + ", " + author + ", " + pagesNumber + ", " + userName + ", " + userEmail + ", " + userID;
+        return bookName + ", " + author + ", " + pagesNumber + ", " + user;
+                //user.toString();
+                //user.getUserName().toString() + ", " + user.getUserEmail().toString() + ", " + user.getUserID().toString;
     }
 }

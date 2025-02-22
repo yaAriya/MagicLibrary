@@ -1,5 +1,7 @@
 package enity;
 
+import java.util.List;
+
 import java.util.Objects;
 
 public class User {
@@ -7,12 +9,14 @@ public class User {
     private String userEmail;
     private int userAge;
     private int userID;
+    private List<Book> books;
 
-    public User (String userName, String userEmail, int userAge, int userID){
+    public User (String userName, String userEmail, int userAge, int userID, List<Book> books){
         this.userName = userName;
         this.userEmail = userEmail;
         this.userAge = userAge;
         this.userID = userID;
+        this.books = books;
     }
 
     public String getUserName(){
@@ -45,6 +49,14 @@ public class User {
 
     public void setUserID(int userID) {
         this.userID = userID;
+    }
+
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books){
+        this.books = books;
     }
 
     @Override

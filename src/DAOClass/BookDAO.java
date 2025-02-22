@@ -11,11 +11,11 @@ public class BookDAO implements DAOBook {
     public static List<Book> initializeBooks() {
         List<Book> books = new ArrayList<>();
 
-        Book firstBook = new Book("Pride and produce", "Jane Austen", 352, null);
+        Book firstBook = new Book("Pride and produce", "Jane Austen", 352, 145, null);
                 //352, "Elsa", "Elisa@gmail.com", 245);
-        Book secondBook = new Book("Harry Potter", "J. K. Rowling", 302, null);// Вызываем дао юзер а тот вызовет юзера
+        Book secondBook = new Book("Harry Potter", "J. K. Rowling", 302, 326, null);// Вызываем дао юзер а тот вызовет юзера
                 //"Petr", "Petya@gmail.com", 356);
-        Book thirdBook = new Book("The Mysterious Island", "Jules Verne", 597, null);
+        Book thirdBook = new Book("The Mysterious Island", "Jules Verne", 597, 467, null);
                 //"Nick", "NickNick@gmail.com", 134);
 
         books.add(firstBook);

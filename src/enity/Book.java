@@ -6,12 +6,14 @@ public class Book {
     private String bookName;
     private String author;
     private int pagesNumber;
+    private int bookID;
     private User user;
 
-    public Book (String bookName, String author, int pagesNumber, User user) {
+    public Book (String bookName, String author, int pagesNumber, int bookID, User user) {
         this.bookName = bookName;
         this.author = author;
         this.pagesNumber = pagesNumber;
+        this.bookID = bookID;
         this.user = user;
 
         /*if(getUser() != null){
@@ -48,6 +50,14 @@ public class Book {
         this.pagesNumber = pagesNumber;
     }
 
+    public int getBookID(){
+        return bookID;
+    }
+
+    public void setBookID(int bookID){
+        this.bookID = bookID;
+    }
+    
     public User getUser() {
         return user;
     }

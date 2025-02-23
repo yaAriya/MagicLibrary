@@ -1,5 +1,7 @@
 package service;
 
+import DAOClass.UserDAO;
+
 import enity.User;
 
 public class UserService implements ServiceForUser{
@@ -14,8 +16,10 @@ public class UserService implements ServiceForUser{
     }
 
     @Override
-    public User read(int ID) {
-        return null;
+    public User read(int userID) {
+        UserDAO userDAO = new UserDAO();
+        User findUserByID = userDAO.read(userID);
+        return findUserByID;
     }
 
     @Override

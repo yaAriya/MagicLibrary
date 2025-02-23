@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDAO implements DAOUser{
-    public static List<User> initializeUsers(){
+    private static List<User> initializeUsers(){
         List<User> users = new ArrayList<>();
 
         User firstUser = new  User("Nick", "NickNick@gmail.com", 14, 134, null);
@@ -45,6 +45,12 @@ public class UserDAO implements DAOUser{
 
     @Override
     public User read(int ID) {
+        List<User> users = initializeUsers();
+        for(int i = 0; i< users.size(); i++){
+            if(users.get(i).getUserID() == ID) {
+                return users.get(i);
+            }
+        }
         return null;
     }
 }

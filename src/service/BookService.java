@@ -1,5 +1,6 @@
 package service;
 
+import DAOClass.BookDAO;
 import enity.Book;
 
 public class BookService implements ServiceForBook{
@@ -16,7 +17,9 @@ public class BookService implements ServiceForBook{
 
     @Override
     public Book read(int ID) {
-        return null;
+        BookDAO bookDAO = new BookDAO();
+        Book findBookByID = bookDAO.read(ID);
+        return findBookByID;
     }
 
     @Override

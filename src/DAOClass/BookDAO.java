@@ -43,6 +43,12 @@ public class BookDAO implements DAOBook {
 
     @Override
     public Book read(int ID) {
+        List<Book> books = initializeBooks();
+        for(int i = 0; i< books.size(); i++){
+            if(books.get(i).getBookID() == ID){
+                return books.get(i);
+            }
+        }
         return null;
     }
 }

@@ -4,11 +4,9 @@ import enity.Book;
 
 import enity.User;
 
-import service.BookService;
+import service.BookServiceImplementation;
 
-import service.UserService;
-
-import java.util.List;
+import service.UserServiceImplementation;
 
 import java.util.Scanner;
 
@@ -21,11 +19,11 @@ public class Main {
         int bookID = scanner.nextInt();
         scanner.close();
 
-        UserService userService = new UserService();
+        UserServiceImplementation userService = new UserServiceImplementation();
         User findUserByID = userService.read(userID);
         System.out.println("Результат поиска Ваших пользовательских данных: " + findUserByID);
 
-        BookService bookService = new BookService();
+        BookServiceImplementation bookService = new BookServiceImplementation();
         Book findBookByID = bookService.read(bookID);
         System.out.println("Результат поиска книги: " + findBookByID);
     }

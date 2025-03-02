@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import java.util.List;
 
-public class BookDAOImplementation implements DAOBook {
+public class BookDAOImplementation implements BookDAO {
 
     public static List<Book> initializeBooks() {
         List<Book> books = new ArrayList<>();

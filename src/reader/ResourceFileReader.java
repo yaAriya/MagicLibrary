@@ -1,5 +1,7 @@
 package reader;
 
+import printer.Printer;
+
 import java.io.BufferedReader;
 
 import java.io.FileNotFoundException;
@@ -33,6 +35,9 @@ public class ResourceFileReader {
         } catch (IOException e) {
             System.out.println("Файл уже был создан ");
         }
+        Printer.printBookText(addBookStringToArray(bookFilePath));
+        System.out.println("\n");
+        Printer.printUserText(addUserStringToArray(userFilePath));
     }
 
     public static List<String> addBookStringToArray(String filePath) {

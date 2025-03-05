@@ -1,5 +1,12 @@
 package reader;
 
+import DAOClass.BookDAOImplementation;
+
+import DAOClass.UserDAOImplementation;
+import enity.Book;
+import enity.User;
+import initializer.BookInitializer;
+
 import printer.Printer;
 
 import java.io.BufferedReader;
@@ -35,18 +42,22 @@ public class ResourceFileReader {
         } catch (IOException e) {
             System.out.println("Файл уже был создан ");
         }
-        Printer.printBookText(addBookStringToArray(bookFilePath));
-        System.out.println("\n");
-        Printer.printUserText(addUserStringToArray(userFilePath));
+
+        Printer.printBooks(addBookStringToArray(bookFilePath));
+        Printer.printUsers(addUserStringToArray(userFilePath));
+
+
     }
 
-    public static List<String> addBookStringToArray(String filePath) {
-        List<String> books = new ArrayList<>();
+    public static List<Book> addBookStringToArray(String filePath) {
+        List<Book> books = new ArrayList<>();
         try {
             BufferedReader reader = new BufferedReader(new FileReader(filePath));
+
+            BookDAOImplementation bookDAOImplementation = new BookDAOImplementation();
             for (int i = 0; i < 3; i++) {
                 String bookText = reader.readLine();
-                books.add(bookText);
+                books.add(bookDAOImplementation.initializeBook(bookText)); // вернется только одна книга и с каждой итерацией книги будут пополняться
             }
         } catch (FileNotFoundException e) {
             System.out.println("Файл не найден!");
@@ -58,13 +69,15 @@ public class ResourceFileReader {
         return books;
     }
 
-    public static List<String> addUserStringToArray(String filePath) {
-        List<String> users = new ArrayList<>();
+    public static List<User> addUserStringToArray(String filePath) {
+        List<User> users = new ArrayList<>();
         try {
             BufferedReader reader = new BufferedReader(new FileReader(filePath));
+
+            UserDAOImplementation userDAOImplementation = new UserDAOImplementation();
             for (int i = 0; i < 5; i++) {
                 String userText = reader.readLine();
-                users.add(userText);
+                users.add(userDAOImplementation.initializeUser(userText));
             }
         } catch (FileNotFoundException e) {
             System.out.println("Файл не найден!");

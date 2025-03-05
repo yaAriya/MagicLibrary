@@ -2,15 +2,23 @@ package DAOClass;
 
 import enity.User;
 
-import java.util.ArrayList;
-
-import java.util.List;
-
 public class UserDAOImplementation implements UserDAO {
-    private static List<User> initializeUsers(){
-        List<User> users = new ArrayList<>();
+    public User initializeUser(String userText){
+        String [] userString = userText.split(",");
 
-        return users;
+        for(String word: userString){
+            System.out.println(word);
+        }
+        User user = new User();
+        user.setUserName(userString[0]);
+        user.setUserEmail(userString[1]);
+        user.setUserAge(Integer.parseInt(userString[2]));
+        user.setUserID(Integer.parseInt(userString[3]));
+        user.setBooks();
+
+        User userObj = new User(user.getUserName(), user.getUserEmail(), user.getUserAge(), user.getUserID(), user.getBooks());
+
+        return userObj;
     }
 
     @Override
@@ -30,12 +38,12 @@ public class UserDAOImplementation implements UserDAO {
 
     @Override
     public User read(int ID) {
-        List<User> users = initializeUsers();
+       /* List<User> users = initializeUsers();
         for(int i = 0; i< users.size(); i++){
             if(users.get(i).getUserID() == ID) {
                 return users.get(i);
             }
-        }
+        }*/
         return null;
     }
 }

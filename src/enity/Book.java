@@ -9,6 +9,9 @@ public class Book {
     private int bookID;
     private User user;
 
+    public Book(){
+
+    }
     public Book (String bookName, String author, int pagesNumber, int bookID, User user) {
         this.bookName = bookName;
         this.author = author;

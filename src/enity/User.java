@@ -11,6 +11,10 @@ public class User {
     private int userID;
     private List<Book> books;
 
+    public User(){
+
+    }
+
     public User (String userName, String userEmail, int userAge, int userID, List<Book> books){
         this.userName = userName;
         this.userEmail = userEmail;

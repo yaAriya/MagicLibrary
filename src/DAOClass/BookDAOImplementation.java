@@ -8,23 +8,7 @@ import java.util.List;
 
 public class BookDAOImplementation implements BookDAO {
 
-    public Book initializeBook(String bookText) {
 
-        String[] bookString = bookText.split(",");
-        for (String word : bookString) {
-            System.out.println(word);
-        }
-
-        Book book = new Book();
-        book.setBookName(bookString[0]);
-        book.setAuthor(bookString[1]);
-        book.setPagesNumber(Integer.parseInt(bookString[2]));
-        book.setBookID(Integer.parseInt(bookString[3]));
-        book.setUser();
-
-        Book bookObj = new Book(book.getBookName(),book.getAuthor(), book.getPagesNumber(), book.getPagesNumber(), book.getUser());
-        return bookObj;
-    }
 
     @Override
     public void add(Book book) {

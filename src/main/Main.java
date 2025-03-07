@@ -1,18 +1,14 @@
 package main;
 
-import enity.Book;
+import reader.ResourceFileReader;
 
-import enity.User;
+import reader.ResourceFileReaderImpl;
 
-import service.BookServiceImplementation;
-
-import service.UserServiceImplementation;
-
-import java.util.Scanner;
+import java.io.IOException;
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+    public static void main(String[] args) throws IOException {
+       /* Scanner scanner = new Scanner(System.in);
         System.out.println("Введите свой ID: ");
         int userID = scanner.nextInt();
         System.out.println("Введите ID книги, которую Вы бы хотели найти: ");
@@ -26,5 +22,11 @@ public class Main {
         BookServiceImplementation bookService = new BookServiceImplementation();
         Book findBookByID = bookService.read(bookID);
         System.out.println("Результат поиска книги: " + findBookByID);
+    */
+        String bookFilePath = "resources/book.txt";
+        String userFilePath = "resources/user.txt";
+
+        ResourceFileReader reader = new ResourceFileReaderImpl();
+        reader.readBooksFromFile(bookFilePath);
     }
 }

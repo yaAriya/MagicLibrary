@@ -63,7 +63,6 @@ public class BookFileReaderImpl implements BookFileReader {
         book.setBookName(parameters[1]);
         book.setAuthor(parameters[2]);
         book.setPagesNumber(Integer.parseInt(parameters[3]));
-        //?book.setUser();
         Book bookObj = new Book(book.getBookID(), book.getBookName(), book.getAuthor(), book.getPagesNumber());
 
         return bookObj;
@@ -75,7 +74,7 @@ public class BookFileReaderImpl implements BookFileReader {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(filePath));
 
-            BookDAOImplementation bookDAOImplementation = new BookDAOImplementation();
+            BookDAOImpl bookDAOImplementation = new BookDAOImpl();
             for (int i = 0; i < 3; i++) {
                 String bookText = reader.readLine();
                 books.add(bookDAOImplementation.initializeBook(bookText)); // вернется только одна книга и с каждой итерацией книги будут пополняться

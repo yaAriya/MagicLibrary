@@ -1,12 +1,8 @@
 package main;
 
-import reader.BookFileReader;
+import service.BookService;
 
-import reader.BookFileReaderImpl;
-
-import reader.UserFileReader;
-
-import reader.UserFileReaderImpl;
+import service.BookServiceImpl;
 
 import service.UserService;
 
@@ -27,19 +23,16 @@ public class Main {
         User findUserByID = userService.read(userID);
         System.out.println("Результат поиска Ваших пользовательских данных: " + findUserByID);
 
-        BookServiceImplementation bookService = new BookServiceImplementation();
+        BookServiceImpl bookService = new BookServiceImpl();
         Book findBookByID = bookService.read(bookID);
         System.out.println("Результат поиска книги: " + findBookByID);
     */
         String bookFilePath = "resources/book.txt";
         String userFilePath = "resources/user.txt";
 
-       /* BookFileReader bookReader = new BookFileReaderImpl();
-        bookReader.readBooksFromFile(bookFilePath);
+        BookService bookService = new BookServiceImpl();
+        bookService.readBookFromFile(bookFilePath);
 
-        UserFileReader userReader = new UserFileReaderImpl();
-        userReader.readUsersFromFile(userFilePath);
-*/
         UserService userService = new UserServiceImpl();
         userService.readUsersFromFile(userFilePath);
     }

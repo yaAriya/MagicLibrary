@@ -1,6 +1,8 @@
 package reader;
 
 import enity.User;
+import printer.Printer;
+import printer.PrinterImpl;
 
 import java.io.BufferedReader;
 
@@ -28,9 +30,9 @@ public class UserFileReaderImpl implements UserFileReader{
          for (String line: readLinesFromUserFile){
              User user = convertLineToUser(line);
              users.add(user);
-             System.out.println(user);
-
          }
+        Printer printer = new PrinterImpl();
+         printer.printAllUsers(users);
     }
 
     @Override

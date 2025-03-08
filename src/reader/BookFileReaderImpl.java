@@ -1,6 +1,8 @@
 package reader;
 
 import enity.Book;
+import printer.Printer;
+import printer.PrinterImpl;
 
 import java.io.BufferedReader;
 
@@ -50,8 +52,9 @@ public class BookFileReaderImpl implements BookFileReader {
        for (String line : readLinesFromBookFile) {
            Book book = convertLineToBook(line);
            books.add(book);
-           System.out.println(book);
        }
+       Printer printer = new PrinterImpl();
+       printer.printAllBooks(books);
     }
 
     @Override

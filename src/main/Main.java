@@ -27,7 +27,7 @@ public class Main {
         Book findBookByID = bookService.read(bookID);
         System.out.println("Результат поиска книги: " + findBookByID);
     */
-        String bookFilePath = "resources/book.txt";
+        String bookFilePath = "resources/book.txt"; //Принтер лучше из мэйна, но тогда возвратный тип или сразу в ридере?
         String userFilePath = "resources/user.txt";
 
         BookService bookService = new BookServiceImpl();

@@ -18,7 +18,7 @@ public class UserFileReaderImpl implements UserFileReader{
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
         List<String> readLinesFromUserFile = new ArrayList<>();
 
-        for(int i = 0; i<4; i++){
+        for(int i = 0; i<5; i++){//Нужно сделать не <5 а < колва строчек
             String userLine = reader.readLine();
             readLinesFromUserFile.add(userLine);
         }

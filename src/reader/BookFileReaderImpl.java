@@ -95,7 +95,7 @@ public class BookFileReaderImpl implements BookFileReader {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(filePath));
 
-            UserDAOImplementation userDAOImplementation = new UserDAOImplementation();
+            UserDAOImpl userDAOImplementation = new UserDAOImpl();
             for (int i = 0; i < 5; i++) {
                 String userText = reader.readLine();
                 users.add(userDAOImplementation.initializeUser(userText));

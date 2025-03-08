@@ -8,6 +8,10 @@ import reader.UserFileReader;
 
 import reader.UserFileReaderImpl;
 
+import service.UserService;
+
+import service.UserServiceImpl;
+
 import java.io.IOException;
 
 public class Main {
@@ -19,7 +23,7 @@ public class Main {
         int bookID = scanner.nextInt();
         scanner.close();
 
-        UserServiceImplementation userService = new UserServiceImplementation();
+        UserServiceImpl userService = new UserServiceImpl();
         User findUserByID = userService.read(userID);
         System.out.println("Результат поиска Ваших пользовательских данных: " + findUserByID);
 
@@ -30,10 +34,13 @@ public class Main {
         String bookFilePath = "resources/book.txt";
         String userFilePath = "resources/user.txt";
 
-        BookFileReader bookReader = new BookFileReaderImpl();
+       /* BookFileReader bookReader = new BookFileReaderImpl();
         bookReader.readBooksFromFile(bookFilePath);
 
         UserFileReader userReader = new UserFileReaderImpl();
         userReader.readUsersFromFile(userFilePath);
+*/
+        UserService userService = new UserServiceImpl();
+        userService.readUsersFromFile(userFilePath);
     }
 }

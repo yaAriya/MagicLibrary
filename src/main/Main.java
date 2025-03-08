@@ -1,8 +1,12 @@
 package main;
 
-import reader.ResourceFileReader;
+import reader.BookFileReader;
 
-import reader.ResourceFileReaderImpl;
+import reader.BookFileReaderImpl;
+
+import reader.UserFileReader;
+
+import reader.UserFileReaderImpl;
 
 import java.io.IOException;
 
@@ -26,7 +30,10 @@ public class Main {
         String bookFilePath = "resources/book.txt";
         String userFilePath = "resources/user.txt";
 
-        ResourceFileReader reader = new ResourceFileReaderImpl();
-        reader.readBooksFromFile(bookFilePath);
+        BookFileReader bookReader = new BookFileReaderImpl();
+        bookReader.readBooksFromFile(bookFilePath);
+
+        UserFileReader userReader = new UserFileReaderImpl();
+        userReader.readUsersFromFile(userFilePath);
     }
 }

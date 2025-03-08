@@ -10,13 +10,13 @@ public class UserDAOImplementation implements UserDAO {
             System.out.println(word);
         }
         User user = new User();
-        user.setUserName(userString[0]);
-        user.setUserEmail(userString[1]);
-        user.setUserAge(Integer.parseInt(userString[2]));
-        user.setUserID(Integer.parseInt(userString[3]));
-        user.setBooks();
+        user.setUserId(Integer.parseInt(userString[0]));
+        user.setUserName(userString[1]);
+        user.setUserEmail(userString[2]);
+        user.setUserAge(Integer.parseInt(userString[3]));
+        //user.setBooks();
 
-        User userObj = new User(user.getUserName(), user.getUserEmail(), user.getUserAge(), user.getUserID(), user.getBooks());
+        User userObj = new User(user.getUserId(),user.getUserName(), user.getUserEmail(), user.getUserAge());
 
         return userObj;
     }

@@ -4,8 +4,6 @@ import enity.Book;
 
 import java.io.BufferedReader;
 
-import java.io.FileNotFoundException;
-
 import java.io.FileReader;
 
 import java.io.IOException;
@@ -20,7 +18,7 @@ import java.util.ArrayList;
 
 import java.util.List;
 
-public class ResourceFileReaderImpl implements ResourceFileReader{
+public class BookFileReaderImpl implements BookFileReader {
     public void createFile() {
         String bookFilePath = "resources/book.txt";
         String userFilePath = "resources/user.txt";

@@ -4,7 +4,7 @@ import enity.Book;
 
 import java.io.IOException;
 
-public interface ResourceFileReader {
+public interface BookFileReader {
     void readBooksFromFile(String filePath) throws IOException;
     Book convertLineToBook(String line);
 }

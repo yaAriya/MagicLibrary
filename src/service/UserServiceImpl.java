@@ -15,7 +15,9 @@ public class UserServiceImpl implements UserService {
        return userDAO.readUsersFromFile(filePath);
     }
     @Override
-    public void add(User user) {
+    public void add(User user, String filePath) throws IOException {
+        UserDAO userDAO = new UserDAOImpl();
+        userDAO.add(user, filePath);
     }
 
     @Override
@@ -27,7 +29,6 @@ public class UserServiceImpl implements UserService {
     public User read(int userID, String filePath) throws IOException {
         UserDAO userDAO = new UserDAOImpl();
         return userDAO.read(userID, filePath);
-        //return findUserByID;
     }
 
     @Override

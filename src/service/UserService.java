@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface UserService {
     List<User> readUsersFromFile(String path) throws IOException;
-    void add(User user);
+    void add(User user, String filePath) throws IOException;
     User upDate(User user);
     User read(int ID, String filePath) throws IOException;
     void delete(User user);

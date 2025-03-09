@@ -20,8 +20,9 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public void add(User user) {
-
+    public void add(User user, String filePath) throws IOException {
+        List<User> users = readUsersFromFile(filePath);
+        users.add(user);
     }
 
     @Override

@@ -1,5 +1,7 @@
 package main;
 
+import enity.Book;
+import enity.User;
 import printer.Printer;
 
 import printer.PrinterImpl;
@@ -31,7 +33,8 @@ public class Main {
         printer.printUserObject(userService.read(1,userFilePath));
         printer.printBookObject(bookService.read(1, bookFilePath));
 
-        
 
+        userService.add(new User(4,"Vika","Vichik@gmail.com",15), userFilePath);
+        bookService.add(new Book(3,"Gone with the Wind", "Margaret Mitchell", 333), bookFilePath);
     }
 }

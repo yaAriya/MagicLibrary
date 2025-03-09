@@ -18,7 +18,9 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public void add(Book book) {
+    public void add(Book book, String filePath) throws IOException {
+        BookDAO bookDAO = new BookDAOImpl();
+        bookDAO.add(book, filePath);
     }
 
     @Override

@@ -18,8 +18,9 @@ public class BookDAOImpl implements BookDAO {
     }
 
     @Override
-    public void add(Book book) {
-
+    public void add(Book book, String filePath) throws IOException {
+        List<Book> books = readBookFromFile(filePath);
+        books.add(book);
     }
 
     @Override

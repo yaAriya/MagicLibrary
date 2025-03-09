@@ -1,6 +1,7 @@
 package printer;
 
 import enity.Book;
+
 import enity.User;
 
 import java.util.List;
@@ -20,6 +21,15 @@ public class PrinterImpl implements Printer{
             System.out.println(user);
         }
         System.out.println("\n");
+    }
+
+    @Override
+    public void printUserObject(User userObject){
+        System.out.println("Данные искаемого Вами пользователя: " + userObject + "\n");
+    }
+
+    public void printBookObject(Book bookObject){
+        System.out.println("Данные искаемой Вами книги: " + bookObject + "\n");
     }
 }
 

@@ -16,7 +16,7 @@ import java.util.List;
 
 public class UserFileReaderImpl implements UserFileReader{
     @Override
-    public void readUsersFromFile(String filePath) throws IOException {
+    public List<User> readUsersFromFile(String filePath) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
         List<String> readLinesFromUserFile = new ArrayList<>();
 
@@ -31,8 +31,7 @@ public class UserFileReaderImpl implements UserFileReader{
              User user = convertLineToUser(line);
              users.add(user);
          }
-        Printer printer = new PrinterImpl();
-         printer.printAllUsers(users);
+         return users;
     }
 
     @Override

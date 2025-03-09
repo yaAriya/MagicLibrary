@@ -4,10 +4,12 @@ import enity.Book;
 
 import java.io.IOException;
 
+import java.util.List;
+
 public interface BookService {
-    void readBookFromFile(String filePath) throws IOException;
+    List<Book> readBookFromFile(String filePath) throws IOException;
     void add(Book book);
     Book update(Book book);
-    Book read(int ID);// getByID
+    Book read(int ID, String filePath) throws IOException;
     void delete(Book book);
 }

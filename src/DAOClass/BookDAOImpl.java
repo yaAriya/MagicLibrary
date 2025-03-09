@@ -8,11 +8,13 @@ import reader.BookFileReaderImpl;
 
 import java.io.IOException;
 
+import java.util.List;
+
 public class BookDAOImpl implements BookDAO {
     @Override
-    public void readBookFromFile(String filePath) throws IOException {
+    public List<Book> readBookFromFile(String filePath) throws IOException {
         BookFileReader bookFileReader = new BookFileReaderImpl();
-        bookFileReader.readBooksFromFile(filePath);
+        return bookFileReader.readBooksFromFile(filePath);
     }
 
     @Override
@@ -31,15 +33,13 @@ public class BookDAOImpl implements BookDAO {
     }
 
     @Override
-    public Book read(int ID) {
-        /*BookDAOImpl bookDAO = BookDAOImpl();
-        List<Book> books = bookDAO.initializeBooks();
-        for(int i = 0; i< books.size(); i++){
-            if(books.get(i).getBookID() == ID){
+    public Book read(int ID, String filePath) throws IOException {
+        List<Book> books = readBookFromFile(filePath);
+        for(int i = 0; i< books.size(); i++) {
+            if (books.get(i).getBookID() == ID) {
                 return books.get(i);
             }
-        }*/
+        }
         return null;
-
     }
 }

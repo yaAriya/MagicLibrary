@@ -8,11 +8,13 @@ import enity.Book;
 
 import java.io.IOException;
 
+import java.util.List;
+
 public class BookServiceImpl implements BookService {
     @Override
-    public void readBookFromFile(String filePath) throws IOException {
+    public List<Book> readBookFromFile(String filePath) throws IOException {
         BookDAO bookDAO = new BookDAOImpl();
-        bookDAO.readBookFromFile(filePath);
+        return bookDAO.readBookFromFile(filePath);
     }
 
     @Override
@@ -25,9 +27,9 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Book read(int ID) {
+    public Book read(int ID, String filePath) throws IOException {
         BookDAOImpl bookDAO = new BookDAOImpl();
-        Book findBookByID = bookDAO.read(ID);
+        Book findBookByID = bookDAO.read(ID, filePath);
         return findBookByID;
     }
 

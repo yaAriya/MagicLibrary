@@ -10,9 +10,9 @@ import java.io.IOException;
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
-    public void readUsersFromFile(String filePath) throws IOException{
-        UserDAO userDAO = new UserDAOImpl();
-        userDAO.readUsersFromFile(filePath);
+    public List<User> readUsersFromFile(String filePath) throws IOException{
+        UserDAO userDAO = new UserDAOImpl();// Можно ли вынести вне методов как единую?
+       return userDAO.readUsersFromFile(filePath);
     }
     @Override
     public void add(User user) {
@@ -24,10 +24,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User read(int userID) {
+    public User read(int userID, String filePath) throws IOException {
         UserDAO userDAO = new UserDAOImpl();
-        User findUserByID = userDAO.read(userID);
-        return findUserByID;
+        return userDAO.read(userID, filePath);
+        //return findUserByID;
     }
 
     @Override

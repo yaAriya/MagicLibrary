@@ -38,7 +38,7 @@ public class BookFileReaderImpl implements BookFileReader {
     }
 
    @Override
-   public void readBooksFromFile(String bookFilePath) throws IOException {
+   public List<Book> readBooksFromFile(String bookFilePath) throws IOException {
        BufferedReader reader = new BufferedReader(new FileReader(bookFilePath));
        List<String> readLinesFromBookFile = new ArrayList<>(); // здесь мы уже должны заполнить массив
 
@@ -53,8 +53,7 @@ public class BookFileReaderImpl implements BookFileReader {
            Book book = convertLineToBook(line);
            books.add(book);
        }
-       Printer printer = new PrinterImpl();
-       printer.printAllBooks(books);
+       return books;
     }
 
     @Override

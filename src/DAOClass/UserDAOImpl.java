@@ -13,10 +13,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDAOImpl implements UserDAO {
-    public void readUsersFromFile (String filePath) throws IOException {
+    public List<User> readUsersFromFile (String filePath) throws IOException {// сделать возвратным?
         UserFileReader userReader = new UserFileReaderImpl();
-        List<User> users = new ArrayList<>();
-        userReader.readUsersFromFile(filePath);
+        List<User> users = userReader.readUsersFromFile(filePath);
+        return users;
     }
 
     @Override
@@ -35,13 +35,13 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public User read(int ID) {
-       /* List<User> users = initializeUsers();
+    public User read(int ID, String filePath) throws IOException {
+       List<User> users = readUsersFromFile(filePath);
         for(int i = 0; i< users.size(); i++){
-            if(users.get(i).getUserID() == ID) {
+            if(users.get(i).getUserId() == ID) {
                 return users.get(i);
             }
-        }*/
+        }
         return null;
     }
 }

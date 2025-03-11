@@ -7,11 +7,11 @@ import java.io.IOException;
 import java.util.List;
 
 public interface BookDAO {
-    List<Book> readBookFromFile(String filePath) throws IOException;
-    void add(Book book, String filePath) throws IOException;
+    List<Book> readAllBooks();
+    void add(Book book) throws IOException;
     Book upDate(final Book book);
-    void delete(Book book);
-    Book read(int ID, String filePath) throws IOException;
+    void delete(Book book) throws IOException;
+    Book read(int ID) throws IOException;
 
 
 }

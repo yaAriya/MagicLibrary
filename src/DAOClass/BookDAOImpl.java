@@ -11,16 +11,34 @@ import java.io.IOException;
 import java.util.List;
 
 public class BookDAOImpl implements BookDAO {
-    @Override
-    public List<Book> readBookFromFile(String filePath) throws IOException {
-        BookFileReader bookFileReader = new BookFileReaderImpl();
-        return bookFileReader.readBooksFromFile(filePath);
+    private List<Book> books;
+    private BookFileReader bookFileReader;
+
+    public BookDAOImpl() throws IOException {
+        bookFileReader = new BookFileReaderImpl();
+        books = bookFileReader.readBooksFromFile();
+    }
+
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
     }
 
     @Override
-    public void add(Book book, String filePath) throws IOException {
-        List<Book> books = readBookFromFile(filePath);
-        books.add(book);
+    public List<Book> readAllBooks(){
+        return getBooks();
+    }
+
+    @Override
+    public void add(Book book) throws IOException {
+        if (book != null) {
+            books.add(book);
+        } else {
+            throw new IllegalArgumentException("book не должен быть null");
+        }
     }
 
     @Override
@@ -29,16 +47,19 @@ public class BookDAOImpl implements BookDAO {
     }
 
     @Override
-    public void delete(Book book) {
-
+    public void delete(Book book) throws IOException {
+        if(read(book.getBookID())!= null){
+            books.remove(book);
+        } else {
+            System.out.println("Ваш объект не найден");// Налл поинтер эксепш?
+        }
     }
 
     @Override
-    public Book read(int ID, String filePath) throws IOException {
-        List<Book> books = readBookFromFile(filePath);
-        for(int i = 0; i< books.size(); i++) {
-            if (books.get(i).getBookID() == ID) {
-                return books.get(i);
+    public Book read(int ID) throws IOException {
+        for (Book book : books) {
+            if (book.getBookID() == ID) {
+                return book;
             }
         }
         return null;

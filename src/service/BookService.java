@@ -7,9 +7,9 @@ import java.io.IOException;
 import java.util.List;
 
 public interface BookService {
-    List<Book> readBookFromFile(String filePath) throws IOException;
-    void add(Book book, String filePath) throws IOException;
+    List<Book> readAllBooks();
+    void add(Book book) throws IOException;
     Book update(Book book);
-    Book read(int ID, String filePath) throws IOException;
-    void delete(Book book);
+    Book read(int ID) throws IOException;
+    void delete(Book book) throws IOException;
 }

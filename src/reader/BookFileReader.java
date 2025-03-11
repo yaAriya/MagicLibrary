@@ -7,6 +7,6 @@ import java.io.IOException;
 import java.util.List;
 
 public interface BookFileReader {
-    List<Book> readBooksFromFile(String filePath) throws IOException;
+    List<Book> readBooksFromFile() throws IOException;
     Book convertLineToBook(String line);
 }

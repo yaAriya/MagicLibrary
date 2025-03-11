@@ -11,16 +11,19 @@ import java.io.IOException;
 import java.util.List;
 
 public class BookServiceImpl implements BookService {
-    @Override
-    public List<Book> readBookFromFile(String filePath) throws IOException {
-        BookDAO bookDAO = new BookDAOImpl();
-        return bookDAO.readBookFromFile(filePath);
+    BookDAO bookDAO = new BookDAOImpl();
+
+    public BookServiceImpl() throws IOException {
     }
 
     @Override
-    public void add(Book book, String filePath) throws IOException {
-        BookDAO bookDAO = new BookDAOImpl();
-        bookDAO.add(book, filePath);
+    public List<Book> readAllBooks(){
+         return bookDAO.readAllBooks();
+    }
+
+    @Override
+    public void add(Book book) throws IOException {
+        bookDAO.add(book);
     }
 
     @Override
@@ -29,14 +32,13 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Book read(int ID, String filePath) throws IOException {
-        BookDAOImpl bookDAO = new BookDAOImpl();
-        Book findBookByID = bookDAO.read(ID, filePath);
-        return findBookByID;
+    public Book read(int ID) throws IOException {
+        return bookDAO.read(ID);
     }
 
     @Override
-    public void delete(Book book) {
+    public void delete(Book book) throws IOException {
+        bookDAO.delete(book);
 
     }
 }

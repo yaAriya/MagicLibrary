@@ -10,8 +10,8 @@ public class Book {
     private User user;
 
     public Book(){
-
     }
+
     public Book(int bookId, String bookName, String author, int pagesNumber){
         this.bookId = bookId;
         this.bookName = bookName;

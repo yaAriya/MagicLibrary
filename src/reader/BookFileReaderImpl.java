@@ -1,8 +1,6 @@
 package reader;
 
 import enity.Book;
-import printer.Printer;
-import printer.PrinterImpl;
 
 import java.io.BufferedReader;
 
@@ -38,11 +36,12 @@ public class BookFileReaderImpl implements BookFileReader {
     }
 
    @Override
-   public List<Book> readBooksFromFile(String bookFilePath) throws IOException {
+   public List<Book> readBooksFromFile() throws IOException {
+       String bookFilePath = "resources/book.txt";
        BufferedReader reader = new BufferedReader(new FileReader(bookFilePath));
        List<String> readLinesFromBookFile = new ArrayList<>(); // здесь мы уже должны заполнить массив
 
-       for (int i = 0; i < 3; i++) {
+       for (int i = 0; i < 3; i++) {// колво линий
            String bookLine = reader.readLine();
            readLinesFromBookFile.add(bookLine);
        }

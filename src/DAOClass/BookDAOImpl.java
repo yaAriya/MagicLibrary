@@ -37,7 +37,7 @@ public class BookDAOImpl implements BookDAO {
         if (book != null) {
             books.add(book);
         } else {
-            throw new IllegalArgumentException("book не должен быть null");
+            throw new IllegalArgumentException("book не должена быть null");
         }
     }
 
@@ -48,10 +48,10 @@ public class BookDAOImpl implements BookDAO {
 
     @Override
     public void delete(Book book) throws IOException {
-        if(read(book.getBookID())!= null){
+        if(read(book.getBookID()) != null){
             books.remove(book);
         } else {
-            System.out.println("Ваш объект не найден");// Налл поинтер эксепш?
+           throw new IllegalArgumentException("book не должена быть null");
         }
     }
 

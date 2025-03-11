@@ -8,21 +8,36 @@ import reader.UserFileReaderImpl;
 
 import java.io.IOException;
 
-import java.util.ArrayList;
-
 import java.util.List;
 
 public class UserDAOImpl implements UserDAO {
-    public List<User> readUsersFromFile (String filePath) throws IOException {// сделать возвратным?
-        UserFileReader userReader = new UserFileReaderImpl();
-        List<User> users = userReader.readUsersFromFile(filePath);
+    private List<User> users;
+    private UserFileReader userReader;
+
+    public UserDAOImpl() throws IOException {
+        userReader = new UserFileReaderImpl();
+        users = userReader.readUsersFromFile();
+    }
+
+    public List<User> getUsers() {
         return users;
     }
 
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
+
+    public List<User> readAllUsers() {
+        return getUsers();
+    }
+
     @Override
-    public void add(User user, String filePath) throws IOException {
-        List<User> users = readUsersFromFile(filePath);
-        users.add(user);
+    public void add(User user) throws IOException {
+        if (user != null) {
+            users.add(user);
+        } else {
+            throw new IllegalArgumentException("user не должен быть null");
+        }
     }
 
     @Override
@@ -31,18 +46,21 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public void delete(User user) {
-
-    }
-
-    @Override
-    public User read(int ID, String filePath) throws IOException {
-       List<User> users = readUsersFromFile(filePath);
-        for(int i = 0; i< users.size(); i++){
-            if(users.get(i).getUserId() == ID) {
-                return users.get(i);
+    public User read(int ID) throws IOException {
+        for (User user : users) {
+            if (user.getUserId() == ID) {
+                return user;
             }
         }
         return null;
+    }
+
+    @Override
+    public void delete(User user) {
+        if (user != null) {
+            users.remove(user);
+        } else {
+            throw new IllegalArgumentException("user не должен быть null");
+        }
     }
 }

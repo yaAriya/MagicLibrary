@@ -7,17 +7,23 @@ import DAOClass.UserDAOImpl;
 import enity.User;
 
 import java.io.IOException;
+
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
-    public List<User> readUsersFromFile(String filePath) throws IOException{
-        UserDAO userDAO = new UserDAOImpl();// Можно ли вынести вне методов как единую?
-       return userDAO.readUsersFromFile(filePath);
+    UserDAO userDAO = new UserDAOImpl();
+
+    public UserServiceImpl() throws IOException {
     }
+
     @Override
-    public void add(User user, String filePath) throws IOException {
-        UserDAO userDAO = new UserDAOImpl();
-        userDAO.add(user, filePath);
+    public List<User> readAllUsers() {
+       return userDAO.readAllUsers();
+    }
+
+    @Override
+    public void add(User user) throws IOException {
+        userDAO.add(user);
     }
 
     @Override
@@ -26,13 +32,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User read(int userID, String filePath) throws IOException {
-        UserDAO userDAO = new UserDAOImpl();
-        return userDAO.read(userID, filePath);
+    public User read(int userID) throws IOException {
+        return userDAO.read(userID);
     }
 
     @Override
     public void delete(User user) {
-
+        userDAO.delete(user);
     }
 }

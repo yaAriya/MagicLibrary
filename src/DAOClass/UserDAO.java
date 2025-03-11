@@ -7,9 +7,9 @@ import java.io.IOException;
 import java.util.List;
 
 public interface UserDAO {
-    List<User> readUsersFromFile(String path) throws IOException;
-    void add(User user, String filePath) throws IOException;
+    List<User> readAllUsers();
+    void add(User user) throws IOException;
     User upDate(User user);
     void delete(User user);
-    User read(int ID, String filePath) throws IOException;
+    User read(int ID) throws IOException;
 }

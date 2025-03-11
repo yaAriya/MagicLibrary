@@ -19,17 +19,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BookFileReaderImpl implements BookFileReader {
+
+    private String bookFilePath;
+
+    public BookFileReaderImpl(){
+    bookFilePath = "resources/book.txt";
+    }
+
     public void createFile() {
-        String bookFilePath = "resources/book.txt";
-        String userFilePath = "resources/user.txt";
         try {
             Path bookPath = Files.createFile(Paths.get("resources/book.txt"));
             System.out.println("Файл был создан?");
             System.out.println(Files.exists(bookPath));
 
-            Path userPath = Files.createFile(Paths.get("resources/user.txt"));
-            System.out.println("Файл был создан?");
-            System.out.println(Files.exists(userPath));
         } catch (IOException e) {
             System.out.println("Файл уже был создан ");
         }
@@ -37,7 +39,6 @@ public class BookFileReaderImpl implements BookFileReader {
 
    @Override
    public List<Book> readBooksFromFile() throws IOException {
-       String bookFilePath = "resources/book.txt";
        BufferedReader reader = new BufferedReader(new FileReader(bookFilePath));
        List<String> readLinesFromBookFile = new ArrayList<>(); // здесь мы уже должны заполнить массив
 

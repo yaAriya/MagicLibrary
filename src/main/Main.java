@@ -21,28 +21,26 @@ import java.io.IOException;
 public class Main {
     public static void main(String[] args) throws IOException {
 
-        //String bookFilePath = "resources/book.txt"; //Принтер лучше из мэйна, но тогда возвратный тип или сразу в ридере?
-        String userFilePath = "resources/user.txt";
-
         BookService bookService = new BookServiceImpl();
         UserService userService = new UserServiceImpl();
         Printer printer = new PrinterImpl();
 
 
-        printer.printAllUsers(userService.readUsersFromFile(userFilePath));
+        printer.printAllUsers(userService.readAllUsers());
         printer.printAllBooks(bookService.readAllBooks());
 
-        printer.printUserObject(userService.read(1,userFilePath));
+        printer.printUserObject(userService.read(1));
         printer.printBookObject(bookService.read(1));
 
 
-        userService.add(new User(4,"Vika","Vichik@gmail.com",15), userFilePath);
-
+        userService.add(new User(5,"Vika","Vichik@gmail.com",15));
+        printer.printAllUsers(userService.readAllUsers());
 
         bookService.add(new Book(3,"Gone with the Wind", "Margaret Mitchell", 333));
         printer.printAllBooks(bookService.readAllBooks());
 
-        //userService.delete(new User(4,"Vika","Vichik@gmail.com",15), userFilePath);
+        userService.delete(new User(5,"Vika","Vichik@gmail.com",15));
+        printer.printAllUsers(userService.readAllUsers());
 
         bookService.delete(new Book(3,"Gone with the Wind", "Margaret Mitchell", 333));
         printer.printAllBooks(bookService.readAllBooks());

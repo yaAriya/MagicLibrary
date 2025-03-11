@@ -1,8 +1,6 @@
 package reader;
 
 import enity.User;
-import printer.Printer;
-import printer.PrinterImpl;
 
 import java.io.BufferedReader;
 
@@ -15,9 +13,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserFileReaderImpl implements UserFileReader{
+
+    String userFilePath;
+
+    public UserFileReaderImpl(){
+        userFilePath = "resources/user.txt";
+    }
     @Override
-    public List<User> readUsersFromFile(String filePath) throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader(filePath));
+    public List<User> readUsersFromFile() throws IOException {
+
+        BufferedReader reader = new BufferedReader(new FileReader(userFilePath));
         List<String> readLinesFromUserFile = new ArrayList<>();
 
         for(int i = 0; i<5; i++){//Нужно сделать не <5 а < колва строчек

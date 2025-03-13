@@ -8,9 +8,13 @@ import java.util.List;
 
 public interface BookDAO {
     List<Book> readAllBooks();
+
     void add(Book book) throws IOException;
-    Book upDate(final Book book);
+
+    Book upDate(Book book);
+
     void delete(Book book) throws IOException;
+
     Book read(int ID) throws IOException;
 
 

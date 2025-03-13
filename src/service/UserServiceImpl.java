@@ -18,7 +18,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> readAllUsers() {
-       return userDAO.readAllUsers();
+        return userDAO.readAllUsers();
     }
 
     @Override
@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User upDate(User user) {
-        return null;
+        return userDAO.upDate(user);
     }
 
     @Override

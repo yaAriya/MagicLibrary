@@ -42,7 +42,8 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public User upDate(User user) {
-        return null;
+        users.set(1, user);
+        return users.get(1);
     }
 
     @Override

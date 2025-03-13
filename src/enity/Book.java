@@ -9,16 +9,18 @@ public class Book {
     private int pagesNumber;
     private User user;
 
-    public Book(){
+    public Book() {
     }
 
-    public Book(int bookId, String bookName, String author, int pagesNumber){
+    public Book(int bookId, String bookName, String author, int pagesNumber) {
         this.bookId = bookId;
         this.bookName = bookName;
         this.author = author;
         this.pagesNumber = pagesNumber;
 
-    }    public Book (int bookId, String bookName, String author, int pagesNumber, User user) {
+    }
+
+    public Book(int bookId, String bookName, String author, int pagesNumber, User user) {
         this.bookId = bookId;
         this.bookName = bookName;
         this.author = author;
@@ -34,36 +36,35 @@ public class Book {
     }
 
 
-
-    public String getBookName(){
-        return  bookName;
+    public String getBookName() {
+        return bookName;
     }
 
-    public void setBookName(String bookName){
+    public void setBookName(String bookName) {
         this.bookName = bookName;
     }
 
-    public String getAuthor(){
+    public String getAuthor() {
         return author;
     }
 
-    public  void setAuthor(String author){
+    public void setAuthor(String author) {
         this.author = author;
     }
 
-    public int getPagesNumber(){
+    public int getPagesNumber() {
         return pagesNumber;
     }
 
-    public void setPagesNumber(int pagesNumber){
+    public void setPagesNumber(int pagesNumber) {
         this.pagesNumber = pagesNumber;
     }
 
-    public int getBookID(){
+    public int getBookID() {
         return bookId;
     }
 
-    public void setBookID(int bookID){
+    public void setBookID(int bookID) {
         this.bookId = bookID;
     }
 
@@ -76,27 +77,26 @@ public class Book {
     }
 
     @Override
-    public int hashCode(){
+    public int hashCode() {
         return Objects.hash(bookName, author, pagesNumber, bookId, user);
     }
 
     @Override
-    public boolean equals(Object obj){
-        if(this == obj) return true;
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
         if ((obj == null) || !(obj instanceof Book)) return false;
         Book book = (Book) obj;
         return Objects.equals(bookName, book.bookName) && Objects.equals(author, book.author) && pagesNumber == book.pagesNumber && bookId == book.bookId && Objects.equals(user, book.user);
-                //Objects.equals(user, book.user.getUserName()) && Objects.equals(user, book.user.getUserEmail()) && user == book.user.getUserID();
     }
 
     @Override
-    public Object clone() throws CloneNotSupportedException{
+    public Object clone() throws CloneNotSupportedException {
         return super.clone();
     }
 
 
     @Override
-    public String toString(){
+    public String toString() {
         return bookId + ", " + bookName + ", " + author + ", " + pagesNumber + ", " + user;
     }
 }

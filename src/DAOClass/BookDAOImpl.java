@@ -12,7 +12,7 @@ import java.util.List;
 
 public class BookDAOImpl implements BookDAO {
     private List<Book> books;
-    private BookFileReader bookFileReader;
+    private BookFileReader bookFileReader;// зачем вынесли если использвуется единожды. МБ локальной?
 
     public BookDAOImpl() throws IOException {
         bookFileReader = new BookFileReaderImpl();
@@ -28,7 +28,7 @@ public class BookDAOImpl implements BookDAO {
     }
 
     @Override
-    public List<Book> readAllBooks(){
+    public List<Book> readAllBooks() {
         return getBooks();
     }
 
@@ -43,25 +43,27 @@ public class BookDAOImpl implements BookDAO {
 
     @Override
     public Book upDate(Book book) {
-        return null;
+    int bookIndex = 0;
+        getBooks().set(bookIndex, book);
+        return books.get(bookIndex);
     }
 
-    @Override
-    public void delete(Book book) throws IOException {
-        if(read(book.getBookID()) != null){
-            books.remove(book);
-        } else {
-           throw new IllegalArgumentException("book не должена быть null");
-        }
-    }
-
-    @Override
-    public Book read(int ID) throws IOException {
-        for (Book book : books) {
-            if (book.getBookID() == ID) {
-                return book;
+        @Override
+        public void delete (Book book) throws IOException {
+            if (read(book.getBookID()) != null) {
+                books.remove(book);
+            } else {
+                throw new IllegalArgumentException("book не должена быть null");
             }
         }
-        return null;
+
+        @Override
+        public Book read ( int ID) throws IOException {
+            for (Book book : books) {
+                if (book.getBookID() == ID) {
+                    return book;
+                }
+            }
+            return null;
+        }
     }
-}

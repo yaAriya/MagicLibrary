@@ -17,8 +17,8 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<Book> readAllBooks(){
-         return bookDAO.readAllBooks();
+    public List<Book> readAllBooks() {
+        return bookDAO.readAllBooks();
     }
 
     @Override
@@ -28,7 +28,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public Book update(Book book) {
-        return null;
+        return bookDAO.upDate(book);
     }
 
     @Override

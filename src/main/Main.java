@@ -1,5 +1,7 @@
 package main;
 
+import DAOClass.BookDAO;
+import DAOClass.BookDAOImpl;
 import enity.Book;
 
 import enity.User;
@@ -33,16 +35,20 @@ public class Main {
         printer.printBookObject(bookService.read(1));
 
 
-        userService.add(new User(5,"Vika","Vichik@gmail.com",15));
+        userService.add(new User(5, "Vika", "Vichik@gmail.com", 15));
         printer.printAllUsers(userService.readAllUsers());
 
-        bookService.add(new Book(3,"Gone with the Wind", "Margaret Mitchell", 333));
+        bookService.add(new Book(3, "Gone with the Wind", "Margaret Mitchell", 333));
         printer.printAllBooks(bookService.readAllBooks());
 
-        userService.delete(new User(5,"Vika","Vichik@gmail.com",15));
+        printer.printBookObject(bookService.update(new Book(6, "Gone with the Wind", "Margaret Mitchell", 345)));
+
+        printer.printUserObject(userService.upDate(new User(8, "Lera", "Lerka@gmail.com", 15)));
+
+        userService.delete(new User(5, "Vika", "Vichik@gmail.com", 15));
         printer.printAllUsers(userService.readAllUsers());
 
-        bookService.delete(new Book(3,"Gone with the Wind", "Margaret Mitchell", 333));
+        bookService.delete(new Book(3, "Gone with the Wind", "Margaret Mitchell", 333));
         printer.printAllBooks(bookService.readAllBooks());
     }
 }

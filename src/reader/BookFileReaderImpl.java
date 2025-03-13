@@ -20,7 +20,7 @@ import java.util.List;
 
 public class BookFileReaderImpl implements BookFileReader {
 
-    private String bookFilePath;
+    private final String bookFilePath;
 
     public BookFileReaderImpl(){
     bookFilePath = "resources/book.txt";
@@ -65,9 +65,8 @@ public class BookFileReaderImpl implements BookFileReader {
         book.setBookName(parameters[1]);
         book.setAuthor(parameters[2]);
         book.setPagesNumber(Integer.parseInt(parameters[3]));
-        Book bookObj = new Book(book.getBookID(), book.getBookName(), book.getAuthor(), book.getPagesNumber());
 
-        return bookObj;
+        return new Book(book.getBookID(), book.getBookName(), book.getAuthor(), book.getPagesNumber());
     }
 
 

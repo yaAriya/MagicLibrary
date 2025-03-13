@@ -49,8 +49,6 @@ public class UserFileReaderImpl implements UserFileReader{
         user.setUserEmail(parameters[2]);
         user.setUserAge(Integer.parseInt(parameters[3]));
 
-        User userObj = new User(user.getUserId(), user.getUserName(), user.getUserEmail(), user.getUserAge());
-
-        return userObj;
+        return new User(user.getUserId(), user.getUserName(), user.getUserEmail(), user.getUserAge());
     }
 }

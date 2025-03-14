@@ -1,4 +1,4 @@
-package DAOClass;
+package dao;
 
 import enity.User;
 
@@ -10,11 +10,11 @@ import java.io.IOException;
 
 import java.util.List;
 
-public class UserDAOImpl implements UserDAO {
+public class UserDaoImpl implements UserDao {
     private List<User> users;
     private UserFileReader userReader;
 
-    public UserDAOImpl() throws IOException {
+    public UserDaoImpl() throws IOException {
         userReader = new UserFileReaderImpl();
         users = userReader.readUsersFromFile();
     }

@@ -40,7 +40,7 @@ public class BookFileReaderImpl implements BookFileReader {
    @Override
    public List<Book> readBooksFromFile() throws IOException {
        BufferedReader reader = new BufferedReader(new FileReader(bookFilePath));
-       List<String> readLinesFromBookFile = new ArrayList<>(); // здесь мы уже должны заполнить массив
+       List<String> readLinesFromBookFile = new ArrayList<>();
 
        for (int i = 0; i < 3; i++) {// колво линий
            String bookLine = reader.readLine();
@@ -75,7 +75,7 @@ public class BookFileReaderImpl implements BookFileReader {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(filePath));
 
-            BookDAOImpl bookDAOImplementation = new BookDAOImpl();
+            BookDaoImpl bookDAOImplementation = new BookDaoImpl();
             for (int i = 0; i < 3; i++) {
                 String bookText = reader.readLine();
                 books.add(bookDAOImplementation.initializeBook(bookText)); // вернется только одна книга и с каждой итерацией книги будут пополняться

@@ -1,8 +1,8 @@
 package service;
 
-import DAOClass.BookDAO;
+import dao.BookDao;
 
-import DAOClass.BookDAOImpl;
+import dao.BookDaoImpl;
 
 import enity.Book;
 
@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class BookServiceImpl implements BookService {
-    BookDAO bookDAO = new BookDAOImpl();
+    BookDao bookDAO = new BookDaoImpl();
 
     public BookServiceImpl() throws IOException {
     }

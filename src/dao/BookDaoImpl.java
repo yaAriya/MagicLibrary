@@ -1,4 +1,4 @@
-package DAOClass;
+package dao;
 
 import enity.Book;
 
@@ -10,11 +10,11 @@ import java.io.IOException;
 
 import java.util.List;
 
-public class BookDAOImpl implements BookDAO {
+public class BookDaoImpl implements BookDao {
     private List<Book> books;
     private BookFileReader bookFileReader;// зачем вынесли если использвуется единожды. МБ локальной?
 
-    public BookDAOImpl() throws IOException {
+    public BookDaoImpl() throws IOException {
         bookFileReader = new BookFileReaderImpl();
         books = bookFileReader.readBooksFromFile();
     }

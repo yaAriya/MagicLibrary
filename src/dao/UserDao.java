@@ -1,4 +1,4 @@
-package DAOClass;
+package dao;
 
 import enity.User;
 
@@ -6,7 +6,7 @@ import java.io.IOException;
 
 import java.util.List;
 
-public interface UserDAO {
+public interface UserDao {
     List<User> readAllUsers();
 
     void add(User user) throws IOException;

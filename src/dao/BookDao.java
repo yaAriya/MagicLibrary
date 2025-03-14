@@ -1,4 +1,4 @@
-package DAOClass;
+package dao;
 
 import enity.Book;
 
@@ -6,7 +6,7 @@ import java.io.IOException;
 
 import java.util.List;
 
-public interface BookDAO {
+public interface BookDao {
     List<Book> readAllBooks();
 
     void add(Book book) throws IOException;

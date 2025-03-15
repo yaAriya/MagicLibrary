@@ -2,20 +2,20 @@ package dao;
 
 import enity.Book;
 
-import java.io.IOException;
+import exceptions.ObjectInitializeException;
 
 import java.util.List;
 
 public interface BookDao {
     List<Book> readAllBooks();
 
-    void add(Book book) throws IOException;
+    void add(Book book) throws ObjectInitializeException;
 
     Book upDate(Book book);
 
-    void delete(Book book) throws IOException;
+    void delete(Book book) throws ObjectInitializeException;
 
-    Book read(int ID) throws IOException;
+    Book read(int ID) throws ObjectInitializeException;
 
 
 }

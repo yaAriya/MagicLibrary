@@ -2,29 +2,40 @@ package dao;
 
 import enity.User;
 
+import exceptions.ObjectInitializeException;
+
+import exceptions.UserFileReaderException;
+
 import reader.UserFileReader;
 
 import reader.UserFileReaderImpl;
 
-import java.io.IOException;
-
 import java.util.List;
 
 public class UserDaoImpl implements UserDao {
+    private static UserDaoImpl instance;
+
+    public static UserDaoImpl getInstance() {
+        if (instance == null) {
+            instance = new UserDaoImpl();
+        }
+        return instance;
+    }
+
     private List<User> users;
     private UserFileReader userReader;
 
-    public UserDaoImpl() throws IOException {
-        userReader = new UserFileReaderImpl();
-        users = userReader.readUsersFromFile();
+    public UserDaoImpl() throws ObjectInitializeException {
+        try {
+            userReader = new UserFileReaderImpl();
+            users = userReader.readUsersFromFile();
+        } catch (UserFileReaderException e) {
+            throw new ObjectInitializeException(e);
+        }
     }
 
     public List<User> getUsers() {
         return users;
-    }
-
-    public void setUsers(List<User> users) {
-        this.users = users;
     }
 
     public List<User> readAllUsers() {
@@ -32,7 +43,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void add(User user) throws IOException {
+    public void add(User user) throws ObjectInitializeException {
         if (user != null) {
             users.add(user);
         } else {
@@ -47,7 +58,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User read(int ID) throws IOException {
+    public User read(int ID) throws ObjectInitializeException {
         for (User user : users) {
             if (user.getUserId() == ID) {
                 return user;
@@ -57,7 +68,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void delete(User user) {
+    public void delete(User user) throws ObjectInitializeException {
         if (user != null) {
             users.remove(user);
         } else {

@@ -6,14 +6,17 @@ import dao.BookDaoImpl;
 
 import enity.Book;
 
-import java.io.IOException;
+import exceptions.BookServiceException;
+
+import exceptions.ObjectInitializeException;
 
 import java.util.List;
 
 public class BookServiceImpl implements BookService {
-    BookDao bookDAO = new BookDaoImpl();
+    private final BookDao bookDAO;
 
-    public BookServiceImpl() throws IOException {
+    public BookServiceImpl() {
+        bookDAO = BookDaoImpl.getInstance();
     }
 
     @Override
@@ -22,8 +25,12 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public void add(Book book) throws IOException {
-        bookDAO.add(book);
+    public void add(Book book) throws BookServiceException {
+        try {
+            bookDAO.add(book);
+        } catch (ObjectInitializeException e) {
+            throw new BookServiceException(e);
+        }
     }
 
     @Override
@@ -32,13 +39,20 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Book read(int ID) throws IOException {
-        return bookDAO.read(ID);
+    public Book read(int ID) throws BookServiceException {
+        try {
+            return bookDAO.read(ID);
+        } catch (ObjectInitializeException e) {
+            throw new BookServiceException(e);
+        }
     }
 
     @Override
-    public void delete(Book book) throws IOException {
-        bookDAO.delete(book);
-
+    public void delete(Book book) throws BookServiceException {
+        try {
+            bookDAO.delete(book);
+        } catch (ObjectInitializeException e) {
+            throw new BookServiceException(e);
+        }
     }
 }

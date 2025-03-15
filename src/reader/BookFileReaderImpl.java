@@ -1,6 +1,7 @@
 package reader;
 
 import enity.Book;
+import exceptions.BookFileReaderException;
 
 import java.io.BufferedReader;
 
@@ -22,8 +23,8 @@ public class BookFileReaderImpl implements BookFileReader {
 
     private final String bookFilePath;
 
-    public BookFileReaderImpl(){
-    bookFilePath = "resources/book.txt";
+    public BookFileReaderImpl() {
+        bookFilePath = "resources/book.txt";
     }
 
     public void createFile() {
@@ -37,23 +38,27 @@ public class BookFileReaderImpl implements BookFileReader {
         }
     }
 
-   @Override
-   public List<Book> readBooksFromFile() throws IOException {
-       BufferedReader reader = new BufferedReader(new FileReader(bookFilePath));
-       List<String> readLinesFromBookFile = new ArrayList<>();
+    @Override
+    public List<Book> readBooksFromFile() throws BookFileReaderException {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(bookFilePath));
+            List<String> readLinesFromBookFile = new ArrayList<>();
 
-       for (int i = 0; i < 3; i++) {// колво линий
-           String bookLine = reader.readLine();
-           readLinesFromBookFile.add(bookLine);
-       }
+            for (int i = 0; i < 3; i++) {// колво линий
+                String bookLine = reader.readLine();
+                readLinesFromBookFile.add(bookLine);
+            }
 
-       List<Book> books = new ArrayList<>();
+            List<Book> books = new ArrayList<>();
 
-       for (String line : readLinesFromBookFile) {
-           Book book = convertLineToBook(line);
-           books.add(book);
-       }
-       return books;
+            for (String line : readLinesFromBookFile) {
+                Book book = convertLineToBook(line);
+                books.add(book);
+            }
+            return books;
+        } catch (IOException e) {
+            throw new BookFileReaderException(e);
+        }
     }
 
     @Override

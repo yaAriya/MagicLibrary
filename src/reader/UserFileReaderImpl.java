@@ -1,6 +1,7 @@
 package reader;
 
 import enity.User;
+import exceptions.UserFileReaderException;
 
 import java.io.BufferedReader;
 
@@ -12,31 +13,35 @@ import java.util.ArrayList;
 
 import java.util.List;
 
-public class UserFileReaderImpl implements UserFileReader{
+public class UserFileReaderImpl implements UserFileReader {
 
     String userFilePath;
 
-    public UserFileReaderImpl(){
+    public UserFileReaderImpl() {
         userFilePath = "resources/user.txt";
     }
+
     @Override
-    public List<User> readUsersFromFile() throws IOException {
+    public List<User> readUsersFromFile() throws UserFileReaderException {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(userFilePath));
+            List<String> readLinesFromUserFile = new ArrayList<>();
 
-        BufferedReader reader = new BufferedReader(new FileReader(userFilePath));
-        List<String> readLinesFromUserFile = new ArrayList<>();
+            for (int i = 0; i < 5; i++) {//Нужно сделать не <5 а < колва строчек
+                String userLine = reader.readLine();
+                readLinesFromUserFile.add(userLine);
+            }
 
-        for(int i = 0; i<5; i++){//Нужно сделать не <5 а < колва строчек
-            String userLine = reader.readLine();
-            readLinesFromUserFile.add(userLine);
+            List<User> users = new ArrayList<>();
+
+            for (String line : readLinesFromUserFile) {
+                User user = convertLineToUser(line);
+                users.add(user);
+            }
+            return users;
+        } catch (IOException e) {
+            throw new UserFileReaderException(e);
         }
-
-        List<User> users = new ArrayList<>();
-
-         for (String line: readLinesFromUserFile){
-             User user = convertLineToUser(line);
-             users.add(user);
-         }
-         return users;
     }
 
     @Override

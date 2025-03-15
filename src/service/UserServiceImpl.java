@@ -6,14 +6,17 @@ import dao.UserDaoImpl;
 
 import enity.User;
 
-import java.io.IOException;
+import exceptions.ObjectInitializeException;
+
+import exceptions.UserServiceException;
 
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
-    UserDao userDao = new UserDaoImpl();
+    private final UserDao userDao;
 
-    public UserServiceImpl() throws IOException {
+    public UserServiceImpl() {
+        userDao = UserDaoImpl.getInstance();
     }
 
     @Override
@@ -22,8 +25,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void add(User user) throws IOException {
-        userDao.add(user);
+    public void add(User user) throws UserServiceException {
+        try {
+            userDao.add(user);
+        } catch (ObjectInitializeException e) {
+            throw new UserServiceException(e);
+        }
+
     }
 
     @Override
@@ -32,12 +40,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User read(int userID) throws IOException {
+    public User read(int userID) throws UserServiceException {
         return userDao.read(userID);
     }
 
     @Override
-    public void delete(User user) {
+    public void delete(User user) throws UserServiceException {
         userDao.delete(user);
     }
 }

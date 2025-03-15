@@ -2,11 +2,12 @@ package reader;
 
 import enity.User;
 
-import java.io.IOException;
+import exceptions.UserFileReaderException;
 
 import java.util.List;
 
 public interface UserFileReader {
-    List<User> readUsersFromFile() throws IOException;
+    List<User> readUsersFromFile() throws UserFileReaderException;
+
     User convertLineToUser(String line);
 }

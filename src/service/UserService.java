@@ -1,19 +1,17 @@
 package service;
 
 import enity.User;
-import exceptions.ObjectInitializeException;
-import exceptions.UserServiceException;
 
-import java.io.IOException;
+import exceptions.UserServiceException;
 
 import java.util.List;
 
 public interface UserService {
-    List<User> readAllUsers();
+    List<User> readAllUsers() throws UserServiceException;
 
     void add(User user) throws UserServiceException;
 
-    User upDate(User user);
+    User upDate(User user, int index) throws UserServiceException;
 
     User read(int ID) throws UserServiceException;
 

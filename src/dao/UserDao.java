@@ -9,11 +9,11 @@ import java.util.List;
 public interface UserDao {
     List<User> readAllUsers();
 
-    void add(User user) throws ObjectInitializeException;
+    void add(User user);
 
-    User upDate(User user);
+    User upDate(User user, int index);
 
-    void delete(User user) throws ObjectInitializeException;
+    void delete(User user);
 
-    User read(int ID) throws ObjectInitializeException;
+    User read(int ID);
 }

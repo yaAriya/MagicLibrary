@@ -22,8 +22,8 @@ public class UserDaoImpl implements UserDao {
         return instance;
     }
 
-    private List<User> users;
-    private UserFileReader userReader;
+    private final List<User> users;
+    private final UserFileReader userReader;
 
     public UserDaoImpl() throws ObjectInitializeException {
         try {
@@ -43,22 +43,18 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void add(User user) throws ObjectInitializeException {
-        if (user != null) {
+    public void add(User user){
             users.add(user);
-        } else {
-            throw new IllegalArgumentException("user не должен быть null");
-        }
     }
 
     @Override
-    public User upDate(User user) {
+    public User upDate(User user, int index) {
         users.set(1, user);
         return users.get(1);
     }
 
     @Override
-    public User read(int ID) throws ObjectInitializeException {
+    public User read(int ID) {
         for (User user : users) {
             if (user.getUserId() == ID) {
                 return user;
@@ -68,11 +64,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void delete(User user) throws ObjectInitializeException {
-        if (user != null) {
+    public void delete(User user) {
             users.remove(user);
-        } else {
-            throw new IllegalArgumentException("user не должен быть null");
-        }
     }
 }

@@ -21,7 +21,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<Book> readAllBooks() {
+    public List<Book> readAllBooks() throws BookServiceException {
        try {
            return bookDAO.readAllBooks();
        } catch (ObjectInitializeException e){

@@ -45,7 +45,7 @@ public class Main {
 
             printer.printBookObject(bookService.update(new Book(6, "Gone with the Wind", "Margaret Mitchell", 345), 2));
 
-            printer.printUserObject(userService.upDate(new User(8, "Lera", "Lerka@gmail.com", 15)));
+            printer.printUserObject(userService.upDate(new User(8, "Lera", "Lerka@gmail.com", 15), 3));
 
             userService.delete(new User(5, "Vika", "Vichik@gmail.com", 15));
             printer.printAllUsers(userService.readAllUsers());

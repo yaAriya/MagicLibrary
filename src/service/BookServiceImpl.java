@@ -66,10 +66,10 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Book read(int ID) throws BookServiceException {
+    public Book read(int Id) throws BookServiceException {
         try {
-            if (bookDAO.read(ID) != null) {
-                return bookDAO.read(ID);
+            if (bookDAO.read(Id) != null) {
+                return bookDAO.read(Id);
             } else {
                 throw new EntityNotFoundException("Искаемый Вами объект не найден");
             }

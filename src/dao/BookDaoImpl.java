@@ -60,9 +60,9 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
-    public Book read(int ID) {
+    public Book read(int Id) {
         for (Book book : books) {
-            if (book.getBookID() == ID) {
+            if (book.getBookID() == Id) {
                 return book;
             }
         }

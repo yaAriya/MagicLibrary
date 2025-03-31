@@ -9,10 +9,13 @@ import enity.User;
 import exceptions.EntityNotFoundException;
 
 import exceptions.InvalidEntityException;
+
 import exceptions.ObjectInitializeException;
 
 import exceptions.UserServiceException;
+
 import validator.UserValidator;
+
 import validator.UserValidatorImpl;
 
 import java.util.List;
@@ -62,10 +65,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User read(int userID) throws UserServiceException {
+    public User read(int userId) throws UserServiceException {
         try {
-            if (userDao.read(userID) != null) {
-                return userDao.read(userID);
+            if (userDao.read(userId) != null) {
+                return userDao.read(userId);
             } else {
                 throw new EntityNotFoundException("Искаемый Вами объект не найден");
             }

@@ -54,9 +54,9 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User read(int ID) {
+    public User read(int Id) {
         for (User user : users) {
-            if (user.getUserId() == ID) {
+            if (user.getUserId() == Id) {
                 return user;
             }
         }

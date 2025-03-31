@@ -15,5 +15,5 @@ public interface BookDao {
 
     void delete(Book book);
 
-    Book read(int ID);
+    Book read(int Id);
 }

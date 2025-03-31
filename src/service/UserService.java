@@ -13,7 +13,7 @@ public interface UserService {
 
     User upDate(User user, int index) throws UserServiceException;
 
-    User read(int ID) throws UserServiceException;
+    User read(int Id) throws UserServiceException;
 
     void delete(User user) throws UserServiceException;
 }

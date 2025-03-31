@@ -15,5 +15,5 @@ public interface UserDao {
 
     void delete(User user);
 
-    User read(int ID);
+    User read(int Id);
 }

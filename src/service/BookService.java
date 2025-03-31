@@ -13,7 +13,7 @@ public interface BookService {
 
     Book update(Book book, int index) throws BookServiceException;
 
-    Book read(int ID) throws BookServiceException;
+    Book read(int Id) throws BookServiceException;
 
     void delete(Book book) throws BookServiceException;
 }

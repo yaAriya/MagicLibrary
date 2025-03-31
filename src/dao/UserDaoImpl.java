@@ -13,7 +13,7 @@ import reader.UserFileReaderImpl;
 import java.util.List;
 
 public class UserDaoImpl implements UserDao {
-    private static UserDaoImpl instance;
+    private static UserDaoImpl instance; // ПОчему не могу сделать прайват конструктор?
 
     public static UserDaoImpl getInstance() {
         if (instance == null) {

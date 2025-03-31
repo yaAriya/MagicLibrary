@@ -1,6 +1,7 @@
 package reader;
 
 import enity.Book;
+
 import exceptions.BookFileReaderException;
 
 import java.io.BufferedReader;
@@ -73,45 +74,4 @@ public class BookFileReaderImpl implements BookFileReader {
 
         return new Book(book.getBookID(), book.getBookName(), book.getAuthor(), book.getPagesNumber());
     }
-
-
-   /* public static List<Book> addBookStringToArray(String filePath) {
-        List<Book> books = new ArrayList<>();
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(filePath));
-
-            BookDaoImpl bookDAOImplementation = new BookDaoImpl();
-            for (int i = 0; i < 3; i++) {
-                String bookText = reader.readLine();
-                books.add(bookDAOImplementation.initializeBook(bookText)); // вернется только одна книга и с каждой итерацией книги будут пополняться
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println("Файл не найден!");
-            e.printStackTrace();
-        } catch (IOException e) {
-            System.out.println("Ошибка при вводе/выводе данных из файла!");
-            e.printStackTrace();
-        }
-        return books;
-    }
-
-    public static List<User> addUserStringToArray(String filePath) {
-        List<User> users = new ArrayList<>();
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(filePath));
-
-            UserDAOImpl userDAOImplementation = new UserDAOImpl();
-            for (int i = 0; i < 5; i++) {
-                String userText = reader.readLine();
-                users.add(userDAOImplementation.initializeUser(userText));
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println("Файл не найден!");
-            e.printStackTrace();
-        } catch (IOException e) {
-            System.out.println("Ошибка при вводе/выводе данных из файла!");
-            e.printStackTrace();
-        }
-        return users;
-    }*/
 }

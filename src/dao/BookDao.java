@@ -9,13 +9,11 @@ import java.util.List;
 public interface BookDao {
     List<Book> readAllBooks();
 
-    void add(Book book) throws ObjectInitializeException;
+    void add(Book book);
 
-    Book upDate(Book book);
+    Book upDate(Book book, int index);
 
-    void delete(Book book) throws ObjectInitializeException;
+    void delete(Book book);
 
-    Book read(int ID) throws ObjectInitializeException;
-
-
+    Book read(int ID);
 }

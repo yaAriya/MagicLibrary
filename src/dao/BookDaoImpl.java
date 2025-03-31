@@ -22,10 +22,10 @@ public class BookDaoImpl implements BookDao {
         return instance;
     }
 
-    private List<Book> books;
-    private BookFileReader bookFileReader;
+    private final List<Book> books;
+    private final BookFileReader bookFileReader;
 
-    private BookDaoImpl() throws ObjectInitializeException {//Object initialEx.
+    private BookDaoImpl() throws ObjectInitializeException {
         try {
             bookFileReader = new BookFileReaderImpl();
             books = bookFileReader.readBooksFromFile();
@@ -44,32 +44,23 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
-    public void add(Book book) throws ObjectInitializeException {
-        if (book != null) {
-            books.add(book);
-        } else {
-            throw new IllegalArgumentException("book не должена быть null");
-        }
+    public void add(Book book) {
+        books.add(book);
     }
 
     @Override
-    public Book upDate(Book book) {
-        int bookIndex = 0;
-        getBooks().set(bookIndex, book);
-        return books.get(bookIndex);
+    public Book upDate(Book book, int index) {
+        getBooks().set(index, book);
+        return books.get(index);
     }
 
     @Override
-    public void delete(Book book) throws ObjectInitializeException {
-        if (read(book.getBookID()) != null) {
-            books.remove(book);
-        } else {
-            throw new IllegalArgumentException("book не должена быть null");
-        }
+    public void delete(Book book) {
+        books.remove(book);
     }
 
     @Override
-    public Book read(int ID) throws ObjectInitializeException {
+    public Book read(int ID) {
         for (Book book : books) {
             if (book.getBookID() == ID) {
                 return book;

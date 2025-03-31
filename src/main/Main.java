@@ -43,7 +43,7 @@ public class Main {
             bookService.add(new Book(3, "Gone with the Wind", "Margaret Mitchell", 333));
             printer.printAllBooks(bookService.readAllBooks());
 
-            printer.printBookObject(bookService.update(new Book(6, "Gone with the Wind", "Margaret Mitchell", 345)));
+            printer.printBookObject(bookService.update(new Book(6, "Gone with the Wind", "Margaret Mitchell", 345), 2));
 
             printer.printUserObject(userService.upDate(new User(8, "Lera", "Lerka@gmail.com", 15)));
 
@@ -52,6 +52,7 @@ public class Main {
 
             bookService.delete(new Book(3, "Gone with the Wind", "Margaret Mitchell", 333));
             printer.printAllBooks(bookService.readAllBooks());
+
         } catch (BookServiceException | UserServiceException e) {
             throw new MainException("упс, опять долбанное Exception" + e);
         }

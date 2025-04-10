@@ -28,9 +28,11 @@ public class UserFileReaderImpl implements UserFileReader {
             BufferedReader reader = new BufferedReader(new FileReader(userFilePath));
             List<String> readLinesFromUserFile = new ArrayList<>();
 
-            for (int i = 0; i < 5; i++) {//Нужно сделать не <5 а < колва строчек
-                String userLine = reader.readLine();
-                readLinesFromUserFile.add(userLine);
+            String readerLine = reader.readLine();
+
+            while (readerLine != null){
+                readLinesFromUserFile.add(readerLine);
+                readerLine = reader.readLine();
             }
 
             List<User> users = new ArrayList<>();
@@ -50,11 +52,11 @@ public class UserFileReaderImpl implements UserFileReader {
         String[] parameters = line.split(",");
 
         User user = new User();
-        user.setUserId(Integer.parseInt(parameters[0]));
+        user.setId(Integer.parseInt(parameters[0]));
         user.setUserName(parameters[1]);
         user.setUserEmail(parameters[2]);
         user.setUserAge(Integer.parseInt(parameters[3]));
 
-        return new User(user.getUserId(), user.getUserName(), user.getUserEmail(), user.getUserAge());
+        return new User(user.getId(), user.getUserName(), user.getUserEmail(), user.getUserAge());
     }
 }

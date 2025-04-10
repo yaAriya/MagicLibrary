@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class User {
-    private int userId;
+    private long id;
     private String userName;
     private String userEmail;
     private int userAge;
@@ -14,15 +14,15 @@ public class User {
     public User() {
     }
 
-    public User(int userId, String userName, String userEmail, int userAge) {
-        this.userId = userId;
+    public User(long id, String userName, String userEmail, int userAge) {
+        this.id = id;
         this.userName = userName;
         this.userEmail = userEmail;
         this.userAge = userAge;
     }
 
-    public User(int userId, String userName, String userEmail, int userAge, List<Book> books) {
-        this.userId = userId;
+    public User(long id, String userName, String userEmail, int userAge, List<Book> books) {
+        this.id = id;
         this.userName = userName;
         this.userEmail = userEmail;
         this.userAge = userAge;
@@ -53,12 +53,12 @@ public class User {
         this.userAge = userAge;
     }
 
-    public int getUserId() {
-        return userId;
+    public long getId() {
+        return id;
     }
 
-    public void setUserId(int userID) {
-        this.userId = userID;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public List<Book> getBooks() {
@@ -71,7 +71,7 @@ public class User {
 
     @Override
     public int hashCode() {
-        return Objects.hash(userName, userEmail, userAge, userId);
+        return Objects.hash(userName, userEmail, userAge, id);
     }
 
     @Override
@@ -79,7 +79,7 @@ public class User {
         if (this == obj) return true;
         if ((obj == null) || !(obj instanceof User)) return false;
         User user = (User) obj;
-        return userId == user.userId && Objects.equals(userName, user.userName) && Objects.equals(userEmail, user.userEmail) && userAge == user.userAge;
+        return id == user.id && Objects.equals(userName, user.userName) && Objects.equals(userEmail, user.userEmail) && userAge == user.userAge;
     }
 
     @Override
@@ -89,6 +89,6 @@ public class User {
 
     @Override
     public String toString() {
-        return userId + ", " + userName + ", " + userEmail + ", " + userAge;
+        return id + ", " + userName + ", " + userEmail + ", " + userAge;
     }
 }

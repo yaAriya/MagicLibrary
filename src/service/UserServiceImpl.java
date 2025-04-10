@@ -52,10 +52,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User upDate(User user, int index) throws UserServiceException {
+    public User update(User user) throws UserServiceException {
         try {
             if (userValidator.validate(user) == true) {
-                return userDao.upDate(user, index);
+                return userDao.update(user, user.getId());
             } else {
                 throw new InvalidEntityException();
             }
@@ -65,10 +65,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User read(int userId) throws UserServiceException {
+    public User read(int id) throws UserServiceException {
         try {
-            if (userDao.read(userId) != null) {
-                return userDao.read(userId);
+            if (userDao.read(id) != null) {
+                return userDao.read(id);
             } else {
                 throw new EntityNotFoundException("Искаемый Вами объект не найден");
             }

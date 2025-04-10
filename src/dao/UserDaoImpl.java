@@ -48,15 +48,20 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User upDate(User user, int index) {
-        users.set(1, user);
-        return users.get(1);
+    public User update(User user, long id) {
+        for(int i= 0; i< users.size(); i++){
+            if(users.get(i).getId() == id){
+                users.set(i, user);
+                return users.get(i);
+            }
+        }
+        return null;
     }
 
     @Override
-    public User read(int Id) {
+    public User read(int id) {
         for (User user : users) {
-            if (user.getUserId() == Id) {
+            if (user.getId() == id) {
                 return user;
             }
         }

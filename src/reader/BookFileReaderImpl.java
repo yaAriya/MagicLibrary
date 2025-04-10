@@ -45,9 +45,11 @@ public class BookFileReaderImpl implements BookFileReader {
             BufferedReader reader = new BufferedReader(new FileReader(bookFilePath));
             List<String> readLinesFromBookFile = new ArrayList<>();
 
-            for (int i = 0; i < 3; i++) {// колво линий
-                String bookLine = reader.readLine();
-                readLinesFromBookFile.add(bookLine);
+            String readerLines = reader.readLine();
+
+            while(readerLines != null){
+                readLinesFromBookFile.add(readerLines);
+                readerLines = reader.readLine();
             }
 
             List<Book> books = new ArrayList<>();
@@ -67,11 +69,11 @@ public class BookFileReaderImpl implements BookFileReader {
         String[] parameters = line.split(",");
 
         Book book = new Book();
-        book.setBookID(Integer.parseInt(parameters[0]));
+        book.setId(Integer.parseInt(parameters[0]));
         book.setBookName(parameters[1]);
         book.setAuthor(parameters[2]);
         book.setPagesNumber(Integer.parseInt(parameters[3]));
 
-        return new Book(book.getBookID(), book.getBookName(), book.getAuthor(), book.getPagesNumber());
+        return new Book(book.getId(), book.getBookName(), book.getAuthor(), book.getPagesNumber());
     }
 }

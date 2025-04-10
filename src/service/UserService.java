@@ -11,7 +11,7 @@ public interface UserService {
 
     void add(User user) throws UserServiceException;
 
-    User upDate(User user, int index) throws UserServiceException;
+    User update(User user) throws UserServiceException;
 
     User read(int Id) throws UserServiceException;
 

@@ -11,9 +11,9 @@ public interface BookService {
 
     void add(Book book) throws BookServiceException;
 
-    Book update(Book book, int index) throws BookServiceException;
+    Book update(Book book) throws BookServiceException;
 
-    Book read(int Id) throws BookServiceException;
+    Book read(long id) throws BookServiceException;
 
     void delete(Book book) throws BookServiceException;
 }

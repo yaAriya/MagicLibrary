@@ -2,8 +2,6 @@ package dao;
 
 import enity.Book;
 
-import exceptions.ObjectInitializeException;
-
 import java.util.List;
 
 public interface BookDao {
@@ -11,9 +9,9 @@ public interface BookDao {
 
     void add(Book book);
 
-    Book upDate(Book book, int index);
+    Book update(Book book, long id);
 
     void delete(Book book);
 
-    Book read(int Id);
+    Book read(long id);
 }

@@ -49,9 +49,14 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
-    public Book upDate(Book book, int index) {
-        getBooks().set(index, book);
-        return books.get(index);
+    public Book update(Book book, long id) {
+        for(int i = 0; i<books.size(); i++){
+            if(books.get(i).getId() == id){
+                books.set(i, book);
+                return books.get(i);
+            }
+        }
+        return null;
     }
 
     @Override
@@ -60,9 +65,9 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
-    public Book read(int Id) {
+    public Book read(long id) {
         for (Book book : books) {
-            if (book.getBookID() == Id) {
+            if (book.getId() == id) {
                 return book;
             }
         }

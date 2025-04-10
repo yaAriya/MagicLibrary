@@ -25,7 +25,7 @@ public class BookServiceImpl implements BookService {
     private final BookValidator bookValidator;
 
     public BookServiceImpl() {
-        bookDAO = BookDaoImpl.getInstance();// Почему реализация в Дао, а не в сервисе, если мы с Дао именно с сервиса работаем?
+        bookDAO = BookDaoImpl.getInstance();
         bookValidator = BookValidatorImpl.getInstance();
     }
 
@@ -53,10 +53,10 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Book update(Book book, int index) throws BookServiceException {
+    public Book update(Book book) throws BookServiceException {
         try {
             if (bookValidator.validate(book) == true) {
-                return bookDAO.upDate(book, index);
+                return bookDAO.update(book, book.getId());
             } else {
                 throw new InvalidEntityException();
             }
@@ -66,10 +66,10 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Book read(int Id) throws BookServiceException {
+    public Book read(long id) throws BookServiceException {
         try {
-            if (bookDAO.read(Id) != null) {
-                return bookDAO.read(Id);
+            if (bookDAO.read(id) != null) {
+                return bookDAO.read(id);
             } else {
                 throw new EntityNotFoundException("Искаемый Вами объект не найден");
             }

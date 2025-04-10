@@ -3,7 +3,7 @@ package enity;
 import java.util.Objects;
 
 public class Book {
-    private int bookId;
+    private long id;
     private String bookName;
     private String author;
     private int pagesNumber;
@@ -12,16 +12,16 @@ public class Book {
     public Book() {
     }
 
-    public Book(int bookId, String bookName, String author, int pagesNumber) {
-        this.bookId = bookId;
+    public Book(long id, String bookName, String author, int pagesNumber) {
+        this.id = id;
         this.bookName = bookName;
         this.author = author;
         this.pagesNumber = pagesNumber;
 
     }
 
-    public Book(int bookId, String bookName, String author, int pagesNumber, User user) {
-        this.bookId = bookId;
+    public Book(long id, String bookName, String author, int pagesNumber, User user) {
+        this.id = id;
         this.bookName = bookName;
         this.author = author;
         this.pagesNumber = pagesNumber;
@@ -60,12 +60,12 @@ public class Book {
         this.pagesNumber = pagesNumber;
     }
 
-    public int getBookID() {
-        return bookId;
+    public long getId() {
+        return id;
     }
 
-    public void setBookID(int bookID) {
-        this.bookId = bookID;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public User getUser() {
@@ -78,7 +78,7 @@ public class Book {
 
     @Override
     public int hashCode() {
-        return Objects.hash(bookName, author, pagesNumber, bookId, user);
+        return Objects.hash(bookName, author, pagesNumber, id, user);
     }
 
     @Override
@@ -86,7 +86,7 @@ public class Book {
         if (this == obj) return true;
         if ((obj == null) || !(obj instanceof Book)) return false;
         Book book = (Book) obj;
-        return Objects.equals(bookName, book.bookName) && Objects.equals(author, book.author) && pagesNumber == book.pagesNumber && bookId == book.bookId && Objects.equals(user, book.user);
+        return Objects.equals(bookName, book.bookName) && Objects.equals(author, book.author) && pagesNumber == book.pagesNumber && id == book.id && Objects.equals(user, book.user);
     }
 
     @Override
@@ -97,6 +97,6 @@ public class Book {
 
     @Override
     public String toString() {
-        return bookId + ", " + bookName + ", " + author + ", " + pagesNumber + ", " + user;
+        return id + ", " + bookName + ", " + author + ", " + pagesNumber + ", " + user;
     }
 }

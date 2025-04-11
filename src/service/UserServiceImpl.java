@@ -44,7 +44,7 @@ public class UserServiceImpl implements UserService {
             if (userValidator.validate(user) == true) {
                 userDao.add(user);
             } else {
-                throw new InvalidEntityException();
+                throw new InvalidEntityException("Параметры, введенные Вами некорректны");
             }
         } catch (InvalidEntityException e) {
             throw new UserServiceException(e);
@@ -57,7 +57,7 @@ public class UserServiceImpl implements UserService {
             if (userValidator.validate(user) == true) {
                 return userDao.update(user, user.getId());
             } else {
-                throw new InvalidEntityException();
+                throw new InvalidEntityException("Параметры, введенные Вами некорректны");
             }
         } catch (InvalidEntityException e) {
             throw new UserServiceException(e);
@@ -83,7 +83,7 @@ public class UserServiceImpl implements UserService {
             if (userValidator.validate(user) == true) {
                 userDao.delete(user);
             } else {
-                throw new InvalidEntityException();
+                throw new InvalidEntityException("Параметры, введенные Вами некорректны");
             }
         } catch (InvalidEntityException e) {
             throw new UserServiceException(e);

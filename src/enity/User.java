@@ -6,51 +6,51 @@ import java.util.Objects;
 
 public class User {
     private long id;
-    private String userName;
-    private String userEmail;
-    private int userAge;
+    private String name;
+    private String email;
+    private int age;
     private List<Book> books;
 
     public User() {
     }
 
-    public User(long id, String userName, String userEmail, int userAge) {
+    public User(long id, String name, String email, int age) {
         this.id = id;
-        this.userName = userName;
-        this.userEmail = userEmail;
-        this.userAge = userAge;
+        this.name = name;
+        this.email = email;
+        this.age = age;
     }
 
-    public User(long id, String userName, String userEmail, int userAge, List<Book> books) {
+    public User(long id, String name, String userEmail, int userAge, List<Book> books) {
         this.id = id;
-        this.userName = userName;
-        this.userEmail = userEmail;
-        this.userAge = userAge;
+        this.name = name;
+        this.email = userEmail;
+        this.age = userAge;
         this.books = books;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getName() {
+        return name;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getUserEmail() {
-        return userEmail;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public int getUserAge() {
-        return userAge;
+    public int getAge() {
+        return age;
     }
 
-    public void setUserAge(int userAge) {
-        this.userAge = userAge;
+    public void setAge(int age) {
+        this.age = age;
     }
 
     public long getId() {
@@ -71,7 +71,7 @@ public class User {
 
     @Override
     public int hashCode() {
-        return Objects.hash(userName, userEmail, userAge, id);
+        return Objects.hash(name, email, age, id);
     }
 
     @Override
@@ -79,7 +79,7 @@ public class User {
         if (this == obj) return true;
         if ((obj == null) || !(obj instanceof User)) return false;
         User user = (User) obj;
-        return id == user.id && Objects.equals(userName, user.userName) && Objects.equals(userEmail, user.userEmail) && userAge == user.userAge;
+        return id == user.id && Objects.equals(name, user.name) && Objects.equals(email, user.email) && age == user.age;
     }
 
     @Override
@@ -89,6 +89,6 @@ public class User {
 
     @Override
     public String toString() {
-        return id + ", " + userName + ", " + userEmail + ", " + userAge;
+        return id + ", " + name + ", " + email + ", " + age;
     }
 }

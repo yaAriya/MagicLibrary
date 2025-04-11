@@ -6,13 +6,7 @@ import dao.BookDaoImpl;
 
 import enity.Book;
 
-import exceptions.BookServiceException;
-
-import exceptions.EntityNotFoundException;
-
-import exceptions.InvalidEntityException;
-
-import exceptions.ObjectInitializeException;
+import exceptions.*;
 
 import validator.BookValidator;
 
@@ -41,11 +35,11 @@ public class BookServiceImpl implements BookService {
     @Override
     public void add(Book book) throws BookServiceException {
         try {
-            if (bookValidator.validate(book) == true) {
+             if (bookValidator.validate(book) == true) {
                 bookDAO.add(book);
             } else {
-                throw new InvalidEntityException();
-            }
+                 throw new InvalidEntityException("Параметры, введенные Вами некорректны");
+             }
         } catch (InvalidEntityException e) {
             throw new BookServiceException(e);
         }
@@ -56,9 +50,9 @@ public class BookServiceImpl implements BookService {
     public Book update(Book book) throws BookServiceException {
         try {
             if (bookValidator.validate(book) == true) {
-                return bookDAO.update(book, book.getId());
+                    return bookDAO.update(book, book.getId());
             } else {
-                throw new InvalidEntityException();
+                throw new InvalidEntityException("Параметры, введенные Вами некорректны");
             }
         } catch (InvalidEntityException e) {
             throw new BookServiceException(e);
@@ -82,9 +76,9 @@ public class BookServiceImpl implements BookService {
     public void delete(Book book) throws BookServiceException {
         try {
             if (bookValidator.validate(book) == true) {
-                bookDAO.delete(book);
+                bookDAO.delete(book); // Я же не узнаю удалена или нет
             } else {
-                throw new InvalidEntityException();
+                throw new InvalidEntityException("Параметры, введенные Вами некорректны");
             }
         } catch (InvalidEntityException e) {
             throw new BookServiceException(e);

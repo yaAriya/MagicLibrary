@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Book {
     private long id;
-    private String bookName;
+    private String name;
     private String author;
     private int pagesNumber;
     private User user;
@@ -12,36 +12,29 @@ public class Book {
     public Book() {
     }
 
-    public Book(long id, String bookName, String author, int pagesNumber) {
+    public Book(long id, String name, String author, int pagesNumber) {
         this.id = id;
-        this.bookName = bookName;
+        this.name = name;
         this.author = author;
         this.pagesNumber = pagesNumber;
 
     }
 
-    public Book(long id, String bookName, String author, int pagesNumber, User user) {
+    public Book(long id, String name, String author, int pagesNumber, User user) {
         this.id = id;
-        this.bookName = bookName;
+        this.name = name;
         this.author = author;
         this.pagesNumber = pagesNumber;
         this.user = user;
-
-        /*if(getUser() != null){
-
-        }
-        if (bookName == null){
-         //   new Exception("Your parameter is/are incorrect ");
-        } проверка на налл */
     }
 
 
-    public String getBookName() {
-        return bookName;
+    public String getName() {
+        return name;
     }
 
-    public void setBookName(String bookName) {
-        this.bookName = bookName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getAuthor() {
@@ -78,7 +71,7 @@ public class Book {
 
     @Override
     public int hashCode() {
-        return Objects.hash(bookName, author, pagesNumber, id, user);
+        return Objects.hash(name, author, pagesNumber, id, user);
     }
 
     @Override
@@ -86,7 +79,7 @@ public class Book {
         if (this == obj) return true;
         if ((obj == null) || !(obj instanceof Book)) return false;
         Book book = (Book) obj;
-        return Objects.equals(bookName, book.bookName) && Objects.equals(author, book.author) && pagesNumber == book.pagesNumber && id == book.id && Objects.equals(user, book.user);
+        return Objects.equals(name, book.name) && Objects.equals(author, book.author) && pagesNumber == book.pagesNumber && id == book.id && Objects.equals(user, book.user);
     }
 
     @Override
@@ -97,6 +90,6 @@ public class Book {
 
     @Override
     public String toString() {
-        return id + ", " + bookName + ", " + author + ", " + pagesNumber + ", " + user;
+        return id + ", " + name + ", " + author + ", " + pagesNumber + ", " + user;
     }
 }

@@ -25,11 +25,11 @@ public class PrinterImpl implements Printer{
 
     @Override
     public void printUserObject(User userObject){
-        System.out.println("Данные искаемого Вами пользователя: " + userObject + "\n");
+        System.out.println("Данные пользователя: " + userObject + "\n");
     }
 
     public void printBookObject(Book bookObject){
-        System.out.println("Данные искаемой Вами книги: " + bookObject + "\n");
+        System.out.println("Данные книги: " + bookObject + "\n");
     }
 }
 

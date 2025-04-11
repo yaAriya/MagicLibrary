@@ -50,11 +50,11 @@ public class Main {
             userService.delete(new User(5, "Vika", "Vichik@gmail.com", 15));
             printer.printAllUsers(userService.readAllUsers());
 
-            bookService.delete(new Book(3, "Gone with the Wind", "Margaret Mitchell", 345));
+            bookService.delete(new Book(2, "Gone with the Wind", "Margaret Mitchell", 333));
             printer.printAllBooks(bookService.readAllBooks());
 
         } catch (BookServiceException | UserServiceException e) {
-            throw new MainException("упс, опять долбанное Exception" + e);
+            throw new MainException("упс, опять долбанное Exception " + e);
         }
     }
 }

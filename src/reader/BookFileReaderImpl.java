@@ -70,10 +70,10 @@ public class BookFileReaderImpl implements BookFileReader {
 
         Book book = new Book();
         book.setId(Integer.parseInt(parameters[0]));
-        book.setBookName(parameters[1]);
+        book.setName(parameters[1]);
         book.setAuthor(parameters[2]);
         book.setPagesNumber(Integer.parseInt(parameters[3]));
 
-        return new Book(book.getId(), book.getBookName(), book.getAuthor(), book.getPagesNumber());
+        return new Book(book.getId(), book.getName(), book.getAuthor(), book.getPagesNumber());
     }
 }

@@ -12,7 +12,7 @@ public class PrinterImpl implements Printer{
         for (Book book : books) {
             System.out.println(book);
         }
-        System.out.println("\n"); // Почему сразу 2 отсупа?
+        System.out.println("\n");
     }
 
     @Override
@@ -30,6 +30,15 @@ public class PrinterImpl implements Printer{
 
     public void printBookObject(Book bookObject){
         System.out.println("Данные книги: " + bookObject + "\n");
+    }
+
+    @Override
+    public void printUserBooks(List<Book> userBooks) {
+        System.out.println("Книги, выданные на руки пользователю: " + "\n");
+        for(Book userBook: userBooks){
+            System.out.println(userBook);
+        }
+        System.out.println("\n");
     }
 }
 

@@ -10,4 +10,5 @@ public interface Printer {
     void printAllUsers(List<User> users);
     void printUserObject(User userObject);
     void printBookObject(Book bookObject);
+    void printUserBooks(List<Book> userBooks);
 }

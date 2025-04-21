@@ -14,7 +14,7 @@ public class BookValidatorImpl implements BookValidator {
 
     @Override
     public boolean validate(Book book) {
-        return book!= null && validateId(book.getId()) && validateName(book.getName()) && validateAuthor(book.getAuthor()) && validatePageNumber(book.getPagesNumber());
+        return validateId(book.getId()) && validateName(book.getName()) && validateAuthor(book.getAuthor()) && validatePageNumber(book.getPagesNumber());
     }
 
     @Override

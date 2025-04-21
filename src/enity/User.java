@@ -1,6 +1,5 @@
 package enity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import java.util.Objects;
@@ -12,12 +11,8 @@ public class User {
     private int age;
     private List<Book> books;
 
-    /*public User(){
-    }*/
-
     public User() {
-        this.books = new ArrayList<Book>();
-   }
+    }
 
     public User(long id, String name, String email, int age) {
         this.id = id;

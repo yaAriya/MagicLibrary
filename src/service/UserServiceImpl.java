@@ -4,8 +4,6 @@ import dao.UserDao;
 
 import dao.UserDaoImpl;
 
-import enity.Book;
-
 import enity.User;
 
 import exceptions.EntityNotFoundException;
@@ -15,8 +13,6 @@ import exceptions.InvalidEntityException;
 import exceptions.ObjectInitializeException;
 
 import exceptions.UserServiceException;
-
-import validator.BookValidatorImpl;
 
 import validator.UserValidator;
 
@@ -92,33 +88,5 @@ public class UserServiceImpl implements UserService {
         } catch (InvalidEntityException e) {
             throw new UserServiceException(e);
         }
-    }
-
-    public List<Book> rentBook(User user, Book book) throws UserServiceException {
-        try {
-            if (userValidator.validate(user) == true && BookValidatorImpl.getInstance().validate(book) == true) {
-                user.getBooks().add(book);
-                return user.getBooks();
-            } else {
-                throw new InvalidEntityException();
-            }
-        } catch (InvalidEntityException e) {
-            throw new UserServiceException(e);
-        }
-
-    }
-
-    @Override
-    public List<Book> returnBook(User user, Book book) throws UserServiceException {
-       try {
-           if(userValidator.validate(user)==true && BookValidatorImpl.getInstance().validate(book) == true){
-               user.getBooks().remove(book);
-               return user.getBooks();
-           } else {
-               throw new InvalidEntityException();
-           }
-       } catch (InvalidEntityException e) {
-           throw new UserServiceException();
-       }
     }
 }

@@ -1,5 +1,6 @@
 package service;
 
+import enity.Book;
 import enity.User;
 
 import exceptions.UserServiceException;
@@ -16,4 +17,8 @@ public interface UserService {
     User read(int Id) throws UserServiceException;
 
     void delete(User user) throws UserServiceException;
+
+    List<Book> rentBook(User user, Book book) throws UserServiceException;
+
+    List<Book> returnBook(User user, Book book) throws UserServiceException;
 }

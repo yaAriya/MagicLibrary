@@ -22,6 +22,7 @@ import service.UserService;
 
 import service.UserServiceImpl;
 
+
 public class Main {
     public static void main(String[] args) throws MainException {
         try {
@@ -53,6 +54,14 @@ public class Main {
             bookService.delete(new Book(2, "Gone with the Wind", "Margaret Mitchell", 333));
             printer.printAllBooks(bookService.readAllBooks());
 
+            //List<Book> books = new ArrayList<>();
+
+            printer.printUserBooks( userService.rentBook(new User(), new Book( 3, "Gone with the Wind", "Margaret Mitchell", 345)));
+            printer.printUserBooks( userService.rentBook(new User(0, "Elsa", "Elisa@gmail.com", 16), new Book( 0, "Pride and produce", "Jane Austen", 145)));
+
+            printer.printUserBooks(userService.returnBook(new User(0, "Elsa", "Elisa@gmail.com", 16), new Book(0, "Pride and produce", "Jane Austen", 145)));
+
+            printer.printUserBooks( userService.rentBook(new User(1, "Petr", "Petya@gmail.com", 10), new Book(1, "Harry Potter", "J. K. Rowling", 302)));
         } catch (BookServiceException | UserServiceException e) {
             throw new MainException("упс, опять долбанное Exception " + e);
         }

@@ -9,14 +9,23 @@ import enity.Book;
 import exceptions.*;
 
 import validator.BookValidator;
-
 import validator.BookValidatorImpl;
+
+//import validator.Validator;
 
 import java.util.List;
 
 public class BookServiceImpl implements BookService {
+    private static BookServiceImpl instance;
     private final BookDao bookDAO;
     private final BookValidator bookValidator;
+
+    public static BookServiceImpl getInstance(){
+        if(instance == null){
+            instance = new BookServiceImpl();
+        }
+        return instance;
+    }
 
     public BookServiceImpl() {
         bookDAO = BookDaoImpl.getInstance();
@@ -35,11 +44,11 @@ public class BookServiceImpl implements BookService {
     @Override
     public void add(Book book) throws BookServiceException {
         try {
-             if (bookValidator.validate(book) == true) {
+            if (bookValidator.validate(book) == true) {
                 bookDAO.add(book);
             } else {
-                 throw new InvalidEntityException("Параметры, введенные Вами некорректны");
-             }
+                throw new InvalidEntityException("Параметры, введенные Вами некорректны");
+            }
         } catch (InvalidEntityException e) {
             throw new BookServiceException(e);
         }
@@ -50,7 +59,7 @@ public class BookServiceImpl implements BookService {
     public Book update(Book book) throws BookServiceException {
         try {
             if (bookValidator.validate(book) == true) {
-                    return bookDAO.update(book, book.getId());
+                return bookDAO.update(book, book.getId());
             } else {
                 throw new InvalidEntityException("Параметры, введенные Вами некорректны");
             }
@@ -73,10 +82,10 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public void delete(Book book) throws BookServiceException {
+    public void delete(long id) throws BookServiceException {
         try {
-            if (bookValidator.validate(book) == true) {
-                bookDAO.delete(book); // Я же не узнаю удалена или нет
+            if (id>=0) {
+                bookDAO.delete(read(id));
             } else {
                 throw new InvalidEntityException("Параметры, введенные Вами некорректны");
             }

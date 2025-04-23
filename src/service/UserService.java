@@ -14,11 +14,11 @@ public interface UserService {
 
     User update(User user) throws UserServiceException;
 
-    User read(int Id) throws UserServiceException;
+    User read(long id) throws UserServiceException;
 
-    void delete(User user) throws UserServiceException;
+    void delete(long id) throws UserServiceException;
 
-    List<Book> rentBook(User user, Book book) throws UserServiceException;
+    void rentBook(long userId, long bookId) throws UserServiceException;
 
-    List<Book> returnBook(User user, Book book) throws UserServiceException;
+    void returnBook(long userId, long bookId) throws UserServiceException;
 }

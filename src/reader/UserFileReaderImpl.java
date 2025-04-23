@@ -52,7 +52,7 @@ public class UserFileReaderImpl implements UserFileReader {
         String[] parameters = line.split(",");
 
         User user = new User();
-        user.setId(Integer.parseInt(parameters[0]));
+        user.setId(Long.parseLong(parameters[0]));
         user.setName(parameters[1]);
         user.setEmail(parameters[2]);
         user.setAge(Integer.parseInt(parameters[3]));

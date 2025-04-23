@@ -12,18 +12,15 @@ public class User {
     private int age;
     private List<Book> books;
 
-    /*public User(){
-    }*/
-
-    public User() {
-        this.books = new ArrayList<Book>();
-   }
+    public User(){
+    }
 
     public User(long id, String name, String email, int age) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.age = age;
+        this.books = new ArrayList<>();
     }
 
     public User(long id, String name, String userEmail, int userAge, List<Book> books) {

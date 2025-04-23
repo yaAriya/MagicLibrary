@@ -16,20 +16,21 @@ import exceptions.ObjectInitializeException;
 
 import exceptions.UserServiceException;
 
-import validator.BookValidatorImpl;
-
 import validator.UserValidator;
-
 import validator.UserValidatorImpl;
+
+//import validator.Validator;
 
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
     private final UserDao userDao;
+    private final BookService bookService;
     private final UserValidator userValidator;
 
     public UserServiceImpl() {
         userDao = UserDaoImpl.getInstance();
+        bookService = BookServiceImpl.getInstance();
         userValidator = UserValidatorImpl.getInstance();
     }
 
@@ -69,7 +70,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User read(int id) throws UserServiceException {
+    public User read(long id) throws UserServiceException {
         try {
             if (userDao.read(id) != null) {
                 return userDao.read(id);
@@ -82,10 +83,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void delete(User user) throws UserServiceException {
+    public void delete(long id) throws UserServiceException {
         try {
-            if (userValidator.validate(user) == true) {
-                userDao.delete(user);
+            if (id >= 0) {
+                userDao.delete(read(id));
             } else {
                 throw new InvalidEntityException("Параметры, введенные Вами некорректны");
             }
@@ -94,13 +95,19 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    public List<Book> rentBook(User user, Book book) throws UserServiceException {
+    @Override
+    public void rentBook(long userId, long bookId) throws UserServiceException {
         try {
-            if (userValidator.validate(user) == true && BookValidatorImpl.getInstance().validate(book) == true) {
-                user.getBooks().add(book);
-                return user.getBooks();
-            } else {
+            User readUser = read(userId);
+            Book readBook = bookService.read(bookId);
+            if (readUser == null || readBook == null || readBook.getUser() != null || readUser.getBooks().contains(readBook)) {
                 throw new InvalidEntityException();
+            } else {
+                readUser.getBooks().add(readBook);
+                update(readUser);
+
+                readBook.setUser(readUser);
+                bookService.update(readBook);
             }
         } catch (InvalidEntityException e) {
             throw new UserServiceException(e);
@@ -109,16 +116,22 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<Book> returnBook(User user, Book book) throws UserServiceException {
-       try {
-           if(userValidator.validate(user)==true && BookValidatorImpl.getInstance().validate(book) == true){
-               user.getBooks().remove(book);
-               return user.getBooks();
-           } else {
-               throw new InvalidEntityException();
-           }
-       } catch (InvalidEntityException e) {
-           throw new UserServiceException();
-       }
+    public void returnBook(long userId, long bookId) throws UserServiceException {
+        try {
+            User readUser = read(userId);
+            Book readBook = bookService.read(bookId);
+            if (readUser == null || readBook == null || !readUser.getBooks().contains(readBook) || readBook.getUser() == null) {
+                throw new InvalidEntityException();
+            } else {
+                readUser.getBooks().remove(readBook);
+                update(readUser);
+
+                readBook.setUser(null);
+                bookService.update(readBook);
+
+            }
+        } catch (InvalidEntityException e) {
+            throw new UserServiceException();
+        }
     }
 }

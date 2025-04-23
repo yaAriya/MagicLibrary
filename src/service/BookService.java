@@ -15,5 +15,5 @@ public interface BookService {
 
     Book read(long id) throws BookServiceException;
 
-    void delete(Book book) throws BookServiceException;
+    void delete(long id) throws BookServiceException;
 }

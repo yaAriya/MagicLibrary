@@ -37,33 +37,48 @@ public class Main {
             printer.printUserObject(userService.read(1));
             printer.printBookObject(bookService.read(1));
 
+            Book firstBook = bookService.read(0);
+            Book secondBook = bookService.read(1);
+            Book thirdBook = bookService.read(2);
+
+            User firstUser = userService.read(0);
+            User secondUser = userService.read(1);
+            User thirdUser = userService.read(2);
+            User fourthUser = userService.read(3);
+            User fifthUser = userService.read(4);
+
 
             userService.add(new User(5, "Vika", "Vichik@gmail.com", 15));
             printer.printAllUsers(userService.readAllUsers());
+            User sixthUser = userService.read(5);
 
             bookService.add(new Book(3, "Gone with the Wind", "Margaret Mitchell", 333));
             printer.printAllBooks(bookService.readAllBooks());
+            Book fourthBook = bookService.read(3);
 
             printer.printBookObject(bookService.update(new Book(3, "Gone with the Wind", "Margaret Mitchell", 345)));
 
             printer.printUserObject(userService.update(new User(4, "Lera", "Lerka@gmail.com", 15)));
 
-            userService.delete(new User(5, "Vika", "Vichik@gmail.com", 15));
+            userService.delete(sixthUser.getId());
             printer.printAllUsers(userService.readAllUsers());
 
-            bookService.delete(new Book(2, "Gone with the Wind", "Margaret Mitchell", 333));
+            bookService.delete(thirdBook.getId());
             printer.printAllBooks(bookService.readAllBooks());
 
-            //List<Book> books = new ArrayList<>();
 
-            printer.printUserBooks( userService.rentBook(new User(), new Book( 3, "Gone with the Wind", "Margaret Mitchell", 345)));
-            printer.printUserBooks( userService.rentBook(new User(0, "Elsa", "Elisa@gmail.com", 16), new Book( 0, "Pride and produce", "Jane Austen", 145)));
+            userService.rentBook(firstUser.getId(), fourthBook.getId());
+            userService.rentBook(firstUser.getId(), firstBook.getId());
+            printer.printUserBooks(firstUser.getBooks());
+            printer.printUserObject(firstUser);
 
-            printer.printUserBooks(userService.returnBook(new User(0, "Elsa", "Elisa@gmail.com", 16), new Book(0, "Pride and produce", "Jane Austen", 145)));
+            userService.returnBook(firstUser.getId(),firstBook.getId());
+            printer.printUserBooks(firstUser.getBooks());
 
-            printer.printUserBooks( userService.rentBook(new User(1, "Petr", "Petya@gmail.com", 10), new Book(1, "Harry Potter", "J. K. Rowling", 302)));
+            userService.rentBook(secondUser.getId(), secondBook.getId());
+            printer.printUserBooks(secondUser.getBooks());
         } catch (BookServiceException | UserServiceException e) {
-            throw new MainException("упс, опять долбанное Exception " + e);
+            throw new MainException("упс, опять долбанное Exception ", e);
         }
     }
 }

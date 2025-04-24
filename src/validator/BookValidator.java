@@ -2,14 +2,34 @@ package validator;
 
 import enity.Book;
 
-public interface BookValidator {
-    boolean validate(Book book);
+public class BookValidator implements Validator<Book> {
+    private static BookValidator instance;
 
-    boolean validateId(long id);
+    public static BookValidator getInstance() {
+        if (instance == null) {
+            instance = new BookValidator();
+        }
+        return instance;
+    }
 
-    boolean validateName(String name);
+    @Override
+    public boolean validate(Book book) {
+        return book!= null && validateId(book.getId()) && validateName(book.getName()) && validateAuthor(book.getAuthor()) && validatePageNumber(book.getPagesNumber());
+    }
 
-    boolean validateAuthor(String author);
+    private boolean validateId(long id) {
+        return id >= 0;
+    }
 
-    boolean validatePageNumber(int pageNumber);
+    private boolean validateName(String name) {
+        return name != null;
+    }
+
+    private boolean validateAuthor(String author) {
+        return author != null;
+    }
+
+    private boolean validatePageNumber(int pageNumber) {
+        return pageNumber > 0;
+    }
 }

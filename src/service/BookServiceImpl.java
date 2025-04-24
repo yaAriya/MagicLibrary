@@ -9,16 +9,15 @@ import enity.Book;
 import exceptions.*;
 
 import validator.BookValidator;
-import validator.BookValidatorImpl;
 
-//import validator.Validator;
+import validator.Validator;
 
 import java.util.List;
 
 public class BookServiceImpl implements BookService {
     private static BookServiceImpl instance;
     private final BookDao bookDAO;
-    private final BookValidator bookValidator;
+    private final Validator<Book> bookValidator;
 
     public static BookServiceImpl getInstance(){
         if(instance == null){
@@ -29,7 +28,7 @@ public class BookServiceImpl implements BookService {
 
     public BookServiceImpl() {
         bookDAO = BookDaoImpl.getInstance();
-        bookValidator = BookValidatorImpl.getInstance();
+        bookValidator = BookValidator.getInstance();
     }
 
     @Override

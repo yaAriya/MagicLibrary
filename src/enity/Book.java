@@ -90,6 +90,6 @@ public class Book {
 
     @Override
     public String toString() {
-        return id + ", " + name + ", " + author + ", " + pagesNumber + ", " + user;
+        return id + ", " + name + ", " + author + ", " + pagesNumber + ", "  +  "(" + user + ")";
     }
 }

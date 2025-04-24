@@ -16,17 +16,16 @@ import exceptions.ObjectInitializeException;
 
 import exceptions.UserServiceException;
 
-import validator.UserValidator;
 import validator.UserValidatorImpl;
 
-//import validator.Validator;
+import validator.Validator;
 
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
     private final UserDao userDao;
     private final BookService bookService;
-    private final UserValidator userValidator;
+    private final Validator<User> userValidator;
 
     public UserServiceImpl() {
         userDao = UserDaoImpl.getInstance();

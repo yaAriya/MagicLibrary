@@ -1,1 +1,1 @@
-# SecondProject
+# MagicLibrary

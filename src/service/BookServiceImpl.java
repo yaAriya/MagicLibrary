@@ -15,26 +15,26 @@ import validator.Validator;
 import java.util.List;
 
 public class BookServiceImpl implements BookService {
-    private static BookServiceImpl instance;
-    private final BookDao bookDAO;
-    private final Validator<Book> bookValidator;
+    private static BookServiceImpl INSTANCE;
+    private final BookDao BOOK_DAO;
+    private final Validator<Book> BOOK_VALIDATOR;
 
     public static BookServiceImpl getInstance(){
-        if(instance == null){
-            instance = new BookServiceImpl();
+        if(INSTANCE == null){
+            INSTANCE = new BookServiceImpl();
         }
-        return instance;
+        return INSTANCE;
     }
 
     public BookServiceImpl() {
-        bookDAO = BookDaoImpl.getInstance();
-        bookValidator = BookValidator.getInstance();
+        BOOK_DAO = BookDaoImpl.getInstance();
+        BOOK_VALIDATOR = BookValidator.getInstance();
     }
 
     @Override
     public List<Book> readAllBooks() throws BookServiceException {
         try {
-            return bookDAO.readAllBooks();
+            return BOOK_DAO.readAllBooks();
         } catch (ObjectInitializeException e) {
             throw new BookServiceException(e);
         }
@@ -43,8 +43,8 @@ public class BookServiceImpl implements BookService {
     @Override
     public void add(Book book) throws BookServiceException {
         try {
-            if (bookValidator.validate(book) == true) {
-                bookDAO.add(book);
+            if (BOOK_VALIDATOR.validate(book) == true) {
+                BOOK_DAO.add(book);
             } else {
                 throw new InvalidEntityException("Параметры, введенные Вами некорректны");
             }
@@ -57,8 +57,8 @@ public class BookServiceImpl implements BookService {
     @Override
     public Book update(Book book) throws BookServiceException {
         try {
-            if (bookValidator.validate(book) == true) {
-                return bookDAO.update(book, book.getId());
+            if (BOOK_VALIDATOR.validate(book) == true) {
+                return BOOK_DAO.update(book, book.getId());
             } else {
                 throw new InvalidEntityException("Параметры, введенные Вами некорректны");
             }
@@ -70,8 +70,8 @@ public class BookServiceImpl implements BookService {
     @Override
     public Book read(long id) throws BookServiceException {
         try {
-            if (bookDAO.read(id) != null) {
-                return bookDAO.read(id);
+            if (BOOK_DAO.read(id) != null) {
+                return BOOK_DAO.read(id);
             } else {
                 throw new EntityNotFoundException("Искаемый Вами объект не найден");
             }
@@ -84,7 +84,7 @@ public class BookServiceImpl implements BookService {
     public void delete(long id) throws BookServiceException {
         try {
             if (id>=0) {
-                bookDAO.delete(read(id));
+                BOOK_DAO.delete(read(id));
             } else {
                 throw new InvalidEntityException("Параметры, введенные Вами некорректны");
             }

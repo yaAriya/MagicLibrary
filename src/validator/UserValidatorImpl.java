@@ -3,13 +3,13 @@ package validator;
 import enity.User;
 
 public class UserValidatorImpl implements Validator<User> {
-    private static UserValidatorImpl instance;
+    private static UserValidatorImpl INSTANCE;
 
     public static UserValidatorImpl getInstance() {
-        if (instance == null) {
-            instance = new UserValidatorImpl();
+        if (INSTANCE == null) {
+            INSTANCE = new UserValidatorImpl();
         }
-        return instance;
+        return INSTANCE;
     }
 
 

@@ -13,29 +13,29 @@ import reader.BookFileReaderImpl;
 import java.util.List;
 
 public class BookDaoImpl implements BookDao {
-    private static BookDaoImpl instance;
+    private static BookDaoImpl INSTANCE;
 
     public static BookDaoImpl getInstance() {
-        if (instance == null) {
-            instance = new BookDaoImpl();
+        if (INSTANCE == null) {
+            INSTANCE = new BookDaoImpl();
         }
-        return instance;
+        return INSTANCE;
     }
 
-    private final List<Book> books;
-    private final BookFileReader bookFileReader;
+    private final List<Book> BOOKS;
+    private final BookFileReader BOOK_FILE_READER;
 
     private BookDaoImpl() throws ObjectInitializeException {
         try {
-            bookFileReader = new BookFileReaderImpl();
-            books = bookFileReader.readBooksFromFile();
+            BOOK_FILE_READER = new BookFileReaderImpl();
+            BOOKS = BOOK_FILE_READER.readBooksFromFile();
         } catch (BookFileReaderException e) {
             throw new ObjectInitializeException(e);
         }
     }
 
     public List<Book> getBooks() {
-        return books;
+        return BOOKS;
     }
 
     @Override
@@ -45,15 +45,15 @@ public class BookDaoImpl implements BookDao {
 
     @Override
     public void add(Book book) {
-        books.add(book);
+        BOOKS.add(book);
     }
 
     @Override
     public Book update(Book book, long id) {
-        for(int i = 0; i<books.size(); i++){
-            if(books.get(i).getId() == id){
-                books.set(i, book);
-                return books.get(i);
+        for(int i = 0; i<BOOKS.size(); i++){
+            if(BOOKS.get(i).getId() == id){
+                BOOKS.set(i, book);
+                return BOOKS.get(i);
             }
         }
         return null;
@@ -61,12 +61,12 @@ public class BookDaoImpl implements BookDao {
 
     @Override
     public void delete(Book book) {
-        books.remove(book);
+        BOOKS.remove(book);
     }
 
     @Override
     public Book read(long id) {
-        for (Book book : books) {
+        for (Book book : BOOKS) {
             if (book.getId() == id) {
                 return book;
             }

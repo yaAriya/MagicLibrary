@@ -13,29 +13,29 @@ import reader.UserFileReaderImpl;
 import java.util.List;
 
 public class UserDaoImpl implements UserDao {
-    private static UserDaoImpl instance; // ПОчему не могу сделать прайват конструктор?
+    private static UserDaoImpl INSTANCE; // ПОчему не могу сделать прайват конструктор?
 
     public static UserDaoImpl getInstance() {
-        if (instance == null) {
-            instance = new UserDaoImpl();
+        if (INSTANCE == null) {
+            INSTANCE = new UserDaoImpl();
         }
-        return instance;
+        return INSTANCE;
     }
 
-    private final List<User> users;
-    private final UserFileReader userReader;
+    private final List<User> USERS;
+    private final UserFileReader USER_READER;
 
     public UserDaoImpl() throws ObjectInitializeException {
         try {
-            userReader = new UserFileReaderImpl();
-            users = userReader.readUsersFromFile();
+            USER_READER= new UserFileReaderImpl();
+            USERS = USER_READER.readUsersFromFile();
         } catch (UserFileReaderException e) {
             throw new ObjectInitializeException(e);
         }
     }
 
     public List<User> getUsers() {
-        return users;
+        return USERS;
     }
 
     public List<User> readAllUsers() {
@@ -44,15 +44,15 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void add(User user){
-            users.add(user);
+            USERS.add(user);
     }
 
     @Override
     public User update(User user, long id) {
-        for(int i= 0; i< users.size(); i++){
-            if(users.get(i).getId() == id){
-                users.set(i, user);
-                return users.get(i);
+        for(int i= 0; i< USERS.size(); i++){
+            if(USERS.get(i).getId() == id){
+                USERS.set(i, user);
+                return USERS.get(i);
             }
         }
         return null;
@@ -60,7 +60,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User read(long id) {
-        for (User user : users) {
+        for (User user : USERS) {
             if (user.getId() == id) {
                 return user;
             }
@@ -70,6 +70,6 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void delete(User user) {
-            users.remove(user);
+            USERS.remove(user);
     }
 }

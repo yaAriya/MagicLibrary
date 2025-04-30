@@ -7,6 +7,14 @@ import enity.User;
 import java.util.List;
 
 public class PrinterImpl implements Printer{
+    public static PrinterImpl INSTANCE;
+
+    public static PrinterImpl getInstance(){
+        if(INSTANCE == null){
+            INSTANCE = new PrinterImpl();
+        }
+        return INSTANCE;
+    }
     @Override
     public void printAllBooks(List<Book> books) {
         for (Book book : books) {

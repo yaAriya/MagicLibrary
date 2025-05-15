@@ -73,7 +73,7 @@ public class BookServiceImpl implements BookService {
             if (BOOK_DAO.read(id) != null) {
                 return BOOK_DAO.read(id);
             } else {
-                throw new EntityNotFoundException("Искаемый Вами объект не найден");
+                throw new EntityNotFoundException("Искаемая Вами книга не найдена");
             }
         } catch (EntityNotFoundException e) {
             throw new BookServiceException(e);

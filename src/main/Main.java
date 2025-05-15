@@ -41,7 +41,7 @@ public class Main {
             Book secondBook = BOOK_SERVICE.read(1);
             Book thirdBook = BOOK_SERVICE.read(2);
 
-            User firstUser =USER_SERVICE.read(0);
+            User firstUser = USER_SERVICE.read(0);
             User secondUser = USER_SERVICE.read(1);
             User thirdUser = USER_SERVICE.read(2);
             User fourthUser = USER_SERVICE.read(3);
@@ -67,7 +67,8 @@ public class Main {
             PRINTER.printAllBooks(BOOK_SERVICE.readAllBooks());
 
 
-            USER_SERVICE.rentBook(firstUser.getId(), fourthBook.getId());
+
+            USER_SERVICE.rentBook(firstUser.getId(), thirdBook.getId());
             USER_SERVICE.rentBook(firstUser.getId(), firstBook.getId());
             PRINTER.printUserBooks(firstUser.getBooks());
             PRINTER.printUserObject(firstUser);

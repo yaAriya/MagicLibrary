@@ -8,13 +8,7 @@ import enity.Book;
 
 import enity.User;
 
-import exceptions.EntityNotFoundException;
-
-import exceptions.InvalidEntityException;
-
-import exceptions.ObjectInitializeException;
-
-import exceptions.UserServiceException;
+import exceptions.*;
 
 import validator.UserValidatorImpl;
 
@@ -71,7 +65,7 @@ public class UserServiceImpl implements UserService {
             } else {
                 throw new InvalidEntityException("Параметры, введенные Вами некорректны");
             }
-        } catch (InvalidEntityException e) {
+        } catch (InvalidEntityException | UserDaoException e) {
             throw new UserServiceException(e);
         }
     }
@@ -84,7 +78,7 @@ public class UserServiceImpl implements UserService {
             } else {
                 throw new EntityNotFoundException("Искаемый Вами пользователь не найден");
             }
-        } catch (EntityNotFoundException e) {
+        } catch (EntityNotFoundException | UserDaoException e) {
             throw new UserServiceException(e);
         }
     }

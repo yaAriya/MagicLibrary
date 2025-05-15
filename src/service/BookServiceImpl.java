@@ -19,8 +19,8 @@ public class BookServiceImpl implements BookService {
     private final BookDao BOOK_DAO;
     private final Validator<Book> BOOK_VALIDATOR;
 
-    public static BookServiceImpl getInstance(){
-        if(INSTANCE == null){
+    public static BookServiceImpl getInstance() {
+        if (INSTANCE == null) {
             INSTANCE = new BookServiceImpl();
         }
         return INSTANCE;
@@ -62,7 +62,7 @@ public class BookServiceImpl implements BookService {
             } else {
                 throw new InvalidEntityException("Параметры, введенные Вами некорректны");
             }
-        } catch (InvalidEntityException e) {
+        } catch (InvalidEntityException | BookDaoException e) {
             throw new BookServiceException(e);
         }
     }
@@ -75,7 +75,7 @@ public class BookServiceImpl implements BookService {
             } else {
                 throw new EntityNotFoundException("Искаемая Вами книга не найдена");
             }
-        } catch (EntityNotFoundException e) {
+        } catch (EntityNotFoundException | BookDaoException e) {
             throw new BookServiceException(e);
         }
     }
@@ -84,7 +84,7 @@ public class BookServiceImpl implements BookService {
     public void delete(long id) throws BookServiceException {
         try {
             Book readBook = read(id);
-            if (id>=0 && readBook.getUser() == null) {
+            if (id >= 0 && readBook.getUser() == null) {
                 BOOK_DAO.delete(read(id));
             } else {
                 throw new InvalidEntityException("Увы, Вашу книгу нельзя удалить");

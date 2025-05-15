@@ -4,6 +4,8 @@ import enity.User;
 
 import exceptions.ObjectInitializeException;
 
+import exceptions.UserDaoException;
+
 import exceptions.UserFileReaderException;
 
 import reader.UserFileReader;
@@ -13,7 +15,7 @@ import reader.UserFileReaderImpl;
 import java.util.List;
 
 public class UserDaoImpl implements UserDao {
-    private static UserDaoImpl INSTANCE; // ПОчему не могу сделать прайват конструктор?
+    private static UserDaoImpl INSTANCE; 
     private final List<User> users;
     private final UserFileReader USER_READER;
 
@@ -26,7 +28,7 @@ public class UserDaoImpl implements UserDao {
 
     public UserDaoImpl() throws ObjectInitializeException {
         try {
-            USER_READER= new UserFileReaderImpl();
+            USER_READER = new UserFileReaderImpl();
             users = USER_READER.readUsersFromFile();
         } catch (UserFileReaderException e) {
             throw new ObjectInitializeException(e);
@@ -42,33 +44,41 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void add(User user){
-            users.add(user);
+    public void add(User user) {
+        users.add(user);
     }
 
     @Override
-    public User update(User user, long id) {
-        for(int i = 0; i< users.size(); i++){
-            if(users.get(i).getId() == id){
-                users.set(i, user);
-                return users.get(i);
+    public User read(long id) throws UserDaoException {
+        try {
+            for (User user : users) {
+                if (user.getId() == id) {
+                    return (User) user.clone();
+                }
             }
+            return null;
+        } catch (CloneNotSupportedException e) {
+            throw new UserDaoException(e);
         }
-        return null;
     }
 
     @Override
-    public User read(long id) {
-        for (User user : users) {
-            if (user.getId() == id) {
-                return user;
+    public User update(User user, long id) throws UserDaoException {
+        try {
+            for (int i = 0; i < users.size(); i++) {
+                if (users.get(i).getId() == id) {
+                    users.set(i, user);
+                    return (User) users.get(i).clone();
+                }
             }
+            return null;
+        } catch (CloneNotSupportedException e) {
+            throw new UserDaoException(e);
         }
-        return null;
     }
 
     @Override
     public void delete(User user) {
-            users.remove(user);
+        users.remove(user);
     }
 }

@@ -2,6 +2,7 @@ package dao;
 
 import enity.Book;
 
+import exceptions.BookDaoException;
 import exceptions.ObjectInitializeException;
 
 import exceptions.BookFileReaderException;
@@ -48,14 +49,19 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
-    public Book update(Book book, long id) {
-        for(int i = 0; i< books.size(); i++){
-            if(books.get(i).getId() == id){
-                books.set(i, book);
-                return books.get(i);
+    public Book update(Book book, long id) throws BookDaoException {
+        try {
+            for (int i = 0; i < books.size(); i++) {
+                if (books.get(i).getId() == id) {
+                    books.set(i, book);
+                    return (Book) books.get(i).clone();
+                }
             }
+            return null;
+        } catch (CloneNotSupportedException e) {
+            throw new BookDaoException(e);
         }
-        return null;
+
     }
 
     @Override
@@ -64,12 +70,16 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
-    public Book read(long id) {
-        for (Book book : books) {
-            if (book.getId() == id) {
-                return book;
+    public Book read(long id) throws BookDaoException {
+        try {
+            for (Book book : books) {
+                if (book.getId() == id) {
+                    return (Book) book.clone();
+                }
             }
+            return null;
+        } catch (CloneNotSupportedException e) {
+            throw new BookDaoException(e);
         }
-        return null;
     }
 }

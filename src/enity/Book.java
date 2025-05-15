@@ -2,7 +2,7 @@ package enity;
 
 import java.util.Objects;
 
-public class Book {
+public class Book implements Cloneable {
     private long id;
     private String name;
     private String author;

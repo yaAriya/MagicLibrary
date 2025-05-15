@@ -5,7 +5,7 @@ import java.util.List;
 
 import java.util.Objects;
 
-public class User {
+public class User implements Cloneable {
     private long id;
     private String name;
     private String email;
@@ -82,6 +82,11 @@ public class User {
         if ((obj == null) || !(obj instanceof User)) return false;
         User user = (User) obj;
         return id == user.id && Objects.equals(name, user.name) && Objects.equals(email, user.email) && age == user.age;
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 
     @Override

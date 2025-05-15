@@ -92,10 +92,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public void delete(long id) throws UserServiceException {
         try {
-            if (id >= 0) {
+            User readUser = read(id);
+            if (id >= 0 && readUser.getBooks().size() == 0) {
                 USER_DAO.delete(read(id));
             } else {
-                throw new InvalidEntityException("Параметры, введенные Вами некорректны");
+                throw new InvalidEntityException("Увы, Вашего пользователя нельзя удалить");
             }
         } catch (InvalidEntityException e) {
             throw new UserServiceException(e);

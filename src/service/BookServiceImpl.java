@@ -83,10 +83,11 @@ public class BookServiceImpl implements BookService {
     @Override
     public void delete(long id) throws BookServiceException {
         try {
-            if (id>=0) {
+            Book readBook = read(id);
+            if (id>=0 && readBook.getUser() == null) {
                 BOOK_DAO.delete(read(id));
             } else {
-                throw new InvalidEntityException("Параметры, введенные Вами некорректны");
+                throw new InvalidEntityException("Увы, Вашу книгу нельзя удалить");
             }
         } catch (InvalidEntityException e) {
             throw new BookServiceException(e);

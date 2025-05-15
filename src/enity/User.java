@@ -85,12 +85,12 @@ public class User {
     }
 
     @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
+
+    @Override
     public String toString() {
-        List<Book> cloneBooks = books;
-        List<Long> booksId = new ArrayList<>();
-        for (int i = 0; i < cloneBooks.size(); i++) {
-            booksId.add(cloneBooks.get(i).getId());
-        }
-        return id + ", " + name + ", " + email + ", " + age + ", " + booksId;
+        return id + ", " + name + ", " + email + ", " + age;
     }
 }

@@ -82,7 +82,7 @@ public class UserServiceImpl implements UserService {
             if (USER_DAO.read(id) != null) {
                 return USER_DAO.read(id);
             } else {
-                throw new EntityNotFoundException("Искаемый Вами пользователь не найден");
+                throw new EntityNotFoundException("Искаемый Вами объект не найден");
             }
         } catch (EntityNotFoundException e) {
             throw new UserServiceException(e);

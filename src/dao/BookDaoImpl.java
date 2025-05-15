@@ -14,6 +14,8 @@ import java.util.List;
 
 public class BookDaoImpl implements BookDao {
     private static BookDaoImpl INSTANCE;
+    private final List<Book> books;
+    private final BookFileReader BOOK_FILE_READER;
 
     public static BookDaoImpl getInstance() {
         if (INSTANCE == null) {
@@ -22,20 +24,17 @@ public class BookDaoImpl implements BookDao {
         return INSTANCE;
     }
 
-    private final List<Book> BOOKS;
-    private final BookFileReader BOOK_FILE_READER;
-
     private BookDaoImpl() throws ObjectInitializeException {
         try {
             BOOK_FILE_READER = new BookFileReaderImpl();
-            BOOKS = BOOK_FILE_READER.readBooksFromFile();
+            books = BOOK_FILE_READER.readBooksFromFile();
         } catch (BookFileReaderException e) {
             throw new ObjectInitializeException(e);
         }
     }
 
     public List<Book> getBooks() {
-        return BOOKS;
+        return books;
     }
 
     @Override
@@ -45,15 +44,15 @@ public class BookDaoImpl implements BookDao {
 
     @Override
     public void add(Book book) {
-        BOOKS.add(book);
+        books.add(book);
     }
 
     @Override
     public Book update(Book book, long id) {
-        for(int i = 0; i<BOOKS.size(); i++){
-            if(BOOKS.get(i).getId() == id){
-                BOOKS.set(i, book);
-                return BOOKS.get(i);
+        for(int i = 0; i< books.size(); i++){
+            if(books.get(i).getId() == id){
+                books.set(i, book);
+                return books.get(i);
             }
         }
         return null;
@@ -61,12 +60,12 @@ public class BookDaoImpl implements BookDao {
 
     @Override
     public void delete(Book book) {
-        BOOKS.remove(book);
+        books.remove(book);
     }
 
     @Override
     public Book read(long id) {
-        for (Book book : BOOKS) {
+        for (Book book : books) {
             if (book.getId() == id) {
                 return book;
             }

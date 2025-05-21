@@ -10,7 +10,7 @@ import enity.User;
 
 import exceptions.*;
 
-import validator.UserValidatorImpl;
+import validator.UserValidator;
 
 import validator.Validator;
 
@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService {
     public UserServiceImpl() {
         USER_DAO = UserDaoImpl.getInstance();
         BOOK_SERVICE = BookServiceImpl.getInstance();
-        USER_VALIDATOR = UserValidatorImpl.getInstance();
+        USER_VALIDATOR = UserValidator.getInstance();
     }
 
     @Override

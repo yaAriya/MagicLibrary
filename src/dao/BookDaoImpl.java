@@ -3,6 +3,7 @@ package dao;
 import enity.Book;
 
 import exceptions.BookDaoException;
+import exceptions.BookFileWriterException;
 import exceptions.ObjectInitializeException;
 
 import exceptions.BookFileReaderException;
@@ -10,6 +11,8 @@ import exceptions.BookFileReaderException;
 import reader.BookFileReader;
 
 import reader.BookFileReaderImpl;
+import writer.BookFileWriter;
+import writer.BookFileWriterImpl;
 
 import java.util.List;
 
@@ -17,6 +20,7 @@ public class BookDaoImpl implements BookDao {
     private static BookDaoImpl INSTANCE;
     private final List<Book> books;
     private final BookFileReader BOOK_FILE_READER;
+    private final BookFileWriter BOOK_FILE_WRITER;
 
     public static BookDaoImpl getInstance() {
         if (INSTANCE == null) {
@@ -27,7 +31,8 @@ public class BookDaoImpl implements BookDao {
 
     private BookDaoImpl() throws ObjectInitializeException {
         try {
-            BOOK_FILE_READER = new BookFileReaderImpl();
+            BOOK_FILE_READER = BookFileReaderImpl.getInstance();
+            BOOK_FILE_WRITER = BookFileWriterImpl.getInstance();
             books = BOOK_FILE_READER.readBooksFromFile();
         } catch (BookFileReaderException e) {
             throw new ObjectInitializeException(e);
@@ -44,8 +49,15 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
-    public void add(Book book) {
-        books.add(book);
+    public void add(Book book) throws BookDaoException{
+        try {
+         if(!books.contains(book) && book.getUser() == null){
+             books.add(book);
+             BOOK_FILE_WRITER.addBookToFile(book);
+         }
+        } catch (BookFileWriterException e){
+            throw new BookDaoException(e);
+        }
     }
 
     @Override

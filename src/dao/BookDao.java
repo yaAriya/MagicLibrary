@@ -9,7 +9,7 @@ import java.util.List;
 public interface BookDao {
     List<Book> readAllBooks();
 
-    void add(Book book);
+    void add(Book book) throws BookDaoException;
 
     Book read(long id) throws BookDaoException;
 

@@ -2,12 +2,12 @@ package validator;
 
 import enity.User;
 
-public class UserValidatorImpl implements Validator<User> {
-    private static UserValidatorImpl INSTANCE;
+public class UserValidator implements Validator<User> {
+    private static UserValidator INSTANCE;
 
-    public static UserValidatorImpl getInstance() {
+    public static UserValidator getInstance() {
         if (INSTANCE == null) {
-            INSTANCE = new UserValidatorImpl();
+            INSTANCE = new UserValidator();
         }
         return INSTANCE;
     }

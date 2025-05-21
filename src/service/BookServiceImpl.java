@@ -48,7 +48,7 @@ public class BookServiceImpl implements BookService {
             } else {
                 throw new InvalidEntityException("Параметры, введенные Вами некорректны");
             }
-        } catch (InvalidEntityException e) {
+        } catch (InvalidEntityException | BookDaoException e) {
             throw new BookServiceException(e);
         }
 

@@ -10,35 +10,24 @@ import java.io.FileReader;
 
 import java.io.IOException;
 
-import java.nio.file.Files;
-
-import java.nio.file.Path;
-
-import java.nio.file.Paths;
-
 import java.util.ArrayList;
 
 import java.util.List;
 
 public class BookFileReaderImpl implements BookFileReader {
     private final String PARAMETER;
-
     private final String BOOK_FILE_PATH;
+    private static BookFileReaderImpl INSTANCE;
+    public static BookFileReader getInstance(){
+        if(INSTANCE == null){
+            INSTANCE = new BookFileReaderImpl();
+        }
+        return INSTANCE;
+    }
 
     public BookFileReaderImpl() {
         BOOK_FILE_PATH = "resources/book.txt";
         PARAMETER = ",";
-    }
-
-    public void createFile() {
-        try {
-            Path bookPath = Files.createFile(Paths.get("resources/book.txt"));
-            System.out.println("Файл был создан?");
-            System.out.println(Files.exists(bookPath));
-
-        } catch (IOException e) {
-            System.out.println("Файл уже был создан ");
-        }
     }
 
     @Override

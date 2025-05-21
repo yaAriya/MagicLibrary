@@ -8,9 +8,15 @@ import exceptions.UserDaoException;
 
 import exceptions.UserFileReaderException;
 
+import exceptions.UserFileWriterException;
+
 import reader.UserFileReader;
 
 import reader.UserFileReaderImpl;
+
+import writer.UserFileWriter;
+
+import writer.UserFileWriterImpl;
 
 import java.util.List;
 
@@ -18,6 +24,7 @@ public class UserDaoImpl implements UserDao {
     private static UserDaoImpl INSTANCE; 
     private final List<User> users;
     private final UserFileReader USER_READER;
+    private final UserFileWriter USER_WRITER;
 
     public static UserDaoImpl getInstance() {
         if (INSTANCE == null) {
@@ -28,8 +35,9 @@ public class UserDaoImpl implements UserDao {
 
     public UserDaoImpl() throws ObjectInitializeException {
         try {
-            USER_READER = new UserFileReaderImpl();
+            USER_READER = UserFileReaderImpl.getInstance();
             users = USER_READER.readUsersFromFile();
+            USER_WRITER = UserFileWriterImpl.getInstance();
         } catch (UserFileReaderException e) {
             throw new ObjectInitializeException(e);
         }
@@ -44,8 +52,15 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void add(User user) {
-        users.add(user);
+    public void add(User user) throws UserDaoException {
+        try {
+            if(!users.contains(user)) {
+                users.add(user);
+                USER_WRITER.addUsersToFile(user);
+            }
+        } catch(UserFileWriterException e){
+            throw new UserDaoException(e);
+        }
     }
 
     @Override

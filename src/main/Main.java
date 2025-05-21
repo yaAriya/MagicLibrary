@@ -45,12 +45,15 @@ public class Main {
             User secondUser = USER_SERVICE.read(1);
             User thirdUser = USER_SERVICE.read(2);
             User fourthUser = USER_SERVICE.read(3);
-            User fifthUser = USER_SERVICE.read(4);
+           // User fifthUser = USER_SERVICE.read(4);
 
 
-            USER_SERVICE.add(new User(5, "Vika", "Vichik@gmail.com", 15));
+            USER_SERVICE.add(new User(4, "Vika", "Vichik@gmail.com", 15));
             PRINTER.printAllUsers(USER_SERVICE.readAllUsers());
-            User sixthUser = USER_SERVICE.read(5);
+            //User sixthUser = USER_SERVICE.read(5);
+
+            USER_SERVICE.add(new User(5,"Vladimir","Vovchik@gmail.com",15));
+            PRINTER.printAllUsers(USER_SERVICE.readAllUsers());
 
             BOOK_SERVICE.add(new Book(3, "Gone with the Wind", "Margaret Mitchell", 333));
             PRINTER.printAllBooks(BOOK_SERVICE.readAllBooks());
@@ -60,8 +63,8 @@ public class Main {
 
             PRINTER.printUserObject(USER_SERVICE.update(new User(4, "Lera", "Lerka@gmail.com", 15)));
 
-            USER_SERVICE.delete(sixthUser.getId());
-            PRINTER.printAllUsers(USER_SERVICE.readAllUsers());
+            //USER_SERVICE.delete(sixthUser.getId());
+            //PRINTER.printAllUsers(USER_SERVICE.readAllUsers());
 
             BOOK_SERVICE.delete(thirdBook.getId());
             PRINTER.printAllBooks(BOOK_SERVICE.readAllBooks());

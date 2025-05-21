@@ -2,7 +2,6 @@ package dao;
 
 import enity.User;
 
-import exceptions.ObjectInitializeException;
 import exceptions.UserDaoException;
 
 import java.util.List;
@@ -10,7 +9,7 @@ import java.util.List;
 public interface UserDao {
     List<User> readAllUsers();
 
-    void add(User user);
+    void add(User user) throws UserDaoException;
 
     User read(long id) throws UserDaoException;
 

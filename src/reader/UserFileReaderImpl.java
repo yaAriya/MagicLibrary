@@ -15,8 +15,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserFileReaderImpl implements UserFileReader {
-
+    private static UserFileReaderImpl INSTANCE;
     String userFilePath;
+
+    public static UserFileReaderImpl getInstance(){
+        if(INSTANCE == null){
+            INSTANCE = new UserFileReaderImpl();
+        }
+        return INSTANCE;
+    }
 
     public UserFileReaderImpl() {
         userFilePath = "resources/user.txt";
@@ -50,6 +57,10 @@ public class UserFileReaderImpl implements UserFileReader {
     @Override
     public User convertLineToUser(String line) {
         String[] parameters = line.split(",");
+
+        for(String parameter: parameters){
+            parameter.trim();
+        }
 
         User user = new User();
         user.setId(Long.parseLong(parameters[0]));

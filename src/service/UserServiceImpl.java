@@ -52,7 +52,7 @@ public class UserServiceImpl implements UserService {
             } else {
                 throw new InvalidEntityException("Параметры, введенные Вами некорректны");
             }
-        } catch (InvalidEntityException e) {
+        } catch (InvalidEntityException | UserDaoException e) {
             throw new UserServiceException(e);
         }
     }

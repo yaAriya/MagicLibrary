@@ -35,11 +35,11 @@ public class UserFileReaderImpl implements UserFileReader {
             BufferedReader reader = new BufferedReader(new FileReader(userFilePath));
             List<String> readLinesFromUserFile = new ArrayList<>();
 
-            String readerLine = reader.readLine();
+            String readLine = reader.readLine();
 
-            while (readerLine != null){
-                readLinesFromUserFile.add(readerLine);
-                readerLine = reader.readLine();
+            while (readLine != null){
+                readLinesFromUserFile.add(readLine);
+                readLine = reader.readLine();
             }
 
             List<User> users = new ArrayList<>();

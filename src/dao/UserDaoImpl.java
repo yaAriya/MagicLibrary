@@ -56,7 +56,7 @@ public class UserDaoImpl implements UserDao {
         try {
             if(!users.contains(user)) {
                 users.add(user);
-                USER_WRITER.addUsersToFile(user);
+                USER_WRITER.addUserToFile(user);
             }
         } catch(UserFileWriterException e){
             throw new UserDaoException(e);
@@ -93,7 +93,12 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void delete(User user) {
-        users.remove(user);
+    public void delete(User user) throws UserDaoException {
+        try {
+            users.remove(user);     // в коллекции его уже нет на момент вызова WriterА
+            USER_WRITER.deleteUserFromFile(users);  //переименовать в запись информации
+        } catch (UserFileWriterException e){
+            throw new UserDaoException(e);
+        }
     }
 }

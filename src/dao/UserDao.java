@@ -15,5 +15,5 @@ public interface UserDao {
 
     User update(User user, long id) throws UserDaoException;
 
-    void delete(User user);
+    void delete(User user) throws UserDaoException;
 }

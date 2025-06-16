@@ -45,12 +45,9 @@ public class Main {
             User secondUser = USER_SERVICE.read(1);
             User thirdUser = USER_SERVICE.read(2);
             User fourthUser = USER_SERVICE.read(3);
-           // User fifthUser = USER_SERVICE.read(4);
-
 
             USER_SERVICE.add(new User(4, "Vika", "Vichik@gmail.com", 15));
             PRINTER.printAllUsers(USER_SERVICE.readAllUsers());
-            //User sixthUser = USER_SERVICE.read(5);
 
             USER_SERVICE.add(new User(5,"Vladimir","Vovchik@gmail.com",15));
             PRINTER.printAllUsers(USER_SERVICE.readAllUsers());
@@ -62,9 +59,6 @@ public class Main {
             PRINTER.printBookObject(BOOK_SERVICE.update(new Book(3, "Gone with the Wind", "Margaret Mitchell", 345)));
 
             PRINTER.printUserObject(USER_SERVICE.update(new User(4, "Lera", "Lerka@gmail.com", 15)));
-
-            //USER_SERVICE.delete(sixthUser.getId());
-            //PRINTER.printAllUsers(USER_SERVICE.readAllUsers());
 
             BOOK_SERVICE.delete(thirdBook.getId());
             PRINTER.printAllBooks(BOOK_SERVICE.readAllBooks());
@@ -80,6 +74,8 @@ public class Main {
 
             USER_SERVICE.rentBook(secondUser.getId(), secondBook.getId());
             PRINTER.printUserBooks(secondUser.getBooks());
+
+            USER_SERVICE.delete(firstUser.getId());
         } catch (BookServiceException | UserServiceException e) {
             throw new MainException("упс, опять долбанное Exception ", e);
         }

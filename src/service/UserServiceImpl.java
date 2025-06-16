@@ -87,12 +87,12 @@ public class UserServiceImpl implements UserService {
     public void delete(long id) throws UserServiceException {
         try {
             User readUser = read(id);
-            if (id >= 0 && readUser.getBooks().size() == 0) {
-                USER_DAO.delete(read(id));
+            if (id >= 0 && readUser.getBooks().size() == 0) { // А есть ли он вообще проверить
+                USER_DAO.delete(readUser);
             } else {
                 throw new InvalidEntityException("Увы, Вашего пользователя нельзя удалить");
             }
-        } catch (InvalidEntityException e) {
+        } catch (InvalidEntityException | UserDaoException e) {
             throw new UserServiceException(e);
         }
     }

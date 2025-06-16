@@ -77,8 +77,13 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
-    public void delete(Book book) {
-        books.remove(book);
+    public void delete(Book book) throws BookDaoException {
+        try {
+            books.remove(book);
+            BOOK_FILE_WRITER.deleteBookFromFile(books);
+        } catch (BookFileWriterException e){
+            throw new BookDaoException(e);
+        }
     }
 
     @Override

@@ -85,11 +85,11 @@ public class BookServiceImpl implements BookService {
         try {
             Book readBook = read(id);
             if (id >= 0 && readBook.getUser() == null) {
-                BOOK_DAO.delete(read(id));
+                BOOK_DAO.delete(readBook);
             } else {
                 throw new InvalidEntityException("Увы, Вашу книгу нельзя удалить");
             }
-        } catch (InvalidEntityException e) {
+        } catch (InvalidEntityException | BookDaoException e) {
             throw new BookServiceException(e);
         }
     }

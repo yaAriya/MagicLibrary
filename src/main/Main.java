@@ -76,6 +76,7 @@ public class Main {
             PRINTER.printUserBooks(secondUser.getBooks());
 
             USER_SERVICE.delete(firstUser.getId());
+            BOOK_SERVICE.delete(firstBook.getId());
         } catch (BookServiceException | UserServiceException e) {
             throw new MainException("упс, опять долбанное Exception ", e);
         }

@@ -40,7 +40,7 @@ public class UserFileWriterImpl implements UserFileWriter {
     @Override
     public void deleteUserFromFile(List<User> users) throws UserFileWriterException {
         try {
-            List<String> usersToLine = new ArrayList<>();// массив строк
+            List<String> usersToLine = new ArrayList<>();
 
             for (int i = 0; i < users.size(); i++) {
                 String userToLine = convertUserToLine(users.get(i));

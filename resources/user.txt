@@ -1,4 +1,3 @@
-0,Elsa,Elisa@gmail.com,16,[]
 1,Petr,Petya@gmail.com,10,[]
 2,Lisa,Lisochka@gmail.com,11,[]
 3,Pasha,Pashka@gmail.com,19,[]

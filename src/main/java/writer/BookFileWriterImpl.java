@@ -16,7 +16,7 @@ import java.util.List;
 
 public class BookFileWriterImpl implements BookFileWriter {
 
-    String filePath = "resources/book.txt";
+    String filePath = "book.txt";
 
     private static BookFileWriterImpl INSTANCE;
 

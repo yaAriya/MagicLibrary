@@ -26,7 +26,7 @@ public class BookFileReaderImpl implements BookFileReader {
     }
 
     public BookFileReaderImpl() {
-        BOOK_FILE_PATH = "resources/book.txt";
+        BOOK_FILE_PATH = "src/main/resources/book.txt";
         PARAMETER = ",";
     }
 

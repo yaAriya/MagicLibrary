@@ -26,7 +26,7 @@ public class UserFileReaderImpl implements UserFileReader {
     }
 
     public UserFileReaderImpl() {
-        userFilePath = "resources/user.txt";
+        userFilePath = "src/main/resources/user.txt";
     }
 
     @Override

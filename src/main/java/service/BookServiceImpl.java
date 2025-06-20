@@ -34,7 +34,7 @@ public class BookServiceImpl implements BookService {
     @Override
     public List<Book> readAllBooks() throws BookServiceException {
         try {
-            return BOOK_DAO.readAllBooks();
+            return BOOK_DAO.readAllBooks();//возвращает список  книг
         } catch (ObjectInitializeException e) {
             throw new BookServiceException(e);
         }

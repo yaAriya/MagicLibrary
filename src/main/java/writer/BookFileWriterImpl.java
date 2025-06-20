@@ -16,7 +16,7 @@ import java.util.List;
 
 public class BookFileWriterImpl implements BookFileWriter {
 
-    String filePath = "book.txt";
+    String filePath;
 
     private static BookFileWriterImpl INSTANCE;
 
@@ -25,6 +25,10 @@ public class BookFileWriterImpl implements BookFileWriter {
             INSTANCE = new BookFileWriterImpl();
         }
         return INSTANCE;
+    }
+
+    public BookFileWriterImpl(){
+        filePath = "src/main/resources/book.txt";
     }
 
     public void addBookToFile(Book book) throws BookFileWriterException {

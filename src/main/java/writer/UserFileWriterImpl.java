@@ -22,7 +22,7 @@ public class UserFileWriterImpl implements UserFileWriter {
     }
 
     public UserFileWriterImpl() {
-        filePath = "resources/user.txt";
+        filePath = "src/main/resources/user.txt";
     }
 
     @Override

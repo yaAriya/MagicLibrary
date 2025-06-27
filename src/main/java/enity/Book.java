@@ -66,7 +66,8 @@ public class Book implements Cloneable {
     }
 
     public void setUser(User user) {
-        this.user = user;
+        User userCopy = new User(user.getId(),user.getName(), user.getEmail(), user.getAge());
+        this.user = userCopy;
     }
 
     @Override

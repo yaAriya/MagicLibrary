@@ -12,7 +12,7 @@ import java.util.List;
 
 public class UserFileWriterImpl implements UserFileWriter {
     private static UserFileWriterImpl INSTANCE;
-    String filePath;
+    private static final String USER_FILE_PATH = "src/main/resources/user.txt";
 
     public static UserFileWriterImpl getInstance() {
         if (INSTANCE == null) {
@@ -21,14 +21,13 @@ public class UserFileWriterImpl implements UserFileWriter {
         return INSTANCE;
     }
 
-    public UserFileWriterImpl() {
-        filePath = "src/main/resources/user.txt";
+    private UserFileWriterImpl() {
     }
 
     @Override
     public void addUserToFile(User user) throws UserFileWriterException {
         try {
-            FileWriter writer = new FileWriter(filePath, true);
+            FileWriter writer = new FileWriter(USER_FILE_PATH, true);
             writer.write("\n");
             writer.write(convertUserToLine(user).trim());
             writer.flush();
@@ -44,10 +43,10 @@ public class UserFileWriterImpl implements UserFileWriter {
 
             for (int i = 0; i < users.size(); i++) {
                 String userToLine = convertUserToLine(users.get(i));
-                usersToLine.add(userToLine); // вот здесь у меня уже есть список юзеров типа строка
+                usersToLine.add(userToLine);
             }
 
-            BufferedWriter writer = new BufferedWriter(new FileWriter(filePath));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(USER_FILE_PATH));
 
             for (int i = 0; i < usersToLine.size(); i++) {
                 writer.write(usersToLine.get(i) + "\n");

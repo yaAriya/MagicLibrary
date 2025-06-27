@@ -12,7 +12,8 @@ public class User implements Cloneable {
     private int age;
     private List<Book> books;
 
-    public User(){
+    public User() {
+        this.books = new ArrayList<>();
     }
 
     public User(long id, String name, String email, int age) {
@@ -36,7 +37,8 @@ public class User implements Cloneable {
     }
 
     public void setName(String name) {
-        this.name = name;
+        String nameCopy = new String(name);
+        this.name = nameCopy;
     }
 
     public String getEmail() {
@@ -44,7 +46,8 @@ public class User implements Cloneable {
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        String emailCopy = email;
+        this.email = emailCopy;
     }
 
     public int getAge() {
@@ -52,7 +55,8 @@ public class User implements Cloneable {
     }
 
     public void setAge(int age) {
-        this.age = age;
+        int ageCopy = age;
+        this.age = ageCopy ;
     }
 
     public long getId() {
@@ -60,7 +64,8 @@ public class User implements Cloneable {
     }
 
     public void setId(long id) {
-        this.id = id;
+        long idCopy = id;
+        this.id = idCopy;
     }
 
     public List<Book> getBooks() {
@@ -68,7 +73,9 @@ public class User implements Cloneable {
     }
 
     public void setBooks(List<Book> books) {
-        this.books = books;
+        List<Book> booksCopy = new ArrayList<>();
+        booksCopy.addAll(books);
+        this.books = booksCopy;
     }
 
     @Override
@@ -91,11 +98,15 @@ public class User implements Cloneable {
 
     @Override
     public String toString() {
-        List<Book> cloneBooks = books;
-        List<Long> booksId = new ArrayList<>();
-        for (int i = 0; i < cloneBooks.size(); i++) {
-            booksId.add(cloneBooks.get(i).getId());
+        List<Book> cloneBooks = new ArrayList<>();// ТАк нельзя
+        for (int i = 0; i<books.size(); i++){
+            cloneBooks.add(books.get(i));
+            //cloneBooks.addAll(books);
         }
-        return id + ", " + name + ", " + email + ", " + age + ", " + booksId;
+            List<Long> booksId = new ArrayList<>();
+            for (int i = 0; i < cloneBooks.size(); i++) {
+                booksId.add(cloneBooks.get(i).getId());
+            }
+            return id + ", " + name + ", " + email + ", " + age + ", " + booksId;
     }
 }

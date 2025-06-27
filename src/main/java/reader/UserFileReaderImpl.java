@@ -16,7 +16,12 @@ import java.util.List;
 
 public class UserFileReaderImpl implements UserFileReader {
     private static UserFileReaderImpl INSTANCE;
-    String userFilePath;
+
+    private static final String USER_FILE_PATH = "src/main/resources/user.txt";
+
+    private static final String parameter = ",";
+
+    //private static final String parameterForBooksIdList = "[";
 
     public static UserFileReaderImpl getInstance(){
         if(INSTANCE == null){
@@ -25,14 +30,13 @@ public class UserFileReaderImpl implements UserFileReader {
         return INSTANCE;
     }
 
-    public UserFileReaderImpl() {
-        userFilePath = "src/main/resources/user.txt";
+    private UserFileReaderImpl() {
     }
 
     @Override
     public List<User> readUsersFromFile() throws UserFileReaderException {
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(userFilePath));
+            BufferedReader reader = new BufferedReader(new FileReader(USER_FILE_PATH));
             List<String> readLinesFromUserFile = new ArrayList<>();
 
             String readLine = reader.readLine();
@@ -56,10 +60,12 @@ public class UserFileReaderImpl implements UserFileReader {
 
     @Override
     public User convertLineToUser(String line) {
-        String[] parameters = line.split(",");
+        String[] parameters = line.split(parameter);
+        //String[] booksId = line.split(parameterForBooksIdList);
+        //List<String> booksId = new ArrayList<>();
 
-        for(String parameter: parameters){
-            parameter.trim();
+        for (int i = 0; i<parameters.length; i++){
+            parameters[i] = parameters[i].trim();
         }
 
         User user = new User();
@@ -67,7 +73,20 @@ public class UserFileReaderImpl implements UserFileReader {
         user.setName(parameters[1]);
         user.setEmail(parameters[2]);
         user.setAge(Integer.parseInt(parameters[3]));
-
-        return new User(user.getId(), user.getName(), user.getEmail(), user.getAge());
+        //user.setBooks();
+        return user;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

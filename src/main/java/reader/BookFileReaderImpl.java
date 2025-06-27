@@ -15,8 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BookFileReaderImpl implements BookFileReader {
-    private final String PARAMETER;
-    private final String BOOK_FILE_PATH;
+    private static final String PARAMETER = ",";
+    private static final String BOOK_FILE_PATH ="src/main/resources/book.txt";
     private static BookFileReaderImpl INSTANCE;
     public static BookFileReader getInstance(){
         if(INSTANCE == null){
@@ -25,9 +25,7 @@ public class BookFileReaderImpl implements BookFileReader {
         return INSTANCE;
     }
 
-    public BookFileReaderImpl() {
-        BOOK_FILE_PATH = "src/main/resources/book.txt";
-        PARAMETER = ",";
+    private BookFileReaderImpl() {
     }
 
     @Override

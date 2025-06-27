@@ -16,7 +16,7 @@ import java.util.List;
 
 public class BookFileWriterImpl implements BookFileWriter {
 
-    String filePath;
+    private static final String BOOK_FILE_PATH ="src/main/resources/book.txt";
 
     private static BookFileWriterImpl INSTANCE;
 
@@ -27,13 +27,12 @@ public class BookFileWriterImpl implements BookFileWriter {
         return INSTANCE;
     }
 
-    public BookFileWriterImpl(){
-        filePath = "src/main/resources/book.txt";
+    private BookFileWriterImpl(){
     }
 
     public void addBookToFile(Book book) throws BookFileWriterException {
         try {
-            FileWriter writer = new FileWriter(filePath, true);
+            FileWriter writer = new FileWriter(BOOK_FILE_PATH, true);
             writer.write("\n");
             writer.write(convertBookToLine(book));
             writer.flush();
@@ -52,7 +51,7 @@ public class BookFileWriterImpl implements BookFileWriter {
                 booksToLine.add(convertBookToLine(books.get(i)));
             }
 
-            BufferedWriter writer = new BufferedWriter(new FileWriter(filePath));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(BOOK_FILE_PATH));
 
             for (int i = 0; i < booksToLine.size(); i++) {
                 writer.write(booksToLine.get(i) + "\n");

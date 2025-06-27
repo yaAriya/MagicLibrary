@@ -4,12 +4,6 @@ import enity.Book;
 
 import enity.User;
 
-import exceptions.BookServiceException;
-
-import exceptions.MainException;
-
-import exceptions.UserServiceException;
-
 import printer.Printer;
 
 import printer.PrinterImpl;
@@ -22,16 +16,23 @@ import service.UserService;
 
 import service.UserServiceImpl;
 
+import java.util.List;
+
 
 public class Main {
-    public static final UserService USER_SERVICE = UserServiceImpl.getInstance();
-    public static final BookService BOOK_SERVICE = BookServiceImpl.getInstance();
-    public static final Printer PRINTER = PrinterImpl.getInstance();
+    public static final UserService userService = UserServiceImpl.getInstance();
+    public static final BookService bookService = BookServiceImpl.getInstance();
+    public static final Printer printer = PrinterImpl.getInstance();
 
 
-    public static void main(String[] args) throws MainException {
-        try {
-            PRINTER.printAllUsers(USER_SERVICE.readAllUsers());
+    public static void main(String[] args){
+        printer.printAllUsers(userService.readAllUsers());
+       //printer.printAllBooks(bookService.readAllBooks());
+
+        userService.delete(1);
+        printer.printAllUsers(userService.readAllUsers());
+
+            /*PRINTER.printAllUsers(USER_SERVICE.readAllUsers());
             PRINTER.printAllBooks(BOOK_SERVICE.readAllBooks());
 
             PRINTER.printUserObject(USER_SERVICE.read(1));
@@ -76,9 +77,6 @@ public class Main {
             PRINTER.printUserBooks(secondUser.getBooks());
 
             USER_SERVICE.delete(firstUser.getId());
-            BOOK_SERVICE.delete(firstBook.getId());
-        } catch (BookServiceException | UserServiceException e) {
-            throw new MainException("упс, опять долбанное Exception ", e);
-        }
+            BOOK_SERVICE.delete(firstBook.getId());*/
     }
 }

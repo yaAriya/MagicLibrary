@@ -15,13 +15,14 @@ import reader.BookFileReaderImpl;
 import writer.BookFileWriter;
 import writer.BookFileWriterImpl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BookDaoImpl implements BookDao {
     private static BookDaoImpl INSTANCE;
     private final List<Book> books;
-    private final BookFileReader BOOK_FILE_READER;
-    private final BookFileWriter BOOK_FILE_WRITER;
+    private final BookFileReader bookFileReader;
+    private final BookFileWriter bookFileWriter;
 
     public static BookDaoImpl getInstance() {
         if (INSTANCE == null) {
@@ -32,9 +33,9 @@ public class BookDaoImpl implements BookDao {
 
     private BookDaoImpl() throws ObjectInitializeException {
         try {
-            BOOK_FILE_READER = BookFileReaderImpl.getInstance();
-            BOOK_FILE_WRITER = BookFileWriterImpl.getInstance();
-            books = BOOK_FILE_READER.readBooksFromFile();
+            bookFileReader = BookFileReaderImpl.getInstance();
+            bookFileWriter = BookFileWriterImpl.getInstance();
+            books = bookFileReader.readBooksFromFile();
         } catch (BookFileReaderException e) {
             throw new ObjectInitializeException(e);
         }
@@ -46,7 +47,9 @@ public class BookDaoImpl implements BookDao {
 
     @Override
     public List<Book> readAllBooks() {
-        return getBooks();
+        List<Book> booksCopy = new ArrayList<>();
+        booksCopy.addAll(getBooks());
+        return booksCopy;
     }
 
     @Override
@@ -54,7 +57,7 @@ public class BookDaoImpl implements BookDao {
         try {
          if(!books.contains(book) && book.getUser() == null){
              books.add(book);
-             BOOK_FILE_WRITER.addBookToFile(book);
+             bookFileWriter.addBookToFile(book);
          }
         } catch (BookFileWriterException e){
             throw new BookDaoException(e);
@@ -81,7 +84,7 @@ public class BookDaoImpl implements BookDao {
     public void delete(Book book) throws BookDaoException {
         try {
             books.remove(book);
-            BOOK_FILE_WRITER.deleteBookFromFile(books);
+            bookFileWriter.deleteBookFromFile(books);
         } catch (BookFileWriterException e){
             throw new BookDaoException(e);
         }

@@ -18,13 +18,14 @@ import writer.UserFileWriter;
 
 import writer.UserFileWriterImpl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserDaoImpl implements UserDao {
     private static UserDaoImpl INSTANCE; 
     private final List<User> users;
-    private final UserFileReader USER_READER;
-    private final UserFileWriter USER_WRITER;
+    private final UserFileReader userFileReader;
+    private final UserFileWriter userFileWriter;
 
     public static UserDaoImpl getInstance() {
         if (INSTANCE == null) {
@@ -33,11 +34,11 @@ public class UserDaoImpl implements UserDao {
         return INSTANCE;
     }
 
-    public UserDaoImpl() throws ObjectInitializeException {
+    private UserDaoImpl() throws ObjectInitializeException {
         try {
-            USER_READER = UserFileReaderImpl.getInstance();
-            users = USER_READER.readUsersFromFile();
-            USER_WRITER = UserFileWriterImpl.getInstance();
+            userFileReader = UserFileReaderImpl.getInstance();
+            users = userFileReader.readUsersFromFile();
+            userFileWriter = UserFileWriterImpl.getInstance();
         } catch (UserFileReaderException e) {
             throw new ObjectInitializeException(e);
         }
@@ -48,7 +49,9 @@ public class UserDaoImpl implements UserDao {
     }
 
     public List<User> readAllUsers() {
-        return getUsers();
+        List<User> usersCopy = new ArrayList<>();
+        usersCopy.addAll(getUsers());
+        return usersCopy;
     }
 
     @Override
@@ -56,7 +59,7 @@ public class UserDaoImpl implements UserDao {
         try {
             if(!users.contains(user)) {
                 users.add(user);
-                USER_WRITER.addUserToFile(user);
+                userFileWriter.addUserToFile(user);
             }
         } catch(UserFileWriterException e){
             throw new UserDaoException(e);
@@ -96,7 +99,7 @@ public class UserDaoImpl implements UserDao {
     public void delete(User user) throws UserDaoException {
         try {
             users.remove(user);     // в коллекции его уже нет на момент вызова WriterА
-            USER_WRITER.deleteUserFromFile(users);  //переименовать в запись информации
+            userFileWriter.deleteUserFromFile(users);  //переименовать в запись информации
         } catch (UserFileWriterException e){
             throw new UserDaoException(e);
         }

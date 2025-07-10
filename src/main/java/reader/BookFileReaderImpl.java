@@ -4,6 +4,8 @@ import enity.Book;
 
 import exceptions.BookFileReaderException;
 
+import service.UserServiceImpl;
+
 import java.io.BufferedReader;
 
 import java.io.FileReader;
@@ -18,9 +20,12 @@ public class BookFileReaderImpl implements BookFileReader {
     private static final String PARAMETER = ",";
     private static final String BOOK_FILE_PATH ="src/main/resources/book.txt";
     private static BookFileReaderImpl INSTANCE;
+
+    private static UserServiceImpl userService;
     public static BookFileReader getInstance(){
         if(INSTANCE == null){
             INSTANCE = new BookFileReaderImpl();
+            userService = UserServiceImpl.getInstance();
         }
         return INSTANCE;
     }
@@ -57,12 +62,22 @@ public class BookFileReaderImpl implements BookFileReader {
     public Book convertLineToBook(String line) {
         String [] parameters = line.split(PARAMETER);
 
-        Book book = new Book();
-        book.setId(Integer.parseInt(parameters [0]));
-        book.setName(parameters[1]);
-        book.setAuthor(parameters[2]);
-        book.setPagesNumber(Integer.parseInt(parameters[3]));
+        if(parameters.length <= 4){
+            Book book = new Book();
+            book.setId(Integer.parseInt(parameters [0]));
+            book.setName(parameters[1]);
+            book.setAuthor(parameters[2]);
+            book.setPagesNumber(Integer.parseInt(parameters[3]));
 
-        return new Book(book.getId(), book.getName(), book.getAuthor(), book.getPagesNumber());
+            return book;
+        } else {
+            Book book = new Book();
+            book.setId(Integer.parseInt(parameters[0]));
+            book.setName(parameters[1]);
+            book.setAuthor(parameters[2]);
+            book.setPagesNumber(Integer.parseInt(parameters[3]));
+            book.setUser(userService.read(Long.parseLong(parameters[4])));
+            return book;
+        }
     }
 }

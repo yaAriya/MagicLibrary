@@ -38,6 +38,7 @@ public class User implements Cloneable {
 
     public void setName(String name) {
         String nameCopy = new String(name);
+        //nameCopy.
         this.name = nameCopy;
     }
 

@@ -66,8 +66,7 @@ public class Book implements Cloneable {
     }
 
     public void setUser(User user) {
-        User userCopy = new User(user.getId(),user.getName(), user.getEmail(), user.getAge());
-        this.user = userCopy;
+        this.user = user;
     }
 
     @Override
@@ -84,8 +83,27 @@ public class Book implements Cloneable {
     }
 
     @Override
-    public Object clone() throws CloneNotSupportedException {
-        return super.clone();
+    public Book clone() throws CloneNotSupportedException {
+        if (getUser() == null) {
+            Book clonedBook = new Book();
+            clonedBook.setId(this.id);
+            clonedBook.setName(this.name);
+            clonedBook.setAuthor(this.author);
+            clonedBook.setPagesNumber(this.pagesNumber);
+
+            return clonedBook;
+
+        } else {
+            Book clonedBook = new Book();
+            clonedBook.setId(this.id);
+            clonedBook.setName(this.name);
+            clonedBook.setAuthor(this.author);
+            clonedBook.setPagesNumber(this.pagesNumber);
+
+            User clonedUser = new User(user.getId(), user.getName(), user.getEmail(), user.getAge());
+            clonedBook.setUser(clonedUser);
+            return clonedBook;
+        }
     }
 
 

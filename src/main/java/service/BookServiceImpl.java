@@ -16,26 +16,38 @@ import java.util.List;
 
 public class BookServiceImpl implements BookService {
     private static BookServiceImpl INSTANCE;
-    private final BookDao bookDao;
-    private final Validator<Book> bookValidator;
+    private BookDao bookDao;
+    private Validator<Book> bookValidator;
 
     public static BookServiceImpl getInstance() {
         if (INSTANCE == null) {
             INSTANCE = new BookServiceImpl();
+            initializeDependencies(INSTANCE);
         }
         return INSTANCE;
     }
 
     private BookServiceImpl() {
-        bookDao = BookDaoImpl.getInstance();
-        bookValidator = BookValidator.getInstance();
+    }
+
+    private static void initializeDependencies(BookServiceImpl bookService) {
+        bookService.bookDao = BookDaoImpl.getInstance();
+        bookService.bookValidator = BookValidator.getInstance();
+    }
+
+    public void initializeDataBase() throws BookServiceException {
+        try {
+            bookDao.initializeDataBase();
+        } catch(BookDaoException e){
+            throw new BookServiceException(e);
+        }
     }
 
     @Override
     public List<Book> readAllBooks() throws BookServiceException {
         try {
             return bookDao.readAllBooks();
-        } catch (ObjectInitializeException e) {
+        } catch (ObjectInitializeException | CloneNotSupportedException e) {
             throw new BookServiceException(e);
         }
     }

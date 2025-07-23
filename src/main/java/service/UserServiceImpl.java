@@ -18,28 +18,40 @@ import java.util.List;
 
 public class UserServiceImpl implements UserService {
     private static UserServiceImpl INSTANCE;
-    private final UserDao userDao;
-    private final BookService bookService;
-    private final Validator<User> userValidator;
+    private UserDao userDao;
+    private BookService bookService;
+    private Validator<User> userValidator;
 
     public static UserServiceImpl getInstance(){
         if(INSTANCE == null){
             INSTANCE = new UserServiceImpl();
+            initializeDependencies(INSTANCE);
         }
         return INSTANCE;
     }
 
-    public UserServiceImpl() {
-        userDao = UserDaoImpl.getInstance();
-        bookService = BookServiceImpl.getInstance();
-        userValidator = UserValidator.getInstance();
+    private UserServiceImpl() {
+    }
+
+    private static void initializeDependencies(UserServiceImpl userService){
+        userService.userDao = UserDaoImpl.getInstance();
+        userService.bookService = BookServiceImpl.getInstance();
+        userService.userValidator = UserValidator.getInstance();
+    }
+
+    public void initializeDataBase() throws UserServiceException {
+        try {
+            userDao.initializeDataBase();
+        } catch (UserDaoException e){
+            throw new UserServiceException();
+        }
     }
 
     @Override
     public List<User> readAllUsers() throws UserServiceException {
         try {
             return userDao.readAllUsers();
-        } catch (ObjectInitializeException e) {
+        } catch (ObjectInitializeException | CloneNotSupportedException e) {
             throw new UserServiceException(e);
         }
     }
@@ -73,7 +85,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User read(long id) throws UserServiceException {
         try {
-            if ( userDao.read(id) != null) {
+            if (userDao.read(id) != null) {
                 return  userDao.read(id);
             } else {
                 throw new EntityNotFoundException("Искаемый Вами пользователь не найден");

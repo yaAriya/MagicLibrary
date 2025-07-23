@@ -4,6 +4,11 @@ import enity.User;
 
 import exceptions.UserFileReaderException;
 
+import service.BookServiceImpl;
+
+
+import service.UserServiceImpl;
+
 import java.io.BufferedReader;
 
 import java.io.FileReader;
@@ -21,16 +26,25 @@ public class UserFileReaderImpl implements UserFileReader {
 
     private static final String parameter = ",";
 
+    private UserServiceImpl userService;
+
+    //private BookServiceImpl bookService;
+
     //private static final String parameterForBooksIdList = "[";
 
     public static UserFileReaderImpl getInstance(){
         if(INSTANCE == null){
             INSTANCE = new UserFileReaderImpl();
+            initializeDependencies(INSTANCE);
         }
         return INSTANCE;
     }
 
     private UserFileReaderImpl() {
+    }
+
+    private static void initializeDependencies(UserFileReaderImpl userFileReader){
+        userFileReader.userService = UserServiceImpl.getInstance();
     }
 
     @Override
@@ -61,8 +75,6 @@ public class UserFileReaderImpl implements UserFileReader {
     @Override
     public User convertLineToUser(String line) {
         String[] parameters = line.split(parameter);
-        //String[] booksId = line.split(parameterForBooksIdList);
-        //List<String> booksId = new ArrayList<>();
 
         for (int i = 0; i<parameters.length; i++){
             parameters[i] = parameters[i].trim();
@@ -73,7 +85,7 @@ public class UserFileReaderImpl implements UserFileReader {
         user.setName(parameters[1]);
         user.setEmail(parameters[2]);
         user.setAge(Integer.parseInt(parameters[3]));
-        //user.setBooks();
+        //user.setBooks(bookService.read(Long.parseLong(parameters[4])));
         return user;
     }
 }

@@ -3,13 +3,13 @@ package validator;
 import enity.Book;
 
 public class BookValidator implements Validator<Book> {
-    private static BookValidator instance;
+    private static BookValidator INSTANCE;
 
     public static BookValidator getInstance() {
-        if (instance == null) {
-            instance = new BookValidator();
+        if (INSTANCE == null) {
+            INSTANCE = new BookValidator();
         }
-        return instance;
+        return INSTANCE;
     }
 
     @Override

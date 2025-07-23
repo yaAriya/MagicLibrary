@@ -37,9 +37,7 @@ public class User implements Cloneable {
     }
 
     public void setName(String name) {
-        String nameCopy = new String(name);
-        //nameCopy.
-        this.name = nameCopy;
+        this.name = name;
     }
 
     public String getEmail() {
@@ -47,8 +45,7 @@ public class User implements Cloneable {
     }
 
     public void setEmail(String email) {
-        String emailCopy = email;
-        this.email = emailCopy;
+        this.email = email;
     }
 
     public int getAge() {
@@ -56,8 +53,7 @@ public class User implements Cloneable {
     }
 
     public void setAge(int age) {
-        int ageCopy = age;
-        this.age = ageCopy ;
+        this.age = age;
     }
 
     public long getId() {
@@ -65,8 +61,7 @@ public class User implements Cloneable {
     }
 
     public void setId(long id) {
-        long idCopy = id;
-        this.id = idCopy;
+        this.id = id;
     }
 
     public List<Book> getBooks() {
@@ -74,9 +69,7 @@ public class User implements Cloneable {
     }
 
     public void setBooks(List<Book> books) {
-        List<Book> booksCopy = new ArrayList<>();
-        booksCopy.addAll(books);
-        this.books = booksCopy;
+        this.books = books;
     }
 
     @Override
@@ -93,21 +86,41 @@ public class User implements Cloneable {
     }
 
     @Override
-    public Object clone() throws CloneNotSupportedException {
-        return super.clone();
+    public User clone() throws CloneNotSupportedException {
+        if (getBooks().size() == 0) {
+            User clonedUser = new User();
+            clonedUser.setId(this.id);
+            clonedUser.setName(this.name);
+            clonedUser.setAge(this.age);
+            clonedUser.setEmail(this.email);
+
+            return clonedUser;
+        } else {
+            User clonedUser = new User();
+            clonedUser.setId(this.id);
+            clonedUser.setName(this.name);
+            clonedUser.setAge(this.age);
+            clonedUser.setEmail(this.email);
+            List<Book> clonedBooks = new ArrayList<>();
+
+            for (Book book : getBooks()) {
+                clonedBooks.add(book.clone());
+            }
+            clonedUser.setBooks(clonedBooks);
+
+            return clonedUser;
+        }
     }
 
     @Override
     public String toString() {
-        List<Book> cloneBooks = new ArrayList<>();// ТАк нельзя
-        for (int i = 0; i<books.size(); i++){
-            cloneBooks.add(books.get(i));
-            //cloneBooks.addAll(books);
+        List<Long> booksId = new ArrayList<>();
+
+        for (Book book : getBooks()) {
+            booksId.add(book.getId());
         }
-            List<Long> booksId = new ArrayList<>();
-            for (int i = 0; i < cloneBooks.size(); i++) {
-                booksId.add(cloneBooks.get(i).getId());
-            }
-            return id + ", " + name + ", " + email + ", " + age + ", " + booksId;
+        return id + ", " + name + ", " + email + ", " + age + ", " + booksId;
     }
+
+
 }

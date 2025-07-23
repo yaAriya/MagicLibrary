@@ -4,6 +4,10 @@ import enity.Book;
 
 import enity.User;
 
+import exceptions.BookDaoException;
+
+import exceptions.UserDaoException;
+
 import printer.Printer;
 
 import printer.PrinterImpl;
@@ -16,67 +20,65 @@ import service.UserService;
 
 import service.UserServiceImpl;
 
-import java.util.List;
-
 
 public class Main {
-    public static final UserService userService = UserServiceImpl.getInstance();
-    public static final BookService bookService = BookServiceImpl.getInstance();
-    public static final Printer printer = PrinterImpl.getInstance();
+    public static UserService userService = UserServiceImpl.getInstance();
+    public static BookService bookService = BookServiceImpl.getInstance();
+    public static Printer printer = PrinterImpl.getInstance();
 
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws UserDaoException, BookDaoException {
+        userService.initializeDataBase();
+        bookService.initializeDataBase();
+
         printer.printAllUsers(userService.readAllUsers());
-       //printer.printAllBooks(bookService.readAllBooks());
+        printer.printAllBooks(bookService.readAllBooks());
+
+        Book firstBook = bookService.read(0);
+        Book secondBook = bookService.read(1);
+        Book thirdBook = bookService.read(2);
+
+        User firstUser = userService.read(0);
+        User secondUser = userService.read(1);
+        User thirdUser = userService.read(2);
+        User fourthUser = userService.read(3);
+
+        printer.printUserObject(firstUser);
+        printer.printBookObject(firstBook);
 
         userService.delete(1);
         printer.printAllUsers(userService.readAllUsers());
 
-            /*PRINTER.printAllUsers(USER_SERVICE.readAllUsers());
-            PRINTER.printAllBooks(BOOK_SERVICE.readAllBooks());
+        userService.add(new User(4, "Vika", "Vichik@gmail.com", 15));
+        printer.printAllUsers(userService.readAllUsers());
 
-            PRINTER.printUserObject(USER_SERVICE.read(1));
-            PRINTER.printBookObject(BOOK_SERVICE.read(1));
+        userService.add(new User(5, "Vladimir", "Vovchik@gmail.com", 15));
+        printer.printAllUsers(userService.readAllUsers());
 
-            Book firstBook = BOOK_SERVICE.read(0);
-            Book secondBook = BOOK_SERVICE.read(1);
-            Book thirdBook = BOOK_SERVICE.read(2);
+        bookService.add(new Book(3, "Gone with the Wind", "Margaret Mitchell", 333));
+        printer.printAllBooks(bookService.readAllBooks());
+        Book fourthBook = bookService.read(3);
 
-            User firstUser =USER_SERVICE.read(0);
-            User secondUser = USER_SERVICE.read(1);
-            User thirdUser = USER_SERVICE.read(2);
-            User fourthUser = USER_SERVICE.read(3);
+        printer.printBookObject(bookService.update(new Book(3, "Gone with the Wind", "Margaret Mitchell", 345)));
 
-            USER_SERVICE.add(new User(4, "Vika", "Vichik@gmail.com", 15));
-            PRINTER.printAllUsers(USER_SERVICE.readAllUsers());
+        printer.printUserObject(userService.update(new User(4, "Lera", "Lerka@gmail.com", 15)));
 
-            USER_SERVICE.add(new User(5,"Vladimir","Vovchik@gmail.com",15));
-            PRINTER.printAllUsers(USER_SERVICE.readAllUsers());
-
-            BOOK_SERVICE.add(new Book(3, "Gone with the Wind", "Margaret Mitchell", 333));
-            PRINTER.printAllBooks(BOOK_SERVICE.readAllBooks());
-            Book fourthBook = BOOK_SERVICE.read(3);
-
-            PRINTER.printBookObject(BOOK_SERVICE.update(new Book(3, "Gone with the Wind", "Margaret Mitchell", 345)));
-
-            PRINTER.printUserObject(USER_SERVICE.update(new User(4, "Lera", "Lerka@gmail.com", 15)));
-
-            BOOK_SERVICE.delete(thirdBook.getId());
-            PRINTER.printAllBooks(BOOK_SERVICE.readAllBooks());
+        bookService.delete(thirdBook.getId());
+        printer.printAllBooks(bookService.readAllBooks());
 
 
-            USER_SERVICE.rentBook(firstUser.getId(), fourthBook.getId());
-            USER_SERVICE.rentBook(firstUser.getId(), firstBook.getId());
-            PRINTER.printUserBooks(firstUser.getBooks());
-            PRINTER.printUserObject(firstUser);
+        userService.rentBook(firstUser.getId(), fourthBook.getId());
+        userService.rentBook(firstUser.getId(), firstBook.getId());
+        printer.printUserBooks(firstUser.getBooks());
+        printer.printUserObject(firstUser);
 
-            USER_SERVICE.returnBook(firstUser.getId(),firstBook.getId());
-            PRINTER.printUserBooks(firstUser.getBooks());
+        userService.returnBook(firstUser.getId(), firstBook.getId());
+        printer.printUserBooks(firstUser.getBooks());
 
-            USER_SERVICE.rentBook(secondUser.getId(), secondBook.getId());
-            PRINTER.printUserBooks(secondUser.getBooks());
+        userService.rentBook(secondUser.getId(), secondBook.getId());
+        printer.printUserBooks(secondUser.getBooks());
 
-            USER_SERVICE.delete(firstUser.getId());
-            BOOK_SERVICE.delete(firstBook.getId());*/
+        userService.delete(firstUser.getId());
+        bookService.delete(firstBook.getId());
     }
 }

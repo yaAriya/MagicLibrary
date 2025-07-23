@@ -7,7 +7,10 @@ import exceptions.BookDaoException;
 import java.util.List;
 
 public interface BookDao {
-    List<Book> readAllBooks();
+
+    void initializeDataBase() throws BookDaoException;
+
+    List<Book> readAllBooks() throws CloneNotSupportedException;
 
     void add(Book book) throws BookDaoException;
 

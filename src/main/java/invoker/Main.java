@@ -40,15 +40,14 @@ public class Main {
         //printer.printUserObject(firstUser);
         //printer.printBookObject(firstBook);
 
-        List<Book> allBooks = new ArrayList<>();
-        allBooks.addAll(bookService.readAllBooks());
+        //userService.add(new User(3, "Vladimir", "Vovchik@gmail.com", 15));
+        //printer.printAllUsers(userService.readAllUsers());
+        //User fifthUser = userService.read(3);
 
-        userService.add(new User(4, "Vladimir", "Vovchik@gmail.com", 15));
-        printer.printAllUsers(userService.readAllUsers());
-        User fifthUser = userService.read(4);
+        User firstUSer = userService.read(0);
 
-        //bookService.add(new Book(3, "Gone with the Wind", "Margaret Mitchell", 333));
-        //printer.printAllBooks(bookService.readAllBooks());
+        bookService.add(new Book(3, "Gone with the Wind", "Margaret Mitchell", 333, firstUSer ));
+        printer.printAllBooks(bookService.readAllBooks());
         //Book fourthBook = bookService.read(3);
 
         //printer.printBookObject(bookService.update(new Book(3, "Gone with the Wind", "Margaret Mitchell", 345)));

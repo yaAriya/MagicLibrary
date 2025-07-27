@@ -74,7 +74,7 @@ public class BookDaoImpl implements BookDao {
     @Override
     public void add(Book book) throws BookDaoException{
         try {
-         if(!getBooks().contains(book) && book.getUser() == null){
+         if(!getBooks().contains(book)){
              getBooks().add(book);
              bookFileWriter.addBookToFile(book);
          }

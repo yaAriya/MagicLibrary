@@ -68,7 +68,12 @@ public class BookFileWriterImpl implements BookFileWriter {
         String parameter = ",";
         String idToString = Long.toString(book.getId());
         String pagesNumberToString = Integer.toString(book.getPagesNumber());
-        String bookString = idToString + parameter + book.getName() + parameter + book.getAuthor() + parameter + pagesNumberToString;
-        return bookString;
+
+        if(book.getUser()== null) {
+            return idToString + parameter + book.getName() + parameter + book.getAuthor() + parameter + pagesNumberToString;
+        } else {
+            String userIdToString = Long.toString(book.getUser().getId());
+            return idToString + parameter + book.getName() + parameter + book.getAuthor() + parameter + pagesNumberToString + parameter + userIdToString;
+        }
     }
 }

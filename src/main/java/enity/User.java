@@ -13,7 +13,6 @@ public class User implements Cloneable {
     private List<Book> books;
 
     public User() {
-        this.books = new ArrayList<>();
     }
 
     public User(long id, String name, String email, int age) {
@@ -93,10 +92,11 @@ public class User implements Cloneable {
             clonedUser.setName(this.name);
             clonedUser.setAge(this.age);
             clonedUser.setEmail(this.email);
+            clonedUser.setBooks(new ArrayList<>());
 
             return clonedUser;
         } else {
-            User clonedUser = new User();
+            User clonedUser = new User();// У юзера всегда будет лист с книгами, другой вопрос пустой ли он?
             clonedUser.setId(this.id);
             clonedUser.setName(this.name);
             clonedUser.setAge(this.age);

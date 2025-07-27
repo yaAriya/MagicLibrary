@@ -1,5 +1,6 @@
 package reader;
 
+import enity.Book;
 import enity.User;
 
 import exceptions.UserFileReaderException;
@@ -28,12 +29,12 @@ public class UserFileReaderImpl implements UserFileReader {
 
     private UserServiceImpl userService;
 
-    //private BookServiceImpl bookService;
+    private BookServiceImpl bookService;
 
     //private static final String parameterForBooksIdList = "[";
 
-    public static UserFileReaderImpl getInstance(){
-        if(INSTANCE == null){
+    public static UserFileReaderImpl getInstance() {
+        if (INSTANCE == null) {
             INSTANCE = new UserFileReaderImpl();
             initializeDependencies(INSTANCE);
         }
@@ -43,8 +44,9 @@ public class UserFileReaderImpl implements UserFileReader {
     private UserFileReaderImpl() {
     }
 
-    private static void initializeDependencies(UserFileReaderImpl userFileReader){
+    private static void initializeDependencies(UserFileReaderImpl userFileReader) {
         userFileReader.userService = UserServiceImpl.getInstance();
+        userFileReader.bookService = BookServiceImpl.getInstance();
     }
 
     @Override
@@ -55,7 +57,7 @@ public class UserFileReaderImpl implements UserFileReader {
 
             String readLine = reader.readLine();
 
-            while (readLine != null){
+            while (readLine != null) {
                 readLinesFromUserFile.add(readLine);
                 readLine = reader.readLine();
             }
@@ -76,17 +78,17 @@ public class UserFileReaderImpl implements UserFileReader {
     public User convertLineToUser(String line) {
         String[] parameters = line.split(parameter);
 
-        for (int i = 0; i<parameters.length; i++){
+        for (int i = 0; i < parameters.length; i++) {
             parameters[i] = parameters[i].trim();
         }
 
-        User user = new User();
-        user.setId(Long.parseLong(parameters[0]));
-        user.setName(parameters[1]);
-        user.setEmail(parameters[2]);
-        user.setAge(Integer.parseInt(parameters[3]));
-        //user.setBooks(bookService.read(Long.parseLong(parameters[4])));
-        return user;
+            User user = new User();
+            user.setId(Long.parseLong(parameters[0]));
+            user.setName(parameters[1]);
+            user.setEmail(parameters[2]);
+            user.setAge(Integer.parseInt(parameters[3]));
+            user.setBooks(new ArrayList<>());
+            return user;
     }
 }
 

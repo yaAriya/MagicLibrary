@@ -2,8 +2,6 @@ package dao;
 
 import enity.User;
 
-import exceptions.ObjectInitializeException;
-
 import exceptions.UserDaoException;
 
 import exceptions.UserFileReaderException;
@@ -67,7 +65,6 @@ public class UserDaoImpl implements UserDao {
         for (User user : getUsers()) {
             clonedUsers.add(user.clone());
         }
-        // usersCopy.addAll(getUsers());
         return clonedUsers;
     }
 

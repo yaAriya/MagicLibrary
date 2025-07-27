@@ -1,3 +1,4 @@
-0,Pride and produce,Jane Austen,145
-1,Harry Potter,J. K. Rowling,302,0
-2,The Mysterious Island,Jules Verne,597,5
+0,Pride and produce,Jane Austen,145,1
+1,Harry Potter,J. K. Rowling,302
+2,The Mysterious Island,Jules Verne,597,2
+3,Gone with the Wind,Margaret Mitchell,333

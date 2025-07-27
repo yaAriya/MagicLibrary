@@ -3,6 +3,7 @@ package service;
 import enity.Book;
 
 import exceptions.BookDaoException;
+
 import exceptions.BookServiceException;
 
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.List;
 public interface BookService {
 
     void initializeDataBase() throws BookServiceException, BookDaoException;
+
     List<Book> readAllBooks() throws BookServiceException;
 
     void add(Book book) throws BookServiceException;

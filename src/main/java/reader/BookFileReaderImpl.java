@@ -2,9 +2,10 @@ package reader;
 
 import enity.Book;
 
+import enity.User;
+
 import exceptions.BookFileReaderException;
 
-import service.BookServiceImpl;
 import service.UserServiceImpl;
 
 import java.io.BufferedReader;
@@ -23,14 +24,14 @@ public class BookFileReaderImpl implements BookFileReader {
 
     private static BookFileReaderImpl INSTANCE;
 
-    private BookServiceImpl bookService;
+    //private BookServiceImpl bookService;
 
-    //private UserServiceImpl userService;
+    private UserServiceImpl userService;
 
     public static BookFileReaderImpl getInstance() {
         if (INSTANCE == null) {
             INSTANCE = new BookFileReaderImpl();
-           initializeDependencies(INSTANCE);
+            initializeDependencies(INSTANCE);
         }
         return INSTANCE;
     }
@@ -39,7 +40,7 @@ public class BookFileReaderImpl implements BookFileReader {
     }
 
     private static void initializeDependencies(BookFileReaderImpl bookFileReader) {
-        bookFileReader.bookService = BookServiceImpl.getInstance();
+        bookFileReader.userService = UserServiceImpl.getInstance();
     }
 
     @Override
@@ -85,9 +86,13 @@ public class BookFileReaderImpl implements BookFileReader {
             book.setName(parameters[1]);
             book.setAuthor(parameters[2]);
             book.setPagesNumber(Integer.parseInt(parameters[3]));
+            book.setUser(userService.read(Long.parseLong(parameters[4])));
 
-               // book.setUser(userService.read(Long.parseLong(parameters[4])));// Если пользователь null не вызывать read Метод
-                return book;
+            User updateUser = book.getUser();
+            updateUser.getBooks().add(book);
+            updateUser.setBooks(updateUser.getBooks());
+            userService.update(updateUser);
+            return book;
         }
     }
 }

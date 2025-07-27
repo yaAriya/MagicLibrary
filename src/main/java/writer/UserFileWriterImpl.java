@@ -63,8 +63,26 @@ public class UserFileWriterImpl implements UserFileWriter {
         String parameter = ",";
         String idToString = Long.toString(user.getId());
         String ageToString = Integer.toString(user.getAge());
-        String booksToString = user.getBooks().toString();
-        String userString = idToString + parameter + user.getName() + parameter + user.getEmail() + parameter + ageToString + parameter + booksToString;
-        return userString;
+
+        if (user.getBooks().size() == 0) {
+            return idToString + parameter + user.getName() + parameter + user.getEmail() + parameter + ageToString;
+        } else {
+            List<Long> booksId = new ArrayList<>();
+            for (int i = 0; i < user.getBooks().size(); i++) {
+                booksId.add(user.getBooks().get(i).getId());
+            }
+            StringBuilder sb = new StringBuilder();
+
+            for (int i = 0; i < booksId.size(); i++) {
+                sb.append(booksId.get(i));
+                if (i < (booksId.size() - 1)) {
+                    sb.append(",");
+                }
+            }
+
+            String booksIdToString = sb.toString();
+
+            return idToString + parameter + user.getName() + parameter + user.getEmail() + parameter + ageToString + parameter + booksIdToString;
+        }
     }
 }

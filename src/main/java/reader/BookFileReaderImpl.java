@@ -92,7 +92,7 @@ public class BookFileReaderImpl implements BookFileReader {
             updateUser.getBooks().add(book);
             updateUser.setBooks(updateUser.getBooks());
             userService.update(updateUser);
-            return book;
+            return book; // Обращаться к файл ридеру для перезаписи в файл?
         }
     }
 }

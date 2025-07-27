@@ -20,6 +20,9 @@ import service.UserService;
 
 import service.UserServiceImpl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class Main {
     public static UserService userService = UserServiceImpl.getInstance();
@@ -37,18 +40,21 @@ public class Main {
         //printer.printUserObject(firstUser);
         //printer.printBookObject(firstBook);
 
+        List<Book> allBooks = new ArrayList<>();
+        allBooks.addAll(bookService.readAllBooks());
+
         userService.add(new User(4, "Vladimir", "Vovchik@gmail.com", 15));
         printer.printAllUsers(userService.readAllUsers());
         User fifthUser = userService.read(4);
 
-        bookService.add(new Book(3, "Gone with the Wind", "Margaret Mitchell", 333));
-        printer.printAllBooks(bookService.readAllBooks());
-        Book fourthBook = bookService.read(3);
+        //bookService.add(new Book(3, "Gone with the Wind", "Margaret Mitchell", 333));
+        //printer.printAllBooks(bookService.readAllBooks());
+        //Book fourthBook = bookService.read(3);
 
-        printer.printBookObject(bookService.update(new Book(3, "Gone with the Wind", "Margaret Mitchell", 345)));
+        //printer.printBookObject(bookService.update(new Book(3, "Gone with the Wind", "Margaret Mitchell", 345)));
 
-        printer.printUserObject(userService.update(new User(4, "Lera", "Lerka@gmail.com", 15)));
-        printer.printAllUsers(userService.readAllUsers());
+        //printer.printUserObject(userService.update(new User(4, "Lera", "Lerka@gmail.com", 15)));
+        //printer.printAllUsers(userService.readAllUsers());
 
         //bookService.delete(4);
         //printer.printAllBooks(bookService.readAllBooks());

@@ -9,7 +9,9 @@ import java.util.List;
 public interface UserFileWriter {
     void addUserToFile(User user) throws UserFileWriterException;
 
-    String convertUserToLine(User user);
-
     void deleteUserFromFile(List<User> users) throws UserFileWriterException;
+
+    void updateUserInFile(List<User> users) throws UserFileWriterException;
+
+    String convertUserToLine(User user);
 }

@@ -58,6 +58,25 @@ public class UserFileWriterImpl implements UserFileWriter {
         }
     }
 
+    public void updateUserInFile(List<User> users) throws UserFileWriterException {
+        try {
+            List<String> usersToLine = new ArrayList<>();
+
+            for (int i = 0; i < users.size(); i++) {
+                usersToLine.add(convertUserToLine(users.get(i)));
+            }
+
+            BufferedWriter writer = new BufferedWriter(new FileWriter(USER_FILE_PATH));
+
+            for (int i = 0; i < usersToLine.size(); i++) {
+                writer.write(usersToLine.get(i) + "\n");
+            }
+            writer.close();
+        }catch (IOException e){
+            throw new UserFileWriterException(e);
+        }
+    }
+
     @Override
     public String convertUserToLine(User user) {
         String parameter = ",";

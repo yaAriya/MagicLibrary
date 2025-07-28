@@ -73,7 +73,7 @@ public class UserServiceImpl implements UserService {
     public User update(User user) throws UserServiceException {
         try {
             if (userValidator.validate(user) == true) {
-                return  userDao.update(user, user.getId());
+                return userDao.update(user, user.getId());
             } else {
                 throw new InvalidEntityException("Параметры, введенные Вами некорректны");
             }

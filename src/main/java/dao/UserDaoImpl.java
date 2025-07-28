@@ -100,11 +100,12 @@ public class UserDaoImpl implements UserDao {
             for (int i = 0; i < getUsers().size(); i++) {
                 if (getUsers().get(i).getId() == id) {
                     getUsers().set(i, user);
+                    userFileWriter.updateUserInFile(getUsers());
                     return getUsers().get(i).clone();
                 }
             }
             return null;
-        } catch (CloneNotSupportedException e) {
+        } catch (CloneNotSupportedException | UserFileWriterException e) {
             throw new UserDaoException(e);
         }
     }

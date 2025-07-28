@@ -16,7 +16,7 @@ public interface BookDao {
 
     Book read(long id) throws BookDaoException;
 
-    Book update(Book book, long id) throws BookDaoException;
+    Book update(long id, Book book) throws BookDaoException;
 
     void delete(Book book) throws BookDaoException;
 }

@@ -44,15 +44,16 @@ public class Main {
         //printer.printAllUsers(userService.readAllUsers());
         //User fifthUser = userService.read(3);
 
-        User firstUSer = userService.read(0);
+        //User firstUSer = userService.read(0);
 
-        bookService.add(new Book(3, "Gone with the Wind", "Margaret Mitchell", 333, firstUSer ));
-        printer.printAllBooks(bookService.readAllBooks());
+        //bookService.add(new Book(3, "Gone with the Wind", "Margaret Mitchell", 333, firstUSer ));
+        //printer.printAllBooks(bookService.readAllBooks());
         //Book fourthBook = bookService.read(3);
 
-        //printer.printBookObject(bookService.update(new Book(3, "Gone with the Wind", "Margaret Mitchell", 345)));
-
+        printer.printBookObject(bookService.update(new Book(3, "Gone with the Wind", "Margaret Mitchell", 345)));
         //printer.printUserObject(userService.update(new User(4, "Lera", "Lerka@gmail.com", 15)));
+
+
         //printer.printAllUsers(userService.readAllUsers());
 
         //bookService.delete(4);

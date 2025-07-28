@@ -70,7 +70,7 @@ public class BookServiceImpl implements BookService {
     public Book update(Book book) throws BookServiceException {
         try {
             if (bookValidator.validate(book) == true) {
-                return bookDao.update(book, book.getId());
+                return bookDao.update(book.getId(), book);
             } else {
                 throw new InvalidEntityException("Параметры, введенные Вами некорректны");
             }

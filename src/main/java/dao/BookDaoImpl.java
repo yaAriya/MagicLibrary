@@ -32,11 +32,11 @@ public class BookDaoImpl implements BookDao {
         if (INSTANCE == null) {
             INSTANCE = new BookDaoImpl();
             initializeDependencies(INSTANCE);
-          }
+        }
         return INSTANCE;
     }
 
-    private BookDaoImpl(){
+    private BookDaoImpl() {
     }
 
     private static void initializeDependencies(BookDaoImpl bookDao) throws ObjectInitializeException {
@@ -47,7 +47,7 @@ public class BookDaoImpl implements BookDao {
     public void initializeDataBase() throws BookDaoException {
         try {
             books = bookFileReader.readBooksFromFile();
-        } catch(BookFileReaderException e){
+        } catch (BookFileReaderException e) {
             throw new BookDaoException(e);
         }
 
@@ -65,35 +65,36 @@ public class BookDaoImpl implements BookDao {
     public List<Book> readAllBooks() throws CloneNotSupportedException {
         List<Book> clonedBooks = new ArrayList<>();
 
-        for(Book book: getBooks()){
+        for (Book book : getBooks()) {
             clonedBooks.add(book.clone());
         }
         return clonedBooks;
     }
 
     @Override
-    public void add(Book book) throws BookDaoException{
+    public void add(Book book) throws BookDaoException {
         try {
-         if(!getBooks().contains(book)){
-             getBooks().add(book);
-             bookFileWriter.addBookToFile(book);
-         }
-        } catch (BookFileWriterException e){
+            if (!getBooks().contains(book)) {
+                getBooks().add(book);
+                bookFileWriter.addBookToFile(book);
+            }
+        } catch (BookFileWriterException e) {
             throw new BookDaoException(e);
         }
     }
 
     @Override
-    public Book update(Book book, long id) throws BookDaoException {
+    public Book update(long id, Book updateBook) throws BookDaoException {
         try {
             for (int i = 0; i < getBooks().size(); i++) {
                 if (getBooks().get(i).getId() == id) {
-                    getBooks().set(i, book);
+                    getBooks().set(i, updateBook);
+                    bookFileWriter.updateBookInFile(getBooks());
                     return getBooks().get(i).clone();
                 }
             }
             return null;
-        } catch (CloneNotSupportedException e) {
+        } catch (CloneNotSupportedException | BookFileWriterException e) {
             throw new BookDaoException(e);
         }
 
@@ -104,7 +105,7 @@ public class BookDaoImpl implements BookDao {
         try {
             getBooks().remove(book);
             bookFileWriter.deleteBookFromFile(getBooks());
-        } catch (BookFileWriterException e){
+        } catch (BookFileWriterException e) {
             throw new BookDaoException(e);
         }
     }

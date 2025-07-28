@@ -11,5 +11,7 @@ public interface BookFileWriter {
 
     void deleteBookFromFile(List<Book> books) throws BookFileWriterException;
 
+    void updateBookInFile(List<Book> books) throws BookFileWriterException;
+
     String convertBookToLine(Book book);
 }

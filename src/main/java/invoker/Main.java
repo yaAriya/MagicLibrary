@@ -28,8 +28,8 @@ public class Main {
 
 
     public static void main(String[] args) throws UserDaoException, BookDaoException {
-        userService.initializeDataBase();
-        bookService.initializeDataBase();
+        userService.initializeCash();
+        bookService.initializeCash();
 
         printer.printAllUsers(userService.readAllUsers());
         printer.printAllBooks(bookService.readAllBooks());
@@ -47,8 +47,8 @@ public class Main {
         //printer.printAllBooks(bookService.readAllBooks());
         //Book fourthBook = bookService.read(3);
 
-        printer.printBookObject(bookService.update(new Book(3, "Gone with the Wind", "Margaret Mitchell", 345)));
-        printer.printUserObject(userService.update(new User(3, "Lera", "Lerka@gmail.com", 15)));
+        //printer.printBookObject(bookService.update(new Book(3, "Gone with the Wind", "Margaret Mitchell", 345)));
+        //printer.printUserObject(userService.update(new User(3, "Lera", "Lerka@gmail.com", 15)));
 
 
         //printer.printAllUsers(userService.readAllUsers());

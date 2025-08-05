@@ -1,6 +1,7 @@
 package enity;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 import java.util.Objects;
@@ -96,7 +97,7 @@ public class User implements Cloneable {
 
             return clonedUser;
         } else {
-            User clonedUser = new User();// У юзера всегда будет лист с книгами, другой вопрос пустой ли он?
+            User clonedUser = new User();
             clonedUser.setId(this.id);
             clonedUser.setName(this.name);
             clonedUser.setAge(this.age);

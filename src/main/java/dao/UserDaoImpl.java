@@ -43,7 +43,8 @@ public class UserDaoImpl implements UserDao {
         userDao.userFileWriter = UserFileWriterImpl.getInstance();
     }
 
-    public void initializeDataBase() throws UserDaoException {
+    @Override
+    public void initializeCash() throws UserDaoException {
         try {
             users = userFileReader.readUsersFromFile();
         } catch (UserFileReaderException e){
@@ -60,7 +61,8 @@ public class UserDaoImpl implements UserDao {
         this.users = users;
     }
 
-    public List<User> readAllUsers() throws CloneNotSupportedException {
+   @Override
+   public List<User> readAllUsers() throws CloneNotSupportedException {
         List<User> clonedUsers = new ArrayList<>();
         for (User user : getUsers()) {
             clonedUsers.add(user.clone());
@@ -71,10 +73,8 @@ public class UserDaoImpl implements UserDao {
     @Override
     public void add(User user) throws UserDaoException {
         try {
-            if (!getUsers().contains(user)) {
                 getUsers().add(user);
                 userFileWriter.addUserToFile(user);
-            }
         } catch (UserFileWriterException e) {
             throw new UserDaoException(e);
         }

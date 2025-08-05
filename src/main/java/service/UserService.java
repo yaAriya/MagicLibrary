@@ -2,15 +2,13 @@ package service;
 
 import enity.User;
 
-import exceptions.UserDaoException;
-
 import exceptions.UserServiceException;
 
 import java.util.List;
 
 public interface UserService {
 
-    void initializeDataBase() throws UserServiceException, UserDaoException;
+    void initializeCash() throws UserServiceException;
 
     List<User> readAllUsers() throws UserServiceException;
 

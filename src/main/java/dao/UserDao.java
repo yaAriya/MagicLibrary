@@ -7,7 +7,9 @@ import exceptions.UserDaoException;
 import java.util.List;
 
 public interface UserDao {
-    void initializeDataBase() throws UserDaoException;
+    void initializeCash() throws UserDaoException;
+
+    List<User> getUsers();
 
     List<User> readAllUsers() throws CloneNotSupportedException;
 

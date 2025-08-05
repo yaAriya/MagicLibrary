@@ -8,7 +8,9 @@ import java.util.List;
 
 public interface BookDao {
 
-    void initializeDataBase() throws BookDaoException;
+    void initializeCash() throws BookDaoException;
+
+    List<Book> getBooks();
 
     List<Book> readAllBooks() throws CloneNotSupportedException;
 

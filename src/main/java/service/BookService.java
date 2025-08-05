@@ -2,15 +2,13 @@ package service;
 
 import enity.Book;
 
-import exceptions.BookDaoException;
-
 import exceptions.BookServiceException;
 
 import java.util.List;
 
 public interface BookService {
 
-    void initializeDataBase() throws BookServiceException, BookDaoException;
+    void initializeCash() throws BookServiceException;
 
     List<Book> readAllBooks() throws BookServiceException;
 

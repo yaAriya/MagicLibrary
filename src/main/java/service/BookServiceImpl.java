@@ -35,9 +35,10 @@ public class BookServiceImpl implements BookService {
         bookService.bookValidator = BookValidator.getInstance();
     }
 
-    public void initializeDataBase() throws BookServiceException {
+    @Override
+    public void initializeCash() throws BookServiceException {
         try {
-            bookDao.initializeDataBase();
+            bookDao.initializeCash();
         } catch(BookDaoException e){
             throw new BookServiceException(e);
         }
@@ -55,25 +56,10 @@ public class BookServiceImpl implements BookService {
     @Override
     public void add(Book book) throws BookServiceException {
         try {
-            if (bookValidator.validate(book) == true) {
+            if (bookValidator.validate(book) == false && bookDao.getBooks().contains(book)) {
+                throw new InvalidEntityException("Параметры, введенные Вами некорректны");
+            }
                 bookDao.add(book);
-            } else {
-                throw new InvalidEntityException("Параметры, введенные Вами некорректны");
-            }
-        } catch (InvalidEntityException | BookDaoException e) {
-            throw new BookServiceException(e);
-        }
-
-    }
-
-    @Override
-    public Book update(Book book) throws BookServiceException {
-        try {
-            if (bookValidator.validate(book) == true) {
-                return bookDao.update(book.getId(), book);
-            } else {
-                throw new InvalidEntityException("Параметры, введенные Вами некорректны");
-            }
         } catch (InvalidEntityException | BookDaoException e) {
             throw new BookServiceException(e);
         }
@@ -82,12 +68,23 @@ public class BookServiceImpl implements BookService {
     @Override
     public Book read(long id) throws BookServiceException {
         try {
-            if (bookDao.read(id) != null) {
-                return bookDao.read(id);
-            } else {
-                throw new EntityNotFoundException("Искаемая Вами книга не найдена");
+            if (bookDao.read(id) == null) {
+                throw new EntityNotFoundException("Такой книги нет");
             }
+            return bookDao.read(id);
         } catch (EntityNotFoundException | BookDaoException e) {
+            throw new BookServiceException(e);
+        }
+    }
+
+    @Override
+    public Book update(Book book) throws BookServiceException {
+        try {
+            if (bookValidator.validate(book) == false) {
+                throw new InvalidEntityException("Параметры, введенные Вами некорректны");
+            }
+            return bookDao.update(book.getId(), book);
+        } catch (InvalidEntityException | BookDaoException e) {
             throw new BookServiceException(e);
         }
     }
@@ -96,11 +93,10 @@ public class BookServiceImpl implements BookService {
     public void delete(long id) throws BookServiceException {
         try {
             Book readBook = read(id);
-            if (id >= 0 && readBook.getUser() == null) {
-                bookDao.delete(readBook);
-            } else {
+            if (id < 0 && readBook.getUser() != null) {
                 throw new InvalidEntityException("Увы, Вашу книгу нельзя удалить");
             }
+            bookDao.delete(readBook);
         } catch (InvalidEntityException | BookDaoException e) {
             throw new BookServiceException(e);
         }

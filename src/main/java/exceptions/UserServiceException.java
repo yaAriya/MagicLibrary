@@ -1,6 +1,6 @@
 package exceptions;
 
-public class UserServiceException extends RuntimeException{
+public class UserServiceException extends RuntimeException {
     public UserServiceException() {
     }
 

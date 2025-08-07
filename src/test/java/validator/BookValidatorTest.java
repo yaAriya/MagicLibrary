@@ -1,12 +1,8 @@
 package validator;
 
-import enity.Book;
-
+import entity.Book;
 import org.junit.jupiter.api.Disabled;
-
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @Disabled
 public class BookValidatorTest {
@@ -15,7 +11,7 @@ public class BookValidatorTest {
     private Book testBook;
 
     @Test
-    public void setUp() throws Exception{
+    public void setUp() throws Exception {
         bookValidator = BookValidator.getInstance();
         book = new Book();
         testBook = new Book();
@@ -25,7 +21,7 @@ public class BookValidatorTest {
         testBook.setPagesNumber(1342);
         testBook.getUser();
     }
-   /* @*//*Test
+    /* @*//*Test
     public void validateTest() {
         boolean result = bookValidator.validate(testBook);
         assertTrue(result);

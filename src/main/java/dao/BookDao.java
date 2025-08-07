@@ -1,7 +1,6 @@
 package dao;
 
-import enity.Book;
-
+import entity.Book;
 import exceptions.BookDaoException;
 
 import java.util.List;

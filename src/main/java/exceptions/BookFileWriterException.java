@@ -1,6 +1,6 @@
 package exceptions;
 
-public class BookFileWriterException extends Exception{
+public class BookFileWriterException extends Exception {
     public BookFileWriterException() {
         super();
     }

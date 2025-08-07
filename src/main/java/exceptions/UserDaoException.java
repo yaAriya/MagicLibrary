@@ -1,6 +1,6 @@
 package exceptions;
 
-public class UserDaoException extends Exception{
+public class UserDaoException extends Exception {
     public UserDaoException() {
         super();
     }

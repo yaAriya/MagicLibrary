@@ -1,6 +1,6 @@
 package exceptions;
 
-public class BookDaoException extends Exception{
+public class BookDaoException extends Exception {
     public BookDaoException() {
         super();
     }

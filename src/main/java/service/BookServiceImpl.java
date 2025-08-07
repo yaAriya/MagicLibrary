@@ -1,15 +1,10 @@
 package service;
 
 import dao.BookDao;
-
 import dao.BookDaoImpl;
-
-import enity.Book;
-
+import entity.Book;
 import exceptions.*;
-
 import validator.BookValidator;
-
 import validator.Validator;
 
 import java.util.List;
@@ -39,7 +34,7 @@ public class BookServiceImpl implements BookService {
     public void initializeCash() throws BookServiceException {
         try {
             bookDao.initializeCash();
-        } catch(BookDaoException e){
+        } catch (BookDaoException e) {
             throw new BookServiceException(e);
         }
     }
@@ -59,7 +54,7 @@ public class BookServiceImpl implements BookService {
             if (bookValidator.validate(book) == false && bookDao.getBooks().contains(book)) {
                 throw new InvalidEntityException("Параметры, введенные Вами некорректны");
             }
-                bookDao.add(book);
+            bookDao.add(book);
         } catch (InvalidEntityException | BookDaoException e) {
             throw new BookServiceException(e);
         }

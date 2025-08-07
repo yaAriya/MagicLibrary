@@ -1,23 +1,12 @@
 package invoker;
 
-import enity.Book;
-
-import enity.User;
-
 import exceptions.BookDaoException;
-
 import exceptions.UserDaoException;
-
 import printer.Printer;
-
 import printer.PrinterImpl;
-
 import service.BookService;
-
 import service.BookServiceImpl;
-
 import service.UserService;
-
 import service.UserServiceImpl;
 
 
@@ -31,8 +20,13 @@ public class Main {
         userService.initializeCash();
         bookService.initializeCash();
 
+
+        //bookService.delete(0);
+        //printer.printUserObject(userService.read(0));
+
         printer.printAllUsers(userService.readAllUsers());
         printer.printAllBooks(bookService.readAllBooks());
+
 
         //printer.printUserObject(firstUser);
         //printer.printBookObject(firstBook);
@@ -72,5 +66,6 @@ public class Main {
         userService.delete(firstUser.getId());
        // printer.printUserBooks(firstUser.getBooks());
         bookService.delete(firstBook.getId());
-    */}
+    */
+    }
 }

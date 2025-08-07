@@ -1,13 +1,12 @@
 package writer;
 
-import enity.Book;
-
+import converter.BookConverterImpl;
+import entity.Book;
 import exceptions.BookFileWriterException;
 
-import java.io.*;
-
-import java.util.ArrayList;
-
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
 
 public class BookFileWriterImpl implements BookFileWriter {
@@ -16,9 +15,12 @@ public class BookFileWriterImpl implements BookFileWriter {
 
     private static BookFileWriterImpl INSTANCE;
 
+    private BookConverterImpl bookConverter;
+
     public static BookFileWriterImpl getInstance() {
         if (INSTANCE == null) {
             INSTANCE = new BookFileWriterImpl();
+            initializeDependencies(INSTANCE);
         }
         return INSTANCE;
     }
@@ -26,69 +28,32 @@ public class BookFileWriterImpl implements BookFileWriter {
     private BookFileWriterImpl() {
     }
 
+
+    private static void initializeDependencies(BookFileWriterImpl bookFileWriter) {
+        bookFileWriter.bookConverter = BookConverterImpl.getInstance();
+
+    }
+
+    @Override
     public void addBookToFile(Book book) throws BookFileWriterException {
-        try {
-            FileWriter writer = new FileWriter(BOOK_FILE_PATH, true);
+        try (FileWriter writer = new FileWriter(BOOK_FILE_PATH, true)) {
             writer.write("\n");
-            writer.write(convertBookToLine(book));
+            writer.write(bookConverter.convertBookToLine(book));
             writer.flush();
         } catch (IOException e) {
             throw new BookFileWriterException(e);
         }
-
-
     }
 
-    public void deleteBookFromFile(List<Book> books) throws BookFileWriterException {
-        try {
-            List<String> booksToLine = new ArrayList<>();
-
+    @Override
+    public void writeBookToFile(List<Book> books) throws BookFileWriterException {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(BOOK_FILE_PATH))) {
             for (int i = 0; i < books.size(); i++) {
-                booksToLine.add(convertBookToLine(books.get(i)));
+                String bookToLine = bookConverter.convertBookToLine(books.get(i));
+                writer.write(bookToLine + "\n");
             }
-
-            BufferedWriter writer = new BufferedWriter(new FileWriter(BOOK_FILE_PATH));
-
-            for (int i = 0; i < booksToLine.size(); i++) {
-                writer.write(booksToLine.get(i) + "\n");
-            }
-
-            writer.close();
         } catch (IOException e) {
             throw new BookFileWriterException(e);
-        }
-    }
-
-    public void updateBookInFile(List<Book> books) throws BookFileWriterException {
-        try {
-            List<String> booksToLine = new ArrayList<>();
-
-            for (int i = 0; i < books.size(); i++) {
-                booksToLine.add(convertBookToLine(books.get(i)));
-            }
-
-            BufferedWriter writer = new BufferedWriter(new FileWriter(BOOK_FILE_PATH));
-
-            for (int i = 0; i < booksToLine.size(); i++) {
-                writer.write(booksToLine.get(i) + "\n");
-            }
-
-            writer.close();
-        } catch (IOException e) {
-            throw new BookFileWriterException(e);
-        }
-    }
-
-    public String convertBookToLine(Book book) {
-        String parameter = ",";
-        String idToString = Long.toString(book.getId());
-        String pagesNumberToString = Integer.toString(book.getPagesNumber());
-
-        if (book.getUser() == null) {
-            return idToString + parameter + book.getName() + parameter + book.getAuthor() + parameter + pagesNumberToString;
-        } else {
-            String userIdToString = Long.toString(book.getUser().getId());
-            return idToString + parameter + book.getName() + parameter + book.getAuthor() + parameter + pagesNumberToString + parameter + userIdToString;
         }
     }
 }

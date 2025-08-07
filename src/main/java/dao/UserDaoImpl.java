@@ -1,23 +1,15 @@
 package dao;
 
-import enity.User;
-
+import entity.User;
 import exceptions.UserDaoException;
-
 import exceptions.UserFileReaderException;
-
 import exceptions.UserFileWriterException;
-
 import reader.UserFileReader;
-
 import reader.UserFileReaderImpl;
-
 import writer.UserFileWriter;
-
 import writer.UserFileWriterImpl;
 
 import java.util.ArrayList;
-
 import java.util.List;
 
 public class UserDaoImpl implements UserDao {
@@ -47,7 +39,7 @@ public class UserDaoImpl implements UserDao {
     public void initializeCash() throws UserDaoException {
         try {
             users = userFileReader.readUsersFromFile();
-        } catch (UserFileReaderException e){
+        } catch (UserFileReaderException e) {
             throw new UserDaoException(e);
         }
     }
@@ -61,8 +53,8 @@ public class UserDaoImpl implements UserDao {
         this.users = users;
     }
 
-   @Override
-   public List<User> readAllUsers() throws CloneNotSupportedException {
+    @Override
+    public List<User> readAllUsers() throws CloneNotSupportedException {
         List<User> clonedUsers = new ArrayList<>();
         for (User user : getUsers()) {
             clonedUsers.add(user.clone());
@@ -73,8 +65,8 @@ public class UserDaoImpl implements UserDao {
     @Override
     public void add(User user) throws UserDaoException {
         try {
-                getUsers().add(user);
-                userFileWriter.addUserToFile(user);
+            getUsers().add(user);
+            userFileWriter.addUserToFile(user);
         } catch (UserFileWriterException e) {
             throw new UserDaoException(e);
         }
@@ -100,7 +92,7 @@ public class UserDaoImpl implements UserDao {
             for (int i = 0; i < getUsers().size(); i++) {
                 if (getUsers().get(i).getId() == id) {
                     getUsers().set(i, user);
-                    userFileWriter.updateUserInFile(getUsers());
+                    userFileWriter.writeUsersToFile(getUsers());
                     return getUsers().get(i).clone();
                 }
             }
@@ -114,7 +106,7 @@ public class UserDaoImpl implements UserDao {
     public void delete(User user) throws UserDaoException {
         try {
             getUsers().remove(user);
-            userFileWriter.deleteUserFromFile(getUsers());
+            userFileWriter.writeUsersToFile(getUsers());
         } catch (UserFileWriterException e) {
             throw new UserDaoException(e);
         }

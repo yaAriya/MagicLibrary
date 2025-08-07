@@ -1,6 +1,6 @@
 package validator;
 
-import enity.Book;
+import entity.Book;
 
 public class BookValidator implements Validator<Book> {
     private static BookValidator INSTANCE;
@@ -14,7 +14,7 @@ public class BookValidator implements Validator<Book> {
 
     @Override
     public boolean validate(Book book) {
-        return book!= null && validateId(book.getId()) && validateName(book.getName()) && validateAuthor(book.getAuthor()) && validatePageNumber(book.getPagesNumber());
+        return book != null && validateId(book.getId()) && validateName(book.getName()) && validateAuthor(book.getAuthor()) && validatePageNumber(book.getPagesNumber());
     }
 
     private boolean validateId(long id) {

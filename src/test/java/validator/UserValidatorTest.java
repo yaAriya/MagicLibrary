@@ -1,6 +1,6 @@
 package validator;
 
-import enity.User;
+import entity.User;
 import org.junit.jupiter.api.Disabled;
 
 @Disabled
@@ -8,8 +8,9 @@ public class UserValidatorTest {
     private UserValidator userValidator;
     private User testUser;
     private User user;
+
     //@Before
-    public void setUp() throws Exception{
+    public void setUp() throws Exception {
         userValidator = UserValidator.getInstance();
         user = new User();
         testUser = new User();
@@ -21,14 +22,14 @@ public class UserValidatorTest {
     }
 
     //@Test
-    public void validateTest(){
+    public void validateTest() {
         boolean result = userValidator.validate(testUser);
-      //  assertTrue(result);
+        //  assertTrue(result);
     }
 
     //@Test
-    public void validateIfThereIsNoInformationAboutUserTest(){
+    public void validateIfThereIsNoInformationAboutUserTest() {
         boolean result = userValidator.validate(user);
-       // assertFalse("О пользователе нет данных", result);
+        // assertFalse("О пользователе нет данных", result);
     }
 }

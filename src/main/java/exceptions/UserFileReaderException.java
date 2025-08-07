@@ -1,6 +1,6 @@
 package exceptions;
 
-public class UserFileReaderException extends Exception{
+public class UserFileReaderException extends Exception {
     public UserFileReaderException() {
     }
 

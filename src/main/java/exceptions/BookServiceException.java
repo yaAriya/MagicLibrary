@@ -1,6 +1,6 @@
 package exceptions;
 
-public class BookServiceException extends RuntimeException{
+public class BookServiceException extends RuntimeException {
     public BookServiceException() {
     }
 

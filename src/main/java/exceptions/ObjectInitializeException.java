@@ -1,6 +1,6 @@
 package exceptions;
 
-public class ObjectInitializeException extends RuntimeException{
+public class ObjectInitializeException extends RuntimeException {
     public ObjectInitializeException() {
     }
 

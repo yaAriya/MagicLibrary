@@ -1,6 +1,6 @@
 package exceptions;
 
-public class BookFileReaderException extends Exception{
+public class BookFileReaderException extends Exception {
     public BookFileReaderException() {
     }
 

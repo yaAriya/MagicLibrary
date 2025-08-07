@@ -1,17 +1,11 @@
 package service;
 
 import dao.UserDao;
-
 import dao.UserDaoImpl;
-
-import enity.Book;
-
-import enity.User;
-
+import entity.Book;
+import entity.User;
 import exceptions.*;
-
 import validator.UserValidator;
-
 import validator.Validator;
 
 import java.util.List;

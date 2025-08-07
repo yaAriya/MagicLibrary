@@ -1,6 +1,6 @@
 package validator;
 
-import enity.User;
+import entity.User;
 
 public class UserValidator implements Validator<User> {
     private static UserValidator INSTANCE;

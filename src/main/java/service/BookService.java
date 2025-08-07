@@ -1,7 +1,6 @@
 package service;
 
-import enity.Book;
-
+import entity.Book;
 import exceptions.BookServiceException;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package enity;
+package entity;
 
 import java.util.Objects;
 
@@ -10,6 +10,7 @@ public class Book implements Cloneable {
     private User user;
 
     public Book() {
+
     }
 
     public Book(long id, String name, String author, int pagesNumber) {
@@ -109,6 +110,6 @@ public class Book implements Cloneable {
 
     @Override
     public String toString() {
-        return id + ", " + name + ", " + author + ", " + pagesNumber + ", "  +  "(" + user + ")";
+        return id + ", " + name + ", " + author + ", " + pagesNumber + ", " + "(" + user + ")";
     }
 }

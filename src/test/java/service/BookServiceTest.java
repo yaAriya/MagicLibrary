@@ -1,24 +1,14 @@
 package service;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
-import org.junit.jupiter.api.*;
-
-import org.mockito.*;
-
 import dao.BookDao;
-
 import dao.BookDaoImpl;
-
-import enity.Book;
-
-import exceptions.InvalidEntityException;
-
-import exceptions.ObjectInitializeException;
+import entity.Book;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 
 import java.util.ArrayList;
-
 import java.util.List;
 
 public class BookServiceTest {
@@ -29,7 +19,7 @@ public class BookServiceTest {
     private BookDao bookDao;
 
     @BeforeEach
-    void setUp() throws Exception{
+    void setUp() throws Exception {
         bookService = BookServiceImpl.getInstance();
         bookDao = BookDaoImpl.getInstance();
 
@@ -47,20 +37,20 @@ public class BookServiceTest {
 
     @Test
     @Disabled
-    //ObjectInitializeException.class(ex)
-    void readAllBooksTest( ) {
-       // ObjectInitializeException thrown = assertThrows(ObjectInitializeException.class, ) {
-            List<Book> actualBooks = bookService.readAllBooks();
-            List<Book> expectedBooks = bookDao.readAllBooks();
-            //Нужны примитивные типы! assertArrayEquals(expectedBooks,actualBooks);
-       // }
+        //ObjectInitializeException.class(ex)
+    void readAllBooksTest() {
+        // ObjectInitializeException thrown = assertThrows(ObjectInitializeException.class, ) {
+        List<Book> actualBooks = bookService.readAllBooks();
+        List<Book> expectedBooks = bookDao.readAllBooks();
+        //Нужны примитивные типы! assertArrayEquals(expectedBooks,actualBooks);
+        // }
     }
 
 
     @Test
     @Disabled
-            //(expected = InvalidEntityException.class)
-    void addTest(){
-      bookService.add(testBook);
+        //(expected = InvalidEntityException.class)
+    void addTest() {
+        bookService.add(testBook);
     }
 }

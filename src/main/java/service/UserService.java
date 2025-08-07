@@ -1,7 +1,6 @@
 package service;
 
-import enity.User;
-
+import entity.User;
 import exceptions.UserServiceException;
 
 import java.util.List;

@@ -1,6 +1,6 @@
 package exceptions;
 
-public class UserFileWriterException  extends Exception{
+public class UserFileWriterException extends Exception {
     public UserFileWriterException() {
         super();
     }

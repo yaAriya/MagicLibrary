@@ -1,23 +1,15 @@
 package dao;
 
-import enity.Book;
-
+import entity.Book;
 import exceptions.BookDaoException;
-
-import exceptions.BookFileWriterException;
-
 import exceptions.BookFileReaderException;
-
+import exceptions.BookFileWriterException;
 import reader.BookFileReader;
-
 import reader.BookFileReaderImpl;
-
 import writer.BookFileWriter;
-
 import writer.BookFileWriterImpl;
 
 import java.util.ArrayList;
-
 import java.util.List;
 
 public class BookDaoImpl implements BookDao {
@@ -74,8 +66,8 @@ public class BookDaoImpl implements BookDao {
     @Override
     public void add(Book book) throws BookDaoException {
         try {
-                getBooks().add(book);
-                bookFileWriter.addBookToFile(book);
+            getBooks().add(book);
+            bookFileWriter.addBookToFile(book);
         } catch (BookFileWriterException e) {
             throw new BookDaoException(e);
         }
@@ -101,7 +93,7 @@ public class BookDaoImpl implements BookDao {
             for (int i = 0; i < getBooks().size(); i++) {
                 if (getBooks().get(i).getId() == id) {
                     getBooks().set(i, updateBook);
-                    bookFileWriter.updateBookInFile(getBooks());
+                    bookFileWriter.writeBookToFile(getBooks());
                     return getBooks().get(i).clone();
                 }
             }
@@ -116,7 +108,7 @@ public class BookDaoImpl implements BookDao {
     public void delete(Book book) throws BookDaoException {
         try {
             getBooks().remove(book);
-            bookFileWriter.deleteBookFromFile(getBooks());
+            bookFileWriter.writeBookToFile(getBooks());
         } catch (BookFileWriterException e) {
             throw new BookDaoException(e);
         }

@@ -1,9 +1,7 @@
-package enity;
+package entity;
 
 import java.util.ArrayList;
-
 import java.util.List;
-
 import java.util.Objects;
 
 public class User implements Cloneable {
@@ -14,6 +12,7 @@ public class User implements Cloneable {
     private List<Book> books;
 
     public User() {
+        this.books = new ArrayList<>();
     }
 
     public User(long id, String name, String email, int age) {

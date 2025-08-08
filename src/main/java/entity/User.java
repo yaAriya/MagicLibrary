@@ -78,38 +78,27 @@ public class User implements Cloneable {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if ((obj == null) || !(obj instanceof User)) return false;
+        if (this == obj) {
+            return true;
+        } else if ((obj == null) || !(obj instanceof User)) {
+            return false;
+        }
         User user = (User) obj;
         return id == user.id && Objects.equals(name, user.name) && Objects.equals(email, user.email) && age == user.age;
     }
 
     @Override
     public User clone() throws CloneNotSupportedException {
-        if (getBooks().size() == 0) {
-            User clonedUser = new User();
-            clonedUser.setId(this.id);
-            clonedUser.setName(this.name);
-            clonedUser.setAge(this.age);
-            clonedUser.setEmail(this.email);
-            clonedUser.setBooks(new ArrayList<>());
-
-            return clonedUser;
-        } else {
-            User clonedUser = new User();
-            clonedUser.setId(this.id);
-            clonedUser.setName(this.name);
-            clonedUser.setAge(this.age);
-            clonedUser.setEmail(this.email);
+        User clonedUser = (User) super.clone();
+        if (getBooks().size() != 0) {
             List<Book> clonedBooks = new ArrayList<>();
 
             for (Book book : getBooks()) {
                 clonedBooks.add(book.clone());
             }
             clonedUser.setBooks(clonedBooks);
-
-            return clonedUser;
         }
+        return clonedUser;
     }
 
     @Override

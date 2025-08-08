@@ -77,34 +77,23 @@ public class Book implements Cloneable {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if ((obj == null) || !(obj instanceof Book)) return false;
+        if (this == obj){
+            return true;
+        } else if ((obj == null) || !(obj instanceof Book)){
+            return false;
+        }
         Book book = (Book) obj;
         return Objects.equals(name, book.name) && Objects.equals(author, book.author) && pagesNumber == book.pagesNumber && id == book.id && Objects.equals(user, book.user);
     }
 
     @Override
     public Book clone() throws CloneNotSupportedException {
-        if (getUser() == null) {
-            Book clonedBook = new Book();
-            clonedBook.setId(this.id);
-            clonedBook.setName(this.name);
-            clonedBook.setAuthor(this.author);
-            clonedBook.setPagesNumber(this.pagesNumber);
-
-            return clonedBook;
-
-        } else {
-            Book clonedBook = new Book();
-            clonedBook.setId(this.id);
-            clonedBook.setName(this.name);
-            clonedBook.setAuthor(this.author);
-            clonedBook.setPagesNumber(this.pagesNumber);
-
-            User clonedUser = new User(user.getId(), user.getName(), user.getEmail(), user.getAge());
+        Book clonedBook = (Book) super.clone();
+        if (getUser() != null) {
+            User clonedUser = new User(user.getId(), user.getName(), user.getEmail(), user.getAge(), user.getBooks());
             clonedBook.setUser(clonedUser);
-            return clonedBook;
         }
+        return clonedBook;
     }
 
 

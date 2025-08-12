@@ -78,11 +78,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public User update(User user) throws UserServiceException {
         try {
+            User oldUser = read(user.getId());
             if (userValidator.validate(user) == false) {
                 throw new InvalidEntityException("Параметры, введенные Вами некорректны");
-
+            } else if (oldUser.getBooks().size() != 0) {
+                throw new InvalidEntityException("Вы не можете обновить пользователя с арендованой книгой");
+            } else if (user.getBooks().size() != 0) {
+                throw new InvalidEntityException("Книги у обновляемого пользователя должны отсутствовать");
             }
-            return userDao.update(user, user.getId());
+            return userDao.update(user);
         } catch (InvalidEntityException | UserDaoException e) {
             throw new UserServiceException(e);
         }

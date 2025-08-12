@@ -1,5 +1,6 @@
 package converter;
 
+import dao.UserDaoImpl;
 import entity.Book;
 import entity.User;
 import service.UserServiceImpl;
@@ -10,6 +11,8 @@ public class BookConverterImpl implements BookConverter {
     private static BookConverterImpl INSTANCE;
 
     private UserServiceImpl userService;
+
+    private UserDaoImpl userDao;
 
     public static BookConverterImpl getInstance() {
         if (INSTANCE == null) {
@@ -25,6 +28,7 @@ public class BookConverterImpl implements BookConverter {
 
     private static void initializeDependencies(BookConverterImpl bookConverter) {
         bookConverter.userService = UserServiceImpl.getInstance();
+        bookConverter.userDao = UserDaoImpl.getInstance();
     }
 
     @Override
@@ -45,8 +49,7 @@ public class BookConverterImpl implements BookConverter {
             book.setUser(userService.read(Long.parseLong(parameters[4])));
 
             User updateUser = book.getUser();
-            updateUser.getBooks().add(book);
-            userService.update(updateUser);
+            userDao.addBookToUser(updateUser, book);
         }
         return book;
     }

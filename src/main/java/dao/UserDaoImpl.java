@@ -1,5 +1,6 @@
 package dao;
 
+import entity.Book;
 import entity.User;
 import exceptions.UserDaoException;
 import exceptions.UserFileReaderException;
@@ -73,6 +74,11 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
+    public void addBookToUser(User user, Book book) {
+        user.getBooks().add(book);
+    }
+
+    @Override
     public User read(long id) throws UserDaoException {
         try {
             for (User user : getUsers()) {
@@ -87,11 +93,15 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User update(User user, long id) throws UserDaoException {
+    public User update(User user) throws UserDaoException {
         try {
             for (int i = 0; i < getUsers().size(); i++) {
-                if (getUsers().get(i).getId() == id) {
-                    getUsers().set(i, user);
+                if (getUsers().get(i).getId() == user.getId()) {
+                    User realUser = getUsers().get(i);
+                    realUser.setId(user.getId());
+                    realUser.setName(user.getName());
+                    realUser.setEmail(user.getEmail());
+                    realUser.setAge(user.getAge());
                     userFileWriter.writeUsersToFile(getUsers());
                     return getUsers().get(i).clone();
                 }

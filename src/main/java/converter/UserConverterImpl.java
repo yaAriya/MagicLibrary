@@ -1,11 +1,6 @@
 package converter;
 
-import entity.Book;
 import entity.User;
-import service.BookServiceImpl;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class UserConverterImpl implements UserConverter {
 
@@ -13,12 +8,9 @@ public class UserConverterImpl implements UserConverter {
 
     private static UserConverterImpl INSTANCE;
 
-    private BookServiceImpl bookService;
-
     public static UserConverterImpl getInstance() {
         if (INSTANCE == null) {
             INSTANCE = new UserConverterImpl();
-            initializeDependencies(INSTANCE);
         }
         return INSTANCE;
     }
@@ -26,9 +18,6 @@ public class UserConverterImpl implements UserConverter {
     private UserConverterImpl() {
     }
 
-    private static void initializeDependencies(UserConverterImpl userConverter) {
-        userConverter.bookService = BookServiceImpl.getInstance();
-    }
 
     @Override
     public User convertLineToUser(String line) {
@@ -43,15 +32,6 @@ public class UserConverterImpl implements UserConverter {
         user.setName(parameters[1]);
         user.setEmail(parameters[2]);
         user.setAge(Integer.parseInt(parameters[3]));
-
-        if (parameters.length > 4) {
-            List<Book> userBooks = new ArrayList<>();
-            for (int i = 5; i < parameters.length; i++) {
-                Book book = bookService.read(Long.parseLong(parameters[i]));
-                userBooks.add(book);
-            }
-            user.setBooks(userBooks);
-        }
         return user;
     }
 

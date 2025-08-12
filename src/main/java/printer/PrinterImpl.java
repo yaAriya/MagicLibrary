@@ -6,7 +6,7 @@ import entity.User;
 import java.util.List;
 
 public class PrinterImpl implements Printer {
-    public static PrinterImpl INSTANCE;
+    private static PrinterImpl INSTANCE;
 
     public static PrinterImpl getInstance() {
         if (INSTANCE == null) {

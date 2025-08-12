@@ -1,5 +1,6 @@
 package dao;
 
+import entity.Book;
 import entity.User;
 import exceptions.UserDaoException;
 
@@ -14,9 +15,11 @@ public interface UserDao {
 
     void add(User user) throws UserDaoException;
 
+    void addBookToUser(User user, Book book);
+
     User read(long id) throws UserDaoException;
 
-    User update(User user, long id) throws UserDaoException;
+    User update(User user) throws UserDaoException;
 
     void delete(User user) throws UserDaoException;
 }

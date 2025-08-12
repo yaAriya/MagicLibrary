@@ -77,9 +77,9 @@ public class Book implements Cloneable {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj){
+        if (this == obj) {
             return true;
-        } else if ((obj == null) || !(obj instanceof Book)){
+        } else if ((obj == null) || !(obj instanceof Book)) {
             return false;
         }
         Book book = (Book) obj;

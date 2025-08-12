@@ -48,8 +48,8 @@ public class BookFileWriterImpl implements BookFileWriter {
     @Override
     public void writeBookToFile(List<Book> books) throws BookFileWriterException {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(BOOK_FILE_PATH))) {
-            for (int i = 0; i < books.size(); i++) {
-                String bookToLine = bookConverter.convertBookToLine(books.get(i));
+            for (Book book: books) {
+                String bookToLine = bookConverter.convertBookToLine((book));
                 writer.write(bookToLine + "\n");
             }
         } catch (IOException e) {

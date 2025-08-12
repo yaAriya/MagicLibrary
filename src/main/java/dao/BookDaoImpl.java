@@ -1,7 +1,6 @@
 package dao;
 
 import entity.Book;
-import entity.User;
 import exceptions.BookDaoException;
 import exceptions.BookFileReaderException;
 import exceptions.BookFileWriterException;
@@ -72,11 +71,6 @@ public class BookDaoImpl implements BookDao {
         } catch (BookFileWriterException e) {
             throw new BookDaoException(e);
         }
-    }
-
-    @Override
-    public void addUserToBook(Book book, User user) {
-        book.setUser(user);
     }
 
     @Override

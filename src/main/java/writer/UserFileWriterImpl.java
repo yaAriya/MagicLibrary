@@ -44,8 +44,8 @@ public class UserFileWriterImpl implements UserFileWriter {
     @Override
     public void writeUsersToFile(List<User> users) throws UserFileWriterException {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(USER_FILE_PATH))) {
-            for (int i = 0; i < users.size(); i++) {
-                String userToLine = userConverter.convertUserToLine(users.get(i));
+            for (User user: users) {
+                String userToLine = userConverter.convertUserToLine(user);
                 writer.write(userToLine + "\n");
             }
         } catch (IOException e) {

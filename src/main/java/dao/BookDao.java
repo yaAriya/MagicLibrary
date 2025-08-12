@@ -16,8 +16,6 @@ public interface BookDao {
 
     void add(Book book) throws BookDaoException;
 
-    void addUserToBook(Book book, User user);
-
     Book read(long id) throws BookDaoException;
 
     Book update(Book book) throws BookDaoException;

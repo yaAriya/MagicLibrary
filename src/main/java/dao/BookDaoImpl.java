@@ -4,6 +4,7 @@ import entity.Book;
 import exceptions.BookDaoException;
 import exceptions.BookFileReaderException;
 import exceptions.BookFileWriterException;
+import exceptions.UserDaoException;
 import reader.BookFileReader;
 import reader.BookFileReaderImpl;
 import writer.BookFileWriter;
@@ -41,7 +42,6 @@ public class BookDaoImpl implements BookDao {
         } catch (BookFileReaderException e) {
             throw new BookDaoException(e);
         }
-
     }
 
     @Override

@@ -3,6 +3,8 @@ package converter;
 import dao.UserDaoImpl;
 import entity.Book;
 import entity.User;
+import exceptions.ConverterException;
+import exceptions.UserDaoException;
 import service.UserServiceImpl;
 
 public class BookConverterImpl implements BookConverter {
@@ -32,28 +34,31 @@ public class BookConverterImpl implements BookConverter {
     }
 
     @Override
-    public Book convertLineToBook(String line) {
-        String[] parameters = line.split(PARAMETER);
+    public Book convertLineToBook(String line) throws ConverterException {
+        try {
+            String[] parameters = line.split(PARAMETER);
 
-        for (int i = 0; i < parameters.length; i++) {
-            parameters[i] = parameters[i].trim();
+            for (int i = 0; i < parameters.length; i++) {
+                parameters[i] = parameters[i].trim();
+            }
+
+            Book book = new Book();
+            book.setId(Integer.parseInt(parameters[0]));
+            book.setName(parameters[1]);
+            book.setAuthor(parameters[2]);
+            book.setPagesNumber(Integer.parseInt(parameters[3]));
+
+            if (parameters.length > 4) {
+                book.setUser(userService.read(Long.parseLong(parameters[4])));
+
+                User updateUser = book.getUser();
+                userDao.addBookToUser(updateUser, book);
+            }
+            return book;
+        } catch (UserDaoException e){
+            throw new ConverterException(e);
         }
-
-        Book book = new Book();
-        book.setId(Integer.parseInt(parameters[0]));
-        book.setName(parameters[1]);
-        book.setAuthor(parameters[2]);
-        book.setPagesNumber(Integer.parseInt(parameters[3]));
-
-        if (parameters.length > 4) {
-            book.setUser(userService.read(Long.parseLong(parameters[4])));
-
-            User updateUser = book.getUser();
-            userDao.addBookToUser(updateUser, book);
-        }
-        return book;
     }
-
     public String convertBookToLine(Book book) {
         String idToString = Long.toString(book.getId());
         String pagesNumberToString = Integer.toString(book.getPagesNumber());

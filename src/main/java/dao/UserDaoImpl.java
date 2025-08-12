@@ -74,8 +74,13 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void addBookToUser(User user, Book book) {
-        user.getBooks().add(book);
+    public void addBookToUser(User user, Book book) throws UserDaoException {
+        try{
+            user.getBooks().add(book);
+            userFileWriter.writeUsersToFile(getUsers());
+        } catch (UserFileWriterException e){
+            throw new UserDaoException(e);
+        }
     }
 
     @Override

@@ -3,6 +3,8 @@ package reader;
 import converter.BookConverterImpl;
 import entity.Book;
 import exceptions.BookFileReaderException;
+import exceptions.ConverterException;
+import exceptions.UserDaoException;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -44,7 +46,7 @@ public class BookFileReaderImpl implements BookFileReader {
                 readerLines = reader.readLine();
             }
             return books;
-        } catch (IOException e) {
+        } catch (IOException | ConverterException e) {
             throw new BookFileReaderException(e);
         }
     }

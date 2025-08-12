@@ -15,7 +15,7 @@ public interface UserDao {
 
     void add(User user) throws UserDaoException;
 
-    void addBookToUser(User user, Book book);
+    void addBookToUser(User user, Book book) throws UserDaoException;
 
     User read(long id) throws UserDaoException;
 

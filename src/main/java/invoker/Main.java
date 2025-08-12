@@ -1,5 +1,7 @@
 package invoker;
 
+import entity.Book;
+import entity.User;
 import exceptions.BookDaoException;
 import exceptions.UserDaoException;
 import printer.Printer;
@@ -21,9 +23,9 @@ public class Main {
         bookService.initializeCash();
 
 
-       /* printer.printUserObject(userService.update(new User(0, "Vladimir", "Vovchik@gmail.com", 15)));
-        printer.printBookObject(bookService.update(new Book(1, "Gone with the Wind", "Margaret Mitchell", 345)));
-        printer.printUserObject(userService.update(new User(2, "Lera", "Lerka@gmail.com", 15)));
+        /*printer.printUserObject(userService.update(new User(0, "Vladimir", "Vovchik@gmail.com", 15)));
+        printer.printBookObject(bookService.update(new Book(1, "Gone with the Wind", "Margaret Mitchell", 345)));*/
+        /*printer.printUserObject(userService.update(new User(2, "Lera", "Lerka@gmail.com", 15)));
 
         bookService.delete(0);
         printer.printUserObject(userService.read(0));*/

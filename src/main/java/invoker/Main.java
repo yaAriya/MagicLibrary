@@ -30,8 +30,8 @@ public class Main {
         bookService.delete(0);
         printer.printUserObject(userService.read(0));*/
 
-        printer.printAllUsers(userService.readAllUsers());
-        printer.printAllBooks(bookService.readAllBooks());
+       printer.printAllUsers(userService.readAllUsers());
+       printer.printAllBooks(bookService.readAllBooks());
 
 
         //printer.printUserObject(firstUser);

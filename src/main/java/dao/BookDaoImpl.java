@@ -4,7 +4,6 @@ import entity.Book;
 import exceptions.BookDaoException;
 import exceptions.BookFileReaderException;
 import exceptions.BookFileWriterException;
-import exceptions.UserDaoException;
 import reader.BookFileReader;
 import reader.BookFileReaderImpl;
 import writer.BookFileWriter;
@@ -56,7 +55,6 @@ public class BookDaoImpl implements BookDao {
     @Override
     public List<Book> readAllBooks() throws CloneNotSupportedException {
         List<Book> clonedBooks = new ArrayList<>();
-
         for (Book book : getBooks()) {
             clonedBooks.add(book.clone());
         }

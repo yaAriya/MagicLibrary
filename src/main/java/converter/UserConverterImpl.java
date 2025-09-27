@@ -1,6 +1,10 @@
 package converter;
 
+import entity.Book;
 import entity.User;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class UserConverterImpl implements UserConverter {
 
@@ -21,11 +25,9 @@ public class UserConverterImpl implements UserConverter {
 
     @Override
     public User convertLineToUser(String line) {
-        String[] parameters = line.split(PARAMETER);
-
-        for (int i = 0; i < parameters.length; i++) {
-            parameters[i] = parameters[i].trim();
-        }
+        String[] parameters = Arrays.stream(line.split(PARAMETER))
+                .map(String::trim)
+                .toArray(String[]::new);
 
         User user = new User();
         user.setId(Long.parseLong(parameters[0]));
@@ -46,16 +48,12 @@ public class UserConverterImpl implements UserConverter {
         sb.append(user.getEmail()).append(PARAMETER);
         sb.append(ageToString);
 
-        if (user.getBooks().size() != 0) {
-            long bookId;
-            sb.append(",");
-            for (int i = 0; i < user.getBooks().size(); i++) {
-                bookId = user.getBooks().get(i).getId();
-                sb.append(bookId);
-                if (i < (user.getBooks().size() - 1)) {
-                    sb.append(",");
-                }
-            }
+        if (!user.getBooks().isEmpty()) {
+            sb.append(PARAMETER);
+            List<Long> booksId = user.getBooks().stream()
+                    .map(Book::getId)
+                    .toList();
+            sb.append(String.join(PARAMETER, booksId.stream().map(String::valueOf).toList()));
         }
         return sb.toString();
     }

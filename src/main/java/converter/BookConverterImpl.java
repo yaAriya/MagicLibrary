@@ -7,6 +7,8 @@ import exceptions.ConverterException;
 import exceptions.UserDaoException;
 import service.UserServiceImpl;
 
+import java.util.Arrays;
+
 public class BookConverterImpl implements BookConverter {
 
     private static final String PARAMETER = ",";
@@ -36,11 +38,9 @@ public class BookConverterImpl implements BookConverter {
     @Override
     public Book convertLineToBook(String line) throws ConverterException {
         try {
-            String[] parameters = line.split(PARAMETER);
-
-            for (int i = 0; i < parameters.length; i++) {
-                parameters[i] = parameters[i].trim();
-            }
+          String[] parameters = Arrays.stream(line.split(PARAMETER))
+                  .map(String::trim)
+                  .toArray(String[]::new);
 
             Book book = new Book();
             book.setId(Integer.parseInt(parameters[0]));

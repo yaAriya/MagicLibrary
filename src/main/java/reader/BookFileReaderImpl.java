@@ -4,7 +4,6 @@ import converter.BookConverterImpl;
 import entity.Book;
 import exceptions.BookFileReaderException;
 import exceptions.ConverterException;
-import exceptions.UserDaoException;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -38,12 +37,12 @@ public class BookFileReaderImpl implements BookFileReader {
         try (BufferedReader reader = new BufferedReader(new FileReader(BOOK_FILE_PATH))) {
             List<Book> books = new ArrayList<>();
 
-            String readerLines = reader.readLine();
+            String readLine = reader.readLine();
 
-            while (readerLines != null) {
-                Book book = bookConverter.convertLineToBook(readerLines);
+            while (readLine != null) {
+                Book book = bookConverter.convertLineToBook(readLine);
                 books.add(book);
-                readerLines = reader.readLine();
+                readLine = reader.readLine();
             }
             return books;
         } catch (IOException | ConverterException e) {

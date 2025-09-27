@@ -90,7 +90,7 @@ public class User implements Cloneable {
     @Override
     public User clone() throws CloneNotSupportedException {
         User clonedUser = (User) super.clone();
-        if (getBooks().size() != 0) {
+        if (!getBooks().isEmpty()) {
             List<Book> clonedBooks = new ArrayList<>();
 
             for (Book book : getBooks()) {
@@ -101,15 +101,11 @@ public class User implements Cloneable {
         return clonedUser;
     }
 
-    @Override
+ @Override
     public String toString() {
-        List<Long> booksId = new ArrayList<>();
-
-        for (Book book : getBooks()) {
-            booksId.add(book.getId());
-        }
+        List<Long> booksId = getBooks().stream()
+                .map(Book::getId)
+                .toList();
         return id + ", " + name + ", " + email + ", " + age + ", " + booksId;
     }
-
-
 }

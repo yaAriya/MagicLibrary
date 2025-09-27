@@ -1,5 +1,6 @@
 package dao;
 
+import cloner.UserCloner;
 import entity.Book;
 import entity.User;
 import exceptions.UserDaoException;
@@ -10,7 +11,6 @@ import reader.UserFileReaderImpl;
 import writer.UserFileWriter;
 import writer.UserFileWriterImpl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class UserDaoImpl implements UserDao {
@@ -18,6 +18,7 @@ public class UserDaoImpl implements UserDao {
     private List<User> users;
     private UserFileReader userFileReader;
     private UserFileWriter userFileWriter;
+    private UserCloner userCloner;
 
     public static UserDaoImpl getInstance() {
         if (INSTANCE == null) {
@@ -34,6 +35,7 @@ public class UserDaoImpl implements UserDao {
     private static void initializeDependencies(UserDaoImpl userDao) {
         userDao.userFileReader = UserFileReaderImpl.getInstance();
         userDao.userFileWriter = UserFileWriterImpl.getInstance();
+        userDao.userCloner = UserCloner.getInstance();
     }
 
     @Override
@@ -55,12 +57,10 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public List<User> readAllUsers() throws CloneNotSupportedException {
-        List<User> clonedUsers = new ArrayList<>();
-        for (User user : getUsers()) {
-            clonedUsers.add(user.clone());
-        }
-        return clonedUsers;
+    public List<User> readAllUsers() {
+        return getUsers().stream()
+                .map(userCloner::apply)
+                .toList();
     }
 
     @Override
@@ -84,17 +84,12 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User read(long id) throws UserDaoException {
-        try {
-            for (User user : getUsers()) {
-                if (user.getId() == id) {
-                    return user.clone();
-                }
-            }
-            return null;
-        } catch (CloneNotSupportedException e) {
-            throw new UserDaoException(e);
-        }
+    public User read(long id) {
+            return getUsers().stream()
+                    .filter(user -> user.getId() == id)
+                    .findAny()
+                    .map(userCloner::apply)
+                    .orElse(null);
     }
 
     @Override

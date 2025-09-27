@@ -43,7 +43,7 @@ public class BookServiceImpl implements BookService {
     public List<Book> readAllBooks() throws BookServiceException {
         try {
             return bookDao.readAllBooks();
-        } catch (ObjectInitializeException | CloneNotSupportedException e) {
+        } catch (ObjectInitializeException e) {
             throw new BookServiceException(e);
         }
     }
@@ -51,7 +51,7 @@ public class BookServiceImpl implements BookService {
     @Override
     public void add(Book book) throws BookServiceException {
         try {
-            if (bookValidator.validate(book) == false && bookDao.getBooks().contains(book)) {
+            if (!bookValidator.validate(book) && bookDao.getBooks().contains(book)) {
                 throw new InvalidEntityException("Параметры, введенные Вами некорректны");
             }
             bookDao.add(book);
@@ -67,7 +67,7 @@ public class BookServiceImpl implements BookService {
                 throw new EntityNotFoundException("Такой книги нет");
             }
             return bookDao.read(id);
-        } catch (EntityNotFoundException | BookDaoException e) {
+        } catch (EntityNotFoundException e) {
             throw new BookServiceException(e);
         }
     }
@@ -76,7 +76,7 @@ public class BookServiceImpl implements BookService {
     public Book update(Book book) throws BookServiceException {
         try {
             Book oldBook = read(book.getId());
-            if (bookValidator.validate(book) == false) {
+            if (!bookValidator.validate(book)) {
                 throw new InvalidEntityException("Параметры, введенные Вами некорректны");
             } else if (oldBook.getUser() != null) {
                 throw new InvalidEntityException("Вы не можете обновить уже арендованную книгу");

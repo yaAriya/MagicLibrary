@@ -10,7 +10,6 @@ public class Book implements Cloneable {
     private User user;
 
     public Book() {
-
     }
 
     public Book(long id, String name, String author, int pagesNumber) {
@@ -18,7 +17,6 @@ public class Book implements Cloneable {
         this.name = name;
         this.author = author;
         this.pagesNumber = pagesNumber;
-
     }
 
     public Book(long id, String name, String author, int pagesNumber, User user) {

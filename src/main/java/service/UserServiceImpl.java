@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserService {
     public List<User> readAllUsers() throws UserServiceException {
         try {
             return userDao.readAllUsers();
-        } catch (ObjectInitializeException | CloneNotSupportedException e) {
+        } catch (ObjectInitializeException e) {
             throw new UserServiceException(e);
         }
     }
@@ -54,7 +54,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void add(User user) throws UserServiceException {
         try {
-            if (userValidator.validate(user) == false && userDao.getUsers().contains(user)) {
+            if (!userValidator.validate(user) && userDao.getUsers().contains(user)) {
                 throw new InvalidEntityException("Параметры, введенные Вами некорректны");
             }
             userDao.add(user);
@@ -70,7 +70,7 @@ public class UserServiceImpl implements UserService {
                 throw new EntityNotFoundException("Искаемый Вами пользователь не найден");
             }
             return userDao.read(id);
-        } catch (EntityNotFoundException | UserDaoException e) {
+        } catch (EntityNotFoundException e) {
             throw new UserServiceException(e);
         }
     }
@@ -79,11 +79,11 @@ public class UserServiceImpl implements UserService {
     public User update(User user) throws UserServiceException {
         try {
             User oldUser = read(user.getId());
-            if (userValidator.validate(user) == false) {
+            if (!userValidator.validate(user)) {
                 throw new InvalidEntityException("Параметры, введенные Вами некорректны");
-            } else if (oldUser.getBooks().size() != 0) {
+            } else if (!oldUser.getBooks().isEmpty()) {
                 throw new InvalidEntityException("Вы не можете обновить пользователя с арендованой книгой");
-            } else if (user.getBooks().size() != 0) {
+            } else if (!user.getBooks().isEmpty()) {
                 throw new InvalidEntityException("Книги у обновляемого пользователя должны отсутствовать");
             }
             return userDao.update(user);
@@ -97,7 +97,7 @@ public class UserServiceImpl implements UserService {
     public void delete(long id) throws UserServiceException {
         try {
             User readUser = read(id);
-            if (id < 0 && readUser.getBooks().size() != 0) {
+            if (id < 0 && !readUser.getBooks().isEmpty()) {
                 throw new InvalidEntityException("Увы, Вашего пользователя нельзя удалить");
             }
             userDao.delete(readUser);

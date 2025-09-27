@@ -11,13 +11,13 @@ public interface UserDao {
 
     List<User> getUsers();
 
-    List<User> readAllUsers() throws CloneNotSupportedException;
+    List<User> readAllUsers();
 
     void add(User user) throws UserDaoException;
 
     void addBookToUser(User user, Book book) throws UserDaoException;
 
-    User read(long id) throws UserDaoException;
+    User read(long id);
 
     User update(User user) throws UserDaoException;
 

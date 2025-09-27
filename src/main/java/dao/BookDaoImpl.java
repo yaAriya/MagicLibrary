@@ -1,5 +1,6 @@
 package dao;
 
+import cloner.BookCloner;
 import entity.Book;
 import exceptions.BookDaoException;
 import exceptions.BookFileReaderException;
@@ -9,7 +10,6 @@ import reader.BookFileReaderImpl;
 import writer.BookFileWriter;
 import writer.BookFileWriterImpl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class BookDaoImpl implements BookDao {
@@ -17,6 +17,7 @@ public class BookDaoImpl implements BookDao {
     private List<Book> books;
     private BookFileReader bookFileReader;
     private BookFileWriter bookFileWriter;
+    private BookCloner bookCloner;
 
     public static BookDaoImpl getInstance() {
         if (INSTANCE == null) {
@@ -32,6 +33,7 @@ public class BookDaoImpl implements BookDao {
     private static void initializeDependencies(BookDaoImpl bookDao) {
         bookDao.bookFileReader = BookFileReaderImpl.getInstance();
         bookDao.bookFileWriter = BookFileWriterImpl.getInstance();
+        bookDao.bookCloner = BookCloner.getInstance();
     }
 
     @Override
@@ -53,12 +55,10 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
-    public List<Book> readAllBooks() throws CloneNotSupportedException {
-        List<Book> clonedBooks = new ArrayList<>();
-        for (Book book : getBooks()) {
-            clonedBooks.add(book.clone());
-        }
-        return clonedBooks;
+    public List<Book> readAllBooks(){
+         return getBooks().stream()
+                .map(bookCloner::apply)
+                .toList();
     }
 
     @Override
@@ -72,17 +72,12 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
-    public Book read(long id) throws BookDaoException {
-        try {
-            for (Book book : getBooks()) {
-                if (book.getId() == id) {
-                    return book.clone();
-                }
-            }
-            return null;
-        } catch (CloneNotSupportedException e) {
-            throw new BookDaoException(e);
-        }
+    public Book read(long id){
+        return getBooks().stream()
+               .filter(book -> book.getId() == id)
+               .findAny()
+               .map(bookCloner::apply)
+               .orElse(null);
     }
 
     @Override

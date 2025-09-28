@@ -1,6 +1,5 @@
 package dao;
 
-import cloner.UserCloner;
 import entity.Book;
 import entity.User;
 import exceptions.UserDaoException;
@@ -18,7 +17,6 @@ public class UserDaoImpl implements UserDao {
     private List<User> users;
     private UserFileReader userFileReader;
     private UserFileWriter userFileWriter;
-    private UserCloner userCloner;
 
     public static UserDaoImpl getInstance() {
         if (INSTANCE == null) {
@@ -35,7 +33,6 @@ public class UserDaoImpl implements UserDao {
     private static void initializeDependencies(UserDaoImpl userDao) {
         userDao.userFileReader = UserFileReaderImpl.getInstance();
         userDao.userFileWriter = UserFileWriterImpl.getInstance();
-        userDao.userCloner = UserCloner.getInstance();
     }
 
     @Override
@@ -59,9 +56,15 @@ public class UserDaoImpl implements UserDao {
     @Override
     public List<User> readAllUsers() {
         return getUsers().stream()
-                .map(userCloner::apply)
-                .toList();
+                .map(user -> {
+                    try {
+                       return user.clone();
+                    } catch (CloneNotSupportedException e){
+                        throw new RuntimeException(e);
+                    }
+                })  .toList();
     }
+
 
     @Override
     public void add(User user) throws UserDaoException {
@@ -83,42 +86,48 @@ public class UserDaoImpl implements UserDao {
         }
     }
 
-    @Override
-    public User read(long id) {
-            return getUsers().stream()
-                    .filter(user -> user.getId() == id)
-                    .findAny()
-                    .map(userCloner::apply)
-                    .orElse(null);
-    }
+ @Override
+ public User read(long id) {
+     return getUsers().stream()
+             .filter(user -> user.getId() == id)
+             .findAny()
+             .map(user -> {
+                 try {
+                    return user.clone();
+                 } catch (CloneNotSupportedException e) {
+                     throw new RuntimeException(e);
+                 }
+             })
+             .orElse(null);
+ }
 
-    @Override
-    public User update(User user) throws UserDaoException {
-        try {
-            for (int i = 0; i < getUsers().size(); i++) {
-                if (getUsers().get(i).getId() == user.getId()) {
-                    User realUser = getUsers().get(i);
-                    realUser.setId(user.getId());
-                    realUser.setName(user.getName());
-                    realUser.setEmail(user.getEmail());
-                    realUser.setAge(user.getAge());
-                    userFileWriter.writeUsersToFile(getUsers());
-                    return getUsers().get(i).clone();
-                }
-            }
-            return null;
-        } catch (CloneNotSupportedException | UserFileWriterException e) {
-            throw new UserDaoException(e);
-        }
-    }
+      @Override
+      public User update (User user) throws UserDaoException {
+          try {
+              for (int i = 0; i < getUsers().size(); i++) {
+                  if (getUsers().get(i).getId() == user.getId()) {
+                      User realUser = getUsers().get(i);
+                      realUser.setId(user.getId());
+                      realUser.setName(user.getName());
+                      realUser.setEmail(user.getEmail());
+                      realUser.setAge(user.getAge());
+                      userFileWriter.writeUsersToFile(getUsers());
+                      return getUsers().get(i).clone();
+                  }
+              }
+              return null;
+          } catch (CloneNotSupportedException | UserFileWriterException e) {
+              throw new UserDaoException(e);
+          }
+      }
 
-    @Override
-    public void delete(User user) throws UserDaoException {
-        try {
-            getUsers().remove(user);
-            userFileWriter.writeUsersToFile(getUsers());
-        } catch (UserFileWriterException e) {
-            throw new UserDaoException(e);
-        }
-    }
-}
+      @Override
+      public void delete (User user) throws UserDaoException {
+          try {
+              getUsers().remove(user);
+              userFileWriter.writeUsersToFile(getUsers());
+          } catch (UserFileWriterException e) {
+              throw new UserDaoException(e);
+          }
+      }
+  }

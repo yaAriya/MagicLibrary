@@ -1,6 +1,5 @@
 package dao;
 
-import cloner.BookCloner;
 import entity.Book;
 import exceptions.BookDaoException;
 import exceptions.BookFileReaderException;
@@ -17,7 +16,6 @@ public class BookDaoImpl implements BookDao {
     private List<Book> books;
     private BookFileReader bookFileReader;
     private BookFileWriter bookFileWriter;
-    private BookCloner bookCloner;
 
     public static BookDaoImpl getInstance() {
         if (INSTANCE == null) {
@@ -33,7 +31,6 @@ public class BookDaoImpl implements BookDao {
     private static void initializeDependencies(BookDaoImpl bookDao) {
         bookDao.bookFileReader = BookFileReaderImpl.getInstance();
         bookDao.bookFileWriter = BookFileWriterImpl.getInstance();
-        bookDao.bookCloner = BookCloner.getInstance();
     }
 
     @Override
@@ -57,7 +54,13 @@ public class BookDaoImpl implements BookDao {
     @Override
     public List<Book> readAllBooks(){
          return getBooks().stream()
-                .map(bookCloner::apply)
+                .map(book -> {
+                    try{
+                        return book.clone();
+                    } catch (CloneNotSupportedException e) {
+                        throw new RuntimeException(e);
+                    }
+                })
                 .toList();
     }
 
@@ -72,12 +75,19 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
-    public Book read(long id){
-        return getBooks().stream()
-               .filter(book -> book.getId() == id)
-               .findAny()
-               .map(bookCloner::apply)
-               .orElse(null);
+    public Book read(long id) {
+            return getBooks().stream()
+                    .filter(book -> book.getId()==id)
+                    .findAny()
+                    .map(book -> {
+                        try{
+                            return book.clone();
+                        } catch (CloneNotSupportedException e){
+                            throw new RuntimeException(e);
+                        }
+
+                    })
+                    .orElse(null);
     }
 
     @Override

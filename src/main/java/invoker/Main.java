@@ -1,8 +1,7 @@
 package invoker;
 
-import entity.Book;
+import config.DatabaseConfig;
 import entity.User;
-import exceptions.BookDaoException;
 import exceptions.UserDaoException;
 import printer.Printer;
 import printer.PrinterImpl;
@@ -18,9 +17,18 @@ public class Main {
     public static Printer printer = PrinterImpl.getInstance();
 
 
-    public static void main(String[] args) throws UserDaoException, BookDaoException {
+    public static void main(String[] args) throws UserDaoException {
         userService.initializeCash();
         bookService.initializeCash();
+
+        DatabaseConfig.testConnection();
+       /* User firstUser = new User(1, "Lisa", "Lisochka@gmail.com", 11);
+        User secondUser = new User(2, "Vladimir", "Vovchik@gmail.com", 15);
+        userService.addToDatabase(firstUser);
+        userService.addToDatabase(secondUser);*/
+        userService.updateInDatabase( new User(1, "Lisa", "Lisochka@gmail.com", 11));
+        printer.printAllUsersFromMap(userService.readAllUsersFromDatabase());
+        //userService.delete(1);
 
 
         /*printer.printUserObject(userService.update(new User(0, "Vladimir", "Vovchik@gmail.com", 15)));
@@ -30,8 +38,8 @@ public class Main {
         bookService.delete(0);
         printer.printUserObject(userService.read(0));*/
 
-       printer.printAllUsers(userService.readAllUsers());
-       printer.printAllBooks(bookService.readAllBooks());
+       /*printer.printAllUsers(userService.readAllUsers());
+       printer.printAllBooks(bookService.readAllBooks());*/
 
 
         //printer.printUserObject(firstUser);

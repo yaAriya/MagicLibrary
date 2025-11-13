@@ -49,7 +49,7 @@ public class BookConverterImpl implements BookConverter {
             book.setPagesNumber(Integer.parseInt(parameters[3]));
 
             if (parameters.length > 4) {
-                book.setUser(userService.read(Long.parseLong(parameters[4])));
+                book.setUser(userService.readFromFile(Long.parseLong(parameters[4])));
 
                 User updateUser = book.getUser();
                 userDao.addBookToUser(updateUser, book);

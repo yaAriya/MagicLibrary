@@ -4,6 +4,7 @@ import entity.Book;
 import entity.User;
 
 import java.util.List;
+import java.util.Map;
 
 public class PrinterImpl implements Printer {
     private static PrinterImpl INSTANCE;
@@ -16,16 +17,24 @@ public class PrinterImpl implements Printer {
     }
 
     @Override
-    public void printAllBooks(List<Book> books){
+    public void printAllUsersFromMap(Map<Long, User> users) {
+        users.forEach((userId, user)-> {
+            System.out.printf("Id: %d, name: %s, email: %s, age: %s%n", userId, user.getName(), user.getEmail(), user.getAge());
+        });
+    }
+
+
+    @Override
+    public void printAllBooks(List<Book> books) {
         books
-            .forEach(System.out::println);
+                .forEach(System.out::println);
         System.out.println("\n");
     }
 
     @Override
     public void printAllUsers(List<User> users) {
-       users
-            .forEach(System.out::println);
+        users
+                .forEach(System.out::println);
         System.out.println("\n");
     }
 

@@ -5,21 +5,33 @@ import entity.User;
 import exceptions.UserDaoException;
 
 import java.util.List;
+import java.util.Map;
 
 public interface UserDao {
+
     void initializeCash() throws UserDaoException;
 
     List<User> getUsers();
 
-    List<User> readAllUsers();
+    Map<Long,User> readAllUsersFromDatabase();
 
-    void add(User user) throws UserDaoException;
+    List<User> readAllUsersFromFile();
+
+    void addToDatabase(User user);
+
+    void addToFile(User user) throws UserDaoException;
 
     void addBookToUser(User user, Book book) throws UserDaoException;
 
-    User read(long id);
+    User readFromDatabase(long id) throws UserDaoException;
 
-    User update(User user) throws UserDaoException;
+    User readFromFile(long id);
 
-    void delete(User user) throws UserDaoException;
+    void updateInDatabase(User user);
+
+    void updateInFile(User user) throws UserDaoException;
+
+    void deleteFromDatabase(User user);
+
+    void deleteFromFile(User user) throws UserDaoException;
 }

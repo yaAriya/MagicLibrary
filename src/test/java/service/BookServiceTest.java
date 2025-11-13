@@ -3,10 +3,8 @@ package service;
 import dao.BookDao;
 import dao.BookDaoImpl;
 import entity.Book;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
+import org.junit.jupiter.api.*;
+import org.mockito.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,9 +22,9 @@ public class BookServiceTest {
         bookDao = BookDaoImpl.getInstance();
 
         testBook = new Book();
-        testBook.setName("lskvk");
+        testBook.setName("lina");
         testBook.setId(1);
-        testBook.setAuthor(";slmv");
+        testBook.setAuthor("elena G");
         testBook.setPagesNumber(245);
         testBook.setUser(null);
 
@@ -50,7 +48,7 @@ public class BookServiceTest {
     @Test
     @Disabled
         //(expected = InvalidEntityException.class)
-    void addTest() {
+    void additionTest() {
         bookService.add(testBook);
     }
 }

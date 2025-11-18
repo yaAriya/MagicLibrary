@@ -1,7 +1,7 @@
 package service;
 
 import dao.BookDao;
-import dao.BookDaoImpl;
+import dao.FileBasedBookDao;
 import entity.Book;
 import org.junit.jupiter.api.*;
 import org.mockito.*;
@@ -19,7 +19,7 @@ public class BookServiceTest {
     @BeforeEach
     void setUp() throws Exception {
         bookService = BookServiceImpl.getInstance();
-        bookDao = BookDaoImpl.getInstance();
+        bookDao = FileBasedBookDao.getInstance();
 
         testBook = new Book();
         testBook.setName("lina");

@@ -11,13 +11,15 @@ public interface BookDao {
 
     List<Book> getBooks();
 
-    List<Book> readAllBooks();
+    void setBooks(List<Book> books);
+
+    List<Book> readAllBooks() throws BookDaoException;
 
     void add(Book book) throws BookDaoException;
 
-    Book read(long id);
+    Book read(long id) throws BookDaoException;
 
-    Book update(Book book) throws BookDaoException;
+    void update(Book book) throws BookDaoException;
 
     void delete(Book book) throws BookDaoException;
 }

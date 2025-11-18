@@ -9,26 +9,27 @@ import reader.BookFileReaderImpl;
 import writer.BookFileWriter;
 import writer.BookFileWriterImpl;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class BookDaoImpl implements BookDao {
-    private static BookDaoImpl INSTANCE;
+public class FileBasedBookDao implements BookDao {
+    private static FileBasedBookDao INSTANCE;
     private List<Book> books;
     private BookFileReader bookFileReader;
     private BookFileWriter bookFileWriter;
 
-    public static BookDaoImpl getInstance() {
+    public static FileBasedBookDao getInstance() {
         if (INSTANCE == null) {
-            INSTANCE = new BookDaoImpl();
+            INSTANCE = new FileBasedBookDao();
             initializeDependencies(INSTANCE);
         }
         return INSTANCE;
     }
 
-    private BookDaoImpl() {
+    private FileBasedBookDao() {
     }
 
-    private static void initializeDependencies(BookDaoImpl bookDao) {
+    private static void initializeDependencies(FileBasedBookDao bookDao) {
         bookDao.bookFileReader = BookFileReaderImpl.getInstance();
         bookDao.bookFileWriter = BookFileWriterImpl.getInstance();
     }
@@ -52,16 +53,16 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
-    public List<Book> readAllBooks(){
-         return getBooks().stream()
-                .map(book -> {
-                    try{
-                        return book.clone();
-                    } catch (CloneNotSupportedException e) {
-                        throw new RuntimeException(e);
-                    }
-                })
-                .toList();
+    public List<Book> readAllBooks() throws BookDaoException {
+        try {
+            List<Book> clonedBooks = new ArrayList<>();
+            for (Book book : getBooks()) {
+                clonedBooks.add(book.clone());
+            }
+            return clonedBooks;
+        } catch (CloneNotSupportedException e) {
+            throw new BookDaoException(e);
+        }
     }
 
     @Override
@@ -75,23 +76,21 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
-    public Book read(long id) {
-            return getBooks().stream()
-                    .filter(book -> book.getId()==id)
-                    .findAny()
-                    .map(book -> {
-                        try{
-                            return book.clone();
-                        } catch (CloneNotSupportedException e){
-                            throw new RuntimeException(e);
-                        }
-
-                    })
-                    .orElse(null);
+    public Book read(long id) throws BookDaoException {
+        try{
+            for(Book book: getBooks()){
+                if(book.getId() == id){
+                    return book.clone();
+                }
+            }
+        } catch(CloneNotSupportedException e){
+            throw new BookDaoException(e);
+        }
+        return null;
     }
 
     @Override
-    public Book update(Book book) throws BookDaoException {
+    public void update(Book book) throws BookDaoException {
         try {
             for (int i = 0; i < getBooks().size(); i++) {
                 if (getBooks().get(i).getId() == book.getId()) {
@@ -101,15 +100,12 @@ public class BookDaoImpl implements BookDao {
                     realBook.setAuthor(book.getAuthor());
                     realBook.setPagesNumber(book.getPagesNumber());
                     bookFileWriter.writeBookToFile(getBooks());
-                    return getBooks().get(i).clone();
                 }
             }
-            return null;
-        } catch (CloneNotSupportedException | BookFileWriterException e) {
+        } catch (BookFileWriterException e) {
             throw new BookDaoException(e);
         }
     }
-
 
     @Override
     public void delete(Book book) throws BookDaoException {

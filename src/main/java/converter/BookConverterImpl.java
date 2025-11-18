@@ -1,6 +1,6 @@
 package converter;
 
-import dao.UserDaoImpl;
+import dao.FileBasedUserDao;
 import entity.Book;
 import entity.User;
 import exceptions.ConverterException;
@@ -16,7 +16,7 @@ public class BookConverterImpl implements BookConverter {
 
     private UserServiceImpl userService;
 
-    private UserDaoImpl userDao;
+    private FileBasedUserDao userDao;
 
     public static BookConverterImpl getInstance() {
         if (INSTANCE == null) {
@@ -32,7 +32,7 @@ public class BookConverterImpl implements BookConverter {
 
     private static void initializeDependencies(BookConverterImpl bookConverter) {
         bookConverter.userService = UserServiceImpl.getInstance();
-        bookConverter.userDao = UserDaoImpl.getInstance();
+        bookConverter.userDao = FileBasedUserDao.getInstance();
     }
 
     @Override
@@ -49,7 +49,7 @@ public class BookConverterImpl implements BookConverter {
             book.setPagesNumber(Integer.parseInt(parameters[3]));
 
             if (parameters.length > 4) {
-                book.setUser(userService.readFromFile(Long.parseLong(parameters[4])));
+                book.setUser(userService.read(Long.parseLong(parameters[4])));
 
                 User updateUser = book.getUser();
                 userDao.addBookToUser(updateUser, book);

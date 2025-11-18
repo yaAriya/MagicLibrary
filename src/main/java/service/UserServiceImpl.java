@@ -1,7 +1,6 @@
 package service;
 
-import dao.UserDao;
-import dao.UserDaoImpl;
+import dao.*;
 import entity.Book;
 import entity.User;
 import exceptions.*;
@@ -9,7 +8,6 @@ import validator.UserValidator;
 import validator.Validator;
 
 import java.util.List;
-import java.util.Map;
 
 public class UserServiceImpl implements UserService {
     private static UserServiceImpl INSTANCE;
@@ -29,7 +27,7 @@ public class UserServiceImpl implements UserService {
     }
 
     private static void initializeDependencies(UserServiceImpl userService) {
-        userService.userDao = UserDaoImpl.getInstance();
+        userService.userDao = MySQLBasedUserDao.getInstance();
         userService.bookService = BookServiceImpl.getInstance();
         userService.userValidator = UserValidator.getInstance();
     }
@@ -44,76 +42,42 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Map<Long, User> readAllUsersFromDatabase() {
-        return userDao.readAllUsersFromDatabase();
-    }
-
-    @Override
-    public List<User> readAllUsersFromFile() throws UserServiceException {
+    public List<User> readAllUsers() throws UserServiceException{
         try {
-            return userDao.readAllUsersFromFile();
-        } catch (ObjectInitializeException e) {
-            throw new UserServiceException(e);
-        }
-    }
-    @Override
-    public void addToDatabase(User user) throws UserServiceException {
-        try {
-            if (!userValidator.validate(user) && userDao.getUsers().contains(user)) {
-                throw new InvalidEntityException("Параметры, введенные Вами некорректны");
-            }
-            userDao.addToDatabase(user);
-        } catch (InvalidEntityException e) {
+            return userDao.readAllUsers();
+        } catch (ObjectInitializeException | UserDaoException e) {
             throw new UserServiceException(e);
         }
     }
 
     @Override
-    public void addToFile(User user) throws UserServiceException {
+    public void add(User user) throws UserServiceException {
         try {
             if (!userValidator.validate(user) && userDao.getUsers().contains(user)) {
                 throw new InvalidEntityException("Параметры, введенные Вами некорректны");
             }
-            userDao.addToFile(user);
+            userDao.add(user);
         } catch (InvalidEntityException | UserDaoException e) {
             throw new UserServiceException(e);
         }
     }
 
-
     @Override
-    public User readFromDatabase(long id){
+    public User read(long id) throws UserServiceException {
         try {
-            if (userDao.readFromDatabase(id) == null) {
+            if (userDao.read(id) == null) {
                 throw new EntityNotFoundException("Искаемый Вами пользователь не найден");
             }
-            return userDao.readFromDatabase(id);
+            return userDao.read(id);
         } catch (EntityNotFoundException | UserDaoException e) {
             throw new UserServiceException(e);
         }
     }
 
     @Override
-    public User readFromFile(long id) throws UserServiceException {
+    public void update(User user) throws UserServiceException {
         try {
-            if (userDao.readFromFile(id) == null) {
-                throw new EntityNotFoundException("Искаемый Вами пользователь не найден");
-            }
-            return userDao.readFromFile(id);
-        } catch (EntityNotFoundException e) {
-            throw new UserServiceException(e);
-        }
-    }
-
-    @Override
-    public void updateInDatabase(User user){
-        userDao.updateInDatabase(user);
-    }
-
-    @Override
-    public void updateInFile(User user) throws UserServiceException {
-        try {
-            User oldUser = readFromFile(user.getId());
+            User oldUser = read(user.getId());
             if (!userValidator.validate(user)) {
                 throw new InvalidEntityException("Параметры, введенные Вами некорректны");
             } else if (!oldUser.getBooks().isEmpty()) {
@@ -121,34 +85,20 @@ public class UserServiceImpl implements UserService {
             } else if (!user.getBooks().isEmpty()) {
                 throw new InvalidEntityException("Книги у обновляемого пользователя должны отсутствовать");
             }
-             userDao.updateInFile(user);
+             userDao.update(user);
         } catch (InvalidEntityException | UserDaoException e) {
             throw new UserServiceException(e);
         }
     }
 
     @Override
-    public void deleteFromDatabase(long id){
+    public void delete(long id) throws UserServiceException {
         try {
-            User readUser = readFromFile(id);
+            User readUser = read(id);
             if (id < 0 && !readUser.getBooks().isEmpty()) {
                 throw new InvalidEntityException("Увы, Вашего пользователя нельзя удалить");
             }
-            userDao.deleteFromDatabase(readUser);
-        } catch (InvalidEntityException e) {
-            throw new UserServiceException(e);
-        }
-    }
-
-
-    @Override
-    public void deleteFromFile(long id) throws UserServiceException {
-        try {
-            User readUser = readFromFile(id);
-            if (id < 0 && !readUser.getBooks().isEmpty()) {
-                throw new InvalidEntityException("Увы, Вашего пользователя нельзя удалить");
-            }
-            userDao.deleteFromFile(readUser);
+            userDao.delete(readUser);
         } catch (InvalidEntityException | UserDaoException e) {
             throw new UserServiceException(e);
         }
@@ -157,7 +107,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void rentBook(long userId, long bookId) throws UserServiceException {
         try {
-            User readUser = readFromFile(userId);
+            User readUser = read(userId);
             Book readBook = bookService.read(bookId);
             if (readUser == null || readBook == null) {
                 throw new InvalidEntityException("Пользователь или книга не могут быть пустыми");
@@ -165,7 +115,7 @@ public class UserServiceImpl implements UserService {
                 throw new InvalidEntityException("У книги уже есть пользователь или у пользователя уже арендована эта книга");
             }
             readUser.getBooks().add(readBook);
-            updateInFile(readUser);
+            update(readUser);
 
             readBook.setUser(readUser);
             bookService.update(readBook);
@@ -178,7 +128,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void returnBook(long userId, long bookId) throws UserServiceException {
         try {
-            User readUser = readFromFile(userId);
+            User readUser = read(userId);
             Book readBook = bookService.read(bookId);
             if (readUser == null || readBook == null) {
                 throw new InvalidEntityException("Пользователь или книга не могут быть пустыми");
@@ -186,7 +136,7 @@ public class UserServiceImpl implements UserService {
                 throw new InvalidEntityException("У книги нет пользователя или у пользователя не была арендована книга");
             }
             readUser.getBooks().remove(readBook);
-            updateInFile(readUser);
+            update(readUser);
 
             readBook.setUser(null);
             bookService.update(readBook);

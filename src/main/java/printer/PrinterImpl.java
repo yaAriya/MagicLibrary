@@ -17,14 +17,6 @@ public class PrinterImpl implements Printer {
     }
 
     @Override
-    public void printAllUsersFromMap(Map<Long, User> users) {
-        users.forEach((userId, user)-> {
-            System.out.printf("Id: %d, name: %s, email: %s, age: %s%n", userId, user.getName(), user.getEmail(), user.getAge());
-        });
-    }
-
-
-    @Override
     public void printAllBooks(List<Book> books) {
         books
                 .forEach(System.out::println);

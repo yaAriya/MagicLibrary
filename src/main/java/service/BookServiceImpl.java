@@ -1,7 +1,7 @@
 package service;
 
 import dao.BookDao;
-import dao.BookDaoImpl;
+import dao.MySQLBasedBookDao;
 import entity.Book;
 import exceptions.*;
 import validator.BookValidator;
@@ -26,7 +26,7 @@ public class BookServiceImpl implements BookService {
     }
 
     private static void initializeDependencies(BookServiceImpl bookService) {
-        bookService.bookDao = BookDaoImpl.getInstance();
+        bookService.bookDao = MySQLBasedBookDao.getInstance();
         bookService.bookValidator = BookValidator.getInstance();
     }
 
@@ -43,7 +43,7 @@ public class BookServiceImpl implements BookService {
     public List<Book> readAllBooks() throws BookServiceException {
         try {
             return bookDao.readAllBooks();
-        } catch (ObjectInitializeException e) {
+        } catch (ObjectInitializeException | BookDaoException e) {
             throw new BookServiceException(e);
         }
     }
@@ -67,13 +67,13 @@ public class BookServiceImpl implements BookService {
                 throw new EntityNotFoundException("Такой книги нет");
             }
             return bookDao.read(id);
-        } catch (EntityNotFoundException e) {
+        } catch (EntityNotFoundException | BookDaoException e) {
             throw new BookServiceException(e);
         }
     }
 
     @Override
-    public Book update(Book book) throws BookServiceException {
+    public void update(Book book) throws BookServiceException {
         try {
             Book oldBook = read(book.getId());
             if (!bookValidator.validate(book)) {
@@ -83,8 +83,7 @@ public class BookServiceImpl implements BookService {
             } else if (book.getUser() != null) {
                 throw new InvalidEntityException("Пользователь обновляемой книги должен отсутствовать");
             }
-            return bookDao.update(book);
-        } catch (InvalidEntityException | BookDaoException e) {
+        } catch (InvalidEntityException e) {
             throw new BookServiceException(e);
         }
     }

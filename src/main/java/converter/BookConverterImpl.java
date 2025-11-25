@@ -43,7 +43,7 @@ public class BookConverterImpl implements BookConverter {
                   .toArray(String[]::new);
 
             Book book = new Book();
-            book.setId(Integer.parseInt(parameters[0]));
+            book.setId(Long.parseLong(parameters[0]));
             book.setName(parameters[1]);
             book.setAuthor(parameters[2]);
             book.setPagesNumber(Integer.parseInt(parameters[3]));

@@ -54,6 +54,11 @@ public class BookServiceImpl implements BookService {
             if (!bookValidator.validate(book) && bookDao.getBooks().contains(book)) {
                 throw new InvalidEntityException("Параметры, введенные Вами некорректны");
             }
+            for (Book tempBook : bookDao.getBooks()) {
+                if (tempBook.getId() == book.getId()) {
+                    throw new InvalidEntityException("Книга с таким айди уже существует");
+                }
+            }
             bookDao.add(book);
         } catch (InvalidEntityException | BookDaoException e) {
             throw new BookServiceException(e);
@@ -83,7 +88,8 @@ public class BookServiceImpl implements BookService {
             } else if (book.getUser() != null) {
                 throw new InvalidEntityException("Пользователь обновляемой книги должен отсутствовать");
             }
-        } catch (InvalidEntityException e) {
+            bookDao.update(book);
+        } catch (InvalidEntityException | BookDaoException e) {
             throw new BookServiceException(e);
         }
     }

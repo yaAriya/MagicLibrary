@@ -23,12 +23,18 @@ public class Main {
         userService.initializeCash();
         bookService.initializeCash();
 
-        userService.add(new User(1, "Lisa", "Lisochka@gmail.com", 11));
-        userService.add(new User(2, "Vladimir", "Vovchik@gmail.com", 15));
+        User firstUser = new User(1, "Lisa", "Lisochka@gmail.com", 11);
+        User secondUser = new User(4, "Lera", "Lerka@gmail.com", 15);
+        userService.add(firstUser);
+        userService.add(secondUser);
         printer.printAllUsers(userService.readAllUsers());
 
-        bookService.add(new Book(3, "Gone with the Wind", "Margaret Mitchell", 333));
+        Book firstBook = new Book(4, "Gone with the Wind", "Margaret Mitchell", 333);
+        bookService.add(firstBook);
         printer.printAllBooks(bookService.readAllBooks());
+
+        bookService.update((new Book(4, "Gone with the Wind", "Margaret Mitchell", 2000)));
+        printer.printBookObject(bookService.read(4));
         /*userService.updateInDatabase( new User(1, "Lisa", "Lisochka@gmail.com", 11));
         printer.printAllUsersFromMap(userService.readAllUsersFromDatabase());*/
         //userService.delete(1);

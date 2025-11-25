@@ -30,7 +30,7 @@ public class UserConverterImpl implements UserConverter {
                 .toArray(String[]::new);
 
         User user = new User();
-        user.setId(Long.parseLong(parameters[0]));
+        user.setId(Long.parseLong(parameters[0].trim()));
         user.setName(parameters[1]);
         user.setEmail(parameters[2]);
         user.setAge(Integer.parseInt(parameters[3]));

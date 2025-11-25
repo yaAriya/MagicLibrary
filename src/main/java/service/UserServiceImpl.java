@@ -1,6 +1,7 @@
 package service;
 
-import dao.*;
+import dao.MySQLBasedUserDao;
+import dao.UserDao;
 import entity.Book;
 import entity.User;
 import exceptions.*;
@@ -42,7 +43,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> readAllUsers() throws UserServiceException{
+    public List<User> readAllUsers() throws UserServiceException {
         try {
             return userDao.readAllUsers();
         } catch (ObjectInitializeException | UserDaoException e) {
@@ -55,6 +56,11 @@ public class UserServiceImpl implements UserService {
         try {
             if (!userValidator.validate(user) && userDao.getUsers().contains(user)) {
                 throw new InvalidEntityException("Параметры, введенные Вами некорректны");
+            }
+            for (User tempUser : userDao.getUsers()) {
+                if (tempUser.getId() == user.getId()) {
+                    throw new InvalidEntityException("Пользователь с таким айди уже существует");
+                }
             }
             userDao.add(user);
         } catch (InvalidEntityException | UserDaoException e) {
@@ -85,7 +91,7 @@ public class UserServiceImpl implements UserService {
             } else if (!user.getBooks().isEmpty()) {
                 throw new InvalidEntityException("Книги у обновляемого пользователя должны отсутствовать");
             }
-             userDao.update(user);
+            userDao.update(user);
         } catch (InvalidEntityException | UserDaoException e) {
             throw new UserServiceException(e);
         }

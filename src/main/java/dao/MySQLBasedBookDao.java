@@ -6,26 +6,28 @@ import exceptions.BookDaoException;
 import exceptions.UserDaoException;
 
 import java.sql.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
-public class MySQLBasedBookDao implements BookDao{
+public class MySQLBasedBookDao implements BookDao {
     private static MySQLBasedBookDao INSTANCE;
     private List<Book> books;
     private UserDao userDao;
 
-    public static MySQLBasedBookDao getInstance(){
-        if(INSTANCE == null){
+    public static MySQLBasedBookDao getInstance() {
+        if (INSTANCE == null) {
             INSTANCE = new MySQLBasedBookDao();
             initializeDependencies(INSTANCE);
         }
-            return INSTANCE;
+        return INSTANCE;
     }
 
-    private static void initializeDependencies(MySQLBasedBookDao mySQLBasedBookDao){
+    private static void initializeDependencies(MySQLBasedBookDao mySQLBasedBookDao) {
         mySQLBasedBookDao.userDao = MySQLBasedUserDao.getInstance();
     }
 
-    private MySQLBasedBookDao(){}
+    private MySQLBasedBookDao() {
+    }
 
     @Override
     public void initializeCash() throws BookDaoException {
@@ -71,7 +73,7 @@ public class MySQLBasedBookDao implements BookDao{
     }
 
     @Override
-    public void add(Book book) throws BookDaoException{
+    public void add(Book book) throws BookDaoException {
         try (Connection connection = DatabaseConfig.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO books (name, author, page_number, user_id) VALUES (?, ?, ?, ?)");
 
@@ -96,11 +98,11 @@ public class MySQLBasedBookDao implements BookDao{
     public Book read(long bookId) throws BookDaoException {
         try (Connection connection = DatabaseConfig.getConnection()) {
 
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT FROM books WHERE id = ?");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM books WHERE id = ?");
             preparedStatement.setLong(1, bookId);
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            if(resultSet.next()) {
+            if (resultSet.next()) {
                 Book newBook = new Book();
                 long id = resultSet.getLong("id");
                 newBook.setId(id);
@@ -121,10 +123,18 @@ public class MySQLBasedBookDao implements BookDao{
     }
 
     @Override
-    public void update(Book book) throws BookDaoException{
+    public void update(Book book) throws BookDaoException {
         try (Connection connection = DatabaseConfig.getConnection()) {
-            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE SET IN books WHERE id = ?");
-            preparedStatement.setLong(1, book.getId());
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE books SET name = ?, author = ?, page_number = ?, user_id = ? WHERE id = ?");
+            preparedStatement.setString(1, book.getName());
+            preparedStatement.setString(2, book.getAuthor());
+            preparedStatement.setLong(3, book.getPagesNumber());
+            if (book.getUser() != null) {
+                preparedStatement.setLong(4, book.getUser().getId());
+            } else {
+                preparedStatement.setLong(4, Types.BIGINT);
+            }
+            preparedStatement.setLong(5, book.getId());
             preparedStatement.executeUpdate();
 
             System.out.println("Обновление прошло успешно");

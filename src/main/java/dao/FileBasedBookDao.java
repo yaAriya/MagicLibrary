@@ -34,7 +34,6 @@ public class FileBasedBookDao implements BookDao {
         bookDao.bookFileWriter = BookFileWriterImpl.getInstance();
     }
 
-    @Override
     public void initializeCash() throws BookDaoException {
         try {
             books = bookFileReader.readBooksFromFile();
@@ -43,7 +42,6 @@ public class FileBasedBookDao implements BookDao {
         }
     }
 
-    @Override
     public List<Book> getBooks() {
         return books;
     }
@@ -108,9 +106,9 @@ public class FileBasedBookDao implements BookDao {
     }
 
     @Override
-    public void delete(Book book) throws BookDaoException {
+    public void delete(long id) throws BookDaoException {
         try {
-            getBooks().remove(book);
+            getBooks().remove(read(id));
             bookFileWriter.writeBookToFile(getBooks());
         } catch (BookFileWriterException e) {
             throw new BookDaoException(e);

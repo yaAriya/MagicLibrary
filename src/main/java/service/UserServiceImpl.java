@@ -54,10 +54,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public void add(User user) throws UserServiceException {
         try {
-            if (!userValidator.validate(user) && userDao.getUsers().contains(user)) {
+            if (!userValidator.validate(user) && userDao.readAllUsers().contains(user)) {
                 throw new InvalidEntityException("Параметры, введенные Вами некорректны");
             }
-            for (User tempUser : userDao.getUsers()) {
+            for (User tempUser : userDao.readAllUsers()) {
                 if (tempUser.getId() == user.getId()) {
                     throw new InvalidEntityException("Пользователь с таким айди уже существует");
                 }
@@ -104,7 +104,7 @@ public class UserServiceImpl implements UserService {
             if (id < 0 && !readUser.getBooks().isEmpty()) {
                 throw new InvalidEntityException("Увы, Вашего пользователя нельзя удалить");
             }
-            userDao.delete(readUser);
+            userDao.delete(id);
         } catch (InvalidEntityException | UserDaoException e) {
             throw new UserServiceException(e);
         }

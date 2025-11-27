@@ -3,7 +3,8 @@ package dao;
 import config.DatabaseConfig;
 import entity.Book;
 import exceptions.BookDaoException;
-import exceptions.UserDaoException;
+import exceptions.MapperException;
+import mapper.BookMapper;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -11,8 +12,13 @@ import java.util.List;
 
 public class MySQLBasedBookDao implements BookDao {
     private static MySQLBasedBookDao INSTANCE;
-    private List<Book> books;
-    private UserDao userDao;
+    private BookMapper bookMapper;
+    //private static final String readAllBooksQuery = "SELECT id, name, author, page_number, user_id  FROM books ";
+    private static final String readAllBooksQuery = "SELECT b.id AS book_id, b.name AS book_name, author, page_number, u.id AS user_id, u.name AS user_name, email, age FROM books b JOIN users u ON b.user_id = u.id ORDERED BY b.id ";
+    private static final String addQuery = "INSERT INTO books (name, author, page_number, user_id) VALUES (?, ?, ?, ?)";
+    private static final String readQuery = "SELECT * FROM books WHERE id = ?";
+    private static final String updateQuery = "UPDATE books SET name = ?, author = ?, page_number = ?, user_id = ? WHERE id = ?";
+    private static final String deleteQuery = "DELETE IN books WHERE id = ?";
 
     public static MySQLBasedBookDao getInstance() {
         if (INSTANCE == null) {
@@ -22,101 +28,55 @@ public class MySQLBasedBookDao implements BookDao {
         return INSTANCE;
     }
 
-    private static void initializeDependencies(MySQLBasedBookDao mySQLBasedBookDao) {
-        mySQLBasedBookDao.userDao = MySQLBasedUserDao.getInstance();
-    }
-
     private MySQLBasedBookDao() {
     }
 
-    @Override
-    public void initializeCash() throws BookDaoException {
-        books = readAllBooks();
-    }
-
-    @Override
-    public List<Book> getBooks() {
-        return books;
-    }
-
-    @Override
-    public void setBooks(List<Book> books) {
-        this.books = books;
+    private static void initializeDependencies(MySQLBasedBookDao bookDao) {
+        bookDao.bookMapper = BookMapper.getInstance();
     }
 
     @Override
     public List<Book> readAllBooks() throws BookDaoException {
-        try (Connection connection = DatabaseConfig.getConnection()) {
-            List<Book> books = new ArrayList<>();
-            Statement statement = connection.createStatement();
+        try (Connection connection = DatabaseConfig.getConnection();
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(readAllBooksQuery)) {
 
-            ResultSet resultSet = statement.executeQuery("SELECT id, name, author, page_number, user_id  FROM books ");
+            List<Book> books = new ArrayList<>();
 
             while (resultSet.next()) {
-                Book newBook = new Book();
-                long id = resultSet.getLong("id");
-                newBook.setId(id);
-                String name = resultSet.getString("name");
-                newBook.setName(name);
-                String author = resultSet.getString("author");
-                newBook.setAuthor(author);
-                int pageNumber = resultSet.getInt("page_number");
-                newBook.setPagesNumber(pageNumber);
-                long userId = resultSet.getLong("user_id");
-                newBook.setUser(userDao.read(userId));
-                books.add(newBook.clone());
+                books.add(bookMapper.mapRSToObject(resultSet));
             }
             return books;
-        } catch (SQLException | CloneNotSupportedException | UserDaoException e) {
+        } catch (SQLException | MapperException e) {
             throw new BookDaoException(e);
         }
     }
 
     @Override
     public void add(Book book) throws BookDaoException {
-        try (Connection connection = DatabaseConfig.getConnection()) {
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO books (name, author, page_number, user_id) VALUES (?, ?, ?, ?)");
+        try (Connection connection = DatabaseConfig.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(addQuery)) {
 
-            preparedStatement.setString(1, book.getName());
-            preparedStatement.setString(2, book.getAuthor());
-            preparedStatement.setInt(3, book.getPagesNumber());
-            if (book.getUser() != null) {
-                preparedStatement.setLong(4, book.getUser().getId());
-            } else {
-                preparedStatement.setLong(4, Types.BIGINT);
-            }
+            bookMapper.mapObjectToStatement(preparedStatement, book);
             preparedStatement.executeUpdate();
-            System.out.println("Добавление в БД прошло успешно");
 
-        } catch (SQLException e) {
-            System.out.println("Добавление в БД провалено");
+        } catch (SQLException | MapperException e) {
             throw new BookDaoException(e);
         }
     }
 
     @Override
-    public Book read(long bookId) throws BookDaoException {
-        try (Connection connection = DatabaseConfig.getConnection()) {
+    public Book read(long id) throws BookDaoException {
+        try (Connection connection = DatabaseConfig.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(readQuery)) {
 
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM books WHERE id = ?");
-            preparedStatement.setLong(1, bookId);
+            bookMapper.mapObjectIdToStatement(preparedStatement, id);
             ResultSet resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
-                Book newBook = new Book();
-                long id = resultSet.getLong("id");
-                newBook.setId(id);
-                String name = resultSet.getString("name");
-                newBook.setName(name);
-                String author = resultSet.getString("author");
-                newBook.setAuthor(author);
-                int pageNumber = resultSet.getInt("page_number");
-                newBook.setPagesNumber(pageNumber);
-                long userId = resultSet.getLong("user_id");
-                newBook.setUser(userDao.read(userId));
-                return newBook.clone();
+                return bookMapper.mapRSToObject(resultSet);
             }
-        } catch (SQLException | CloneNotSupportedException | UserDaoException e) {
+        } catch (SQLException | MapperException e) {
             throw new BookDaoException(e);
         }
         return null;
@@ -124,37 +84,26 @@ public class MySQLBasedBookDao implements BookDao {
 
     @Override
     public void update(Book book) throws BookDaoException {
-        try (Connection connection = DatabaseConfig.getConnection()) {
-            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE books SET name = ?, author = ?, page_number = ?, user_id = ? WHERE id = ?");
-            preparedStatement.setString(1, book.getName());
-            preparedStatement.setString(2, book.getAuthor());
-            preparedStatement.setLong(3, book.getPagesNumber());
-            if (book.getUser() != null) {
-                preparedStatement.setLong(4, book.getUser().getId());
-            } else {
-                preparedStatement.setLong(4, Types.BIGINT);
-            }
-            preparedStatement.setLong(5, book.getId());
+        try (Connection connection = DatabaseConfig.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(updateQuery)) {
+
+            bookMapper.mapUpdateObjectToStatement(preparedStatement, book);
             preparedStatement.executeUpdate();
 
-            System.out.println("Обновление прошло успешно");
-        } catch (SQLException e) {
-            System.out.println("Обновление провалено");
+        } catch (SQLException | MapperException e) {
             throw new BookDaoException(e);
         }
     }
 
     @Override
-    public void delete(Book book) throws BookDaoException {
-        try (Connection connection = DatabaseConfig.getConnection()) {
-            PreparedStatement preparedStatement = connection.prepareStatement("DELETE IN books WHERE id = ?");
-            preparedStatement.setLong(1, book.getId());
+    public void delete(long id) throws BookDaoException {
+        try (Connection connection = DatabaseConfig.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(deleteQuery)) {
+
+            bookMapper.mapObjectIdToStatement(preparedStatement, id);
             preparedStatement.executeUpdate();
 
-            System.out.println("Удаление из БД выполнено");
-
-        } catch (SQLException e) {
-            System.out.println("Удаление из БД провалено");
+        } catch (SQLException | MapperException e) {
             throw new BookDaoException(e);
         }
     }

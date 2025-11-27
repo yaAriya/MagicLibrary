@@ -7,13 +7,6 @@ import exceptions.UserDaoException;
 import java.util.List;
 
 public interface UserDao {
-
-    void initializeCash() throws UserDaoException;
-
-    List<User> getUsers();
-
-    void setUsers(List<User> users);
-
     List<User> readAllUsers() throws UserDaoException;
 
     void add(User user) throws UserDaoException;
@@ -24,6 +17,6 @@ public interface UserDao {
 
     void update(User user) throws UserDaoException;
 
-    void delete(User user) throws UserDaoException;
+    void delete(long id) throws UserDaoException;
 
 }

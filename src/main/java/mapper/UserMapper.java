@@ -1,0 +1,74 @@
+package mapper;
+
+import entity.User;
+import exceptions.MapperException;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+public class UserMapper implements Mapper<User> {
+    private static UserMapper INSTANCE;
+
+    public static UserMapper getInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new UserMapper();
+        }
+        return INSTANCE;
+    }
+
+    private UserMapper() {
+    }
+
+    @Override
+    public User mapRSToObject(ResultSet resultSet) throws MapperException {
+        try {
+            User mappedUser = new User();
+            long id = resultSet.getLong("id");
+            mappedUser.setId(id);
+            String name = resultSet.getString("name");
+            mappedUser.setName(name);
+            String email = resultSet.getString("email");
+            mappedUser.setEmail(email);
+            int age = resultSet.getInt("age");
+            mappedUser.setAge(age);
+            //int уже после джоина будут все сведения про юзера. Просто вывести метод, который будет создавать этого юзера и добавлять
+            return mappedUser;
+        } catch (SQLException e) {
+            throw new MapperException(e);
+        }
+    }
+
+    @Override
+    public void mapObjectToStatement(PreparedStatement preparedStatement, User user) throws MapperException {
+        try {
+            preparedStatement.setString(1, user.getName());
+            preparedStatement.setString(2, user.getEmail());
+            preparedStatement.setInt(3, user.getAge());
+        } catch (SQLException e) {
+            throw new MapperException(e);
+        }
+    }
+
+    @Override
+    public void mapObjectIdToStatement(PreparedStatement preparedStatement, long id) throws MapperException {
+        try {
+            preparedStatement.setLong(1, id);
+        } catch (SQLException e) {
+            throw new MapperException(e);
+        }
+    }
+
+    @Override
+    public void mapUpdateObjectToStatement(PreparedStatement preparedStatement, User user) throws MapperException {
+        try {
+            preparedStatement.setString(1, user.getName());
+            preparedStatement.setString(2, user.getEmail());
+            preparedStatement.setInt(3, user.getAge());
+            preparedStatement.setLong(4, user.getId());
+        } catch (SQLException e) {
+            throw new MapperException(e);
+        }
+
+    }
+}

@@ -30,7 +30,7 @@ public class BookServiceImpl implements BookService {
         bookService.bookValidator = BookValidator.getInstance();
     }
 
-    @Override
+
     public void initializeCash() throws BookServiceException {
         try {
             bookDao.initializeCash();
@@ -51,10 +51,10 @@ public class BookServiceImpl implements BookService {
     @Override
     public void add(Book book) throws BookServiceException {
         try {
-            if (!bookValidator.validate(book) && bookDao.getBooks().contains(book)) {
+            if (!bookValidator.validate(book) && bookDao.readAllBooks().contains(book)) {
                 throw new InvalidEntityException("Параметры, введенные Вами некорректны");
             }
-            for (Book tempBook : bookDao.getBooks()) {
+            for (Book tempBook : bookDao.readAllBooks()) {
                 if (tempBook.getId() == book.getId()) {
                     throw new InvalidEntityException("Книга с таким айди уже существует");
                 }
@@ -97,11 +97,10 @@ public class BookServiceImpl implements BookService {
     @Override
     public void delete(long id) throws BookServiceException {
         try {
-            Book readBook = read(id);
-            if (id < 0 && readBook.getUser() != null) {
-                throw new InvalidEntityException("Увы, Вашу книгу нельзя удалить");
+            if (id < 0 && read(id).getUser() != null) {
+                throw new InvalidEntityException("Cannot delete your book");
             }
-            bookDao.delete(readBook);
+            bookDao.delete(id);
         } catch (InvalidEntityException | BookDaoException e) {
             throw new BookServiceException(e);
         }

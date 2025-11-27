@@ -36,7 +36,6 @@ public class FileBasedUserDao implements UserDao {
         userDao.userFileWriter = UserFileWriterImpl.getInstance();
     }
 
-    @Override
     public void initializeCash() throws UserDaoException {
         try {
             users = userFileReader.readUsersFromFile();
@@ -44,7 +43,6 @@ public class FileBasedUserDao implements UserDao {
             throw new UserDaoException(e);
         }
     }
-
 
     public List<User> getUsers() {
         return users;
@@ -120,8 +118,8 @@ public class FileBasedUserDao implements UserDao {
     }
 
     @Override
-    public void delete(User user) throws UserDaoException {
-        getUsers().remove(user);
+    public void delete(long id) throws UserDaoException {
+        getUsers().remove(read(id));
         try {
             userFileWriter.writeUsersToFile(getUsers());
         } catch (UserFileWriterException e) {

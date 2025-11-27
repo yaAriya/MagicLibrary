@@ -4,18 +4,8 @@ import entity.Book;
 import entity.User;
 
 import java.util.List;
-import java.util.Map;
 
 public class PrinterImpl implements Printer {
-    private static PrinterImpl INSTANCE;
-
-    public static PrinterImpl getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new PrinterImpl();
-        }
-        return INSTANCE;
-    }
-
     @Override
     public void printAllBooks(List<Book> books) {
         books

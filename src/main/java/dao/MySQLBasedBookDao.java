@@ -20,21 +20,6 @@ public class MySQLBasedBookDao implements BookDao {
     private static final String updateQuery = "UPDATE books SET name = ?, author = ?, page_number = ?, user_id = ? WHERE id = ?";
     private static final String deleteQuery = "DELETE IN books WHERE id = ?";
 
-    public static MySQLBasedBookDao getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new MySQLBasedBookDao();
-            initializeDependencies(INSTANCE);
-        }
-        return INSTANCE;
-    }
-
-    private MySQLBasedBookDao() {
-    }
-
-    private static void initializeDependencies(MySQLBasedBookDao bookDao) {
-        bookDao.bookMapper = BookMapper.getInstance();
-    }
-
     @Override
     public List<Book> readAllBooks() throws BookDaoException {
         try (Connection connection = DatabaseConfig.getConnection();

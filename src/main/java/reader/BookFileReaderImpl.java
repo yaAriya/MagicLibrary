@@ -14,24 +14,6 @@ import java.util.List;
 public class BookFileReaderImpl implements BookFileReader {
     private static final String BOOK_FILE_PATH = "src/main/resources/book.txt";
 
-    private static BookFileReaderImpl INSTANCE;
-    private BookConverterImpl bookConverter;
-
-    public static BookFileReaderImpl getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new BookFileReaderImpl();
-            initializeDependencies(INSTANCE);
-        }
-        return INSTANCE;
-    }
-
-    private BookFileReaderImpl() {
-    }
-
-    private static void initializeDependencies(BookFileReaderImpl bookFileReader) {
-        bookFileReader.bookConverter = BookConverterImpl.getInstance();
-    }
-
     @Override
     public List<Book> readBooksFromFile() throws BookFileReaderException {
         try (BufferedReader reader = new BufferedReader(new FileReader(BOOK_FILE_PATH))) {

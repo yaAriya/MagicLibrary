@@ -5,37 +5,12 @@ import entity.User;
 import exceptions.UserDaoException;
 import exceptions.UserFileReaderException;
 import exceptions.UserFileWriterException;
-import reader.UserFileReader;
-import reader.UserFileReaderImpl;
-import writer.UserFileWriter;
-import writer.UserFileWriterImpl;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class FileBasedUserDao implements UserDao {
-    private static FileBasedUserDao INSTANCE;
     private List<User> users;
-    private UserFileReader userFileReader;
-    private UserFileWriter userFileWriter;
-
-    public static FileBasedUserDao getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new FileBasedUserDao();
-            initializeDependencies(INSTANCE);
-
-        }
-        return INSTANCE;
-    }
-
-    private FileBasedUserDao() {
-    }
-
-    private static void initializeDependencies(FileBasedUserDao userDao) {
-        userDao.userFileReader = UserFileReaderImpl.getInstance();
-        userDao.userFileWriter = UserFileWriterImpl.getInstance();
-    }
-
     public void initializeCash() throws UserDaoException {
         try {
             users = userFileReader.readUsersFromFile();

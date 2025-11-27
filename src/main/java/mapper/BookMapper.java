@@ -1,7 +1,6 @@
 package mapper;
 
 import entity.Book;
-import entity.User;
 import exceptions.MapperException;
 
 import java.sql.PreparedStatement;
@@ -10,18 +9,6 @@ import java.sql.SQLException;
 import java.sql.Types;
 
 public class BookMapper implements Mapper<Book> {
-    private static BookMapper INSTANCE;
-
-    public static BookMapper getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new BookMapper();
-        }
-        return INSTANCE;
-    }
-
-    private BookMapper() {
-    }
-
     @Override
     public Book mapRSToObject(ResultSet resultSet) throws MapperException {
         try {

@@ -13,26 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FileBasedBookDao implements BookDao {
-    private static FileBasedBookDao INSTANCE;
     private List<Book> books;
-    private BookFileReader bookFileReader;
-    private BookFileWriter bookFileWriter;
-
-    public static FileBasedBookDao getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new FileBasedBookDao();
-            initializeDependencies(INSTANCE);
-        }
-        return INSTANCE;
-    }
-
-    private FileBasedBookDao() {
-    }
-
-    private static void initializeDependencies(FileBasedBookDao bookDao) {
-        bookDao.bookFileReader = BookFileReaderImpl.getInstance();
-        bookDao.bookFileWriter = BookFileWriterImpl.getInstance();
-    }
 
     public void initializeCash() throws BookDaoException {
         try {

@@ -3,17 +3,7 @@ package validator;
 import entity.User;
 
 public class UserValidator implements Validator<User> {
-    private static UserValidator INSTANCE;
-
-    public static UserValidator getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new UserValidator();
-        }
-        return INSTANCE;
-    }
-
-
-    @Override
+   @Override
     public boolean validate(User user) {
         return validateId(user.getId()) && validateName(user.getName()) && validateEmail(user.getEmail()) && validateAge(user.getAge());
     }

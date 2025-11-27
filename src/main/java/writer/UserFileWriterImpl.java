@@ -1,6 +1,5 @@
 package writer;
 
-import converter.UserConverterImpl;
 import entity.User;
 import exceptions.UserFileWriterException;
 
@@ -10,25 +9,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class UserFileWriterImpl implements UserFileWriter {
-    private static UserFileWriterImpl INSTANCE;
     private static final String USER_FILE_PATH = "src/main/resources/user.txt";
-
-    private UserConverterImpl userConverter;
-
-    public static UserFileWriterImpl getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new UserFileWriterImpl();
-            initializeDependencies(INSTANCE);
-        }
-        return INSTANCE;
-    }
-
-    private UserFileWriterImpl() {
-    }
-
-    private static void initializeDependencies(UserFileWriterImpl userFileWriter) {
-        userFileWriter.userConverter = UserConverterImpl.getInstance();
-    }
 
     @Override
     public void addUserToFile(User user) throws UserFileWriterException {

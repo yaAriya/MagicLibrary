@@ -13,27 +13,6 @@ public class BookFileWriterImpl implements BookFileWriter {
 
     private static final String BOOK_FILE_PATH = "src/main/resources/book.txt";
 
-    private static BookFileWriterImpl INSTANCE;
-
-    private BookConverterImpl bookConverter;
-
-    public static BookFileWriterImpl getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new BookFileWriterImpl();
-            initializeDependencies(INSTANCE);
-        }
-        return INSTANCE;
-    }
-
-    private BookFileWriterImpl() {
-    }
-
-
-    private static void initializeDependencies(BookFileWriterImpl bookFileWriter) {
-        bookFileWriter.bookConverter = BookConverterImpl.getInstance();
-
-    }
-
     @Override
     public void addBookToFile(Book book) throws BookFileWriterException {
         try (FileWriter writer = new FileWriter(BOOK_FILE_PATH, true)) {

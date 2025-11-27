@@ -7,21 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class UserConverterImpl implements UserConverter {
-
     private static final String PARAMETER = ",";
-
-    private static UserConverterImpl INSTANCE;
-
-    public static UserConverterImpl getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new UserConverterImpl();
-        }
-        return INSTANCE;
-    }
-
-    private UserConverterImpl() {
-    }
-
 
     @Override
     public User convertLineToUser(String line) {

@@ -1,36 +1,11 @@
 package service;
 
-import dao.BookDao;
-import dao.MySQLBasedBookDao;
 import entity.Book;
 import exceptions.*;
-import validator.BookValidator;
-import validator.Validator;
 
 import java.util.List;
 
 public class BookServiceImpl implements BookService {
-    private static BookServiceImpl INSTANCE;
-    private BookDao bookDao;
-    private Validator<Book> bookValidator;
-
-    public static BookServiceImpl getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new BookServiceImpl();
-            initializeDependencies(INSTANCE);
-        }
-        return INSTANCE;
-    }
-
-    private BookServiceImpl() {
-    }
-
-    private static void initializeDependencies(BookServiceImpl bookService) {
-        bookService.bookDao = MySQLBasedBookDao.getInstance();
-        bookService.bookValidator = BookValidator.getInstance();
-    }
-
-
     public void initializeCash() throws BookServiceException {
         try {
             bookDao.initializeCash();

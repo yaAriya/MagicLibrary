@@ -1,38 +1,12 @@
 package service;
 
-import dao.MySQLBasedUserDao;
-import dao.UserDao;
 import entity.Book;
 import entity.User;
 import exceptions.*;
-import validator.UserValidator;
-import validator.Validator;
 
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
-    private static UserServiceImpl INSTANCE;
-    private UserDao userDao;
-    private BookService bookService;
-    private Validator<User> userValidator;
-
-    public static UserServiceImpl getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new UserServiceImpl();
-            initializeDependencies(INSTANCE);
-        }
-        return INSTANCE;
-    }
-
-    private UserServiceImpl() {
-    }
-
-    private static void initializeDependencies(UserServiceImpl userService) {
-        userService.userDao = MySQLBasedUserDao.getInstance();
-        userService.bookService = BookServiceImpl.getInstance();
-        userService.userValidator = UserValidator.getInstance();
-    }
-
     @Override
     public void initializeCash() throws UserServiceException {
         try {

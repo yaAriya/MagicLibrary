@@ -8,18 +8,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UserMapper implements Mapper<User> {
-    private static UserMapper INSTANCE;
-
-    public static UserMapper getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new UserMapper();
-        }
-        return INSTANCE;
-    }
-
-    private UserMapper() {
-    }
-
     @Override
     public User mapRSToObject(ResultSet resultSet) throws MapperException {
         try {

@@ -19,22 +19,7 @@ public class MySQLBasedUserDao implements UserDao {
     private static final String readQuery = "SELECT * FROM users WHERE id = ? ";
     private static final String updateQuery = "UPDATE users SET name = ?, email = ?, age = ? WHERE id = ?";
     private static final String deleteQuery = "DELETE FROM users WHERE id = ?";
-
-    public static MySQLBasedUserDao getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new MySQLBasedUserDao();
-            initializeDependencies(INSTANCE);
-        }
-        return INSTANCE;
-    }
-
-    private static void initializeDependencies(MySQLBasedUserDao userDao) {
-        userDao.userMapper = UserMapper.getInstance();
-    }
-
-    private MySQLBasedUserDao() {
-    }
-
+    
     @Override
     public List<User> readAllUsers() throws UserDaoException {
         try (Connection connection = DatabaseConfig.getConnection()) {

@@ -5,15 +5,25 @@ import exceptions.BookDaoException;
 import exceptions.BookFileReaderException;
 import exceptions.BookFileWriterException;
 import reader.BookFileReader;
-import reader.BookFileReaderImpl;
 import writer.BookFileWriter;
 import writer.BookFileWriterImpl;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 public class FileBasedBookDao implements BookDao {
     private List<Book> books;
+    private static BookFileReader bookFileReader;
+    private static BookFileWriter bookFileWriter;
+
+    public void setBookFileReader(BookFileReader bookFileReader){
+        FileBasedBookDao.bookFileReader = bookFileReader;
+    }
+
+    public void setBookFileWriter(BookFileWriter bookFileWriter){
+        FileBasedBookDao.bookFileWriter = bookFileWriter;
+    }
 
     public void initializeCash() throws BookDaoException {
         try {

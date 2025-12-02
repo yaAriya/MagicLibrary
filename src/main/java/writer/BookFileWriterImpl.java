@@ -1,6 +1,6 @@
 package writer;
 
-import converter.BookConverterImpl;
+import converter.BookConverter;
 import entity.Book;
 import exceptions.BookFileWriterException;
 
@@ -10,8 +10,12 @@ import java.io.IOException;
 import java.util.List;
 
 public class BookFileWriterImpl implements BookFileWriter {
-
     private static final String BOOK_FILE_PATH = "src/main/resources/book.txt";
+    private static BookConverter bookConverter;
+
+    public void setBookConverter(BookConverter bookConverter){
+        BookFileWriterImpl.bookConverter = bookConverter;
+    }
 
     @Override
     public void addBookToFile(Book book) throws BookFileWriterException {

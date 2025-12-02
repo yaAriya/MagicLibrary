@@ -1,29 +1,44 @@
 package invoker;
 
+import applicationContext.ApplicationContextImpl;
 import config.DatabaseConfig;
 import entity.Book;
 import entity.User;
+import exceptions.ApplicationContextException;
 import exceptions.UserDaoException;
 import printer.Printer;
-import printer.PrinterImpl;
 import service.BookService;
-import service.BookServiceImpl;
 import service.UserService;
-import service.UserServiceImpl;
 
 
 public class Main {
-    public static UserService userService = UserServiceImpl.getInstance();
-    public static BookService bookService = BookServiceImpl.getInstance();
-    public static Printer printer = PrinterImpl.getInstance();
+    private static UserService userService;
+    private static BookService bookService;
+    private static Printer printer;
+
+    public void setBookService(BookService bookService){
+        Main.bookService = bookService;
+    }
+
+    public void setUserService(UserService userService){
+        Main.userService = userService;
+    }
+
+    public void setPrinter(Printer printer){
+        Main.printer = printer;
+    }
 
 
-    public static void main(String[] args) throws UserDaoException {
+
+
+    public static void main(String[] args) throws ApplicationContextException {
+        ApplicationContextImpl applicationContext = new ApplicationContextImpl();
+        applicationContext.initializeContext();
         DatabaseConfig.testConnection();
-        userService.initializeCash();
-        bookService.initializeCash();
+        //userService.initializeCash(); в бук дао файл
+        //bookService.initializeCash();
 
-        User firstUser = new User(1, "Lisa", "Lisochka@gmail.com", 11);
+       /* User firstUser = new User(1, "Lisa", "Lisochka@gmail.com", 11);
         User secondUser = new User(4, "Lera", "Lerka@gmail.com", 15);
         userService.add(firstUser);
         userService.add(secondUser);
@@ -34,7 +49,7 @@ public class Main {
         printer.printAllBooks(bookService.readAllBooks());
 
         bookService.update((new Book(4, "Gone with the Wind", "Margaret Mitchell", 2000)));
-        printer.printBookObject(bookService.read(4));
+        printer.printBookObject(bookService.read(4));*/
         /*userService.updateInDatabase( new User(1, "Lisa", "Lisochka@gmail.com", 11));
         printer.printAllUsersFromMap(userService.readAllUsersFromDatabase());*/
         //userService.delete(1);

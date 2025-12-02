@@ -1,19 +1,29 @@
 package service;
 
+import dao.BookDao;
+import dao.UserDao;
 import entity.Book;
 import entity.User;
 import exceptions.*;
+import validator.UserValidator;
 
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
-    @Override
-    public void initializeCash() throws UserServiceException {
-        try {
-            userDao.initializeCash();
-        } catch (UserDaoException e) {
-            throw new UserServiceException();
-        }
+    private static UserDao userDao;
+    private static UserValidator userValidator;
+    private static BookService bookService;
+
+    public void setUserDao(UserDao userDao){
+        UserServiceImpl.userDao = userDao;
+    }
+
+    public void setUserValidator(UserValidator userValidator){
+        UserServiceImpl.userValidator = userValidator;
+    }
+
+    public void setBookService(BookService bookService){
+        UserServiceImpl.bookService = bookService;
     }
 
     @Override

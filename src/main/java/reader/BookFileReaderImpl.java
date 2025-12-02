@@ -1,9 +1,11 @@
 package reader;
 
+import converter.BookConverter;
 import converter.BookConverterImpl;
 import entity.Book;
 import exceptions.BookFileReaderException;
 import exceptions.ConverterException;
+import writer.BookFileWriterImpl;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -13,6 +15,11 @@ import java.util.List;
 
 public class BookFileReaderImpl implements BookFileReader {
     private static final String BOOK_FILE_PATH = "src/main/resources/book.txt";
+    private static BookConverter bookConverter;
+
+    public void setBookConverter(BookConverter bookConverter){
+        BookFileReaderImpl.bookConverter = bookConverter;
+    }
 
     @Override
     public List<Book> readBooksFromFile() throws BookFileReaderException {

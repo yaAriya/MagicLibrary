@@ -1,17 +1,22 @@
 package service;
 
+import dao.BookDao;
 import entity.Book;
 import exceptions.*;
+import validator.BookValidator;
 
 import java.util.List;
 
 public class BookServiceImpl implements BookService {
-    public void initializeCash() throws BookServiceException {
-        try {
-            bookDao.initializeCash();
-        } catch (BookDaoException e) {
-            throw new BookServiceException(e);
-        }
+    private static BookDao bookDao;
+    private static BookValidator bookValidator;
+
+    public void setBookDao(BookDao bookDao){
+        BookServiceImpl.bookDao = bookDao;
+    }
+
+    public void setBookValidator(BookValidator bookValidator){
+        BookServiceImpl.bookValidator = bookValidator;
     }
 
     @Override

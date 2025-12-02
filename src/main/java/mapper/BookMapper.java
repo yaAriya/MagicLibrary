@@ -22,7 +22,7 @@ public class BookMapper implements Mapper<Book> {
             int pageNumber = resultSet.getInt("page_number");
             mappedBook.setPagesNumber(pageNumber);
             long userId = resultSet.getLong("user_id");
-            mappedBook.setUser(UserMapper.getInstance().mapRSToObject(resultSet));
+            //mappedBook.setUser(); mappedBook
             return mappedBook;
         } catch (SQLException e) {
             throw new MapperException(e);

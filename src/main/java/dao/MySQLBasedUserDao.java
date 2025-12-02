@@ -12,14 +12,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MySQLBasedUserDao implements UserDao {
-    private static MySQLBasedUserDao INSTANCE;
-    private UserMapper userMapper;
     private static final String readAllUsersQuery = "SELECT id, name, email, age FROM users";
     private static final String addQuery = "INSERT INTO users (name, email, age) VALUES (?, ?, ?)";
     private static final String readQuery = "SELECT * FROM users WHERE id = ? ";
     private static final String updateQuery = "UPDATE users SET name = ?, email = ?, age = ? WHERE id = ?";
     private static final String deleteQuery = "DELETE FROM users WHERE id = ?";
-    
+    private static UserMapper userMapper;
+
+    public void setUserMapper(UserMapper userMapper){
+        MySQLBasedUserDao.userMapper = userMapper;
+    }
+
     @Override
     public List<User> readAllUsers() throws UserDaoException {
         try (Connection connection = DatabaseConfig.getConnection()) {

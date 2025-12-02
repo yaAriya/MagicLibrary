@@ -1,11 +1,11 @@
 package applicationContext;
 
-import java.util.HashMap;
-import java.util.Map;
+import exceptions.ApplicationContextException;
 
-public class ApplicationContext {
-    public void initializeContext(){
-        Map<String, Object> beanMap = new HashMap<>();
+public interface ApplicationContext {
+    void initializeContext() throws ApplicationContextException;
 
-    }
+    void register(Object object);
+
+    Object getInstance(String className) throws ApplicationContextException;
 }

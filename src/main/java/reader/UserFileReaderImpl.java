@@ -1,5 +1,5 @@
 package reader;
-
+import converter.UserConverter;
 import entity.User;
 import exceptions.UserFileReaderException;
 
@@ -11,6 +11,11 @@ import java.util.List;
 
 public class UserFileReaderImpl implements UserFileReader {
     private static final String USER_FILE_PATH = "src/main/resources/user.txt";
+    private static UserConverter userConverter;
+
+    public void setUserConverter(UserConverter userConverter){
+        UserFileReaderImpl.userConverter = userConverter;
+    }
 
     @Override
     public List<User> readUsersFromFile() throws UserFileReaderException {

@@ -1,5 +1,6 @@
 package writer;
 
+import converter.UserConverter;
 import entity.User;
 import exceptions.UserFileWriterException;
 
@@ -10,6 +11,11 @@ import java.util.List;
 
 public class UserFileWriterImpl implements UserFileWriter {
     private static final String USER_FILE_PATH = "src/main/resources/user.txt";
+    private static UserConverter userConverter;
+
+    public void setUserConverter(UserConverter userConverter){
+        UserFileWriterImpl.userConverter = userConverter;
+    }
 
     @Override
     public void addUserToFile(User user) throws UserFileWriterException {

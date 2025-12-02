@@ -11,14 +11,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MySQLBasedBookDao implements BookDao {
-    private static MySQLBasedBookDao INSTANCE;
-    private BookMapper bookMapper;
     //private static final String readAllBooksQuery = "SELECT id, name, author, page_number, user_id  FROM books ";
     private static final String readAllBooksQuery = "SELECT b.id AS book_id, b.name AS book_name, author, page_number, u.id AS user_id, u.name AS user_name, email, age FROM books b JOIN users u ON b.user_id = u.id ORDERED BY b.id ";
     private static final String addQuery = "INSERT INTO books (name, author, page_number, user_id) VALUES (?, ?, ?, ?)";
     private static final String readQuery = "SELECT * FROM books WHERE id = ?";
     private static final String updateQuery = "UPDATE books SET name = ?, author = ?, page_number = ?, user_id = ? WHERE id = ?";
     private static final String deleteQuery = "DELETE IN books WHERE id = ?";
+    private static BookMapper bookMapper;
+
+    public void setBookMapper(BookMapper bookMapper){
+        MySQLBasedBookDao.bookMapper = bookMapper;
+    }
 
     @Override
     public List<Book> readAllBooks() throws BookDaoException {

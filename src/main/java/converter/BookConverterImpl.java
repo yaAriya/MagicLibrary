@@ -1,15 +1,28 @@
 package converter;
 
+import dao.FileBasedUserDao;
+import dao.UserDao;
 import entity.Book;
 import entity.User;
 import exceptions.ConverterException;
 import exceptions.UserDaoException;
+import service.UserService;
+import service.UserServiceImpl;
 
 import java.util.Arrays;
 
 public class BookConverterImpl implements BookConverter {
-
     private static final String PARAMETER = ",";
+    private static UserService userService;
+    private static UserDao userDao;
+
+    public void setUserService(UserService userService){
+        BookConverterImpl.userService = userService;
+    }
+
+    public void setUserDao(UserDao userDao){
+        BookConverterImpl.userDao = userDao;
+    }
 
     @Override
     public Book convertLineToBook(String line) throws ConverterException {

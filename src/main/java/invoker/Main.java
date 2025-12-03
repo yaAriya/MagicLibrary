@@ -2,54 +2,74 @@ package invoker;
 
 import applicationContext.ApplicationContextImpl;
 import config.DatabaseConfig;
+import dao.FileBasedBookDao;
+import dao.FileBasedUserDao;
 import entity.Book;
 import entity.User;
-import exceptions.ApplicationContextException;
+import exceptions.BookDaoException;
 import exceptions.UserDaoException;
 import printer.Printer;
 import service.BookService;
 import service.UserService;
 
 
+
 public class Main {
-    private static UserService userService;
-    private static BookService bookService;
-    private static Printer printer;
+    private FileBasedBookDao fileBasedBookDao;
+    private FileBasedUserDao fileBasedUserDao;
+    private UserService userService;
+    private BookService bookService;
+    private Printer printer;
+
+    public void setFileBasedBookDao(FileBasedBookDao fileBasedBookDao){
+        this.fileBasedBookDao = fileBasedBookDao;
+    }
+
+    public void setFileBasedUserDao(FileBasedUserDao fileBasedUserDao){
+        this.fileBasedUserDao = fileBasedUserDao;
+    }
 
     public void setBookService(BookService bookService){
-        Main.bookService = bookService;
+        this.bookService = bookService;
     }
 
     public void setUserService(UserService userService){
-        Main.userService = userService;
+        this.userService = userService;
     }
 
     public void setPrinter(Printer printer){
-        Main.printer = printer;
+        this.printer = printer;
     }
 
 
-
-
-    public static void main(String[] args) throws ApplicationContextException {
+    public static void main(String[] args) throws BookDaoException, UserDaoException {
         ApplicationContextImpl applicationContext = new ApplicationContextImpl();
         applicationContext.initializeContext();
-        DatabaseConfig.testConnection();
-        //userService.initializeCash(); в бук дао файл
-        //bookService.initializeCash();
 
-       /* User firstUser = new User(1, "Lisa", "Lisochka@gmail.com", 11);
+        Main mainApplication = ApplicationContextImpl.getMainInstance();
+
+        DatabaseConfig databaseConfig = new DatabaseConfig();
+        databaseConfig.testConnection();
+
+        mainApplication.fileBasedUserDao.initializeCash();
+        mainApplication.fileBasedBookDao.initializeCash();
+
+
+        /*FileBasedUserDao userDao = new FileBasedUserDao();
+        userDao.initializeCash();*/
+
+        User firstUser = new User(1, "Lisa", "Lisochka@gmail.com", 11);
         User secondUser = new User(4, "Lera", "Lerka@gmail.com", 15);
-        userService.add(firstUser);
-        userService.add(secondUser);
-        printer.printAllUsers(userService.readAllUsers());
+        mainApplication.userService.add(firstUser);
+        mainApplication.userService.add(secondUser);
+        mainApplication.printer.printAllUsers(mainApplication.userService.readAllUsers());
 
         Book firstBook = new Book(4, "Gone with the Wind", "Margaret Mitchell", 333);
-        bookService.add(firstBook);
-        printer.printAllBooks(bookService.readAllBooks());
+        mainApplication.bookService.add(firstBook);
+        mainApplication.printer.printAllBooks(mainApplication.bookService.readAllBooks());
 
-        bookService.update((new Book(4, "Gone with the Wind", "Margaret Mitchell", 2000)));
-        printer.printBookObject(bookService.read(4));*/
+        mainApplication.bookService.update((new Book(4, "Gone with the Wind", "Margaret Mitchell", 2000)));
+        mainApplication.printer.printBookObject(mainApplication.bookService.read(4));
         /*userService.updateInDatabase( new User(1, "Lisa", "Lisochka@gmail.com", 11));
         printer.printAllUsersFromMap(userService.readAllUsersFromDatabase());*/
         //userService.delete(1);

@@ -17,15 +17,16 @@ public class MySQLBasedBookDao implements BookDao {
     private static final String readQuery = "SELECT * FROM books WHERE id = ?";
     private static final String updateQuery = "UPDATE books SET name = ?, author = ?, page_number = ?, user_id = ? WHERE id = ?";
     private static final String deleteQuery = "DELETE IN books WHERE id = ?";
-    private static BookMapper bookMapper;
+    private BookMapper bookMapper;
 
-    public void setBookMapper(BookMapper bookMapper){
-        MySQLBasedBookDao.bookMapper = bookMapper;
+    public void setBookMapper(BookMapper bookMapper) {
+        this.bookMapper = bookMapper;
     }
 
     @Override
     public List<Book> readAllBooks() throws BookDaoException {
-        try (Connection connection = DatabaseConfig.getConnection();
+        DatabaseConfig databaseConfig = new DatabaseConfig();
+        try (Connection connection = databaseConfig.getConnection();
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(readAllBooksQuery)) {
 
@@ -42,7 +43,8 @@ public class MySQLBasedBookDao implements BookDao {
 
     @Override
     public void add(Book book) throws BookDaoException {
-        try (Connection connection = DatabaseConfig.getConnection();
+        DatabaseConfig databaseConfig = new DatabaseConfig();
+        try (Connection connection = databaseConfig.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(addQuery)) {
 
             bookMapper.mapObjectToStatement(preparedStatement, book);
@@ -55,7 +57,8 @@ public class MySQLBasedBookDao implements BookDao {
 
     @Override
     public Book read(long id) throws BookDaoException {
-        try (Connection connection = DatabaseConfig.getConnection();
+        DatabaseConfig databaseConfig = new DatabaseConfig();
+        try (Connection connection = databaseConfig.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(readQuery)) {
 
             bookMapper.mapObjectIdToStatement(preparedStatement, id);
@@ -72,7 +75,8 @@ public class MySQLBasedBookDao implements BookDao {
 
     @Override
     public void update(Book book) throws BookDaoException {
-        try (Connection connection = DatabaseConfig.getConnection();
+        DatabaseConfig databaseConfig = new DatabaseConfig();
+        try (Connection connection = databaseConfig.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(updateQuery)) {
 
             bookMapper.mapUpdateObjectToStatement(preparedStatement, book);
@@ -85,7 +89,8 @@ public class MySQLBasedBookDao implements BookDao {
 
     @Override
     public void delete(long id) throws BookDaoException {
-        try (Connection connection = DatabaseConfig.getConnection();
+        DatabaseConfig databaseConfig = new DatabaseConfig();
+        try (Connection connection = databaseConfig.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(deleteQuery)) {
 
             bookMapper.mapObjectIdToStatement(preparedStatement, id);

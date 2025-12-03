@@ -8,15 +8,15 @@ import validator.BookValidator;
 import java.util.List;
 
 public class BookServiceImpl implements BookService {
-    private static BookDao bookDao;
-    private static BookValidator bookValidator;
+    private BookDao bookDao;
+    private BookValidator bookValidator;
 
     public void setBookDao(BookDao bookDao){
-        BookServiceImpl.bookDao = bookDao;
+        this.bookDao = bookDao;
     }
 
     public void setBookValidator(BookValidator bookValidator){
-        BookServiceImpl.bookValidator = bookValidator;
+        this.bookValidator = bookValidator;
     }
 
     @Override

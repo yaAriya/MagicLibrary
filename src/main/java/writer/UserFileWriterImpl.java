@@ -11,10 +11,10 @@ import java.util.List;
 
 public class UserFileWriterImpl implements UserFileWriter {
     private static final String USER_FILE_PATH = "src/main/resources/user.txt";
-    private static UserConverter userConverter;
+    private UserConverter userConverter;
 
     public void setUserConverter(UserConverter userConverter){
-        UserFileWriterImpl.userConverter = userConverter;
+        this.userConverter = userConverter;
     }
 
     @Override

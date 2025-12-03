@@ -3,7 +3,6 @@ package applicationContext;
 import converter.BookConverterImpl;
 import converter.UserConverterImpl;
 import dao.*;
-import exceptions.ApplicationContextException;
 import invoker.Main;
 import mapper.BookMapper;
 import mapper.UserMapper;
@@ -24,90 +23,90 @@ import java.util.Map;
 public class ApplicationContextImpl implements ApplicationContext {
     private static final Map<String, Object> instancies = new HashMap<>();
 
-    private void selectBookDaoImplementation() {
-        BookDao selectedBookDao;
-        boolean selectedBookDaoImplementation = true;
-
-        if (selectedBookDaoImplementation) {
-            selectedBookDao = new MySQLBasedBookDao();
-            register(selectedBookDao);
-        } else {
-            selectedBookDao = new FileBasedBookDao();
-            register(selectedBookDao);
-        }
-    }
-
-    private void selectUserDaoImplementation() {
-        UserDao selectedUserDao;
-        boolean selectedUserDaoImplementation = true;
-
-        if (selectedUserDaoImplementation) {
-            selectedUserDao = new MySQLBasedUserDao();
-            register(selectedUserDao);
-        } else {
-            selectedUserDao = new FileBasedUserDao();
-            register(selectedUserDao);
-        }
-    }
-
-    @Override
-    public void initializeContext() throws ApplicationContextException {
+    public void initializeContext() {
         initializeDataAccessLayer();
         initializeValidationLayer();
         businessLevel();
         controllerLevel();
+
+        dependencyInjectionDataAccessLayer();
+        dependencyInjectionBusinessLayer();
+        dependencyInjectionControllerLayer();
     }
 
-    private void initializeDataAccessLayer() throws ApplicationContextException {
-        selectBookDaoImplementation();
+    public static Main getMainInstance() {
+        return (Main) instancies.get("Main");
+    }
 
-        if (getInstance("MySQLBasedBookDao") != null) {
-            BookMapper bookMapper = new BookMapper();
-            register(bookMapper);
+    private void initializeDataAccessLayer() {
+        BookMapper bookMapper = new BookMapper();
+        register(bookMapper);
 
-            MySQLBasedBookDao bookDao = (MySQLBasedBookDao) getInstance("MySQLBasedBookDao");
-            bookDao.setBookMapper(bookMapper);
-        } else {
-            BookConverterImpl bookConverter = new BookConverterImpl();
-            register(bookConverter);
+        MySQLBasedBookDao mySQLBasedBookDao = new MySQLBasedBookDao();
+        register(mySQLBasedBookDao);
 
-            BookFileReaderImpl bookFileReader = new BookFileReaderImpl();
-            register(bookFileReader);
-            bookFileReader.setBookConverter(bookConverter);
 
-            BookFileWriterImpl bookFileWriter = new BookFileWriterImpl();
-            register(bookFileWriter);
-            bookFileWriter.setBookConverter(bookConverter);
+        BookConverterImpl bookConverter = new BookConverterImpl();
+        register(bookConverter);
 
-            FileBasedBookDao bookDao = (FileBasedBookDao) getInstance("FileBasedBookDao");
-            bookDao.setBookFileReader(bookFileReader);
-            bookDao.setBookFileWriter(bookFileWriter);
-        }
+        BookFileReaderImpl bookFileReader = new BookFileReaderImpl();
+        register(bookFileReader);
 
-        selectUserDaoImplementation();
+        BookFileWriterImpl bookFileWriter = new BookFileWriterImpl();
+        register(bookFileWriter);
 
-        if (getInstance("MySQLBasedUserDao") != null) {
-            UserMapper userMapper = new UserMapper();
-            register(userMapper);
+        FileBasedBookDaoImpl fileBasedBookDao = new FileBasedBookDaoImpl();
+        register(fileBasedBookDao);
 
-            MySQLBasedUserDao userDao = (MySQLBasedUserDao) getInstance("MySQLBasedUserDao");
-            userDao.setUserMapper(userMapper);
-        } else {
-            UserConverterImpl userConverter = new UserConverterImpl();
-            register(userConverter);
 
-            UserFileReaderImpl userFileReader = new UserFileReaderImpl();
-            register(userFileReader);
-            userFileReader.setUserConverter(userConverter);
+        UserMapper userMapper = new UserMapper();
+        register(userMapper);
 
-            UserFileWriterImpl userFileWriter = new UserFileWriterImpl();
-            register(userFileWriter);
-            userFileWriter.setUserConverter(userConverter);
+        MySQLBasedUserDao mySQLBasedUserDao = new MySQLBasedUserDao();
+        register(mySQLBasedUserDao);
 
-            FileBasedUserDao userDao = (FileBasedUserDao) getInstance("FileBasedUserDao");
-            userDao.setUserFileReader(userFileReader);
-            userDao.setUserFileWriter(userFileWriter);
-        }
+        UserConverterImpl userConverter = new UserConverterImpl();
+        register(userConverter);
+
+        UserFileReaderImpl userFileReader = new UserFileReaderImpl();
+        register(userFileReader);
+
+        UserFileWriterImpl userFileWriter = new UserFileWriterImpl();
+        register(userFileWriter);
+
+        FileBasedUserDaoImpl fileBasedUserDao = new FileBasedUserDaoImpl();
+        register(fileBasedUserDao);
+    }
+
+    private void dependencyInjectionDataAccessLayer() {
+        MySQLBasedBookDao mySQLBasedBookDao = ((MySQLBasedBookDao) instancies.get("MySQLBasedBookDao"));
+        BookMapper bookMapper = ((BookMapper)instancies.get("BookMapper"));
+        mySQLBasedBookDao.setBookMapper(bookMapper);
+
+        BookConverterImpl bookConverter = ((BookConverterImpl) instancies.get("BookConverterImpl"));
+        bookConverter.setUserService((UserServiceImpl) instancies.get("UserServiceImpl"));
+        bookConverter.setUserDao((FileBasedUserDaoImpl) instancies.get("FileBasedUserDaoImpl"));
+        BookFileReaderImpl bookFileReader = ((BookFileReaderImpl) instancies.get("BookFileReaderImpl"));
+        bookFileReader.setBookConverter(bookConverter);
+        BookFileWriterImpl bookFileWriter = ((BookFileWriterImpl) instancies.get("BookFileWriterImpl"));
+        bookFileWriter.setBookConverter(bookConverter);
+        FileBasedBookDaoImpl fileBasedBookDao = ((FileBasedBookDaoImpl) instancies.get("FileBasedBookDaoImpl"));
+        fileBasedBookDao.setBookFileReader(bookFileReader);
+        fileBasedBookDao.setBookFileWriter(bookFileWriter);
+
+
+        MySQLBasedUserDao mySQLBasedUserDao = ((MySQLBasedUserDao) instancies.get("MySQLBasedUserDao"));
+        UserMapper userMapper = ((UserMapper) instancies.get("UserMapper"));
+        mySQLBasedUserDao.setUserMapper(userMapper);
+
+        UserConverterImpl userConverter = ((UserConverterImpl) instancies.get("UserConverterImpl"));
+        UserFileReaderImpl userFileReader = ((UserFileReaderImpl) instancies.get("UserFileReaderImpl"));
+        userFileReader.setUserConverter((UserConverterImpl) instancies.get("UserConverterImpl"));
+        UserFileWriterImpl userFileWriter = ((UserFileWriterImpl) instancies.get("UserFileWriterImpl"));
+        userFileWriter.setUserConverter(userConverter);
+        FileBasedUserDaoImpl fileBasedUserDao = ((FileBasedUserDaoImpl) instancies.get("FileBasedUserDaoImpl"));
+        fileBasedUserDao.setUserFileReader(userFileReader);
+        fileBasedUserDao.setUserFileWriter(userFileWriter);
     }
 
     private void initializeValidationLayer() {
@@ -118,57 +117,46 @@ public class ApplicationContextImpl implements ApplicationContext {
         register(userValidator);
     }
 
-    private void businessLevel() throws ApplicationContextException {
+    private void businessLevel() {
         BookServiceImpl bookService = new BookServiceImpl();
         register(bookService);
 
-        if(getInstance("MySQLBasedBookDao") != null) {
-            bookService.setBookDao((MySQLBasedBookDao) getInstance("MySQLBasedBookDao"));
-        } else {
-            bookService.setBookDao((FileBasedBookDao) getInstance("FileBasedBookDao"));
-        }
-        bookService.setBookValidator((BookValidator) getInstance("BookValidator"));
-
-
-
         UserServiceImpl userService = new UserServiceImpl();
         register(userService);
+    }
 
-        if(getInstance("MySQLBasedUserDao") != null) {
-            userService.setUserDao((MySQLBasedUserDao) getInstance("MySQLBasedUserDao"));
-        } else {
-            userService.setUserDao((FileBasedUserDao) getInstance("FileBasedUserDao"));
-        }
-        userService.setUserValidator((UserValidator) getInstance("UserValidator"));
+    private void dependencyInjectionBusinessLayer() {
+        BookServiceImpl bookService = ((BookServiceImpl) instancies.get("BookServiceImpl"));
+        bookService.setBookDao((MySQLBasedBookDao) instancies.get("MySQLBasedBookDao"));
+        bookService.setBookDao((FileBasedBookDaoImpl) instancies.get("FileBasedBookDaoImpl"));
+        bookService.setBookValidator((BookValidator) instancies.get("BookValidator"));
+
+        UserServiceImpl userService = ((UserServiceImpl) instancies.get("UserServiceImpl"));
+        userService.setUserDao((MySQLBasedUserDao) instancies.get("MySQLBasedUserDao"));
+        userService.setUserDao((FileBasedUserDaoImpl) instancies.get("FileBasedUserDaoImpl"));
+        userService.setUserValidator((UserValidator) instancies.get("UserValidator"));
         userService.setBookService(bookService);
     }
 
-    private void controllerLevel() throws ApplicationContextException {
+    private void controllerLevel() {
         Printer printer = new PrinterImpl();
         register(printer);
 
         Main main = new Main();
         register(main);
-        main.setBookService((BookServiceImpl) getInstance("BookServiceImpl"));
-        main.setUserService((UserServiceImpl) getInstance("UserServiceImpl"));
-        main.setPrinter(printer);
-
     }
 
-    @Override
+    private void dependencyInjectionControllerLayer() {
+        Main main = ((Main) instancies.get("Main"));
+        main.setFileBasedBookDao((FileBasedBookDaoImpl) instancies.get("FileBasedBookDaoImpl"));
+        main.setFileBasedUserDao((FileBasedUserDaoImpl) instancies.get("FileBasedUserDaoImpl"));
+        main.setBookService((BookServiceImpl) instancies.get("BookServiceImpl"));
+        main.setUserService((UserServiceImpl) instancies.get("UserServiceImpl"));
+        main.setPrinter((PrinterImpl) instancies.get("PrinterImpl"));
+    }
+
     public void register(Object object) {
         String objectName = object.getClass().getSimpleName();
         instancies.put(objectName, object);
-
     }
-
-    @Override
-    public Object getInstance(String className) throws ApplicationContextException {
-        Object instance = instancies.get(className);
-        if (instance == null) {
-            throw new ApplicationContextException();
-        }
-        return instance;
-    }
-
 }

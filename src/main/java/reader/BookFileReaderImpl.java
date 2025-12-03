@@ -15,10 +15,10 @@ import java.util.List;
 
 public class BookFileReaderImpl implements BookFileReader {
     private static final String BOOK_FILE_PATH = "src/main/resources/book.txt";
-    private static BookConverter bookConverter;
+    private BookConverter bookConverter;
 
     public void setBookConverter(BookConverter bookConverter){
-        BookFileReaderImpl.bookConverter = bookConverter;
+        this.bookConverter = bookConverter;
     }
 
     @Override

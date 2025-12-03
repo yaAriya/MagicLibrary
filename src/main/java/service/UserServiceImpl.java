@@ -1,6 +1,5 @@
 package service;
 
-import dao.BookDao;
 import dao.UserDao;
 import entity.Book;
 import entity.User;
@@ -10,20 +9,20 @@ import validator.UserValidator;
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
-    private static UserDao userDao;
-    private static UserValidator userValidator;
-    private static BookService bookService;
+    private UserDao userDao;
+    private UserValidator userValidator;
+    private BookService bookService;
 
     public void setUserDao(UserDao userDao){
-        UserServiceImpl.userDao = userDao;
+        this.userDao = userDao;
     }
 
     public void setUserValidator(UserValidator userValidator){
-        UserServiceImpl.userValidator = userValidator;
+        this.userValidator = userValidator;
     }
 
     public void setBookService(BookService bookService){
-        UserServiceImpl.bookService = bookService;
+        this.bookService = bookService;
     }
 
     @Override

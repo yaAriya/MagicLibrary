@@ -11,11 +11,11 @@ public class DatabaseConfig {
     private static final String url = "jdbc:mysql://127.0.0.1:3306/librarytest";
 
 
-    public static Connection getConnection() throws SQLException {
+    public Connection getConnection() throws SQLException {
         return DriverManager.getConnection(url, user, password);
     }
 
-    public static void testConnection() {
+    public void testConnection() {
         try (Connection connection = DriverManager.getConnection(url, user, password)) {
             Statement statement = connection.createStatement();
 

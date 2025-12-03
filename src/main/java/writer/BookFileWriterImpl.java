@@ -11,10 +11,10 @@ import java.util.List;
 
 public class BookFileWriterImpl implements BookFileWriter {
     private static final String BOOK_FILE_PATH = "src/main/resources/book.txt";
-    private static BookConverter bookConverter;
+    private BookConverter bookConverter;
 
     public void setBookConverter(BookConverter bookConverter){
-        BookFileWriterImpl.bookConverter = bookConverter;
+        this.bookConverter = bookConverter;
     }
 
     @Override

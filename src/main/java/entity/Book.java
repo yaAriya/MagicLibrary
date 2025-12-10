@@ -27,6 +27,19 @@ public class Book implements Cloneable {
         this.user = user;
     }
 
+    public Book(String name, String author, int pagesNumber) {
+        this.name = name;
+        this.author = author;
+        this.pagesNumber = pagesNumber;
+    }
+
+    public Book(String name, String author, int pagesNumber, User user) {
+        this.name = name;
+        this.author = author;
+        this.pagesNumber = pagesNumber;
+        this.user = user;
+    }
+
 
     public String getName() {
         return name;

@@ -51,25 +51,30 @@ public class Main {
         DatabaseConfig databaseConfig = new DatabaseConfig();
         databaseConfig.testConnection();
 
-        mainApplication.fileBasedUserDao.initializeCash();
-        mainApplication.fileBasedBookDao.initializeCash();
+        //mainApplication.fileBasedUserDao.initializeCash();
+        //mainApplication.fileBasedBookDao.initializeCash();
 
-
-        /*FileBasedUserDao userDao = new FileBasedUserDao();
-        userDao.initializeCash();*/
-
-        User firstUser = new User(1, "Lisa", "Lisochka@gmail.com", 11);
-        User secondUser = new User(4, "Lera", "Lerka@gmail.com", 15);
+        User firstUser = new User("Lisa", "Lisochka@gmail.com", 11);
+        User secondUser = new User("Lera", "Lerka@gmail.com", 15);
         mainApplication.userService.add(firstUser);
         mainApplication.userService.add(secondUser);
         mainApplication.printer.printAllUsers(mainApplication.userService.readAllUsers());
 
-        Book firstBook = new Book(4, "Gone with the Wind", "Margaret Mitchell", 333);
+        Book firstBook = new Book("Gone with the Wind", "Margaret Mitchell", 333);
         mainApplication.bookService.add(firstBook);
         mainApplication.printer.printAllBooks(mainApplication.bookService.readAllBooks());
 
-        mainApplication.bookService.update((new Book(4, "Gone with the Wind", "Margaret Mitchell", 2000)));
-        mainApplication.printer.printBookObject(mainApplication.bookService.read(4));
+  /*      mainApplication.bookService.update((new Book(1, "Gone with the Wind", "Margaret Mitchell", 2000)));
+        mainApplication.printer.printBookObject(mainApplication.bookService.read(1));
+
+        mainApplication.userService.delete(2);
+        mainApplication.printer.printAllUsers(mainApplication.userService.readAllUsers());*/
+
+
+        mainApplication.bookService.rentBook(1,1);
+        //mainApplication.bookService.read(1);
+        mainApplication.bookService.returnBook(1,1);
+        mainApplication.printer.printBookObject(mainApplication.bookService.read(1));
         /*userService.updateInDatabase( new User(1, "Lisa", "Lisochka@gmail.com", 11));
         printer.printAllUsersFromMap(userService.readAllUsersFromDatabase());*/
         //userService.delete(1);

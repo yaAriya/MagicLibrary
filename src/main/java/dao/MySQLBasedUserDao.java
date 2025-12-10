@@ -1,7 +1,6 @@
 package dao;
 
 import config.DatabaseConfig;
-import entity.Book;
 import entity.User;
 import exceptions.MapperException;
 import exceptions.UserDaoException;
@@ -12,20 +11,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MySQLBasedUserDao implements UserDao {
-    private static final String readAllUsersQuery = "SELECT id, name, email, age FROM users";
+    private static final String readAllUsersQuery = "SELECT u.id AS user_id, u.name AS user_name, email, age FROM users u";
     private static final String addQuery = "INSERT INTO users (name, email, age) VALUES (?, ?, ?)";
-    private static final String readQuery = "SELECT * FROM users WHERE id = ? ";
+    private static final String readQuery = "SELECT u.id AS user_id, u.name AS user_name, email, age FROM users u WHERE u.id = ?";
     private static final String updateQuery = "UPDATE users SET name = ?, email = ?, age = ? WHERE id = ?";
     private static final String deleteQuery = "DELETE FROM users WHERE id = ?";
     private UserMapper userMapper;
+    private DatabaseConfig databaseConfig;
 
     public void setUserMapper(UserMapper userMapper) {
         this.userMapper = userMapper;
     }
 
+    public void setDatabaseConfig(DatabaseConfig databaseConfig) {
+        this.databaseConfig = databaseConfig;
+    }
+
     @Override
     public List<User> readAllUsers() throws UserDaoException {
-        DatabaseConfig databaseConfig = new DatabaseConfig();
         try (Connection connection = databaseConfig.getConnection()) {
             List<User> users = new ArrayList<>();
             Statement statement = connection.createStatement();
@@ -43,7 +46,6 @@ public class MySQLBasedUserDao implements UserDao {
 
     @Override
     public void add(User user) throws UserDaoException {
-        DatabaseConfig databaseConfig = new DatabaseConfig();
         try (Connection connection = databaseConfig.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(addQuery);
             userMapper.mapObjectToStatement(preparedStatement, user);
@@ -55,19 +57,7 @@ public class MySQLBasedUserDao implements UserDao {
     }
 
     @Override
-    public void addBookToUser(User user, Book book) throws UserDaoException {
-        DatabaseConfig databaseConfig = new DatabaseConfig();
-        try (Connection connection = databaseConfig.getConnection()) {
-            //user.getBooks().add(book);
-
-        } catch (SQLException e) {
-            throw new UserDaoException(e);
-        }
-    }
-
-    @Override
     public User read(long id) throws UserDaoException {
-        DatabaseConfig databaseConfig = new DatabaseConfig();
         try (Connection connection = databaseConfig.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(readQuery)) {
 
@@ -85,7 +75,6 @@ public class MySQLBasedUserDao implements UserDao {
 
     @Override
     public void update(User user) throws UserDaoException {
-        DatabaseConfig databaseConfig = new DatabaseConfig();
         try (Connection connection = databaseConfig.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(updateQuery)) {
 
@@ -99,7 +88,6 @@ public class MySQLBasedUserDao implements UserDao {
 
     @Override
     public void delete(long id) throws UserDaoException {
-        DatabaseConfig databaseConfig = new DatabaseConfig();
         try (Connection connection = databaseConfig.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(deleteQuery)) {
 

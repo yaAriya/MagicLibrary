@@ -1,8 +1,12 @@
 package applicationContext;
 
+import config.DatabaseConfig;
 import converter.BookConverterImpl;
 import converter.UserConverterImpl;
-import dao.*;
+import dao.FileBasedBookDaoImpl;
+import dao.FileBasedUserDaoImpl;
+import dao.MySQLBasedBookDao;
+import dao.MySQLBasedUserDao;
 import invoker.Main;
 import mapper.BookMapper;
 import mapper.UserMapper;
@@ -39,6 +43,10 @@ public class ApplicationContextImpl implements ApplicationContext {
     }
 
     private void initializeDataAccessLayer() {
+        DatabaseConfig databaseConfig = new DatabaseConfig();
+        register(databaseConfig);
+
+
         BookMapper bookMapper = new BookMapper();
         register(bookMapper);
 
@@ -80,8 +88,11 @@ public class ApplicationContextImpl implements ApplicationContext {
 
     private void dependencyInjectionDataAccessLayer() {
         MySQLBasedBookDao mySQLBasedBookDao = ((MySQLBasedBookDao) instancies.get("MySQLBasedBookDao"));
-        BookMapper bookMapper = ((BookMapper)instancies.get("BookMapper"));
+        BookMapper bookMapper = ((BookMapper) instancies.get("BookMapper"));
+        bookMapper.setUserMapper((UserMapper) instancies.get("UserMapper"));
+        DatabaseConfig databaseConfig = ((DatabaseConfig) instancies.get("DatabaseConfig"));
         mySQLBasedBookDao.setBookMapper(bookMapper);
+        mySQLBasedBookDao.setDatabaseConfig(databaseConfig);
 
         BookConverterImpl bookConverter = ((BookConverterImpl) instancies.get("BookConverterImpl"));
         bookConverter.setUserService((UserServiceImpl) instancies.get("UserServiceImpl"));
@@ -98,6 +109,7 @@ public class ApplicationContextImpl implements ApplicationContext {
         MySQLBasedUserDao mySQLBasedUserDao = ((MySQLBasedUserDao) instancies.get("MySQLBasedUserDao"));
         UserMapper userMapper = ((UserMapper) instancies.get("UserMapper"));
         mySQLBasedUserDao.setUserMapper(userMapper);
+        mySQLBasedUserDao.setDatabaseConfig(databaseConfig);
 
         UserConverterImpl userConverter = ((UserConverterImpl) instancies.get("UserConverterImpl"));
         UserFileReaderImpl userFileReader = ((UserFileReaderImpl) instancies.get("UserFileReaderImpl"));
@@ -127,15 +139,15 @@ public class ApplicationContextImpl implements ApplicationContext {
 
     private void dependencyInjectionBusinessLayer() {
         BookServiceImpl bookService = ((BookServiceImpl) instancies.get("BookServiceImpl"));
-        bookService.setBookDao((MySQLBasedBookDao) instancies.get("MySQLBasedBookDao"));
         bookService.setBookDao((FileBasedBookDaoImpl) instancies.get("FileBasedBookDaoImpl"));
+        bookService.setBookDao((MySQLBasedBookDao) instancies.get("MySQLBasedBookDao"));
         bookService.setBookValidator((BookValidator) instancies.get("BookValidator"));
+        bookService.setUserService((UserServiceImpl) instancies.get("UserServiceImpl"));
 
         UserServiceImpl userService = ((UserServiceImpl) instancies.get("UserServiceImpl"));
-        userService.setUserDao((MySQLBasedUserDao) instancies.get("MySQLBasedUserDao"));
         userService.setUserDao((FileBasedUserDaoImpl) instancies.get("FileBasedUserDaoImpl"));
+        userService.setUserDao((MySQLBasedUserDao) instancies.get("MySQLBasedUserDao"));
         userService.setUserValidator((UserValidator) instancies.get("UserValidator"));
-        userService.setBookService(bookService);
     }
 
     private void controllerLevel() {

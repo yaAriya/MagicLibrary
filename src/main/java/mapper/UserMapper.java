@@ -12,15 +12,15 @@ public class UserMapper implements Mapper<User> {
     public User mapRSToObject(ResultSet resultSet) throws MapperException {
         try {
             User mappedUser = new User();
-            long id = resultSet.getLong("id");
+            long id = resultSet.getLong("user_id");
             mappedUser.setId(id);
-            String name = resultSet.getString("name");
+            String name = resultSet.getString("user_name");
             mappedUser.setName(name);
             String email = resultSet.getString("email");
             mappedUser.setEmail(email);
             int age = resultSet.getInt("age");
             mappedUser.setAge(age);
-            //int уже после джоина будут все сведения про юзера. Просто вывести метод, который будет создавать этого юзера и добавлять
+
             return mappedUser;
         } catch (SQLException e) {
             throw new MapperException(e);
@@ -57,6 +57,5 @@ public class UserMapper implements Mapper<User> {
         } catch (SQLException e) {
             throw new MapperException(e);
         }
-
     }
 }

@@ -16,4 +16,8 @@ public interface BookService {
     Book read(long id) throws BookServiceException;
 
     void delete(long id) throws BookServiceException;
+
+    void rentBook(long userId, long bookId) throws BookServiceException;
+
+    void returnBook(long userId, long bookId) throws BookServiceException;
 }

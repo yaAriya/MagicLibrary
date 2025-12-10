@@ -31,6 +31,20 @@ public class User implements Cloneable {
         this.books = books;
     }
 
+    public User(String name, String email, int age, List<Book> books) {
+        this.name = name;
+        this.email = email;
+        this.age = age;
+        this.books = books;
+    }
+
+    public User(String name, String email, int age) {
+        this.name = name;
+        this.email = email;
+        this.age = age;
+        this.books = new ArrayList<>();
+    }
+
     public String getName() {
         return name;
     }

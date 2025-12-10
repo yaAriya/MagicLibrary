@@ -1,6 +1,7 @@
 package dao;
 
 import entity.Book;
+import entity.User;
 import exceptions.BookDaoException;
 import exceptions.BookFileReaderException;
 import exceptions.BookFileWriterException;
@@ -15,11 +16,11 @@ public class FileBasedBookDaoImpl implements FileBasedBookDao {
     private BookFileReader bookFileReader;
     private BookFileWriter bookFileWriter;
 
-    public void setBookFileReader(BookFileReader bookFileReader){
+    public void setBookFileReader(BookFileReader bookFileReader) {
         this.bookFileReader = bookFileReader;
     }
 
-    public void setBookFileWriter(BookFileWriter bookFileWriter){
+    public void setBookFileWriter(BookFileWriter bookFileWriter) {
         this.bookFileWriter = bookFileWriter;
     }
 
@@ -65,13 +66,13 @@ public class FileBasedBookDaoImpl implements FileBasedBookDao {
 
     @Override
     public Book read(long id) throws BookDaoException {
-        try{
-            for(Book book: getBooks()){
-                if(book.getId() == id){
+        try {
+            for (Book book : getBooks()) {
+                if (book.getId() == id) {
                     return book.clone();
                 }
             }
-        } catch(CloneNotSupportedException e){
+        } catch (CloneNotSupportedException e) {
             throw new BookDaoException(e);
         }
         return null;
@@ -103,5 +104,17 @@ public class FileBasedBookDaoImpl implements FileBasedBookDao {
         } catch (BookFileWriterException e) {
             throw new BookDaoException(e);
         }
+    }
+
+    @Override
+    public void rentBook(User user, Book book) {
+        book.setUser(user);
+        user.getBooks().add(book);
+    }
+
+    @Override
+    public void returnBook(User user, Book book) {
+        book.setUser(null);
+        user.getBooks().remove(book);
     }
 }

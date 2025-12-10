@@ -1,6 +1,6 @@
 package converter;
 
-import dao.UserDao;
+import dao.FileBasedUserDao;
 import entity.Book;
 import entity.User;
 import exceptions.ConverterException;
@@ -12,22 +12,22 @@ import java.util.Arrays;
 public class BookConverterImpl implements BookConverter {
     private static final String PARAMETER = ",";
     private UserService userService;
-    private UserDao userDao;
+    private FileBasedUserDao userDao;
 
-    public void setUserService(UserService userService){
+    public void setUserService(UserService userService) {
         this.userService = userService;
     }
 
-    public void setUserDao(UserDao userDao){
+    public void setUserDao(FileBasedUserDao userDao) {
         this.userDao = userDao;
     }
 
     @Override
     public Book convertLineToBook(String line) throws ConverterException {
         try {
-          String[] parameters = Arrays.stream(line.split(PARAMETER))
-                  .map(String::trim)
-                  .toArray(String[]::new);
+            String[] parameters = Arrays.stream(line.split(PARAMETER))
+                    .map(String::trim)
+                    .toArray(String[]::new);
 
             Book book = new Book();
             book.setId(Long.parseLong(parameters[0]));
@@ -42,10 +42,11 @@ public class BookConverterImpl implements BookConverter {
                 userDao.addBookToUser(updateUser, book);
             }
             return book;
-        } catch (UserDaoException e){
+        } catch (UserDaoException e) {
             throw new ConverterException(e);
         }
     }
+
     public String convertBookToLine(Book book) {
         String idToString = Long.toString(book.getId());
         String pagesNumberToString = Integer.toString(book.getPagesNumber());

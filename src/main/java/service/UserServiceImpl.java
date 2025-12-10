@@ -1,7 +1,6 @@
 package service;
 
 import dao.UserDao;
-import entity.Book;
 import entity.User;
 import exceptions.*;
 import validator.UserValidator;
@@ -11,18 +10,13 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     private UserDao userDao;
     private UserValidator userValidator;
-    private BookService bookService;
 
-    public void setUserDao(UserDao userDao){
+    public void setUserDao(UserDao userDao) {
         this.userDao = userDao;
     }
 
-    public void setUserValidator(UserValidator userValidator){
+    public void setUserValidator(UserValidator userValidator) {
         this.userValidator = userValidator;
-    }
-
-    public void setBookService(BookService bookService){
-        this.bookService = bookService;
     }
 
     @Override
@@ -90,47 +84,6 @@ public class UserServiceImpl implements UserService {
             userDao.delete(id);
         } catch (InvalidEntityException | UserDaoException e) {
             throw new UserServiceException(e);
-        }
-    }
-
-    @Override
-    public void rentBook(long userId, long bookId) throws UserServiceException {
-        try {
-            User readUser = read(userId);
-            Book readBook = bookService.read(bookId);
-            if (readUser == null || readBook == null) {
-                throw new InvalidEntityException("Пользователь или книга не могут быть пустыми");
-            } else if (readBook.getUser() != null || readUser.getBooks().contains(readBook)) {
-                throw new InvalidEntityException("У книги уже есть пользователь или у пользователя уже арендована эта книга");
-            }
-            readUser.getBooks().add(readBook);
-            update(readUser);
-
-            readBook.setUser(readUser);
-            bookService.update(readBook);
-        } catch (InvalidEntityException e) {
-            throw new UserServiceException(e);
-        }
-
-    }
-
-    @Override
-    public void returnBook(long userId, long bookId) throws UserServiceException {
-        try {
-            User readUser = read(userId);
-            Book readBook = bookService.read(bookId);
-            if (readUser == null || readBook == null) {
-                throw new InvalidEntityException("Пользователь или книга не могут быть пустыми");
-            } else if (!readUser.getBooks().contains(readBook) || readBook.getUser() == null) {
-                throw new InvalidEntityException("У книги нет пользователя или у пользователя не была арендована книга");
-            }
-            readUser.getBooks().remove(readBook);
-            update(readUser);
-
-            readBook.setUser(null);
-            bookService.update(readBook);
-        } catch (InvalidEntityException e) {
-            throw new UserServiceException();
         }
     }
 }

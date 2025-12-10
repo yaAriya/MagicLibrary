@@ -1,6 +1,5 @@
 package service;
 
-import dao.UserDao;
 import entity.User;
 import exceptions.UserServiceException;
 
@@ -17,8 +16,4 @@ public interface UserService {
     void update(User user) throws UserServiceException;
 
     void delete(long id) throws UserServiceException;
-
-    void rentBook(long userId, long bookId) throws UserServiceException;
-
-    void returnBook(long userId, long bookId) throws UserServiceException;
 }

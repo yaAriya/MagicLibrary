@@ -8,6 +8,7 @@ import dao.FileBasedUserDaoImpl;
 import dao.MySQLBasedBookDao;
 import dao.MySQLBasedUserDao;
 import invoker.Main;
+import loader.PropertyLoader;
 import mapper.BookMapper;
 import mapper.UserMapper;
 import printer.Printer;
@@ -45,6 +46,10 @@ public class ApplicationContextImpl implements ApplicationContext {
     private void initializeDataAccessLayer() {
         DatabaseConfig databaseConfig = new DatabaseConfig();
         register(databaseConfig);
+
+
+        PropertyLoader propertyLoader = new PropertyLoader();
+        register(propertyLoader);
 
 
         BookMapper bookMapper = new BookMapper();
@@ -91,6 +96,7 @@ public class ApplicationContextImpl implements ApplicationContext {
         BookMapper bookMapper = ((BookMapper) instancies.get("BookMapper"));
         bookMapper.setUserMapper((UserMapper) instancies.get("UserMapper"));
         DatabaseConfig databaseConfig = ((DatabaseConfig) instancies.get("DatabaseConfig"));
+        databaseConfig.setPropertyLoader((PropertyLoader) instancies.get("PropertyLoader"));
         mySQLBasedBookDao.setBookMapper(bookMapper);
         mySQLBasedBookDao.setDatabaseConfig(databaseConfig);
 

@@ -2,6 +2,8 @@ package reader;
 import converter.UserConverter;
 import entity.User;
 import exceptions.UserFileReaderException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -10,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserFileReaderImpl implements UserFileReader {
+    private static final Logger logger = LogManager.getLogger();
     private static final String USER_FILE_PATH = "src/main/resources/user.txt";
     private UserConverter userConverter;
 

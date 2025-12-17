@@ -2,12 +2,16 @@ package mapper;
 
 import entity.User;
 import exceptions.MapperException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UserMapper implements Mapper<User> {
+    private static final Logger logger = LogManager.getLogger();
+
     @Override
     public User mapRSToObject(ResultSet resultSet) throws MapperException {
         try {

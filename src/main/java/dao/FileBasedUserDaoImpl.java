@@ -5,12 +5,15 @@ import entity.User;
 import exceptions.UserDaoException;
 import exceptions.UserFileReaderException;
 import exceptions.UserFileWriterException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import reader.UserFileReader;
 import writer.UserFileWriter;
 import java.util.ArrayList;
 import java.util.List;
 
 public class FileBasedUserDaoImpl implements FileBasedUserDao {
+    private static final Logger logger = LogManager.getLogger();
     private List<User> users;
     private UserFileReader userFileReader;
     private UserFileWriter userFileWriter;

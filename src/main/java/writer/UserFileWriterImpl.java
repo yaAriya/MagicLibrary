@@ -3,6 +3,8 @@ package writer;
 import converter.UserConverter;
 import entity.User;
 import exceptions.UserFileWriterException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -10,6 +12,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class UserFileWriterImpl implements UserFileWriter {
+    private static final Logger logger = LogManager.getLogger();
     private static final String USER_FILE_PATH = "src/main/resources/user.txt";
     private UserConverter userConverter;
 

@@ -1,11 +1,11 @@
 package reader;
 
 import converter.BookConverter;
-import converter.BookConverterImpl;
 import entity.Book;
 import exceptions.BookFileReaderException;
 import exceptions.ConverterException;
-import writer.BookFileWriterImpl;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BookFileReaderImpl implements BookFileReader {
+    private static final Logger logger = LogManager.getLogger();
     private static final String BOOK_FILE_PATH = "src/main/resources/book.txt";
     private BookConverter bookConverter;
 

@@ -3,6 +3,8 @@ package writer;
 import converter.BookConverter;
 import entity.Book;
 import exceptions.BookFileWriterException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -10,6 +12,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class BookFileWriterImpl implements BookFileWriter {
+    private static final Logger logger = LogManager.getLogger();
     private static final String BOOK_FILE_PATH = "src/main/resources/book.txt";
     private BookConverter bookConverter;
 

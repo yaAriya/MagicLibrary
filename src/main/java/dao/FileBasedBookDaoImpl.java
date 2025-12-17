@@ -5,6 +5,8 @@ import entity.User;
 import exceptions.BookDaoException;
 import exceptions.BookFileReaderException;
 import exceptions.BookFileWriterException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import reader.BookFileReader;
 import writer.BookFileWriter;
 
@@ -12,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FileBasedBookDaoImpl implements FileBasedBookDao {
+    private static final Logger logger = LogManager.getLogger();
     private List<Book> books;
     private BookFileReader bookFileReader;
     private BookFileWriter bookFileWriter;

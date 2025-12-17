@@ -3,6 +3,8 @@ package mapper;
 import entity.Book;
 import entity.User;
 import exceptions.MapperException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,6 +12,7 @@ import java.sql.SQLException;
 import java.sql.Types;
 
 public class BookMapper implements Mapper<Book> {
+    private static final Logger logger = LogManager.getLogger();
     private UserMapper userMapper;
 
     public void setUserMapper(UserMapper userMapper) {

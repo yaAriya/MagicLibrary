@@ -3,11 +3,14 @@ package service;
 import dao.UserDao;
 import entity.User;
 import exceptions.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import validator.UserValidator;
 
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
+    private static final Logger logger = LogManager.getLogger(UserServiceImpl.class);
     private UserDao userDao;
     private UserValidator userValidator;
 
@@ -22,8 +25,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> readAllUsers() throws UserServiceException {
         try {
+            logger.info("Reading all users");
             return userDao.readAllUsers();
         } catch (ObjectInitializeException | UserDaoException e) {
+            logger.error("Reading all users was failed");
             throw new UserServiceException(e);
         }
     }
@@ -32,15 +37,18 @@ public class UserServiceImpl implements UserService {
     public void add(User user) throws UserServiceException {
         try {
             if (!userValidator.validate(user) && userDao.readAllUsers().contains(user)) {
-                throw new InvalidEntityException("Параметры, введенные Вами некорректны");
+                logger.error("User validation was failed during addition");
+                throw new InvalidEntityException("The parameters you entered are incorrect");
             }
             for (User tempUser : userDao.readAllUsers()) {
                 if (tempUser.getId() == user.getId()) {
-                    throw new InvalidEntityException("Пользователь с таким айди уже существует");
+                    logger.error("Duplicate user id");
+                    throw new InvalidEntityException("A user with this id already exists");
                 }
             }
             userDao.add(user);
         } catch (InvalidEntityException | UserDaoException e) {
+            logger.error("Adding users was failed");
             throw new UserServiceException(e);
         }
     }
@@ -49,10 +57,12 @@ public class UserServiceImpl implements UserService {
     public User read(long id) throws UserServiceException {
         try {
             if (userDao.read(id) == null) {
-                throw new EntityNotFoundException("Искаемый Вами пользователь не найден");
+                logger.error("User is not found");
+                throw new EntityNotFoundException("The user you are looking for has not been found");
             }
             return userDao.read(id);
         } catch (EntityNotFoundException | UserDaoException e) {
+            logger.error("Reading users was failed");
             throw new UserServiceException(e);
         }
     }
@@ -62,14 +72,18 @@ public class UserServiceImpl implements UserService {
         try {
             User oldUser = read(user.getId());
             if (!userValidator.validate(user)) {
-                throw new InvalidEntityException("Параметры, введенные Вами некорректны");
+                logger.error("Incorrect parameters from the user");
+                throw new InvalidEntityException("The parameters you entered are incorrect");
             } else if (!oldUser.getBooks().isEmpty()) {
-                throw new InvalidEntityException("Вы не можете обновить пользователя с арендованой книгой");
+                logger.error("The old user has books");
+                throw new InvalidEntityException("You cannot update a user with a rented book");
             } else if (!user.getBooks().isEmpty()) {
-                throw new InvalidEntityException("Книги у обновляемого пользователя должны отсутствовать");
+                logger.error("The new user has books");
+                throw new InvalidEntityException("The updated user should not have any books");
             }
             userDao.update(user);
         } catch (InvalidEntityException | UserDaoException e) {
+            logger.error("Updating users was failed");
             throw new UserServiceException(e);
         }
     }
@@ -79,10 +93,12 @@ public class UserServiceImpl implements UserService {
         try {
             User readUser = read(id);
             if (id < 0 && !readUser.getBooks().isEmpty()) {
-                throw new InvalidEntityException("Увы, Вашего пользователя нельзя удалить");
+                logger.error("Deleted user has books");
+                throw new InvalidEntityException("The deleted user should not have any books");
             }
             userDao.delete(id);
         } catch (InvalidEntityException | UserDaoException e) {
+            logger.error("Deleting users was failed");
             throw new UserServiceException(e);
         }
     }

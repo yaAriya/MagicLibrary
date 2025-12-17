@@ -4,11 +4,14 @@ import dao.BookDao;
 import entity.Book;
 import entity.User;
 import exceptions.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import validator.BookValidator;
 
 import java.util.List;
 
 public class BookServiceImpl implements BookService {
+    private static final Logger logger = LogManager.getLogger();
     private BookDao bookDao;
     private BookValidator bookValidator;
     private UserService userService;

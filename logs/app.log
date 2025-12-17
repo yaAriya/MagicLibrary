@@ -1,0 +1,68 @@
+
+2025-12-17 16:37:20,484 INFO invoker.Main - Process run
+2025-12-17 16:37:20,964 INFO config.DatabaseConfig - Getting connection was successful
+2025-12-17 16:37:20,965 INFO util.DatabaseConnectionTester - Connection valid
+2025-12-17 16:37:21,077 INFO config.DatabaseConfig - Testing connection was successful
+2025-12-17 16:37:21,106 INFO config.DatabaseConfig - Getting connection was successful
+2025-12-17 16:37:21,122 INFO dao.MySQLBasedUserDao - Users reading completed successfully
+2025-12-17 16:37:21,152 INFO config.DatabaseConfig - Getting connection was successful
+2025-12-17 16:37:21,170 INFO dao.MySQLBasedUserDao - User adding completed successfully
+2025-12-17 16:37:21,207 INFO config.DatabaseConfig - Getting connection was successful
+2025-12-17 16:37:21,210 INFO dao.MySQLBasedUserDao - Users reading completed successfully
+2025-12-17 16:37:21,240 INFO config.DatabaseConfig - Getting connection was successful
+2025-12-17 16:37:21,246 INFO dao.MySQLBasedUserDao - User adding completed successfully
+2025-12-17 16:37:21,247 INFO service.UserServiceImpl - Reading all users
+2025-12-17 16:37:21,268 INFO config.DatabaseConfig - Getting connection was successful
+2025-12-17 16:37:21,270 INFO dao.MySQLBasedUserDao - Users reading completed successfully
+2025-12-17 16:55:12,649 INFO invoker.Main - Process run
+2025-12-17 16:55:12,659 INFO applicationContext.ApplicationContextImpl - initialize context run
+2025-12-17 16:55:12,659 INFO applicationContext.ApplicationContextImpl - InitializeDataAccessLayer run
+2025-12-17 16:55:12,661 INFO applicationContext.ApplicationContextImpl - Object register successful
+2025-12-17 16:55:12,663 INFO applicationContext.ApplicationContextImpl - Object register successful
+2025-12-17 16:55:12,664 INFO applicationContext.ApplicationContextImpl - Object register successful
+2025-12-17 16:55:12,666 INFO applicationContext.ApplicationContextImpl - Object register successful
+2025-12-17 16:55:12,667 INFO applicationContext.ApplicationContextImpl - Object register successful
+2025-12-17 16:55:12,668 INFO applicationContext.ApplicationContextImpl - Object register successful
+2025-12-17 16:55:12,669 INFO applicationContext.ApplicationContextImpl - Object register successful
+2025-12-17 16:55:12,670 INFO applicationContext.ApplicationContextImpl - Object register successful
+2025-12-17 16:55:12,671 INFO applicationContext.ApplicationContextImpl - Object register successful
+2025-12-17 16:55:12,672 INFO applicationContext.ApplicationContextImpl - Object register successful
+2025-12-17 16:55:12,674 INFO applicationContext.ApplicationContextImpl - Object register successful
+2025-12-17 16:55:12,675 INFO applicationContext.ApplicationContextImpl - Object register successful
+2025-12-17 16:55:12,676 INFO applicationContext.ApplicationContextImpl - Object register successful
+2025-12-17 16:55:12,677 INFO applicationContext.ApplicationContextImpl - Object register successful
+2025-12-17 16:55:12,678 INFO applicationContext.ApplicationContextImpl - Object register successful
+2025-12-17 16:55:12,678 INFO applicationContext.ApplicationContextImpl - InitializeDataAccessLayer complied successful
+2025-12-17 16:55:12,678 INFO applicationContext.ApplicationContextImpl - InitializeValidationLayer run
+2025-12-17 16:55:12,679 INFO applicationContext.ApplicationContextImpl - Object register successful
+2025-12-17 16:55:12,680 INFO applicationContext.ApplicationContextImpl - Object register successful
+2025-12-17 16:55:12,680 INFO applicationContext.ApplicationContextImpl - InitializeValidationLayer complied successful
+2025-12-17 16:55:12,680 INFO applicationContext.ApplicationContextImpl - InitializeBusinessLevel run
+2025-12-17 16:55:12,683 INFO applicationContext.ApplicationContextImpl - Object register successful
+2025-12-17 16:55:12,685 INFO applicationContext.ApplicationContextImpl - Object register successful
+2025-12-17 16:55:12,685 INFO applicationContext.ApplicationContextImpl - InitializeBusinessLevel complied successful
+2025-12-17 16:55:12,685 INFO applicationContext.ApplicationContextImpl - InitializeControllerLevel run
+2025-12-17 16:55:12,686 INFO applicationContext.ApplicationContextImpl - Object register successful
+2025-12-17 16:55:12,686 INFO applicationContext.ApplicationContextImpl - Object register successful
+2025-12-17 16:55:12,686 INFO applicationContext.ApplicationContextImpl - InitializeControllerLevel complied successful
+2025-12-17 16:55:12,686 INFO applicationContext.ApplicationContextImpl - DependencyInjectionDataAccessLayer run
+2025-12-17 16:55:12,686 INFO applicationContext.ApplicationContextImpl - DependencyInjectionDataAccessLayer complied successful
+2025-12-17 16:55:12,686 INFO applicationContext.ApplicationContextImpl - DependencyInjectionBusinessLayer run
+2025-12-17 16:55:12,686 INFO applicationContext.ApplicationContextImpl - DependencyInjectionBusinessLayer complied successful
+2025-12-17 16:55:12,687 INFO applicationContext.ApplicationContextImpl - DependencyInjectionControllerLayer run
+2025-12-17 16:55:12,687 INFO applicationContext.ApplicationContextImpl - DependencyInjectionControllerLayer complied successful
+2025-12-17 16:55:12,687 INFO applicationContext.ApplicationContextImpl - initialize context complied successful
+2025-12-17 16:55:13,171 INFO config.DatabaseConfig - Getting connection was successful
+2025-12-17 16:55:13,172 INFO util.DatabaseConnectionTester - Connection valid
+2025-12-17 16:55:13,313 INFO config.DatabaseConfig - Testing connection was successful
+2025-12-17 16:55:13,379 INFO config.DatabaseConfig - Getting connection was successful
+2025-12-17 16:55:13,434 INFO dao.MySQLBasedUserDao - Users reading completed successfully
+2025-12-17 16:55:13,470 INFO config.DatabaseConfig - Getting connection was successful
+2025-12-17 16:55:13,495 INFO dao.MySQLBasedUserDao - User adding completed successfully
+2025-12-17 16:55:13,531 INFO config.DatabaseConfig - Getting connection was successful
+2025-12-17 16:55:13,535 INFO dao.MySQLBasedUserDao - Users reading completed successfully
+2025-12-17 16:55:13,575 INFO config.DatabaseConfig - Getting connection was successful
+2025-12-17 16:55:13,583 INFO dao.MySQLBasedUserDao - User adding completed successfully
+2025-12-17 16:55:13,584 INFO service.UserServiceImpl - Reading all users
+2025-12-17 16:55:13,606 INFO config.DatabaseConfig - Getting connection was successful
+2025-12-17 16:55:13,608 INFO dao.MySQLBasedUserDao - Users reading completed successfully

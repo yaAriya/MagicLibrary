@@ -4,14 +4,18 @@ import config.DatabaseConfig;
 import entity.Book;
 import entity.User;
 import exceptions.BookDaoException;
+import exceptions.DatabaseConfigException;
 import exceptions.MapperException;
 import mapper.BookMapper;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MySQLBasedBookDao implements BookDao {
+    private static final Logger logger = LogManager.getLogger();
     private static final String readAllBooksQuery = "SELECT b.id AS book_id, b.name AS book_name, author, page_number, u.id AS user_id, u.name AS user_name, email, age FROM books b LEFT JOIN users u ON b.user_id = u.id ORDER BY b.id ";
     private static final String addQuery = "INSERT INTO books (name, author, page_number, user_id) VALUES (?, ?, ?, ?)";
     private static final String readQuery = "SELECT b.id AS book_id, b.name AS book_name, author, page_number, u.id AS user_id, u.name AS user_name, email, age FROM books b LEFT JOIN users u ON b.user_id = u.id WHERE b.id = ?";
@@ -41,7 +45,7 @@ public class MySQLBasedBookDao implements BookDao {
                 books.add(bookMapper.mapRSToObject(resultSet));
             }
             return books;
-        } catch (SQLException | MapperException e) {
+        } catch (SQLException | MapperException | DatabaseConfigException e) {
             throw new BookDaoException(e);
         }
     }
@@ -54,7 +58,7 @@ public class MySQLBasedBookDao implements BookDao {
             bookMapper.mapObjectToStatement(preparedStatement, book);
             preparedStatement.executeUpdate();
 
-        } catch (SQLException | MapperException e) {
+        } catch (SQLException | MapperException | DatabaseConfigException e) {
             throw new BookDaoException(e);
         }
     }
@@ -70,7 +74,7 @@ public class MySQLBasedBookDao implements BookDao {
             if (resultSet.next()) {
                 return bookMapper.mapRSToObject(resultSet);
             }
-        } catch (SQLException | MapperException e) {
+        } catch (SQLException | MapperException | DatabaseConfigException e) {
             throw new BookDaoException(e);
         }
         return null;
@@ -84,7 +88,7 @@ public class MySQLBasedBookDao implements BookDao {
             bookMapper.mapUpdateObjectToStatement(preparedStatement, book);
             preparedStatement.executeUpdate();
 
-        } catch (SQLException | MapperException e) {
+        } catch (SQLException | MapperException | DatabaseConfigException e) {
             throw new BookDaoException(e);
         }
     }
@@ -97,7 +101,7 @@ public class MySQLBasedBookDao implements BookDao {
             bookMapper.mapObjectIdToStatement(preparedStatement, id);
             preparedStatement.executeUpdate();
 
-        } catch (SQLException | MapperException e) {
+        } catch (SQLException | MapperException | DatabaseConfigException e) {
             throw new BookDaoException(e);
         }
     }
@@ -111,7 +115,7 @@ public class MySQLBasedBookDao implements BookDao {
             bookMapper.mapRentedBookToStatement(preparedStatement, book);
 
             preparedStatement.executeUpdate();
-        } catch (SQLException | MapperException e) {
+        } catch (SQLException | MapperException | DatabaseConfigException e) {
             throw new BookDaoException(e);
         }
     }
@@ -125,7 +129,7 @@ public class MySQLBasedBookDao implements BookDao {
             bookMapper.mapReturnedBookToStatement(preparedStatement, book);
 
             preparedStatement.executeUpdate();
-        } catch (SQLException | MapperException e) {
+        } catch (SQLException | MapperException | DatabaseConfigException e) {
             throw new BookDaoException(e);
         }
     }

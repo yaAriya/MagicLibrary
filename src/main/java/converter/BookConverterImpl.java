@@ -5,11 +5,14 @@ import entity.Book;
 import entity.User;
 import exceptions.ConverterException;
 import exceptions.UserDaoException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import service.UserService;
 
 import java.util.Arrays;
 
 public class BookConverterImpl implements BookConverter {
+    private static final Logger logger = LogManager.getLogger();
     private static final String PARAMETER = ",";
     private UserService userService;
     private FileBasedUserDao userDao;

@@ -2,15 +2,19 @@ package dao;
 
 import config.DatabaseConfig;
 import entity.User;
+import exceptions.DatabaseConfigException;
 import exceptions.MapperException;
 import exceptions.UserDaoException;
 import mapper.UserMapper;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MySQLBasedUserDao implements UserDao {
+    private static final Logger logger = LogManager.getLogger();
     private static final String readAllUsersQuery = "SELECT u.id AS user_id, u.name AS user_name, email, age FROM users u";
     private static final String addQuery = "INSERT INTO users (name, email, age) VALUES (?, ?, ?)";
     private static final String readQuery = "SELECT u.id AS user_id, u.name AS user_name, email, age FROM users u WHERE u.id = ?";
@@ -38,8 +42,10 @@ public class MySQLBasedUserDao implements UserDao {
             while (resultSet.next()) {
                 users.add(userMapper.mapRSToObject(resultSet));
             }
+            logger.info("Users reading completed successfully");
             return users;
-        } catch (SQLException | MapperException e) {
+        } catch (SQLException | MapperException | DatabaseConfigException e) {
+            logger.error("Users reading failed");
             throw new UserDaoException(e);
         }
     }
@@ -51,7 +57,9 @@ public class MySQLBasedUserDao implements UserDao {
             userMapper.mapObjectToStatement(preparedStatement, user);
 
             preparedStatement.executeUpdate();
-        } catch (SQLException | MapperException e) {
+            logger.info("User adding completed successfully");
+        } catch (SQLException | MapperException | DatabaseConfigException e) {
+            logger.error("User adding failed");
             throw new UserDaoException(e);
         }
     }
@@ -67,7 +75,9 @@ public class MySQLBasedUserDao implements UserDao {
             if (resultSet.next()) {
                 return userMapper.mapRSToObject(resultSet);
             }
-        } catch (SQLException | MapperException e) {
+            logger.info("User reading completed successfully");
+        } catch (SQLException | MapperException | DatabaseConfigException e) {
+            logger.error("User reading failed");
             throw new UserDaoException(e);
         }
         return null;
@@ -81,7 +91,9 @@ public class MySQLBasedUserDao implements UserDao {
             userMapper.mapUpdateObjectToStatement(preparedStatement, user);
             preparedStatement.executeUpdate();
 
-        } catch (SQLException | MapperException e) {
+            logger.info("Users updating completed successfully");
+        } catch (SQLException | MapperException | DatabaseConfigException e) {
+            logger.error("User updating failed");
             throw new UserDaoException(e);
         }
     }
@@ -94,7 +106,9 @@ public class MySQLBasedUserDao implements UserDao {
             userMapper.mapObjectIdToStatement(preparedStatement, id);
             preparedStatement.executeUpdate();
 
-        } catch (SQLException | MapperException e) {
+            logger.info("Users deleting completed successfully");
+        } catch (SQLException | MapperException | DatabaseConfigException e) {
+            logger.error("User deleting failed");
             throw new UserDaoException(e);
         }
     }

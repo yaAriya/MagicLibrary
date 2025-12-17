@@ -42,7 +42,7 @@ public class ApplicationContextImpl implements ApplicationContext {
         dependencyInjectionDataAccessLayer();
         dependencyInjectionBusinessLayer();
         dependencyInjectionControllerLayer();
-        logger.info("initialize context complied successful");
+        logger.info("initialize context completed successful");
     }
 
     public static Main getMainInstance() {
@@ -50,7 +50,7 @@ public class ApplicationContextImpl implements ApplicationContext {
     }
 
     private void initializeDataAccessLayer() {
-        logger.info("InitializeDataAccessLayer run");
+        logger.debug("InitializeDataAccessLayer run");
         DatabaseConnectionTester databaseConnectionTester = new DatabaseConnectionTester();
         register(databaseConnectionTester);
 
@@ -98,11 +98,11 @@ public class ApplicationContextImpl implements ApplicationContext {
 
         FileBasedUserDaoImpl fileBasedUserDao = new FileBasedUserDaoImpl();
         register(fileBasedUserDao);
-        logger.info("InitializeDataAccessLayer complied successful");
+        logger.debug("InitializeDataAccessLayer completed successful");
     }
 
     private void dependencyInjectionDataAccessLayer() {
-        logger.info("DependencyInjectionDataAccessLayer run");
+        logger.debug("DependencyInjectionDataAccessLayer run");
         DatabaseConnectionTester databaseConnectionTester = ((DatabaseConnectionTester) instancies.get("DatabaseConnectionTester"));
         DatabaseConfig databaseConfig = ((DatabaseConfig) instancies.get("DatabaseConfig"));
         databaseConnectionTester.setDatabaseConfig(databaseConfig);
@@ -140,31 +140,31 @@ public class ApplicationContextImpl implements ApplicationContext {
         FileBasedUserDaoImpl fileBasedUserDao = ((FileBasedUserDaoImpl) instancies.get("FileBasedUserDaoImpl"));
         fileBasedUserDao.setUserFileReader(userFileReader);
         fileBasedUserDao.setUserFileWriter(userFileWriter);
-        logger.info("DependencyInjectionDataAccessLayer complied successful");
+        logger.debug("DependencyInjectionDataAccessLayer completed successful");
     }
 
     private void initializeValidationLayer() {
-        logger.info("InitializeValidationLayer run");
+        logger.debug("InitializeValidationLayer run");
         BookValidator bookValidator = new BookValidator();
         register(bookValidator);
 
         UserValidator userValidator = new UserValidator();
         register(userValidator);
-        logger.info("InitializeValidationLayer complied successful");
+        logger.debug("InitializeValidationLayer completed successful");
     }
 
     private void initializeBusinessLevel() {
-        logger.info("InitializeBusinessLevel run");
+        logger.debug("InitializeBusinessLevel run");
         BookServiceImpl bookService = new BookServiceImpl();
         register(bookService);
 
         UserServiceImpl userService = new UserServiceImpl();
         register(userService);
-        logger.info("InitializeBusinessLevel complied successful");
+        logger.debug("InitializeBusinessLevel completed successful");
     }
 
     private void dependencyInjectionBusinessLayer() {
-        logger.info("DependencyInjectionBusinessLayer run");
+        logger.debug("DependencyInjectionBusinessLayer run");
         BookServiceImpl bookService = ((BookServiceImpl) instancies.get("BookServiceImpl"));
         bookService.setBookDao((FileBasedBookDaoImpl) instancies.get("FileBasedBookDaoImpl"));
         bookService.setBookDao((MySQLBasedBookDao) instancies.get("MySQLBasedBookDao"));
@@ -175,21 +175,21 @@ public class ApplicationContextImpl implements ApplicationContext {
         userService.setUserDao((FileBasedUserDaoImpl) instancies.get("FileBasedUserDaoImpl"));
         userService.setUserDao((MySQLBasedUserDao) instancies.get("MySQLBasedUserDao"));
         userService.setUserValidator((UserValidator) instancies.get("UserValidator"));
-        logger.info("DependencyInjectionBusinessLayer complied successful");
+        logger.debug("DependencyInjectionBusinessLayer completed successful");
     }
 
     private void initializeControllerLevel() {
-        logger.info("InitializeControllerLevel run");
+        logger.debug("InitializeControllerLevel run");
         Printer printer = new PrinterImpl();
         register(printer);
 
         Main main = new Main();
         register(main);
-        logger.info("InitializeControllerLevel complied successful");
+        logger.debug("InitializeControllerLevel completed successful");
     }
 
     private void dependencyInjectionControllerLayer() {
-        logger.info("DependencyInjectionControllerLayer run");
+        logger.debug("DependencyInjectionControllerLayer run");
         Main main = ((Main) instancies.get("Main"));
         main.setDatabaseConnectionTester((DatabaseConnectionTester) instancies.get("DatabaseConnectionTester"));
         main.setFileBasedBookDao((FileBasedBookDaoImpl) instancies.get("FileBasedBookDaoImpl"));
@@ -197,12 +197,12 @@ public class ApplicationContextImpl implements ApplicationContext {
         main.setBookService((BookServiceImpl) instancies.get("BookServiceImpl"));
         main.setUserService((UserServiceImpl) instancies.get("UserServiceImpl"));
         main.setPrinter((PrinterImpl) instancies.get("PrinterImpl"));
-        logger.info("DependencyInjectionControllerLayer complied successful");
+        logger.debug("DependencyInjectionControllerLayer completed successful");
     }
 
     public void register(Object object) {
         String objectName = object.getClass().getSimpleName();
         instancies.put(objectName, object);
-        logger.info("Object register successful");
+        logger.debug("Object register successful");
     }
 }

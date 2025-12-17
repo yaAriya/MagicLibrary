@@ -18,7 +18,6 @@ public class DatabaseConfig {
 
     public Connection getConnection() throws DatabaseConfigException {
         try {
-            logger.debug("Connection Attempt");
             Connection connection = DriverManager.getConnection(propertyLoader.getDBUrl(), propertyLoader.getDBUsername(), propertyLoader.getDBPassword());
             logger.info("Getting connection was successful");
             return connection;

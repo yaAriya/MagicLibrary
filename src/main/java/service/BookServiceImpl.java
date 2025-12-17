@@ -31,8 +31,10 @@ public class BookServiceImpl implements BookService {
     @Override
     public List<Book> readAllBooks() throws BookServiceException {
         try {
+            logger.info("Reading all books");
             return bookDao.readAllBooks();
         } catch (ObjectInitializeException | BookDaoException e) {
+            logger.error("Reading all books failed");
             throw new BookServiceException(e);
         }
     }
@@ -41,15 +43,18 @@ public class BookServiceImpl implements BookService {
     public void add(Book book) throws BookServiceException {
         try {
             if (!bookValidator.validate(book) && bookDao.readAllBooks().contains(book)) {
-                throw new InvalidEntityException("Параметры, введенные Вами некорректны");
+                logger.error("Book validation failed during addition");
+                throw new InvalidEntityException("The parameters you entered are incorrect");
             }
             for (Book tempBook : bookDao.readAllBooks()) {
                 if (tempBook.getId() == book.getId()) {
-                    throw new InvalidEntityException("Книга с таким айди уже существует");
+                    logger.error("Duplicate book id");
+                    throw new InvalidEntityException("A book with this id already exists");
                 }
             }
             bookDao.add(book);
         } catch (InvalidEntityException | BookDaoException e) {
+            logger.error("Adding books failed");
             throw new BookServiceException(e);
         }
     }
@@ -58,10 +63,12 @@ public class BookServiceImpl implements BookService {
     public Book read(long id) throws BookServiceException {
         try {
             if (bookDao.read(id) == null) {
-                throw new EntityNotFoundException("Такой книги нет");
+                logger.error("Book is not found");
+                throw new EntityNotFoundException("The book you are looking for has not been found");
             }
             return bookDao.read(id);
         } catch (EntityNotFoundException | BookDaoException e) {
+            logger.error("Reading books failed");
             throw new BookServiceException(e);
         }
     }
@@ -71,14 +78,18 @@ public class BookServiceImpl implements BookService {
         try {
             Book oldBook = read(book.getId());
             if (!bookValidator.validate(book)) {
-                throw new InvalidEntityException("Параметры, введенные Вами некорректны");
+                logger.error("Incorrect parameters from the book");
+                throw new InvalidEntityException("The parameters you entered are incorrect");
             } else if (oldBook.getUser() != null) {
-                throw new InvalidEntityException("Вы не можете обновить уже арендованную книгу");
+                logger.error("The old book has user");
+                throw new InvalidEntityException("You cannot update rented book");
             } else if (book.getUser() != null) {
-                throw new InvalidEntityException("Пользователь обновляемой книги должен отсутствовать");
+                logger.error("The new book has user");
+                throw new InvalidEntityException("The updated book should not has user");
             }
             bookDao.update(book);
         } catch (InvalidEntityException | BookDaoException e) {
+            logger.error("Updating books failed");
             throw new BookServiceException(e);
         }
     }
@@ -87,10 +98,12 @@ public class BookServiceImpl implements BookService {
     public void delete(long id) throws BookServiceException {
         try {
             if (id < 0 && read(id).getUser() != null) {
-                throw new InvalidEntityException("Cannot delete your book");
+                logger.error("Deleted book has user");
+                throw new InvalidEntityException("The deleted book should not has user");
             }
             bookDao.delete(id);
         } catch (InvalidEntityException | BookDaoException e) {
+            logger.error("Deleting users failed");
             throw new BookServiceException(e);
         }
     }
@@ -101,12 +114,15 @@ public class BookServiceImpl implements BookService {
             User readUser = userService.read(userId);
             Book readBook = read(bookId);
             if (readUser == null || readBook == null) {
-                throw new InvalidEntityException("Пользователь или книга не найдены");
+                logger.error("User or book not found");
+                throw new InvalidEntityException("User or book not found");
             } else if (readBook.getUser() != null || readUser.getBooks().contains(readBook)) {
-                throw new InvalidEntityException("У книги уже есть пользователь или у пользователя уже арендована эта книга");
+                logger.error("Book already has user or user already has books");
+                throw new InvalidEntityException("Book already has user or user already has books");
             }
             bookDao.rentBook(readUser, readBook);
         } catch (InvalidEntityException | BookDaoException e) {
+            logger.error("Renting book failed");
             throw new BookServiceException(e);
         }
     }
@@ -117,9 +133,11 @@ public class BookServiceImpl implements BookService {
             User readUser = userService.read(userId);
             Book readBook = read(bookId);
             if (readUser == null || readBook == null) {
-                throw new InvalidEntityException("Пользователь или книга не могут быть пустыми");
+                logger.error("Book or user not found");
+                throw new InvalidEntityException("User or book cannot be null");
             } else if (readBook.getUser() == null) {
-                throw new InvalidEntityException("У книги нет пользователя или у пользователя не была арендована книга");
+                logger.error("Book has not user");
+                throw new InvalidEntityException("The book has not user or user has not any books");
             }
             bookDao.returnBook(readUser, readBook);
 
@@ -129,6 +147,7 @@ public class BookServiceImpl implements BookService {
             readBook.setUser(null);
             update(readBook);
         } catch (InvalidEntityException | BookDaoException e) {
+            logger.error("Returning book failed");
             throw new BookServiceException();
         }
     }

@@ -34,8 +34,10 @@ public class BookFileReaderImpl implements BookFileReader {
                 books.add(book);
                 readLine = reader.readLine();
             }
+            logger.info("Reading books from file compiled successful");
             return books;
         } catch (IOException | ConverterException e) {
+            logger.error("Reading books from file failed");
             throw new BookFileReaderException(e);
         }
     }

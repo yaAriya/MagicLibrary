@@ -27,6 +27,7 @@ public class UserMapper implements Mapper<User> {
 
             return mappedUser;
         } catch (SQLException e) {
+            logger.error("Failed to map ResultSet to User");
             throw new MapperException(e);
         }
     }
@@ -38,6 +39,7 @@ public class UserMapper implements Mapper<User> {
             preparedStatement.setString(2, user.getEmail());
             preparedStatement.setInt(3, user.getAge());
         } catch (SQLException e) {
+            logger.error("Failed to map user to statement");
             throw new MapperException(e);
         }
     }
@@ -47,6 +49,7 @@ public class UserMapper implements Mapper<User> {
         try {
             preparedStatement.setLong(1, id);
         } catch (SQLException e) {
+            logger.error("Failed to map user id to statement");
             throw new MapperException(e);
         }
     }
@@ -59,6 +62,7 @@ public class UserMapper implements Mapper<User> {
             preparedStatement.setInt(3, user.getAge());
             preparedStatement.setLong(4, user.getId());
         } catch (SQLException e) {
+            logger.error("Failed to map update user to statement");
             throw new MapperException(e);
         }
     }

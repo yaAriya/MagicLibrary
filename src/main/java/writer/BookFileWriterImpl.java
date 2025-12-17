@@ -26,7 +26,9 @@ public class BookFileWriterImpl implements BookFileWriter {
             writer.write("\n");
             writer.write(bookConverter.convertBookToLine(book));
             writer.flush();
+            logger.info("Adding books to file compiled successful");
         } catch (IOException e) {
+            logger.error("Adding books to file failed");
             throw new BookFileWriterException(e);
         }
     }
@@ -38,7 +40,9 @@ public class BookFileWriterImpl implements BookFileWriter {
                 String bookToLine = bookConverter.convertBookToLine((book));
                 writer.write(bookToLine + "\n");
             }
+            logger.info("Writing books to file compiled successful");
         } catch (IOException e) {
+            logger.error("Writing books to file failed");
             throw new BookFileWriterException(e);
         }
     }

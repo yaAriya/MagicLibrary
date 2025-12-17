@@ -31,6 +31,7 @@ public class FileBasedUserDaoImpl implements FileBasedUserDao {
         try {
             users = userFileReader.readUsersFromFile();
         } catch (UserFileReaderException e) {
+            logger.error("Cash initialization failed");
             throw new UserDaoException(e);
         }
     }
@@ -50,8 +51,10 @@ public class FileBasedUserDaoImpl implements FileBasedUserDao {
             for (User user : getUsers()) {
                 clonedUsers.add(user.clone());
             }
+            logger.info("Users reading completed successfully");
             return clonedUsers;
         } catch (CloneNotSupportedException e) {
+            logger.error("Users reading failed");
             throw new UserDaoException(e);
         }
     }
@@ -61,7 +64,9 @@ public class FileBasedUserDaoImpl implements FileBasedUserDao {
         try {
             getUsers().add(user);
             userFileWriter.addUserToFile(user);
+            logger.info("User adding completed successfully");
         } catch (UserFileWriterException e) {
+            logger.error("User adding failed");
             throw new UserDaoException(e);
         }
     }
@@ -72,6 +77,7 @@ public class FileBasedUserDaoImpl implements FileBasedUserDao {
             user.getBooks().add(book);
             userFileWriter.writeUsersToFile(getUsers());
         } catch (UserFileWriterException e) {
+            logger.error("Book to user adding failed");
             throw new UserDaoException(e);
         }
     }
@@ -84,7 +90,9 @@ public class FileBasedUserDaoImpl implements FileBasedUserDao {
                     return user.clone();
                 }
             }
+            logger.info("User reading completed successfully");
         } catch (CloneNotSupportedException e) {
+            logger.error("User reading failed");
             throw new UserDaoException(e);
         }
         return null;
@@ -103,7 +111,9 @@ public class FileBasedUserDaoImpl implements FileBasedUserDao {
                     userFileWriter.writeUsersToFile(getUsers());
                 }
             }
+            logger.info("Users updating completed successfully");
         } catch (UserFileWriterException e) {
+            logger.error("User updating failed");
             throw new UserDaoException(e);
         }
     }
@@ -113,7 +123,9 @@ public class FileBasedUserDaoImpl implements FileBasedUserDao {
         getUsers().remove(read(id));
         try {
             userFileWriter.writeUsersToFile(getUsers());
+            logger.info("Users deleting completed successfully");
         } catch (UserFileWriterException e) {
+            logger.error("User deleting failed");
             throw new UserDaoException(e);
         }
     }

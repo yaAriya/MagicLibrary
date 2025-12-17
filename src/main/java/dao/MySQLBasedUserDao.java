@@ -73,9 +73,9 @@ public class MySQLBasedUserDao implements UserDao {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
+                logger.info("User reading completed successfully");
                 return userMapper.mapRSToObject(resultSet);
             }
-            logger.info("User reading completed successfully");
         } catch (SQLException | MapperException | DatabaseConfigException e) {
             logger.error("User reading failed");
             throw new UserDaoException(e);

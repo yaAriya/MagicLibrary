@@ -44,8 +44,10 @@ public class BookConverterImpl implements BookConverter {
                 User updateUser = book.getUser();
                 userDao.addBookToUser(updateUser, book);
             }
+            logger.info("Converting line to book completed successful");
             return book;
         } catch (UserDaoException e) {
+            logger.error("Converting line to book failed");
             throw new ConverterException(e);
         }
     }
@@ -64,6 +66,7 @@ public class BookConverterImpl implements BookConverter {
             String userIdToString = Long.toString(book.getUser().getId());
             sb.append(PARAMETER).append(userIdToString);
         }
+        logger.info("Converting book to line completed successful");
         return sb.toString();
     }
 }

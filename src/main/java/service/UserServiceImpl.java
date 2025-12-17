@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
             logger.info("Reading all users");
             return userDao.readAllUsers();
         } catch (ObjectInitializeException | UserDaoException e) {
-            logger.error("Reading all users was failed");
+            logger.error("Reading all users failed");
             throw new UserServiceException(e);
         }
     }
@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserService {
     public void add(User user) throws UserServiceException {
         try {
             if (!userValidator.validate(user) && userDao.readAllUsers().contains(user)) {
-                logger.error("User validation was failed during addition");
+                logger.error("User validation failed during addition");
                 throw new InvalidEntityException("The parameters you entered are incorrect");
             }
             for (User tempUser : userDao.readAllUsers()) {
@@ -48,7 +48,7 @@ public class UserServiceImpl implements UserService {
             }
             userDao.add(user);
         } catch (InvalidEntityException | UserDaoException e) {
-            logger.error("Adding users was failed");
+            logger.error("Adding users failed");
             throw new UserServiceException(e);
         }
     }
@@ -62,7 +62,7 @@ public class UserServiceImpl implements UserService {
             }
             return userDao.read(id);
         } catch (EntityNotFoundException | UserDaoException e) {
-            logger.error("Reading users was failed");
+            logger.error("Reading users failed");
             throw new UserServiceException(e);
         }
     }
@@ -79,11 +79,11 @@ public class UserServiceImpl implements UserService {
                 throw new InvalidEntityException("You cannot update a user with a rented book");
             } else if (!user.getBooks().isEmpty()) {
                 logger.error("The new user has books");
-                throw new InvalidEntityException("The updated user should not have any books");
+                throw new InvalidEntityException("The updated user should not has any books");
             }
             userDao.update(user);
         } catch (InvalidEntityException | UserDaoException e) {
-            logger.error("Updating users was failed");
+            logger.error("Updating users failed");
             throw new UserServiceException(e);
         }
     }
@@ -94,11 +94,11 @@ public class UserServiceImpl implements UserService {
             User readUser = read(id);
             if (id < 0 && !readUser.getBooks().isEmpty()) {
                 logger.error("Deleted user has books");
-                throw new InvalidEntityException("The deleted user should not have any books");
+                throw new InvalidEntityException("The deleted user should not has any books");
             }
             userDao.delete(id);
         } catch (InvalidEntityException | UserDaoException e) {
-            logger.error("Deleting users was failed");
+            logger.error("Deleting users failed");
             throw new UserServiceException(e);
         }
     }

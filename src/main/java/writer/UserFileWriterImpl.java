@@ -26,7 +26,9 @@ public class UserFileWriterImpl implements UserFileWriter {
             writer.write(userConverter.convertUserToLine(user));
             writer.write("\n");
             writer.flush();
+            logger.info("Adding users to file compiled successful");
         } catch (IOException e) {
+            logger.error("Adding users to file failed");
             throw new UserFileWriterException(e);
         }
     }
@@ -38,7 +40,9 @@ public class UserFileWriterImpl implements UserFileWriter {
                 String userToLine = userConverter.convertUserToLine(user);
                 writer.write(userToLine + "\n");
             }
+            logger.info("Writing users to file compiled successful");
         } catch (IOException e) {
+            logger.error("Writing users to file failed");
             throw new UserFileWriterException(e);
         }
     }

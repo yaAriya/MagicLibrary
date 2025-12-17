@@ -32,8 +32,10 @@ public class UserFileReaderImpl implements UserFileReader {
                 users.add(user);
                 readLine = reader.readLine();
             }
+            logger.info("Reading users from file compiled successful");
             return users;
         } catch (IOException e) {
+            logger.error("Reading users from file failed");
             throw new UserFileReaderException(e);
         }
     }

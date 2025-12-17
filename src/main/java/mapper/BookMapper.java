@@ -40,6 +40,7 @@ public class BookMapper implements Mapper<Book> {
             }
             return mappedBook;
         } catch (SQLException e) {
+            logger.error("Failed to map ResultSet to Book");
             throw new MapperException(e);
         }
     }
@@ -56,6 +57,7 @@ public class BookMapper implements Mapper<Book> {
                 preparedStatement.setNull(4, Types.BIGINT);
             }
         } catch (SQLException e) {
+            logger.error("Failed to map book to statement");
             throw new MapperException(e);
         }
     }
@@ -65,6 +67,7 @@ public class BookMapper implements Mapper<Book> {
         try {
             preparedStatement.setLong(1, id);
         } catch (SQLException e) {
+            logger.error("Failed to map book id to statement");
             throw new MapperException(e);
         }
     }
@@ -82,6 +85,7 @@ public class BookMapper implements Mapper<Book> {
             }
             preparedStatement.setLong(5, book.getId());
         } catch (SQLException e) {
+            logger.error("Failed to map updated book to statement");
             throw new MapperException(e);
         }
     }
@@ -91,6 +95,7 @@ public class BookMapper implements Mapper<Book> {
             preparedStatement.setLong(1, book.getUser().getId());
             preparedStatement.setLong(2, book.getId());
         } catch (SQLException e) {
+            logger.error("Failed to map rented book to statement");
             throw new MapperException(e);
         }
     }
@@ -100,6 +105,7 @@ public class BookMapper implements Mapper<Book> {
             preparedStatement.setNull(1, Types.BIGINT);
             preparedStatement.setLong(2, book.getId());
         } catch (SQLException e) {
+            logger.error("Failed to map returned book to statement");
             throw new MapperException(e);
         }
     }

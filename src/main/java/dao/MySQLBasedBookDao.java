@@ -44,8 +44,10 @@ public class MySQLBasedBookDao implements BookDao {
             while (resultSet.next()) {
                 books.add(bookMapper.mapRSToObject(resultSet));
             }
+            logger.info("Books reading completed successfully");
             return books;
         } catch (SQLException | MapperException | DatabaseConfigException e) {
+            logger.error("Books reading failed");
             throw new BookDaoException(e);
         }
     }
@@ -58,7 +60,9 @@ public class MySQLBasedBookDao implements BookDao {
             bookMapper.mapObjectToStatement(preparedStatement, book);
             preparedStatement.executeUpdate();
 
+            logger.info("Book adding completed successfully");
         } catch (SQLException | MapperException | DatabaseConfigException e) {
+            logger.error("Book adding failed");
             throw new BookDaoException(e);
         }
     }
@@ -72,9 +76,11 @@ public class MySQLBasedBookDao implements BookDao {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
+                logger.info("Book reading completed successfully");
                 return bookMapper.mapRSToObject(resultSet);
             }
         } catch (SQLException | MapperException | DatabaseConfigException e) {
+            logger.error("Book reading failed");
             throw new BookDaoException(e);
         }
         return null;
@@ -88,7 +94,9 @@ public class MySQLBasedBookDao implements BookDao {
             bookMapper.mapUpdateObjectToStatement(preparedStatement, book);
             preparedStatement.executeUpdate();
 
+            logger.info("Books updating completed successfully");
         } catch (SQLException | MapperException | DatabaseConfigException e) {
+            logger.error("Book updating failed");
             throw new BookDaoException(e);
         }
     }
@@ -101,7 +109,9 @@ public class MySQLBasedBookDao implements BookDao {
             bookMapper.mapObjectIdToStatement(preparedStatement, id);
             preparedStatement.executeUpdate();
 
+            logger.info("Books deleting completed successfully");
         } catch (SQLException | MapperException | DatabaseConfigException e) {
+            logger.error("Book deleting failed");
             throw new BookDaoException(e);
         }
     }
@@ -115,7 +125,9 @@ public class MySQLBasedBookDao implements BookDao {
             bookMapper.mapRentedBookToStatement(preparedStatement, book);
 
             preparedStatement.executeUpdate();
+            logger.info("Book renting compile successful");
         } catch (SQLException | MapperException | DatabaseConfigException e) {
+            logger.error("Book renting failed");
             throw new BookDaoException(e);
         }
     }
@@ -129,7 +141,9 @@ public class MySQLBasedBookDao implements BookDao {
             bookMapper.mapReturnedBookToStatement(preparedStatement, book);
 
             preparedStatement.executeUpdate();
+            logger.info("Book returning compile successful");
         } catch (SQLException | MapperException | DatabaseConfigException e) {
+            logger.error("Book returning failed");
             throw new BookDaoException(e);
         }
     }

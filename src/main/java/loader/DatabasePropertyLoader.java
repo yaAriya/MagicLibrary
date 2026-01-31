@@ -1,25 +1,27 @@
 package loader;
 
 import exceptions.PropertyLoaderException;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.io.InputStream;
 import java.util.Properties;
 
-public class PropertyLoader {
-    private static final Logger logger = LogManager.getLogger();
-    private static final Properties properties = new Properties();
+public class DatabasePropertyLoader {
+    private static final String PROPERTY_FILE_PATH = "/databaseConfig.properties";
+    private final Properties properties = new Properties();
     private static boolean initialized;
 
-    private static void init() throws PropertyLoaderException {
-        try (InputStream input = PropertyLoader.class.getResourceAsStream("/databaseConfig.properties")) {
+    static {
+
+    }
+
+    private void init() {
+        try (InputStream input = DatabasePropertyLoader.class.getResourceAsStream(PROPERTY_FILE_PATH)) {
             if (!initialized && input != null) {
                 properties.load(input);
                 initialized = true;
             }
         } catch (Exception e) {
-            throw new PropertyLoaderException(e);
+           throw new RuntimeException (e);
         }
     }
 

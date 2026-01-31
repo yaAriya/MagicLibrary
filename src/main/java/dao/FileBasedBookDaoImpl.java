@@ -14,35 +14,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FileBasedBookDaoImpl implements FileBasedBookDao {
-    private static final Logger logger = LogManager.getLogger();
+    private static final Logger LOGGER = LogManager.getLogger(FileBasedBookDaoImpl.class);
     private List<Book> books;
     private BookFileReader bookFileReader;
     private BookFileWriter bookFileWriter;
-
-    public void setBookFileReader(BookFileReader bookFileReader) {
-        this.bookFileReader = bookFileReader;
-    }
-
-    public void setBookFileWriter(BookFileWriter bookFileWriter) {
-        this.bookFileWriter = bookFileWriter;
-    }
 
     @Override
     public void initializeCash() throws BookDaoException {
         try {
             books = bookFileReader.readBooksFromFile();
         } catch (BookFileReaderException e) {
-            logger.error("Cash initialization failed");
+            LOGGER.error("Cash initialization failed");
             throw new BookDaoException(e);
         }
-    }
-
-    public List<Book> getBooks() {
-        return books;
-    }
-
-    public void setBooks(List<Book> books) {
-        this.books = books;
     }
 
     @Override
@@ -52,10 +36,10 @@ public class FileBasedBookDaoImpl implements FileBasedBookDao {
             for (Book book : getBooks()) {
                 clonedBooks.add(book.clone());
             }
-            logger.info("Books reading completed successfully");
+            LOGGER.info("Books reading completed successfully");
             return clonedBooks;
         } catch (CloneNotSupportedException e) {
-            logger.error("Books reading failed");
+            LOGGER.error("Books reading failed");
             throw new BookDaoException(e);
         }
     }
@@ -65,9 +49,9 @@ public class FileBasedBookDaoImpl implements FileBasedBookDao {
         try {
             getBooks().add(book);
             bookFileWriter.addBookToFile(book);
-            logger.info("Book adding completed successfully");
+            LOGGER.info("Book adding completed successfully");
         } catch (BookFileWriterException e) {
-            logger.error("Book adding failed");
+            LOGGER.error("Book adding failed");
             throw new BookDaoException(e);
         }
     }
@@ -80,9 +64,9 @@ public class FileBasedBookDaoImpl implements FileBasedBookDao {
                     return book.clone();
                 }
             }
-            logger.info("Book reading completed successfully");
+            LOGGER.info("Book reading completed successfully");
         } catch (CloneNotSupportedException e) {
-            logger.error("Book reading failed");
+            LOGGER.error("Book reading failed");
             throw new BookDaoException(e);
         }
         return null;
@@ -101,9 +85,9 @@ public class FileBasedBookDaoImpl implements FileBasedBookDao {
                     bookFileWriter.writeBookToFile(getBooks());
                 }
             }
-            logger.info("Books updating completed successfully");
+            LOGGER.info("Books updating completed successfully");
         } catch (BookFileWriterException e) {
-            logger.error("Book updating failed");
+            LOGGER.error("Book updating failed");
             throw new BookDaoException(e);
         }
     }
@@ -113,9 +97,9 @@ public class FileBasedBookDaoImpl implements FileBasedBookDao {
         try {
             getBooks().remove(read(id));
             bookFileWriter.writeBookToFile(getBooks());
-            logger.info("Books deleting completed successfully");
+            LOGGER.info("Books deleting completed successfully");
         } catch (BookFileWriterException e) {
-            logger.error("Book deleting failed");
+            LOGGER.error("Book deleting failed");
             throw new BookDaoException(e);
         }
     }
@@ -124,13 +108,29 @@ public class FileBasedBookDaoImpl implements FileBasedBookDao {
     public void rentBook(User user, Book book) {
         book.setUser(user);
         user.getBooks().add(book);
-        logger.info("Book renting compile successful");
+        LOGGER.info("Book renting compile successful");
     }
 
     @Override
     public void returnBook(User user, Book book) {
         book.setUser(null);
         user.getBooks().remove(book);
-        logger.info("Book returning compile successful");
+        LOGGER.info("Book returning compile successful");
+    }
+
+    public void setBookFileReader(BookFileReader bookFileReader) {
+        this.bookFileReader = bookFileReader;
+    }
+
+    public void setBookFileWriter(BookFileWriter bookFileWriter) {
+        this.bookFileWriter = bookFileWriter;
+    }
+
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
     }
 }

@@ -1,69 +1,72 @@
 package mapper;
 
+import entity.Book;
 import entity.User;
 import exceptions.MapperException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserMapper implements Mapper<User> {
-    private static final Logger logger = LogManager.getLogger();
+    private static final Logger LOGGER = LogManager.getLogger(UserMapper.class);
+    private static final String ID_COLUMN = "user_id";
+    private static final String NAME_COLUMN = "user_name";
+    private static final String EMAIL_COLUMN = "email";
+    private static final String AGE_COLUMN = "age";
+    private BookMapper bookMapper;
 
     @Override
-    public User mapRSToObject(ResultSet resultSet) throws MapperException {
+    public User mapResultSetToObject(ResultSet resultSet) throws MapperException {
         try {
             User mappedUser = new User();
-            long id = resultSet.getLong("user_id");
+            long id = resultSet.getLong(ID_COLUMN);
             mappedUser.setId(id);
-            String name = resultSet.getString("user_name");
+            String name = resultSet.getString(NAME_COLUMN);
             mappedUser.setName(name);
-            String email = resultSet.getString("email");
+            String email = resultSet.getString(EMAIL_COLUMN);
             mappedUser.setEmail(email);
-            int age = resultSet.getInt("age");
+            int age = resultSet.getInt(AGE_COLUMN);
+            mappedUser.setAge(age);
+
+            List<Book> userBooks = new ArrayList<>();
+            while (!resultSet.wasNull()){
+                Book userBook = bookMapper.mapResultSetToObjectWithoutDependencies(resultSet);
+                userBooks.add(userBook);
+            }
+            mappedUser.setBooks(userBooks);
+
+                return mappedUser;
+        } catch (SQLException e) {
+            LOGGER.error("Mapping ResultSet to User failed");
+            throw new MapperException(e);
+        }
+    }
+
+    public User mapResultSetToObjectWithoutDependencies(ResultSet resultSet) throws MapperException{
+        try {
+            User mappedUser = new User();
+            long id = resultSet.getLong(ID_COLUMN);
+            mappedUser.setId(id);
+            String name = resultSet.getString(NAME_COLUMN);
+            mappedUser.setName(name);
+            String email = resultSet.getString(EMAIL_COLUMN);
+            mappedUser.setEmail(email);
+            int age = resultSet.getInt(AGE_COLUMN);
             mappedUser.setAge(age);
 
             return mappedUser;
         } catch (SQLException e) {
-            logger.error("Failed to map ResultSet to User");
+            LOGGER.error("Failed to map ResultSet to User");
             throw new MapperException(e);
         }
     }
 
-    @Override
-    public void mapObjectToStatement(PreparedStatement preparedStatement, User user) throws MapperException {
-        try {
-            preparedStatement.setString(1, user.getName());
-            preparedStatement.setString(2, user.getEmail());
-            preparedStatement.setInt(3, user.getAge());
-        } catch (SQLException e) {
-            logger.error("Failed to map user to statement");
-            throw new MapperException(e);
-        }
+    public void setBookMapper(BookMapper bookMapper){
+        this.bookMapper = bookMapper;
     }
 
-    @Override
-    public void mapObjectIdToStatement(PreparedStatement preparedStatement, long id) throws MapperException {
-        try {
-            preparedStatement.setLong(1, id);
-        } catch (SQLException e) {
-            logger.error("Failed to map user id to statement");
-            throw new MapperException(e);
-        }
-    }
-
-    @Override
-    public void mapUpdateObjectToStatement(PreparedStatement preparedStatement, User user) throws MapperException {
-        try {
-            preparedStatement.setString(1, user.getName());
-            preparedStatement.setString(2, user.getEmail());
-            preparedStatement.setInt(3, user.getAge());
-            preparedStatement.setLong(4, user.getId());
-        } catch (SQLException e) {
-            logger.error("Failed to map update user to statement");
-            throw new MapperException(e);
-        }
-    }
 }

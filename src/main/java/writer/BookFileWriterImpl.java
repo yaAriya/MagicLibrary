@@ -12,13 +12,9 @@ import java.io.IOException;
 import java.util.List;
 
 public class BookFileWriterImpl implements BookFileWriter {
-    private static final Logger logger = LogManager.getLogger();
+    private static final Logger LOGGER = LogManager.getLogger();
     private static final String BOOK_FILE_PATH = "src/main/resources/book.txt";
     private BookConverter bookConverter;
-
-    public void setBookConverter(BookConverter bookConverter){
-        this.bookConverter = bookConverter;
-    }
 
     @Override
     public void addBookToFile(Book book) throws BookFileWriterException {
@@ -26,9 +22,9 @@ public class BookFileWriterImpl implements BookFileWriter {
             writer.write("\n");
             writer.write(bookConverter.convertBookToLine(book));
             writer.flush();
-            logger.info("Adding books to file compiled successful");
+            LOGGER.info("Adding books to file compiled successful");
         } catch (IOException e) {
-            logger.error("Adding books to file failed");
+            LOGGER.error("Adding books to file failed");
             throw new BookFileWriterException(e);
         }
     }
@@ -40,10 +36,14 @@ public class BookFileWriterImpl implements BookFileWriter {
                 String bookToLine = bookConverter.convertBookToLine((book));
                 writer.write(bookToLine + "\n");
             }
-            logger.info("Writing books to file compiled successful");
+            LOGGER.info("Writing books to file compiled successful");
         } catch (IOException e) {
-            logger.error("Writing books to file failed");
+            LOGGER.error("Writing books to file failed");
             throw new BookFileWriterException(e);
         }
+    }
+
+    public void setBookConverter(BookConverter bookConverter){
+        this.bookConverter = bookConverter;
     }
 }

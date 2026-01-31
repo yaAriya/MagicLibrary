@@ -12,13 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserFileReaderImpl implements UserFileReader {
-    private static final Logger logger = LogManager.getLogger();
+    private static final Logger LOGGER = LogManager.getLogger(UserFileReaderImpl.class);
     private static final String USER_FILE_PATH = "src/main/resources/user.txt";
     private UserConverter userConverter;
-
-    public void setUserConverter(UserConverter userConverter){
-        this.userConverter = userConverter;
-    }
 
     @Override
     public List<User> readUsersFromFile() throws UserFileReaderException {
@@ -32,11 +28,15 @@ public class UserFileReaderImpl implements UserFileReader {
                 users.add(user);
                 readLine = reader.readLine();
             }
-            logger.info("Reading users from file compiled successful");
+            LOGGER.info("Reading users from file compiled successful");
             return users;
         } catch (IOException e) {
-            logger.error("Reading users from file failed");
+            LOGGER.error("Reading users from file failed");
             throw new UserFileReaderException(e);
         }
+    }
+
+    public void setUserConverter(UserConverter userConverter){
+        this.userConverter = userConverter;
     }
 }

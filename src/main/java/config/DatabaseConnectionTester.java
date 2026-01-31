@@ -1,6 +1,5 @@
-package util;
+package config;
 
-import config.DatabaseConfig;
 import exceptions.DatabaseConfigException;
 import exceptions.DatabaseConnectionTesterException;
 import org.apache.logging.log4j.LogManager;
@@ -10,24 +9,23 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 public class DatabaseConnectionTester {
+    private static final Logger LOGGER = LogManager.getLogger(DatabaseConnectionTester.class);
     private DatabaseConfig databaseConfig;
-    private static final Logger logger = LogManager.getLogger();
-
-    public void setDatabaseConfig(DatabaseConfig databaseConfig) {
-        this.databaseConfig = databaseConfig;
-    }
 
     public void validateTestConnection() throws DatabaseConnectionTesterException {
         try (Connection connection = databaseConfig.getConnection()) {
             if (!connection.isValid(5)) {
-                logger.warn("Connection not valid");
+                LOGGER.warn("Connection not valid");
             }
-            logger.info("Connection valid");
+            LOGGER.info("Connection valid");
             databaseConfig.testConnection();
         } catch (SQLException | DatabaseConfigException e) {
-            logger.error("Testing the connection failed");
+            LOGGER.error("Testing the connection failed");
             throw new DatabaseConnectionTesterException(e);
         }
     }
 
+    public void setDatabaseConfig(DatabaseConfigImpl databaseConfigImpl) {
+        this.databaseConfig = databaseConfigImpl;
+    }
 }

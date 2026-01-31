@@ -40,7 +40,6 @@ public class Book implements Cloneable {
         this.user = user;
     }
 
-
     public String getName() {
         return name;
     }

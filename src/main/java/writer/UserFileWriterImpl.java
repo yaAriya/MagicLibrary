@@ -12,13 +12,9 @@ import java.io.IOException;
 import java.util.List;
 
 public class UserFileWriterImpl implements UserFileWriter {
-    private static final Logger logger = LogManager.getLogger();
+    private static final Logger LOGGER = LogManager.getLogger(UserFileWriterImpl.class);
     private static final String USER_FILE_PATH = "src/main/resources/user.txt";
     private UserConverter userConverter;
-
-    public void setUserConverter(UserConverter userConverter){
-        this.userConverter = userConverter;
-    }
 
     @Override
     public void addUserToFile(User user) throws UserFileWriterException {
@@ -26,9 +22,9 @@ public class UserFileWriterImpl implements UserFileWriter {
             writer.write(userConverter.convertUserToLine(user));
             writer.write("\n");
             writer.flush();
-            logger.info("Adding users to file compiled successful");
+            LOGGER.info("Adding users to file compiled successful");
         } catch (IOException e) {
-            logger.error("Adding users to file failed");
+            LOGGER.error("Adding users to file failed");
             throw new UserFileWriterException(e);
         }
     }
@@ -40,10 +36,14 @@ public class UserFileWriterImpl implements UserFileWriter {
                 String userToLine = userConverter.convertUserToLine(user);
                 writer.write(userToLine + "\n");
             }
-            logger.info("Writing users to file compiled successful");
+            LOGGER.info("Writing users to file compiled successful");
         } catch (IOException e) {
-            logger.error("Writing users to file failed");
+            LOGGER.error("Writing users to file failed");
             throw new UserFileWriterException(e);
         }
+    }
+
+    public void setUserConverter(UserConverter userConverter){
+        this.userConverter = userConverter;
     }
 }

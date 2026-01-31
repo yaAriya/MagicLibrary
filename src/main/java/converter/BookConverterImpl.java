@@ -12,18 +12,10 @@ import service.UserService;
 import java.util.Arrays;
 
 public class BookConverterImpl implements BookConverter {
-    private static final Logger logger = LogManager.getLogger();
+    private static final Logger LOGGER = LogManager.getLogger(BookConverterImpl.class);
     private static final String PARAMETER = ",";
     private UserService userService;
     private FileBasedUserDao userDao;
-
-    public void setUserService(UserService userService) {
-        this.userService = userService;
-    }
-
-    public void setUserDao(FileBasedUserDao userDao) {
-        this.userDao = userDao;
-    }
 
     @Override
     public Book convertLineToBook(String line) throws ConverterException {
@@ -44,10 +36,10 @@ public class BookConverterImpl implements BookConverter {
                 User updateUser = book.getUser();
                 userDao.addBookToUser(updateUser, book);
             }
-            logger.info("Converting line to book completed successful");
+            LOGGER.info("Converting line to book completed successful");
             return book;
         } catch (UserDaoException e) {
-            logger.error("Converting line to book failed");
+            LOGGER.error("Converting line to book failed");
             throw new ConverterException(e);
         }
     }
@@ -66,7 +58,15 @@ public class BookConverterImpl implements BookConverter {
             String userIdToString = Long.toString(book.getUser().getId());
             sb.append(PARAMETER).append(userIdToString);
         }
-        logger.info("Converting book to line completed successful");
+        LOGGER.info("Converting book to line completed successful");
         return sb.toString();
+    }
+
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
+
+    public void setUserDao(FileBasedUserDao userDao) {
+        this.userDao = userDao;
     }
 }

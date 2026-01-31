@@ -14,22 +14,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MySQLBasedUserDao implements UserDao {
-    private static final Logger logger = LogManager.getLogger();
-    private static final String readAllUsersQuery = "SELECT u.id AS user_id, u.name AS user_name, email, age FROM users u";
-    private static final String addQuery = "INSERT INTO users (name, email, age) VALUES (?, ?, ?)";
-    private static final String readQuery = "SELECT u.id AS user_id, u.name AS user_name, email, age FROM users u WHERE u.id = ?";
-    private static final String updateQuery = "UPDATE users SET name = ?, email = ?, age = ? WHERE id = ?";
-    private static final String deleteQuery = "DELETE FROM users WHERE id = ?";
+    private static final Logger LOGGER = LogManager.getLogger(MySQLBasedUserDao.class);
+    private static final String READ_ALL_USERS_QUERY = "SELECT u.id AS user_id, u.name AS user_name, email, age, b.id AS book_id, b.name AS book_name, author, page_number FROM users u LEFT JOIN books b ORDER BY u.id";
+    private static final String ADD_QUERY = "INSERT INTO users (name, email, age) VALUES (?, ?, ?)";
+    private static final String READ_QUERY = "SELECT u.id AS user_id, u.name AS user_name, email, age, b.id AS book_id, b.name AS book_name, author, page_number FROM users u LEFT JOIN books b ON b.user_id = u.id WHERE u.id = ?";
+    private static final String UPDATE_QUERY = "UPDATE users SET name = ?, email = ?, age = ? WHERE id = ?";
+    private static final String DELETE_QUERY = "DELETE FROM users WHERE id = ?";
     private UserMapper userMapper;
     private DatabaseConfig databaseConfig;
-
-    public void setUserMapper(UserMapper userMapper) {
-        this.userMapper = userMapper;
-    }
-
-    public void setDatabaseConfig(DatabaseConfig databaseConfig) {
-        this.databaseConfig = databaseConfig;
-    }
 
     @Override
     public List<User> readAllUsers() throws UserDaoException {
@@ -37,15 +29,15 @@ public class MySQLBasedUserDao implements UserDao {
             List<User> users = new ArrayList<>();
             Statement statement = connection.createStatement();
 
-            ResultSet resultSet = statement.executeQuery(readAllUsersQuery);
+            ResultSet resultSet = statement.executeQuery(READ_ALL_USERS_QUERY);
 
             while (resultSet.next()) {
-                users.add(userMapper.mapRSToObject(resultSet));
+                users.add(userMapper.mapResultSetToObject(resultSet));
             }
-            logger.info("Users reading completed successfully");
+            LOGGER.info("Users reading completed successfully");
             return users;
         } catch (SQLException | MapperException | DatabaseConfigException e) {
-            logger.error("Users reading failed");
+            LOGGER.error("Users reading failed");
             throw new UserDaoException(e);
         }
     }
@@ -53,13 +45,16 @@ public class MySQLBasedUserDao implements UserDao {
     @Override
     public void add(User user) throws UserDaoException {
         try (Connection connection = databaseConfig.getConnection()) {
-            PreparedStatement preparedStatement = connection.prepareStatement(addQuery);
-            userMapper.mapObjectToStatement(preparedStatement, user);
+            PreparedStatement preparedStatement = connection.prepareStatement(ADD_QUERY);
 
+            preparedStatement.setString(1, user.getName());
+            preparedStatement.setString(2, user.getEmail());
+            preparedStatement.setInt(3, user.getAge());
             preparedStatement.executeUpdate();
-            logger.info("User adding completed successfully");
-        } catch (SQLException | MapperException | DatabaseConfigException e) {
-            logger.error("User adding failed");
+
+            LOGGER.info("User adding completed successfully");
+        } catch (SQLException | DatabaseConfigException e) {
+            LOGGER.error("User adding failed");
             throw new UserDaoException(e);
         }
     }
@@ -67,17 +62,17 @@ public class MySQLBasedUserDao implements UserDao {
     @Override
     public User read(long id) throws UserDaoException {
         try (Connection connection = databaseConfig.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(readQuery)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(READ_QUERY)) {
 
-            userMapper.mapObjectIdToStatement(preparedStatement, id);
+            preparedStatement.setLong(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()) {
-                logger.info("User reading completed successfully");
-                return userMapper.mapRSToObject(resultSet);
+                LOGGER.info("User reading completed successfully");
+                return userMapper.mapResultSetToObject(resultSet);
             }
         } catch (SQLException | MapperException | DatabaseConfigException e) {
-            logger.error("User reading failed");
+            LOGGER.error("User reading failed");
             throw new UserDaoException(e);
         }
         return null;
@@ -86,14 +81,17 @@ public class MySQLBasedUserDao implements UserDao {
     @Override
     public void update(User user) throws UserDaoException {
         try (Connection connection = databaseConfig.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(updateQuery)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_QUERY)) {
 
-            userMapper.mapUpdateObjectToStatement(preparedStatement, user);
+            preparedStatement.setString(1, user.getName());
+            preparedStatement.setString(2, user.getEmail());
+            preparedStatement.setInt(3, user.getAge());
+            preparedStatement.setLong(4, user.getId());
             preparedStatement.executeUpdate();
 
-            logger.info("Users updating completed successfully");
-        } catch (SQLException | MapperException | DatabaseConfigException e) {
-            logger.error("User updating failed");
+            LOGGER.info("Users updating completed successfully");
+        } catch (SQLException | DatabaseConfigException e) {
+            LOGGER.error("User updating failed");
             throw new UserDaoException(e);
         }
     }
@@ -101,15 +99,23 @@ public class MySQLBasedUserDao implements UserDao {
     @Override
     public void delete(long id) throws UserDaoException {
         try (Connection connection = databaseConfig.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(deleteQuery)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(DELETE_QUERY)) {
 
-            userMapper.mapObjectIdToStatement(preparedStatement, id);
+            preparedStatement.setLong(1, id);
             preparedStatement.executeUpdate();
 
-            logger.info("Users deleting completed successfully");
-        } catch (SQLException | MapperException | DatabaseConfigException e) {
-            logger.error("User deleting failed");
+            LOGGER.info("Users deleting completed successfully");
+        } catch (SQLException | DatabaseConfigException e) {
+            LOGGER.error("User deleting failed");
             throw new UserDaoException(e);
         }
+    }
+
+    public void setUserMapper(UserMapper userMapper) {
+        this.userMapper = userMapper;
+    }
+
+    public void setDatabaseConfig(DatabaseConfig databaseConfig) {
+        this.databaseConfig = databaseConfig;
     }
 }

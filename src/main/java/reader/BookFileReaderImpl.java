@@ -14,13 +14,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BookFileReaderImpl implements BookFileReader {
-    private static final Logger logger = LogManager.getLogger();
+    private static final Logger LOGGER = LogManager.getLogger(BookFileReaderImpl.class);
     private static final String BOOK_FILE_PATH = "src/main/resources/book.txt";
     private BookConverter bookConverter;
-
-    public void setBookConverter(BookConverter bookConverter){
-        this.bookConverter = bookConverter;
-    }
 
     @Override
     public List<Book> readBooksFromFile() throws BookFileReaderException {
@@ -34,11 +30,15 @@ public class BookFileReaderImpl implements BookFileReader {
                 books.add(book);
                 readLine = reader.readLine();
             }
-            logger.info("Reading books from file compiled successful");
+            LOGGER.info("Reading books from file compiled successful");
             return books;
         } catch (IOException | ConverterException e) {
-            logger.error("Reading books from file failed");
+            LOGGER.error("Reading books from file failed");
             throw new BookFileReaderException(e);
         }
+    }
+
+    public void setBookConverter(BookConverter bookConverter){
+        this.bookConverter = bookConverter;
     }
 }

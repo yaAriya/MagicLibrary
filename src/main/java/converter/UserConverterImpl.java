@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class UserConverterImpl implements UserConverter {
-    private static final Logger logger = LogManager.getLogger();
+    private static final Logger LOGGER = LogManager.getLogger(UserConverterImpl.class);
     private static final String PARAMETER = ",";
 
     @Override
@@ -23,7 +23,7 @@ public class UserConverterImpl implements UserConverter {
         user.setName(parameters[1]);
         user.setEmail(parameters[2]);
         user.setAge(Integer.parseInt(parameters[3]));
-        logger.info("Converting line to user completed successful");
+        LOGGER.info("Converting line to user completed successful");
         return user;
     }
 
@@ -45,7 +45,7 @@ public class UserConverterImpl implements UserConverter {
                     .toList();
             sb.append(String.join(PARAMETER, booksId.stream().map(String::valueOf).toList()));
         }
-        logger.info("Converting user to line completed successful");
+        LOGGER.info("Converting user to line completed successful");
         return sb.toString();
     }
 }

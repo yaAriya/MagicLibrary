@@ -13,6 +13,9 @@ import java.sql.Statement;
 
 public class DatabaseConfigImpl implements DatabaseConfig {
     private static final Logger LOGGER = LogManager.getLogger(DatabaseConfigImpl.class);
+    private static final String CREATE_USER_TABLE_QUERY = "CREATE TABLE IF NOT EXISTS users (id BIGINT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(100) NOT NULL, email VARCHAR(255) UNIQUE NOT NULL, age INT NOT NULL)";
+    private static final String CREATE_BOOK_TABLE_QUERY = "CREATE TABLE IF NOT EXISTS books (id BIGINT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(100) NOT NULL, author VARCHAR(100) NOT NULL, page_number INT NOT NULL, user_id BIGINT)";
+
     private DatabasePropertyLoader databasePropertyLoader;
 
     public Connection getConnection() throws DatabaseConfigException {
@@ -30,8 +33,8 @@ public class DatabaseConfigImpl implements DatabaseConfig {
         try (Connection connection = DriverManager.getConnection(databasePropertyLoader.getDBUrl(), databasePropertyLoader.getDBUsername(), databasePropertyLoader.getDBPassword())) {
             Statement statement = connection.createStatement();
 
-            statement.executeUpdate("CREATE TABLE IF NOT EXISTS users (id BIGINT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(100) NOT NULL, email VARCHAR(255) UNIQUE NOT NULL, age INT NOT NULL)");
-            statement.executeUpdate("CREATE TABLE IF NOT EXISTS books (id BIGINT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(100) NOT NULL, author VARCHAR(100) NOT NULL, page_number INT NOT NULL, user_id BIGINT)");
+            statement.executeUpdate(CREATE_USER_TABLE_QUERY);
+            statement.executeUpdate(CREATE_BOOK_TABLE_QUERY);
             LOGGER.info("Testing connection was successful");
         } catch (SQLException | PropertyLoaderException e) {
             LOGGER.error("Testing the connection failed");

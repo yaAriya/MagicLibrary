@@ -73,11 +73,12 @@ public class MySQLBasedBookDao implements BookDao {
              PreparedStatement preparedStatement = connection.prepareStatement(READ_QUERY)) {
 
             preparedStatement.setLong(1, id);
-            ResultSet resultSet = preparedStatement.executeQuery();
 
-            if (resultSet.next()) {
-                LOGGER.info("Book reading completed successfully");
-                return bookMapper.mapResultSetToObject(resultSet);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    LOGGER.info("Book reading completed successfully");
+                    return bookMapper.mapResultSetToObject(resultSet);
+                }
             }
         } catch (SQLException | MapperException | DatabaseConfigException e) {
             LOGGER.error("Book reading failed");
@@ -131,6 +132,7 @@ public class MySQLBasedBookDao implements BookDao {
              PreparedStatement preparedStatement = connection.prepareStatement(RENT_OR_RETURN_BOOK_QUERY)) {
 
             book.setUser(user);
+            user.getBooks().add(book);
             preparedStatement.setLong(1, book.getUser().getId());
             preparedStatement.setLong(2, book.getId());
 
@@ -148,6 +150,7 @@ public class MySQLBasedBookDao implements BookDao {
              PreparedStatement preparedStatement = connection.prepareStatement(RENT_OR_RETURN_BOOK_QUERY)) {
 
             book.setUser(null);
+            user.getBooks().removeIf(book1 -> book1.getId() == book.getId());
             preparedStatement.setNull(1, Types.BIGINT);
             preparedStatement.setLong(2, book.getId());
 

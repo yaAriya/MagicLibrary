@@ -21,15 +21,8 @@ public class BookMapper implements Mapper<Book> {
     @Override
     public Book mapResultSetToObject(ResultSet resultSet) throws MapperException {
         try {
-            Book mappedBook = new Book();
-            long id = resultSet.getLong(ID_COLUMN);
-            mappedBook.setId(id);
-            String bookName = resultSet.getString(NAME_COLUMN);
-            mappedBook.setName(bookName);
-            String author = resultSet.getString(AUTHOR_COLUMN);
-            mappedBook.setAuthor(author);
-            int pageNumber = resultSet.getInt(PAGE_NUMBER_COLUMN);
-            mappedBook.setPagesNumber(pageNumber);
+            LOGGER.info("mapResultSetToBook begin");
+            Book mappedBook = mapResultSetToObjectWithoutDependencies(resultSet);
 
             if (!resultSet.wasNull() && resultSet.getLong(USER_ID_COLUMN) > 0) {
                 User mappedUser = userMapper.mapResultSetToObjectWithoutDependencies(resultSet);
@@ -45,22 +38,18 @@ public class BookMapper implements Mapper<Book> {
     }
 
     @Override
-    public Book mapResultSetToObjectWithoutDependencies(ResultSet resultSet) throws MapperException {
-        try {
-            Book mappedBook = new Book();
-            long id = resultSet.getLong(ID_COLUMN);
-            mappedBook.setId(id);
-            String bookName = resultSet.getString(NAME_COLUMN);
-            mappedBook.setName(bookName);
-            String author = resultSet.getString(AUTHOR_COLUMN);
-            mappedBook.setAuthor(author);
-            int pageNumber = resultSet.getInt(PAGE_NUMBER_COLUMN);
-            mappedBook.setPagesNumber(pageNumber);
-            return mappedBook;
-        } catch (SQLException e){
-            LOGGER.error("Failed to map ResultSet to Book");
-            throw new MapperException(e);
-        }
+    public Book mapResultSetToObjectWithoutDependencies(ResultSet resultSet) throws SQLException {
+        LOGGER.info("mapResultSetToBookWithoutDependencies begin");
+        Book mappedBook = new Book();
+        long id = resultSet.getLong(ID_COLUMN);
+        mappedBook.setId(id);
+        String bookName = resultSet.getString(NAME_COLUMN);
+        mappedBook.setName(bookName);
+        String author = resultSet.getString(AUTHOR_COLUMN);
+        mappedBook.setAuthor(author);
+        int pageNumber = resultSet.getInt(PAGE_NUMBER_COLUMN);
+        mappedBook.setPagesNumber(pageNumber);
+        return mappedBook;
     }
 
     public void setUserMapper(UserMapper userMapper) {

@@ -123,17 +123,11 @@ public class BookServiceImpl implements BookService {
             if (readUser == null || readBook == null) {
                 LOGGER.error("Book or user not found");
                 throw new InvalidEntityException("User or book cannot be null");
-            } else if (readBook.getUser() == null) {
-                LOGGER.error("Book has not user");
+            } else if (readBook.getUser() == null || readUser.getBooks().isEmpty()) {
+                LOGGER.error("User has not any books or book has not user");
                 throw new InvalidEntityException("The book has not user or user has not any books");
             }
             bookDao.returnBook(readUser, readBook);
-
-            readUser.getBooks().remove(readBook);
-            userService.update(readUser);
-
-            readBook.setUser(null);
-            update(readBook);
         } catch (InvalidEntityException | BookDaoException e) {
             LOGGER.error("Returning book failed");
             throw new BookServiceException();

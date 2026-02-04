@@ -115,10 +115,11 @@ public class User implements Cloneable {
         return clonedUser;
     }
 
- @Override
+    @Override
     public String toString() {
         List<Long> booksId = getBooks().stream()
                 .map(Book::getId)
+                .sorted()
                 .toList();
         return id + ", " + name + ", " + email + ", " + age + ", " + booksId;
     }

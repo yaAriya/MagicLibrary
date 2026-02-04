@@ -1,9 +1,11 @@
 package context;
 
+import exceptions.ApplicationContextException;
+
 public interface ApplicationContext {
-    void initializeContext();
+    void initializeContext() throws ApplicationContextException;
 
-    void register(Object object);
+    void register(String name, Object object);
 
-    Object getBeans(String objectName);
+    Object getBean(String objectName);
 }

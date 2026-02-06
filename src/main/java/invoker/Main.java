@@ -39,13 +39,6 @@ public class Main {
         UserService userService = ((UserService) applicationContext.getBean("userService"));
         FileBasedBookDao fileBasedBookDao = (FileBasedBookDao) applicationContext.getBean("fileBasedBookDao");
         FileBasedUserDao fileBasedUserDao = ((FileBasedUserDao) applicationContext.getBean("FileBasedUserDao"));
-
-        LogCleaner logCleaner = new LogCleaner();
-        logCleaner.clearLogFile("logs/app.log");
-
-      /*  printer.printUserObject(userService.read(1));
-        printer.printUserObject(userService.read(2));
-        printer.printBookObject(bookService.read(1));
-        printer.printBookObject(bookService.read(2));*/
+        
     }
 }

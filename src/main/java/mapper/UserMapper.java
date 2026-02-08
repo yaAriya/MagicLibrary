@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class UserMapper implements Mapper<User> {
     private static final Logger LOGGER = LogManager.getLogger(UserMapper.class);
@@ -28,7 +29,7 @@ public class UserMapper implements Mapper<User> {
 
             List<Book> userBooks = new ArrayList<>();
             boolean duplicateUser = false;
-            while (!resultSet.wasNull() && !duplicateUser && resultSet.getLong(BOOK_ID_COLUMN) > 0) {
+            while (resultSet.next() && !resultSet.wasNull() && !duplicateUser && resultSet.getLong(BOOK_ID_COLUMN) > 0) {
                 Book userBook = bookMapper.mapResultSetToObjectWithoutDependencies(resultSet);
                 if (!userBooks.contains(userBook)) {
                     userBooks.add(userBook);
@@ -45,24 +46,6 @@ public class UserMapper implements Mapper<User> {
         }
     }
 
-    public User mapResultSetToUserWithBooks(ResultSet resultSet) throws MapperException {
-        try {
-            User mappedUser = mapResultSetToObjectWithoutDependencies(resultSet);
-
-            List<Book> userBooks = new ArrayList<>();
-            while (resultSet.next() && !resultSet.wasNull() && resultSet.getLong(BOOK_ID_COLUMN) > 0) {
-                Book book = bookMapper.mapResultSetToObjectWithoutDependencies(resultSet);
-                userBooks.add(book);
-            }
-
-            mappedUser.setBooks(userBooks);
-            return mappedUser;
-        } catch (SQLException e) {
-            throw new MapperException(e);
-        }
-    }
-
-
     public User mapResultSetToObjectWithoutDependencies(ResultSet resultSet) throws SQLException {
         LOGGER.info("mapResultSetToUserWithoutDependencies begin");
         User mappedUser = new User();
@@ -76,6 +59,34 @@ public class UserMapper implements Mapper<User> {
         mappedUser.setAge(age);
 
         return mappedUser;
+    }
+
+    public List<User> mapResultSetToObjects(ResultSet resultSet) throws MapperException {
+        List<User> users = new ArrayList<>();
+        try {
+            while (resultSet.next()) {
+                User mappedUser = mapResultSetToObject(resultSet);
+                User user = findDuplicateUser(users, mappedUser.getId());
+
+                if (!(user == null)) {
+                    user.getBooks().add(mappedUser.getBooks().getFirst());
+                } else {
+                    users.add(mappedUser);
+                }
+            }
+        } catch (SQLException e) {
+            throw new MapperException(e);
+        }
+        return null;
+    }
+
+    private User findDuplicateUser(List<User> users, Long userId) {
+        return users.stream()
+                .filter(Objects::nonNull)
+                .filter(user -> user.getId() == userId)
+                .findFirst()
+                .orElse(null);
+
     }
 
     public void setBookMapper(BookMapper bookMapper) {

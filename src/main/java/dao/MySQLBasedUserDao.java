@@ -10,9 +10,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class MySQLBasedUserDao implements UserDao {
     private static final Logger LOGGER = LogManager.getLogger(MySQLBasedUserDao.class);
@@ -30,32 +28,13 @@ public class MySQLBasedUserDao implements UserDao {
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(READ_ALL_USERS_QUERY)) {
 
-            List<User> users = new ArrayList<>();
-            while (resultSet.next()) {
-                User mappedUser = userMapper.mapResultSetToObject(resultSet);
-                User user = findDuplicateUser(users, mappedUser.getId());
-
-                if (!(user == null)) {
-                    user.getBooks().add(mappedUser.getBooks().getFirst());
-                } else {
-                    users.add(mappedUser);
-                }
-            }
+            List<User> users = userMapper.mapResultSetToObjects(resultSet);
             LOGGER.info("Users reading completed successfully");
             return users;
         } catch (SQLException | MapperException | DatabaseConfigException e) {
             LOGGER.error("Users reading failed");
             throw new UserDaoException(e);
         }
-    }
-
-    private User findDuplicateUser(List<User> users, Long userId) {
-        return users.stream()
-                .filter(Objects::nonNull)
-                .filter(user -> user.getId() == userId)
-                .findFirst()
-                .orElse(null);
-
     }
 
     @Override
@@ -83,16 +62,10 @@ public class MySQLBasedUserDao implements UserDao {
             preparedStatement.setLong(1, id);
 
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                resultSet.next();
                 User user = userMapper.mapResultSetToObject(resultSet);
-                while (resultSet.next()) {
-                    User mappedUser = userMapper.mapResultSetToObject(resultSet);
-                    user.getBooks().add(mappedUser.getBooks().getFirst());
-                }
                 LOGGER.info("User reading completed successfully");
                 return user;
             }
-
         } catch (SQLException | MapperException | DatabaseConfigException e) {
             throw new UserDaoException(e);
         }

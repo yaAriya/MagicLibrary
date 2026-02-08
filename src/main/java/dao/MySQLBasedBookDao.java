@@ -11,15 +11,15 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
 
 public class MySQLBasedBookDao implements BookDao {
     private static final Logger LOGGER = LogManager.getLogger(MySQLBasedBookDao.class);
     private static final String READ_ALL_BOOKS_QUERY = "SELECT b.id AS book_id, b.name AS book_name, author, page_number, u.id AS user_id, u.name AS user_name, email, age FROM books b LEFT JOIN users u ON b.user_id = u.id ORDER BY b.id ";
-    private static final String ADD_QUERY = "INSERT INTO books (name, author, page_number, user_id) VALUES (?, ?, ?, ?)";
+    private static final String ADD_QUERY_WITH_USER = "INSERT INTO books (name, author, page_number, user_id) VALUES (?, ?, ?, ?)";
+    private static final String ADD_QUERY_WITHOUT_USER = "INSERT INTO books (name, author, page_number) VALUES (?, ?, ?)";
     private static final String READ_QUERY = "SELECT b.id AS book_id, b.name AS book_name, author, page_number, u.id AS user_id, u.name AS user_name, email, age FROM books b LEFT JOIN users u ON b.user_id = u.id WHERE b.id = ?";
-    private static final String UPDATE_QUERY = "UPDATE books SET name = ?, author = ?, page_number = ?, user_id = ? WHERE id = ?";
+    private static final String UPDATE_QUERY = "UPDATE books SET name = ?, author = ?, page_number = ? WHERE id = ?";
     private static final String DELETE_QUERY = "DELETE IN books WHERE id = ?";
     private static final String RENT_OR_RETURN_BOOK_QUERY = "UPDATE books SET user_id = ? WHERE id = ?";
     private BookMapper bookMapper;
@@ -31,11 +31,8 @@ public class MySQLBasedBookDao implements BookDao {
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(READ_ALL_BOOKS_QUERY)) {
 
-            List<Book> books = new ArrayList<>();
+            List<Book> books = bookMapper.mapResultSetToObjects(resultSet);
 
-            while (resultSet.next()) {
-                books.add(bookMapper.mapResultSetToObject(resultSet));
-            }
             LOGGER.info("Books reading completed successfully");
             return books;
         } catch (SQLException | MapperException | DatabaseConfigException e) {
@@ -47,17 +44,19 @@ public class MySQLBasedBookDao implements BookDao {
     @Override
     public void add(Book book) throws BookDaoException {
         try (Connection connection = databaseConfig.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(ADD_QUERY)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(ADD_QUERY_WITH_USER);
+             PreparedStatement preparedStatement1 = connection.prepareStatement(ADD_QUERY_WITHOUT_USER)) {
 
-            preparedStatement.setString(1, book.getName());
-            preparedStatement.setString(2, book.getAuthor());
-            preparedStatement.setInt(3, book.getPagesNumber());
-            if (book.getUser() != null) {
-                preparedStatement.setLong(4, book.getUser().getId());
+            if (book.getUser() == null) {
+                preparedStatement1.setString(1, book.getName());
+                preparedStatement1.setString(2, book.getAuthor());
+                preparedStatement1.setInt(3, book.getPagesNumber());
             } else {
-                preparedStatement.setNull(4, Types.BIGINT);
+                preparedStatement.setString(1, book.getName());
+                preparedStatement.setString(2, book.getAuthor());
+                preparedStatement.setInt(3, book.getPagesNumber());
+                preparedStatement.setLong(4, book.getUser().getId());
             }
-
             preparedStatement.executeUpdate();
 
             LOGGER.info("Book adding completed successfully");
@@ -75,16 +74,14 @@ public class MySQLBasedBookDao implements BookDao {
             preparedStatement.setLong(1, id);
 
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                if (resultSet.next()) {
-                    LOGGER.info("Book reading completed successfully");
-                    return bookMapper.mapResultSetToObject(resultSet);
-                }
+                Book book = bookMapper.mapResultSetToObject(resultSet);
+                LOGGER.info("Book reading completed successfully");
+                return book;
             }
         } catch (SQLException | MapperException | DatabaseConfigException e) {
             LOGGER.error("Book reading failed");
             throw new BookDaoException(e);
         }
-        return null;
     }
 
     @Override
@@ -95,12 +92,7 @@ public class MySQLBasedBookDao implements BookDao {
             preparedStatement.setString(1, book.getName());
             preparedStatement.setString(2, book.getAuthor());
             preparedStatement.setLong(3, book.getPagesNumber());
-            if (book.getUser() != null) {
-                preparedStatement.setLong(4, book.getUser().getId());
-            } else {
-                preparedStatement.setNull(4, Types.BIGINT);
-            }
-            preparedStatement.setLong(5, book.getId());
+            preparedStatement.setLong(4, book.getId());
 
             preparedStatement.executeUpdate();
 

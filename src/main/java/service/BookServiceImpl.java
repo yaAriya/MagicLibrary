@@ -64,16 +64,9 @@ public class BookServiceImpl implements BookService {
     @Override
     public void update(Book book) throws BookServiceException {
         try {
-            Book oldBook = read(book.getId());
             if (!bookValidator.validate(book)) {
                 LOGGER.error("Incorrect parameters from the book");
                 throw new InvalidEntityException("The parameters you entered are incorrect");
-            } else if (oldBook.getUser() != null) {
-                LOGGER.error("The old book has user");
-                throw new InvalidEntityException("You cannot update rented book");
-            } else if (book.getUser() != null) {
-                LOGGER.error("The new book has user");
-                throw new InvalidEntityException("The updated book should not has user");
             }
             bookDao.update(book);
         } catch (InvalidEntityException | BookDaoException e) {

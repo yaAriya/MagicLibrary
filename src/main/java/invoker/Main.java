@@ -5,24 +5,14 @@ import context.ApplicationContext;
 import context.ApplicationContextImpl;
 import dao.FileBasedBookDao;
 import dao.FileBasedUserDao;
-import entity.Book;
-import entity.User;
 import exceptions.ApplicationContextException;
 import exceptions.BookDaoException;
-import exceptions.DatabaseConnectionTesterException;
 import exceptions.UserDaoException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import printer.Printer;
-import printer.PrinterImpl;
 import service.BookService;
-import service.BookServiceImpl;
 import service.UserService;
-import util.LogCleaner;
-import validator.BookValidator;
-import validator.Validator;
-
-import java.util.List;
 
 
 public class Main {

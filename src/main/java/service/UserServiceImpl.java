@@ -62,16 +62,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public void update(User user) throws UserServiceException {
         try {
-            User oldUser = read(user.getId());
             if (!userValidator.validate(user)) {
                 LOGGER.error("Incorrect parameters from the user");
                 throw new InvalidEntityException("The parameters you entered are incorrect");
-            } else if (!oldUser.getBooks().isEmpty()) {
-                LOGGER.error("The old user has books");
-                throw new InvalidEntityException("You cannot update a user with a rented book");
-            } else if (!user.getBooks().isEmpty()) {
-                LOGGER.error("The new user has books");
-                throw new InvalidEntityException("The updated user should not has any books");
             }
             userDao.update(user);
         } catch (InvalidEntityException | UserDaoException e) {
@@ -102,5 +95,4 @@ public class UserServiceImpl implements UserService {
     public void setUserValidator(UserValidator userValidator) {
         this.userValidator = userValidator;
     }
-
 }

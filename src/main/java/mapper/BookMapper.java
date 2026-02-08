@@ -8,6 +8,8 @@ import org.apache.logging.log4j.Logger;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BookMapper implements Mapper<Book> {
     private static final Logger LOGGER = LogManager.getLogger(BookMapper.class);
@@ -24,7 +26,7 @@ public class BookMapper implements Mapper<Book> {
             LOGGER.info("mapResultSetToBook begin");
             Book mappedBook = mapResultSetToObjectWithoutDependencies(resultSet);
 
-            if (!resultSet.wasNull() && resultSet.getLong(USER_ID_COLUMN) > 0) {
+            if (resultSet.next() && !resultSet.wasNull() && resultSet.getLong(USER_ID_COLUMN) > 0) {
                 User mappedUser = userMapper.mapResultSetToObjectWithoutDependencies(resultSet);
                 mappedBook.setUser(mappedUser);
             } else {
@@ -50,6 +52,19 @@ public class BookMapper implements Mapper<Book> {
         int pageNumber = resultSet.getInt(PAGE_NUMBER_COLUMN);
         mappedBook.setPagesNumber(pageNumber);
         return mappedBook;
+    }
+
+    @Override
+    public List<Book> mapResultSetToObjects(ResultSet resultSet) throws MapperException {
+        List<Book> books = new ArrayList<>();
+        try {
+            while (resultSet.next()) {
+                books.add(mapResultSetToObject(resultSet));
+            }
+        } catch (SQLException e) {
+            throw new MapperException(e);
+        }
+        return books;
     }
 
     public void setUserMapper(UserMapper userMapper) {

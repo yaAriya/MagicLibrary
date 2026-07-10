@@ -1,15 +1,35 @@
 package entity;
 
+import jakarta.persistence.*;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+@Entity
+@Table(name = "users")
 public class User implements Cloneable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @Column(nullable = false)
     private String name;
+    @Column(nullable = false, unique = true)
     private String email;
+    @Column(nullable = false)
     private int age;
+    @OneToMany(mappedBy = "user")
     private List<Book> books;
+
+    public void addBook(Book book){
+        this.getBooks().add(book);
+        book.setUser(this);
+    }
+
+    public void removeBook(Book book) {
+        this.getBooks().remove(book);
+        book.setUser(null);
+    }
 
     public User() {
         this.books = new ArrayList<>();
@@ -87,7 +107,7 @@ public class User implements Cloneable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, email, age, id);
+        return Objects.hash(id);
     }
 
     @Override
@@ -98,7 +118,7 @@ public class User implements Cloneable {
             return false;
         }
         User user = (User) obj;
-        return id == user.id && Objects.equals(name, user.name) && Objects.equals(email, user.email) && age == user.age;
+        return id == user.id;
     }
 
     @Override

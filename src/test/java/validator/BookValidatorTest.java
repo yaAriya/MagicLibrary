@@ -18,7 +18,7 @@ public class BookValidatorTest {
         testBook.setName("Вафся");
         testBook.setId(0);
         testBook.setAuthor("хз");
-        testBook.setPagesNumber(1342);
+        testBook.setPages(1342);
         testBook.getUser();
     }
     /* @*//*Test

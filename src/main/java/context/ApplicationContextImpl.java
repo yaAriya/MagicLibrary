@@ -1,19 +1,12 @@
 package context;
 
-import config.DatabaseConfig;
-import config.DatabaseConfigImpl;
-import config.DatabaseConnectionTester;
 import converter.BookConverter;
 import converter.BookConverterImpl;
 import converter.UserConverter;
 import converter.UserConverterImpl;
 import dao.*;
-import exceptions.ApplicationContextException;
-import exceptions.DatabaseConfigException;
-import exceptions.DatabaseConnectionTesterException;
+import exceptions.*;
 import loader.DatabasePropertyLoader;
-import mapper.BookMapper;
-import mapper.UserMapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import printer.Printer;
@@ -50,36 +43,24 @@ public class ApplicationContextImpl implements ApplicationContext {
         injectDataAccessLayerDependencies();
         injectBusinessLayerDependencies();
 
-        try {
-        /*FileBasedBookDaoImpl fileBasedBookDao = ((FileBasedBookDaoImpl) beans.get("fileBasedBookDao"));
+        /*try {
+        FileBasedBookDaoImpl fileBasedBookDao = ((FileBasedBookDaoImpl) beans.get("fileBasedBookDao"));
         FileBasedUserDaoImpl fileBasedUserDao = ((FileBasedUserDaoImpl) beans.get("fileBasedUserDao"));
         fileBasedBookDao.initializeCash();
-        fileBasedUserDao.initializeCash();*/
+        fileBasedUserDao.initializeCash();
 
-            DatabaseConnectionTester databaseConnectionTester = ((DatabaseConnectionTester) beans.get("databaseConnectionTester"));
-            DatabaseConfigImpl databaseConfig = ((DatabaseConfigImpl) beans.get("databaseConfig"));
-            databaseConnectionTester.validateTestConnection();
-            databaseConfig.testConnection();
-        } catch (DatabaseConnectionTesterException | DatabaseConfigException e) {
+
+        } catch (BookDaoException | UserDaoException e) {
             throw new ApplicationContextException(e);
-        }
+        }*/
         LOGGER.info("initialize context completed successful");
     }
 
     private void initializeDataAccessLayer() {
         LOGGER.debug("InitializeDataAccessLayer run");
-        DatabaseConnectionTester databaseConnectionTester = new DatabaseConnectionTester();
-        register("databaseConnectionTester", databaseConnectionTester);
-
-        DatabaseConfig databaseConfig = new DatabaseConfigImpl();
-        register("databaseConfig", databaseConfig);
-
         DatabasePropertyLoader databasePropertyLoader = new DatabasePropertyLoader();
         register("databasePropertyLoader", databasePropertyLoader);
 
-
-        BookMapper bookMapper = new BookMapper();
-        register("bookMapper", bookMapper);
 
         BookDao bookDao = new MySQLBasedBookDao();
         register("mySQLBasedBookDao", bookDao);
@@ -97,9 +78,6 @@ public class ApplicationContextImpl implements ApplicationContext {
         FileBasedBookDao fileBasedBookDao = new FileBasedBookDaoImpl();
         register("fileBasedBookDao", fileBasedBookDao);
 
-
-        UserMapper userMapper = new UserMapper();
-        register("userMapper", userMapper);
 
         UserDao userDao = new MySQLBasedUserDao();
         register("mySQLBasedUserDao", userDao);
@@ -120,17 +98,6 @@ public class ApplicationContextImpl implements ApplicationContext {
 
     private void injectDataAccessLayerDependencies() {
         LOGGER.debug("DependencyInjectionDataAccessLayer run");
-        DatabaseConnectionTester databaseConnectionTester = ((DatabaseConnectionTester) beans.get("databaseConnectionTester"));
-        DatabaseConfigImpl databaseConfig = ((DatabaseConfigImpl) beans.get("databaseConfig"));
-        databaseConnectionTester.setDatabaseConfig(databaseConfig);
-        databaseConfig.setPropertyLoader((DatabasePropertyLoader) beans.get("databasePropertyLoader"));
-
-        MySQLBasedBookDao mySQLBasedBookDao = ((MySQLBasedBookDao) beans.get("mySQLBasedBookDao"));
-        BookMapper bookMapper = ((BookMapper) beans.get("bookMapper"));
-        bookMapper.setUserMapper((UserMapper) beans.get("userMapper"));
-
-        mySQLBasedBookDao.setBookMapper(bookMapper);
-        mySQLBasedBookDao.setDatabaseConfig(databaseConfig);
 
         BookConverterImpl bookConverter = ((BookConverterImpl) beans.get("bookConverter"));
         bookConverter.setUserService((UserServiceImpl) beans.get("userService"));
@@ -143,13 +110,6 @@ public class ApplicationContextImpl implements ApplicationContext {
         fileBasedBookDao.setBookFileReader(bookFileReader);
         fileBasedBookDao.setBookFileWriter(bookFileWriter);
 
-
-        MySQLBasedUserDao mySQLBasedUserDao = ((MySQLBasedUserDao) beans.get("mySQLBasedUserDao"));
-        UserMapper userMapper = ((UserMapper) beans.get("userMapper"));
-        userMapper.setBookMapper((BookMapper) beans.get("bookMapper"));
-
-        mySQLBasedUserDao.setUserMapper(userMapper);
-        mySQLBasedUserDao.setDatabaseConfig(databaseConfig);
 
         UserConverterImpl userConverter = ((UserConverterImpl) beans.get("userConverter"));
         UserFileReaderImpl userFileReader = ((UserFileReaderImpl) beans.get("userFileReader"));

@@ -10,10 +10,6 @@ public class DatabasePropertyLoader {
     private final Properties properties = new Properties();
     private static boolean initialized;
 
-    static {
-
-    }
-
     private void init() {
         try (InputStream input = DatabasePropertyLoader.class.getResourceAsStream(PROPERTY_FILE_PATH)) {
             if (!initialized && input != null) {

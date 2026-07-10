@@ -1,42 +1,52 @@
 package entity;
 
+import jakarta.persistence.*;
+
 import java.util.Objects;
 
+@Entity
+@Table(name = "books")
 public class Book implements Cloneable {
+    @Id
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private long id;
+    @Column(nullable = false)
     private String name;
+    @Column(nullable = false)
     private String author;
-    private int pagesNumber;
+    private int pages;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
 
     public Book() {
     }
 
-    public Book(long id, String name, String author, int pagesNumber) {
+    public Book(long id, String name, String author, int pages) {
         this.id = id;
         this.name = name;
         this.author = author;
-        this.pagesNumber = pagesNumber;
+        this.pages = pages;
     }
 
-    public Book(long id, String name, String author, int pagesNumber, User user) {
+    public Book(long id, String name, String author, int pages, User user) {
         this.id = id;
         this.name = name;
         this.author = author;
-        this.pagesNumber = pagesNumber;
+        this.pages = pages;
         this.user = user;
     }
 
-    public Book(String name, String author, int pagesNumber) {
+    public Book(String name, String author, int pages) {
         this.name = name;
         this.author = author;
-        this.pagesNumber = pagesNumber;
+        this.pages = pages;
     }
 
-    public Book(String name, String author, int pagesNumber, User user) {
+    public Book(String name, String author, int pages, User user) {
         this.name = name;
         this.author = author;
-        this.pagesNumber = pagesNumber;
+        this.pages = pages;
         this.user = user;
     }
 
@@ -56,12 +66,12 @@ public class Book implements Cloneable {
         this.author = author;
     }
 
-    public int getPagesNumber() {
-        return pagesNumber;
+    public int getPages() {
+        return pages;
     }
 
-    public void setPagesNumber(int pagesNumber) {
-        this.pagesNumber = pagesNumber;
+    public void setPages(int pages) {
+        this.pages = pages;
     }
 
     public long getId() {
@@ -82,7 +92,7 @@ public class Book implements Cloneable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, author, pagesNumber, id, user);
+        return Objects.hash(name, author, pages, id, user);
     }
 
     @Override
@@ -93,7 +103,7 @@ public class Book implements Cloneable {
             return false;
         }
         Book book = (Book) obj;
-        return Objects.equals(name, book.name) && Objects.equals(author, book.author) && pagesNumber == book.pagesNumber && id == book.id && Objects.equals(user, book.user);
+        return Objects.equals(name, book.name) && Objects.equals(author, book.author) && pages == book.pages && id == book.id && Objects.equals(user, book.user);
     }
 
     @Override
@@ -109,6 +119,6 @@ public class Book implements Cloneable {
 
     @Override
     public String toString() {
-        return id + ", " + name + ", " + author + ", " + pagesNumber + ", " + "(" + user + ")";
+        return id + ", " + name + ", " + author + ", " + pages + ", " + "(" + user + ")";
     }
 }

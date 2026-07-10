@@ -25,7 +25,7 @@ public class BookServiceTest {
         testBook.setName("lina");
         testBook.setId(1);
         testBook.setAuthor("elena G");
-        testBook.setPagesNumber(245);
+        testBook.setPages(245);
         testBook.setUser(null);
 
         testBooks = new ArrayList<>();

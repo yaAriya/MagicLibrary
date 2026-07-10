@@ -28,7 +28,7 @@ public class BookConverterImpl implements BookConverter {
             book.setId(Long.parseLong(parameters[0]));
             book.setName(parameters[1]);
             book.setAuthor(parameters[2]);
-            book.setPagesNumber(Integer.parseInt(parameters[3]));
+            book.setPages(Integer.parseInt(parameters[3]));
 
             if (parameters.length > 4) {
                 book.setUser(userService.read(Long.parseLong(parameters[4])));
@@ -46,7 +46,7 @@ public class BookConverterImpl implements BookConverter {
 
     public String convertBookToLine(Book book) {
         String idToString = Long.toString(book.getId());
-        String pagesNumberToString = Integer.toString(book.getPagesNumber());
+        String pagesNumberToString = Integer.toString(book.getPages());
 
         StringBuilder sb = new StringBuilder();
         sb.append(idToString).append(PARAMETER);

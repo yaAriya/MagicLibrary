@@ -81,7 +81,7 @@ public class FileBasedBookDaoImpl implements FileBasedBookDao {
                     realBook.setId(book.getId());
                     realBook.setName(book.getName());
                     realBook.setAuthor(book.getAuthor());
-                    realBook.setPagesNumber(book.getPagesNumber());
+                    realBook.setPages(book.getPages());
                     bookFileWriter.writeBookToFile(getBooks());
                 }
             }

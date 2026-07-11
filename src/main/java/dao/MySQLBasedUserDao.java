@@ -5,10 +5,14 @@ import exceptions.UserDaoException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Repository;
 import util.HibernateUtil;
 
 import java.util.List;
 
+@Repository
+@Primary
 public class MySQLBasedUserDao implements UserDao {
     private static final Logger LOGGER = LogManager.getLogger(MySQLBasedUserDao.class);
 

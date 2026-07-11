@@ -7,7 +7,6 @@ import exceptions.BookDaoException;
 import java.util.List;
 
 public interface BookDao {
-
     List<Book> readAllBooks() throws BookDaoException;
 
     void add(Book book) throws BookDaoException;

@@ -5,16 +5,22 @@ import entity.User;
 import exceptions.UserFileWriterException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.stereotype.Component;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
+@Component
 public class UserFileWriterImpl implements UserFileWriter {
     private static final Logger LOGGER = LogManager.getLogger(UserFileWriterImpl.class);
     private static final String USER_FILE_PATH = "src/main/resources/user.txt";
-    private UserConverter userConverter;
+    private final UserConverter userConverter;
+
+    public UserFileWriterImpl(UserConverter userConverter){
+        this.userConverter = userConverter;
+    }
 
     @Override
     public void addUserToFile(User user) throws UserFileWriterException {
@@ -41,9 +47,5 @@ public class UserFileWriterImpl implements UserFileWriter {
             LOGGER.error("Writing users to file failed");
             throw new UserFileWriterException(e);
         }
-    }
-
-    public void setUserConverter(UserConverter userConverter){
-        this.userConverter = userConverter;
     }
 }

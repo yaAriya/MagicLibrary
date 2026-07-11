@@ -4,6 +4,7 @@ import entity.User;
 import exceptions.UserFileReaderException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -11,10 +12,16 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class UserFileReaderImpl implements UserFileReader {
     private static final Logger LOGGER = LogManager.getLogger(UserFileReaderImpl.class);
     private static final String USER_FILE_PATH = "src/main/resources/user.txt";
-    private UserConverter userConverter;
+    private final UserConverter userConverter;
+
+
+    public UserFileReaderImpl(UserConverter userConverter){
+        this.userConverter = userConverter;
+    }
 
     @Override
     public List<User> readUsersFromFile() throws UserFileReaderException {
@@ -34,9 +41,5 @@ public class UserFileReaderImpl implements UserFileReader {
             LOGGER.error("Reading users from file failed");
             throw new UserFileReaderException(e);
         }
-    }
-
-    public void setUserConverter(UserConverter userConverter){
-        this.userConverter = userConverter;
     }
 }

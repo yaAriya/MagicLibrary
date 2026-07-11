@@ -1,39 +1,39 @@
 2026-05-25 13:03:06,109 INFO invoker.Main - Process run
-2026-05-25 13:03:06,117 INFO context.ApplicationContextImpl - initialize context run
+2026-05-25 13:03:06,117 INFO config.ApplicationContextImpl - initialize config run
 2026-05-25 13:03:06,711 INFO config.DatabaseConfigImpl - Getting connection was successful
 2026-05-25 13:03:06,711 INFO config.DatabaseConnectionTester - Connection valid
 2026-05-25 13:03:06,747 INFO config.DatabaseConfigImpl - Testing connection was successful
 2026-05-25 13:03:06,775 INFO config.DatabaseConfigImpl - Testing connection was successful
-2026-05-25 13:03:06,775 INFO context.ApplicationContextImpl - initialize context completed successful
+2026-05-25 13:03:06,775 INFO config.ApplicationContextImpl - initialize config completed successful
 2026-05-25 13:05:06,367 INFO invoker.Main - Process run
-2026-05-25 13:05:06,380 INFO context.ApplicationContextImpl - initialize context run
+2026-05-25 13:05:06,380 INFO config.ApplicationContextImpl - initialize config run
 2026-05-25 13:05:06,846 INFO config.DatabaseConfigImpl - Getting connection was successful
 2026-05-25 13:05:06,847 INFO config.DatabaseConnectionTester - Connection valid
 2026-05-25 13:05:06,884 INFO config.DatabaseConfigImpl - Testing connection was successful
 2026-05-25 13:05:06,919 INFO config.DatabaseConfigImpl - Testing connection was successful
-2026-05-25 13:05:06,919 INFO context.ApplicationContextImpl - initialize context completed successful
+2026-05-25 13:05:06,919 INFO config.ApplicationContextImpl - initialize config completed successful
 2026-05-25 13:05:07,045 INFO org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.50.Final
 2026-05-25 13:13:34,542 INFO invoker.Main - Process run
-2026-05-25 13:13:34,557 INFO context.ApplicationContextImpl - initialize context run
+2026-05-25 13:13:34,557 INFO config.ApplicationContextImpl - initialize config run
 2026-05-25 13:13:35,036 INFO config.DatabaseConfigImpl - Getting connection was successful
 2026-05-25 13:13:35,037 INFO config.DatabaseConnectionTester - Connection valid
 2026-05-25 13:13:35,076 INFO config.DatabaseConfigImpl - Testing connection was successful
 2026-05-25 13:13:35,105 INFO config.DatabaseConfigImpl - Testing connection was successful
-2026-05-25 13:13:35,106 INFO context.ApplicationContextImpl - initialize context completed successful
+2026-05-25 13:13:35,106 INFO config.ApplicationContextImpl - initialize config completed successful
 2026-05-25 13:14:56,863 INFO invoker.Main - Process run
-2026-05-25 13:14:56,875 INFO context.ApplicationContextImpl - initialize context run
+2026-05-25 13:14:56,875 INFO config.ApplicationContextImpl - initialize config run
 2026-05-25 13:14:57,370 INFO config.DatabaseConfigImpl - Getting connection was successful
 2026-05-25 13:14:57,372 INFO config.DatabaseConnectionTester - Connection valid
 2026-05-25 13:14:57,413 INFO config.DatabaseConfigImpl - Testing connection was successful
 2026-05-25 13:14:57,445 INFO config.DatabaseConfigImpl - Testing connection was successful
-2026-05-25 13:14:57,445 INFO context.ApplicationContextImpl - initialize context completed successful
+2026-05-25 13:14:57,445 INFO config.ApplicationContextImpl - initialize config completed successful
 2026-05-25 13:15:34,751 INFO invoker.Main - Process run
-2026-05-25 13:15:34,760 INFO context.ApplicationContextImpl - initialize context run
+2026-05-25 13:15:34,760 INFO config.ApplicationContextImpl - initialize config run
 2026-05-25 13:15:35,241 INFO config.DatabaseConfigImpl - Getting connection was successful
 2026-05-25 13:15:35,242 INFO config.DatabaseConnectionTester - Connection valid
 2026-05-25 13:15:35,294 INFO config.DatabaseConfigImpl - Testing connection was successful
 2026-05-25 13:15:35,336 INFO config.DatabaseConfigImpl - Testing connection was successful
-2026-05-25 13:15:35,338 INFO context.ApplicationContextImpl - initialize context completed successful
+2026-05-25 13:15:35,338 INFO config.ApplicationContextImpl - initialize config completed successful
 2026-05-25 13:15:35,487 INFO org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.50.Final
 2026-05-25 13:15:35,491 INFO org.hibernate.cfg.Environment - HHH000205: Loaded properties from resource hibernate.properties: {hibernate.connection.driver_class=com.mysql.cj.jdbc.Driver, hibernate.connection.url=jdbc:mysql://localhost:3306/magiclibrary?useSSL=false&serverTimezone=UTC, hibernate.hbm2ddl.auto=update, hibernate.dialect=org.hibernate.dialect.MySQL8Dialect, hibernate.show_sql=true, hibernate.connection.password=****, hibernate.connection.username=root}
 2026-05-25 13:15:35,556 INFO org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
@@ -49,12 +49,12 @@
 	Minimum pool size: 1
 	Maximum pool size: 20
 2026-05-25 14:39:18,036 INFO invoker.Main - Process run
-2026-05-25 14:39:18,050 INFO context.ApplicationContextImpl - initialize context run
+2026-05-25 14:39:18,050 INFO config.ApplicationContextImpl - initialize config run
 2026-05-25 14:39:18,679 INFO config.DatabaseConfigImpl - Getting connection was successful
 2026-05-25 14:39:18,680 INFO config.DatabaseConnectionTester - Connection valid
 2026-05-25 14:39:18,732 INFO config.DatabaseConfigImpl - Testing connection was successful
 2026-05-25 14:39:18,788 INFO config.DatabaseConfigImpl - Testing connection was successful
-2026-05-25 14:39:18,789 INFO context.ApplicationContextImpl - initialize context completed successful
+2026-05-25 14:39:18,789 INFO config.ApplicationContextImpl - initialize config completed successful
 2026-05-25 14:39:18,901 INFO org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.50.Final
 2026-05-25 14:39:18,904 INFO org.hibernate.cfg.Environment - HHH000205: Loaded properties from resource hibernate.properties: {hibernate.connection.driver_class=com.mysql.cj.jdbc.Driver, hibernate.connection.url=jdbc:mysql://localhost:3306/magiclibrary?useSSL=false&serverTimezone=UTC, hibernate.hbm2ddl.auto=update, hibernate.dialect=org.hibernate.dialect.MySQL8Dialect, hibernate.show_sql=true, hibernate.connection.password=****, hibernate.connection.username=root}
 2026-05-25 14:39:18,977 INFO org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
@@ -70,12 +70,12 @@
 	Minimum pool size: 1
 	Maximum pool size: 20
 2026-05-25 14:44:34,868 INFO invoker.Main - Process run
-2026-05-25 14:44:34,877 INFO context.ApplicationContextImpl - initialize context run
+2026-05-25 14:44:34,877 INFO config.ApplicationContextImpl - initialize config run
 2026-05-25 14:44:35,478 INFO config.DatabaseConfigImpl - Getting connection was successful
 2026-05-25 14:44:35,479 INFO config.DatabaseConnectionTester - Connection valid
 2026-05-25 14:44:35,519 INFO config.DatabaseConfigImpl - Testing connection was successful
 2026-05-25 14:44:35,552 INFO config.DatabaseConfigImpl - Testing connection was successful
-2026-05-25 14:44:35,553 INFO context.ApplicationContextImpl - initialize context completed successful
+2026-05-25 14:44:35,553 INFO config.ApplicationContextImpl - initialize config completed successful
 2026-05-25 14:44:35,667 INFO org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.50.Final
 2026-05-25 14:44:35,671 INFO org.hibernate.cfg.Environment - HHH000205: Loaded properties from resource hibernate.properties: {hibernate.connection.driver_class=com.mysql.cj.jdbc.Driver, hibernate.connection.url=jdbc:mysql://localhost:3306/magiclibrary?useSSL=false&serverTimezone=UTC, hibernate.hbm2ddl.auto=update, hibernate.dialect=org.hibernate.dialect.MySQL8Dialect, hibernate.show_sql=true, hibernate.connection.password=****, hibernate.connection.username=root}
 2026-05-25 14:44:35,743 INFO org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
@@ -93,12 +93,12 @@
 2026-05-25 14:44:37,274 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
 2026-05-25 14:44:37,304 INFO org.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@79252c83] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
 2026-05-25 14:46:07,480 INFO invoker.Main - Process run
-2026-05-25 14:46:07,492 INFO context.ApplicationContextImpl - initialize context run
+2026-05-25 14:46:07,492 INFO config.ApplicationContextImpl - initialize config run
 2026-05-25 14:46:07,939 INFO config.DatabaseConfigImpl - Getting connection was successful
 2026-05-25 14:46:07,940 INFO config.DatabaseConnectionTester - Connection valid
 2026-05-25 14:46:07,982 INFO config.DatabaseConfigImpl - Testing connection was successful
 2026-05-25 14:46:08,013 INFO config.DatabaseConfigImpl - Testing connection was successful
-2026-05-25 14:46:08,014 INFO context.ApplicationContextImpl - initialize context completed successful
+2026-05-25 14:46:08,014 INFO config.ApplicationContextImpl - initialize config completed successful
 2026-05-25 14:46:08,133 INFO org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.50.Final
 2026-05-25 14:46:08,136 INFO org.hibernate.cfg.Environment - HHH000205: Loaded properties from resource hibernate.properties: {hibernate.connection.driver_class=com.mysql.cj.jdbc.Driver, hibernate.connection.url=jdbc:mysql://localhost:3306/magiclibrary?useSSL=false&serverTimezone=UTC, hibernate.hbm2ddl.auto=update, hibernate.dialect=org.hibernate.dialect.MySQL8Dialect, hibernate.show_sql=true, hibernate.connection.password=****, hibernate.connection.username=root}
 2026-05-25 14:46:08,188 INFO org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
@@ -116,12 +116,12 @@
 2026-05-25 14:46:09,458 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
 2026-05-25 14:46:09,490 INFO org.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@2e952845] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
 2026-07-08 18:16:17,223 INFO invoker.Main - Process run
-2026-07-08 18:16:17,234 INFO context.ApplicationContextImpl - initialize context run
+2026-07-08 18:16:17,234 INFO config.ApplicationContextImpl - initialize config run
 2026-07-08 18:16:18,047 INFO config.DatabaseConfigImpl - Getting connection was successful
 2026-07-08 18:16:18,048 INFO config.DatabaseConnectionTester - Connection valid
 2026-07-08 18:16:18,228 INFO config.DatabaseConfigImpl - Testing connection was successful
 2026-07-08 18:16:18,268 INFO config.DatabaseConfigImpl - Testing connection was successful
-2026-07-08 18:16:18,272 INFO context.ApplicationContextImpl - initialize context completed successful
+2026-07-08 18:16:18,272 INFO config.ApplicationContextImpl - initialize config completed successful
 2026-07-08 18:16:18,468 INFO org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.50.Final
 2026-07-08 18:16:18,473 INFO org.hibernate.cfg.Environment - HHH000205: Loaded properties from resource hibernate.properties: {hibernate.connection.driver_class=com.mysql.cj.jdbc.Driver, hibernate.connection.url=jdbc:mysql://localhost:3306/magiclibrary?useSSL=false&serverTimezone=UTC, hibernate.hbm2ddl.auto=update, hibernate.dialect=org.hibernate.dialect.MySQL8Dialect, hibernate.show_sql=true, hibernate.connection.password=****, hibernate.connection.username=root}
 2026-07-08 18:16:18,548 INFO org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
@@ -139,12 +139,12 @@
 2026-07-08 18:16:20,686 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
 2026-07-08 18:16:20,743 INFO org.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@6fbf5db2] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
 2026-07-10 19:03:31,722 INFO invoker.Main - Process run
-2026-07-10 19:03:31,730 INFO context.ApplicationContextImpl - initialize context run
+2026-07-10 19:03:31,730 INFO config.ApplicationContextImpl - initialize config run
 2026-07-10 19:03:32,352 INFO config.DatabaseConfigImpl - Getting connection was successful
 2026-07-10 19:03:32,353 INFO config.DatabaseConnectionTester - Connection valid
 2026-07-10 19:03:32,441 INFO config.DatabaseConfigImpl - Testing connection was successful
 2026-07-10 19:03:32,478 INFO config.DatabaseConfigImpl - Testing connection was successful
-2026-07-10 19:03:32,479 INFO context.ApplicationContextImpl - initialize context completed successful
+2026-07-10 19:03:32,479 INFO config.ApplicationContextImpl - initialize config completed successful
 2026-07-10 19:03:32,604 INFO org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.50.Final
 2026-07-10 19:03:32,608 INFO org.hibernate.cfg.Environment - HHH000205: Loaded properties from resource hibernate.properties: {hibernate.connection.driver_class=com.mysql.cj.jdbc.Driver, hibernate.connection.url=jdbc:mysql://localhost:3306/magiclibrary?useSSL=false&serverTimezone=UTC, hibernate.hbm2ddl.auto=update, hibernate.dialect=org.hibernate.dialect.MySQL8Dialect, hibernate.show_sql=true, hibernate.connection.password=****, hibernate.connection.username=root}
 2026-07-10 19:03:32,727 INFO org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
@@ -160,12 +160,12 @@
 	Minimum pool size: 1
 	Maximum pool size: 20
 2026-07-10 19:04:36,190 INFO invoker.Main - Process run
-2026-07-10 19:04:36,197 INFO context.ApplicationContextImpl - initialize context run
+2026-07-10 19:04:36,197 INFO config.ApplicationContextImpl - initialize config run
 2026-07-10 19:04:36,662 INFO config.DatabaseConfigImpl - Getting connection was successful
 2026-07-10 19:04:36,663 INFO config.DatabaseConnectionTester - Connection valid
 2026-07-10 19:04:36,704 INFO config.DatabaseConfigImpl - Testing connection was successful
 2026-07-10 19:04:36,740 INFO config.DatabaseConfigImpl - Testing connection was successful
-2026-07-10 19:04:36,741 INFO context.ApplicationContextImpl - initialize context completed successful
+2026-07-10 19:04:36,741 INFO config.ApplicationContextImpl - initialize config completed successful
 2026-07-10 19:04:36,853 INFO org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.50.Final
 2026-07-10 19:04:36,856 INFO org.hibernate.cfg.Environment - HHH000205: Loaded properties from resource hibernate.properties: {hibernate.connection.driver_class=com.mysql.cj.jdbc.Driver, hibernate.connection.url=jdbc:mysql://localhost:3306/magiclibrary?useSSL=false&serverTimezone=UTC, hibernate.hbm2ddl.auto=update, hibernate.dialect=org.hibernate.dialect.MySQL8Dialect, hibernate.show_sql=true, hibernate.connection.password=****, hibernate.connection.username=root}
 2026-07-10 19:04:36,907 INFO org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
@@ -184,12 +184,12 @@
 2026-07-10 19:04:38,383 INFO org.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@50cdfafa] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
 2026-07-10 19:04:38,662 INFO dao.MySQLBasedBookDao - Book adding completed successfully
 2026-07-10 19:06:16,022 INFO invoker.Main - Process run
-2026-07-10 19:06:16,030 INFO context.ApplicationContextImpl - initialize context run
+2026-07-10 19:06:16,030 INFO config.ApplicationContextImpl - initialize config run
 2026-07-10 19:06:16,514 INFO config.DatabaseConfigImpl - Getting connection was successful
 2026-07-10 19:06:16,515 INFO config.DatabaseConnectionTester - Connection valid
 2026-07-10 19:06:16,560 INFO config.DatabaseConfigImpl - Testing connection was successful
 2026-07-10 19:06:16,595 INFO config.DatabaseConfigImpl - Testing connection was successful
-2026-07-10 19:06:16,597 INFO context.ApplicationContextImpl - initialize context completed successful
+2026-07-10 19:06:16,597 INFO config.ApplicationContextImpl - initialize config completed successful
 2026-07-10 19:06:16,706 INFO org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.50.Final
 2026-07-10 19:06:16,709 INFO org.hibernate.cfg.Environment - HHH000205: Loaded properties from resource hibernate.properties: {hibernate.connection.driver_class=com.mysql.cj.jdbc.Driver, hibernate.connection.url=jdbc:mysql://localhost:3306/magiclibrary?useSSL=false&serverTimezone=UTC, hibernate.hbm2ddl.auto=update, hibernate.dialect=org.hibernate.dialect.MySQL8Dialect, hibernate.show_sql=true, hibernate.connection.password=****, hibernate.connection.username=root}
 2026-07-10 19:06:16,761 INFO org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
@@ -208,12 +208,12 @@
 2026-07-10 19:06:18,070 INFO org.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@50cdfafa] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
 2026-07-10 19:06:18,207 INFO dao.MySQLBasedBookDao - Books deleting completed successfully
 2026-07-10 19:07:14,170 INFO invoker.Main - Process run
-2026-07-10 19:07:14,177 INFO context.ApplicationContextImpl - initialize context run
+2026-07-10 19:07:14,177 INFO config.ApplicationContextImpl - initialize config run
 2026-07-10 19:07:14,636 INFO config.DatabaseConfigImpl - Getting connection was successful
 2026-07-10 19:07:14,637 INFO config.DatabaseConnectionTester - Connection valid
 2026-07-10 19:07:14,679 INFO config.DatabaseConfigImpl - Testing connection was successful
 2026-07-10 19:07:14,715 INFO config.DatabaseConfigImpl - Testing connection was successful
-2026-07-10 19:07:14,715 INFO context.ApplicationContextImpl - initialize context completed successful
+2026-07-10 19:07:14,715 INFO config.ApplicationContextImpl - initialize config completed successful
 2026-07-10 19:07:14,833 INFO org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.50.Final
 2026-07-10 19:07:14,836 INFO org.hibernate.cfg.Environment - HHH000205: Loaded properties from resource hibernate.properties: {hibernate.connection.driver_class=com.mysql.cj.jdbc.Driver, hibernate.connection.url=jdbc:mysql://localhost:3306/magiclibrary?useSSL=false&serverTimezone=UTC, hibernate.hbm2ddl.auto=update, hibernate.dialect=org.hibernate.dialect.MySQL8Dialect, hibernate.show_sql=true, hibernate.connection.password=****, hibernate.connection.username=root}
 2026-07-10 19:07:14,886 INFO org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
@@ -235,12 +235,12 @@ java.lang.NullPointerException: Cannot invoke "entity.Book.setName(String)" beca
 	at dao.MySQLBasedBookDao.update(MySQLBasedBookDao.java:64) [classes/:?]
 	at invoker.Main.main(Main.java:30) [classes/:?]
 2026-07-10 19:11:50,195 INFO invoker.Main - Process run
-2026-07-10 19:11:50,202 INFO context.ApplicationContextImpl - initialize context run
+2026-07-10 19:11:50,202 INFO config.ApplicationContextImpl - initialize config run
 2026-07-10 19:11:50,680 INFO config.DatabaseConfigImpl - Getting connection was successful
 2026-07-10 19:11:50,681 INFO config.DatabaseConnectionTester - Connection valid
 2026-07-10 19:11:50,725 INFO config.DatabaseConfigImpl - Testing connection was successful
 2026-07-10 19:11:50,766 INFO config.DatabaseConfigImpl - Testing connection was successful
-2026-07-10 19:11:50,767 INFO context.ApplicationContextImpl - initialize context completed successful
+2026-07-10 19:11:50,767 INFO config.ApplicationContextImpl - initialize config completed successful
 2026-07-10 19:11:50,871 INFO org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.50.Final
 2026-07-10 19:11:50,874 INFO org.hibernate.cfg.Environment - HHH000205: Loaded properties from resource hibernate.properties: {hibernate.connection.driver_class=com.mysql.cj.jdbc.Driver, hibernate.connection.url=jdbc:mysql://localhost:3306/magiclibrary?useSSL=false&serverTimezone=UTC, hibernate.hbm2ddl.auto=update, hibernate.dialect=org.hibernate.dialect.MySQL8Dialect, hibernate.show_sql=true, hibernate.connection.password=****, hibernate.connection.username=root}
 2026-07-10 19:11:50,928 INFO org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
@@ -259,12 +259,12 @@ java.lang.NullPointerException: Cannot invoke "entity.Book.setName(String)" beca
 2026-07-10 19:11:52,179 INFO org.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@50cdfafa] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
 2026-07-10 19:11:52,318 INFO dao.MySQLBasedBookDao - Books updating completed successfully
 2026-07-10 19:13:09,141 INFO invoker.Main - Process run
-2026-07-10 19:13:09,155 INFO context.ApplicationContextImpl - initialize context run
+2026-07-10 19:13:09,155 INFO config.ApplicationContextImpl - initialize config run
 2026-07-10 19:13:09,634 INFO config.DatabaseConfigImpl - Getting connection was successful
 2026-07-10 19:13:09,635 INFO config.DatabaseConnectionTester - Connection valid
 2026-07-10 19:13:09,676 INFO config.DatabaseConfigImpl - Testing connection was successful
 2026-07-10 19:13:09,711 INFO config.DatabaseConfigImpl - Testing connection was successful
-2026-07-10 19:13:09,712 INFO context.ApplicationContextImpl - initialize context completed successful
+2026-07-10 19:13:09,712 INFO config.ApplicationContextImpl - initialize config completed successful
 2026-07-10 19:13:09,823 INFO org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.50.Final
 2026-07-10 19:13:09,825 INFO org.hibernate.cfg.Environment - HHH000205: Loaded properties from resource hibernate.properties: {hibernate.connection.driver_class=com.mysql.cj.jdbc.Driver, hibernate.connection.url=jdbc:mysql://localhost:3306/magiclibrary?useSSL=false&serverTimezone=UTC, hibernate.hbm2ddl.auto=update, hibernate.dialect=org.hibernate.dialect.MySQL8Dialect, hibernate.show_sql=true, hibernate.connection.password=****, hibernate.connection.username=root}
 2026-07-10 19:13:09,879 INFO org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
@@ -283,12 +283,12 @@ java.lang.NullPointerException: Cannot invoke "entity.Book.setName(String)" beca
 2026-07-10 19:13:11,124 INFO org.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@68dfda77] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
 2026-07-10 19:13:11,263 INFO dao.MySQLBasedUserDao - User adding completed successfully
 2026-07-10 19:13:33,418 INFO invoker.Main - Process run
-2026-07-10 19:13:33,426 INFO context.ApplicationContextImpl - initialize context run
+2026-07-10 19:13:33,426 INFO config.ApplicationContextImpl - initialize config run
 2026-07-10 19:13:33,879 INFO config.DatabaseConfigImpl - Getting connection was successful
 2026-07-10 19:13:33,880 INFO config.DatabaseConnectionTester - Connection valid
 2026-07-10 19:13:33,919 INFO config.DatabaseConfigImpl - Testing connection was successful
 2026-07-10 19:13:33,951 INFO config.DatabaseConfigImpl - Testing connection was successful
-2026-07-10 19:13:33,952 INFO context.ApplicationContextImpl - initialize context completed successful
+2026-07-10 19:13:33,952 INFO config.ApplicationContextImpl - initialize config completed successful
 2026-07-10 19:13:34,065 INFO org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.50.Final
 2026-07-10 19:13:34,068 INFO org.hibernate.cfg.Environment - HHH000205: Loaded properties from resource hibernate.properties: {hibernate.connection.driver_class=com.mysql.cj.jdbc.Driver, hibernate.connection.url=jdbc:mysql://localhost:3306/magiclibrary?useSSL=false&serverTimezone=UTC, hibernate.hbm2ddl.auto=update, hibernate.dialect=org.hibernate.dialect.MySQL8Dialect, hibernate.show_sql=true, hibernate.connection.password=****, hibernate.connection.username=root}
 2026-07-10 19:13:34,120 INFO org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
@@ -310,12 +310,12 @@ java.lang.NullPointerException: Cannot invoke "entity.User.setName(String)" beca
 	at dao.MySQLBasedUserDao.update(MySQLBasedUserDao.java:62) [classes/:?]
 	at invoker.Main.main(Main.java:29) [classes/:?]
 2026-07-10 19:13:40,184 INFO invoker.Main - Process run
-2026-07-10 19:13:40,192 INFO context.ApplicationContextImpl - initialize context run
+2026-07-10 19:13:40,192 INFO config.ApplicationContextImpl - initialize config run
 2026-07-10 19:13:40,652 INFO config.DatabaseConfigImpl - Getting connection was successful
 2026-07-10 19:13:40,652 INFO config.DatabaseConnectionTester - Connection valid
 2026-07-10 19:13:40,691 INFO config.DatabaseConfigImpl - Testing connection was successful
 2026-07-10 19:13:40,728 INFO config.DatabaseConfigImpl - Testing connection was successful
-2026-07-10 19:13:40,728 INFO context.ApplicationContextImpl - initialize context completed successful
+2026-07-10 19:13:40,728 INFO config.ApplicationContextImpl - initialize config completed successful
 2026-07-10 19:13:40,832 INFO org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.50.Final
 2026-07-10 19:13:40,834 INFO org.hibernate.cfg.Environment - HHH000205: Loaded properties from resource hibernate.properties: {hibernate.connection.driver_class=com.mysql.cj.jdbc.Driver, hibernate.connection.url=jdbc:mysql://localhost:3306/magiclibrary?useSSL=false&serverTimezone=UTC, hibernate.hbm2ddl.auto=update, hibernate.dialect=org.hibernate.dialect.MySQL8Dialect, hibernate.show_sql=true, hibernate.connection.password=****, hibernate.connection.username=root}
 2026-07-10 19:13:40,887 INFO org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
@@ -334,12 +334,12 @@ java.lang.NullPointerException: Cannot invoke "entity.User.setName(String)" beca
 2026-07-10 19:13:42,139 INFO org.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@50cdfafa] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
 2026-07-10 19:13:42,291 INFO dao.MySQLBasedUserDao - Users updating completed successfully
 2026-07-10 19:14:15,293 INFO invoker.Main - Process run
-2026-07-10 19:14:15,301 INFO context.ApplicationContextImpl - initialize context run
+2026-07-10 19:14:15,301 INFO config.ApplicationContextImpl - initialize config run
 2026-07-10 19:14:15,813 INFO config.DatabaseConfigImpl - Getting connection was successful
 2026-07-10 19:14:15,814 INFO config.DatabaseConnectionTester - Connection valid
 2026-07-10 19:14:15,857 INFO config.DatabaseConfigImpl - Testing connection was successful
 2026-07-10 19:14:15,890 INFO config.DatabaseConfigImpl - Testing connection was successful
-2026-07-10 19:14:15,890 INFO context.ApplicationContextImpl - initialize context completed successful
+2026-07-10 19:14:15,890 INFO config.ApplicationContextImpl - initialize config completed successful
 2026-07-10 19:14:16,006 INFO org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.50.Final
 2026-07-10 19:14:16,009 INFO org.hibernate.cfg.Environment - HHH000205: Loaded properties from resource hibernate.properties: {hibernate.connection.driver_class=com.mysql.cj.jdbc.Driver, hibernate.connection.url=jdbc:mysql://localhost:3306/magiclibrary?useSSL=false&serverTimezone=UTC, hibernate.hbm2ddl.auto=update, hibernate.dialect=org.hibernate.dialect.MySQL8Dialect, hibernate.show_sql=true, hibernate.connection.password=****, hibernate.connection.username=root}
 2026-07-10 19:14:16,062 INFO org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
@@ -357,12 +357,12 @@ java.lang.NullPointerException: Cannot invoke "entity.User.setName(String)" beca
 2026-07-10 19:14:17,342 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
 2026-07-10 19:14:17,367 INFO org.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@68dfda77] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
 2026-07-10 19:15:18,802 INFO invoker.Main - Process run
-2026-07-10 19:15:18,812 INFO context.ApplicationContextImpl - initialize context run
+2026-07-10 19:15:18,812 INFO config.ApplicationContextImpl - initialize config run
 2026-07-10 19:15:19,286 INFO config.DatabaseConfigImpl - Getting connection was successful
 2026-07-10 19:15:19,288 INFO config.DatabaseConnectionTester - Connection valid
 2026-07-10 19:15:19,327 INFO config.DatabaseConfigImpl - Testing connection was successful
 2026-07-10 19:15:19,364 INFO config.DatabaseConfigImpl - Testing connection was successful
-2026-07-10 19:15:19,364 INFO context.ApplicationContextImpl - initialize context completed successful
+2026-07-10 19:15:19,364 INFO config.ApplicationContextImpl - initialize config completed successful
 2026-07-10 19:15:19,473 INFO org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.50.Final
 2026-07-10 19:15:19,476 INFO org.hibernate.cfg.Environment - HHH000205: Loaded properties from resource hibernate.properties: {hibernate.connection.driver_class=com.mysql.cj.jdbc.Driver, hibernate.connection.url=jdbc:mysql://localhost:3306/magiclibrary?useSSL=false&serverTimezone=UTC, hibernate.hbm2ddl.auto=update, hibernate.dialect=org.hibernate.dialect.MySQL8Dialect, hibernate.show_sql=true, hibernate.connection.password=****, hibernate.connection.username=root}
 2026-07-10 19:15:19,526 INFO org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
@@ -380,5 +380,25 @@ java.lang.NullPointerException: Cannot invoke "entity.User.setName(String)" beca
 2026-07-10 19:15:20,772 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
 2026-07-10 19:15:20,799 INFO org.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@68dfda77] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
 2026-07-10 19:22:07,934 INFO invoker.Main - Process run
-2026-07-10 19:22:07,941 INFO context.ApplicationContextImpl - initialize context run
-2026-07-10 19:22:07,962 INFO context.ApplicationContextImpl - initialize context completed successful
+2026-07-10 19:22:07,941 INFO config.ApplicationContextImpl - initialize config run
+2026-07-10 19:22:07,962 INFO config.ApplicationContextImpl - initialize config completed successful
+2026-07-11 10:25:38,039 INFO invoker.Main - Process run
+2026-07-11 10:25:38,053 INFO config.ApplicationContextImpl - initialize config run
+2026-07-11 10:25:38,097 INFO config.ApplicationContextImpl - initialize config completed successful
+2026-07-11 10:35:33,134 INFO invoker.Main - Process run
+2026-07-11 10:37:27,784 INFO invoker.Main - Process run
+2026-07-11 10:39:51,646 INFO invoker.Main - Process run
+2026-07-11 10:41:46,877 INFO invoker.Main - Process run
+2026-07-11 10:48:18,831 INFO invoker.Main - Process run
+2026-07-11 10:48:57,132 INFO invoker.Main - Process run
+2026-07-11 10:50:50,061 INFO invoker.Main - Process run
+2026-07-11 10:51:39,808 INFO invoker.Main - Process run
+2026-07-11 10:52:27,046 INFO invoker.Main - Process run
+2026-07-11 11:31:11,491 INFO invoker.Main - Process run
+2026-07-11 12:54:59,412 INFO invoker.Main - Process run
+2026-07-11 12:54:59,964 WARN org.springframework.context.annotation.AnnotationConfigApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'UserService': Unsatisfied dependency expressed through method 'setUserDao' parameter 0: No qualifying bean of type 'dao.UserDao' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2026-07-11 19:27:58,029 INFO invoker.Main - Process run
+2026-07-11 19:27:58,770 WARN org.springframework.context.annotation.AnnotationConfigApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'UserService' defined in config.ApplicationConfig: Unsatisfied dependency expressed through method 'UserService' parameter 0: No qualifying bean of type 'dao.UserDao' available: expected single matching bean but found 2: FileBasedUserDao,mySQLBasedUserDao
+2026-07-11 19:41:07,788 INFO invoker.Main - Process run
+2026-07-11 19:41:16,104 INFO invoker.Main - Process run
+2026-07-11 20:36:11,335 INFO invoker.Main - Process run

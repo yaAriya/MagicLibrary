@@ -1,20 +1,38 @@
 package service;
 
 import dao.BookDao;
+
 import entity.Book;
 import entity.User;
 import exceptions.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.stereotype.Service;
 import validator.BookValidator;
 
 import java.util.List;
 
+@Service
 public class BookServiceImpl implements BookService {
     private static final Logger LOGGER = LogManager.getLogger(BookServiceImpl.class);
-    private BookDao bookDao;
-    private BookValidator bookValidator;
-    private UserService userService;
+    private final BookDao bookDao;
+    private final BookValidator bookValidator;
+    private final UserService userService;
+
+    public BookServiceImpl(UserService userService, BookDao bookDao, BookValidator bookValidator) {
+        this.userService = userService;
+        this.bookDao = bookDao;
+        this.bookValidator = bookValidator;
+    }
+
+/*    public void initializeCache() { // Work with file based DAOs (!!Adding initializeCache() into interfaces)
+        try {
+            List<Book> books = bookDao.initializeCache();
+            userService.initializeCache(books);
+        } catch (BookDaoException | UserServiceException e) {
+            throw new BookServiceException(e);
+        }
+    }*/
 
     @Override
     public List<Book> readAllBooks() throws BookServiceException {
@@ -125,17 +143,5 @@ public class BookServiceImpl implements BookService {
             LOGGER.error("Returning book failed");
             throw new BookServiceException();
         }
-    }
-
-    public void setBookDao(BookDao bookDao) {
-        this.bookDao = bookDao;
-    }
-
-    public void setBookValidator(BookValidator bookValidator) {
-        this.bookValidator = bookValidator;
-    }
-
-    public void setUserService(UserService userService) {
-        this.userService = userService;
     }
 }

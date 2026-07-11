@@ -1,7 +1,9 @@
 package validator;
 
 import entity.Book;
+import org.springframework.stereotype.Component;
 
+@Component
 public class BookValidator implements Validator<Book> {
     @Override
     public boolean validate(Book book) {

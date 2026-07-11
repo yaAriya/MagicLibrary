@@ -1,5 +1,6 @@
 package dao;
 
+import entity.Book;
 import entity.User;
 import exceptions.UserDaoException;
 

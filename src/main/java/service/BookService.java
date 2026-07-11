@@ -6,7 +6,6 @@ import exceptions.BookServiceException;
 import java.util.List;
 
 public interface BookService {
-
     List<Book> readAllBooks() throws BookServiceException;
 
     void add(Book book) throws BookServiceException;

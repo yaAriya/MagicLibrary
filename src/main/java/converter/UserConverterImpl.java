@@ -4,10 +4,12 @@ import entity.Book;
 import entity.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 import java.util.List;
 
+@Component
 public class UserConverterImpl implements UserConverter {
     private static final Logger LOGGER = LogManager.getLogger(UserConverterImpl.class);
     private static final String PARAMETER = ",";

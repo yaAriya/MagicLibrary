@@ -18,6 +18,8 @@ public class Book implements Cloneable {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+    @Transient
+    private long userId;
 
     public Book() {
     }
@@ -49,6 +51,46 @@ public class Book implements Cloneable {
         this.pages = pages;
         this.user = user;
     }
+
+    public Book(long id, String name, String author, int pages, long userId) {
+        this.id = id;
+        this.name = name;
+        this.author = author;
+        this.pages = pages;
+        this.userId = userId;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, author, pages, id, user);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        } else if ((obj == null) || !(obj instanceof Book)) {
+            return false;
+        }
+        Book book = (Book) obj;
+        return Objects.equals(name, book.name) && Objects.equals(author, book.author) && pages == book.pages && id == book.id && Objects.equals(user, book.user);
+    }
+
+    @Override
+    public Book clone() throws CloneNotSupportedException {
+        Book clonedBook = (Book) super.clone();
+        if (getUser() != null) {
+            User clonedUser = new User(user.getId(), user.getName(), user.getEmail(), user.getAge(), user.getBooks());
+            clonedBook.setUser(clonedUser);
+        }
+        return clonedBook;
+    }
+
+    @Override
+    public String toString() {
+        return id + ", " + name + ", " + author + ", " + pages + ", " + "(" + user + ")";
+    }
+
 
     public String getName() {
         return name;
@@ -90,35 +132,11 @@ public class Book implements Cloneable {
         this.user = user;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, author, pages, id, user);
+    public long getUserId() {
+        return userId;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        } else if ((obj == null) || !(obj instanceof Book)) {
-            return false;
-        }
-        Book book = (Book) obj;
-        return Objects.equals(name, book.name) && Objects.equals(author, book.author) && pages == book.pages && id == book.id && Objects.equals(user, book.user);
-    }
-
-    @Override
-    public Book clone() throws CloneNotSupportedException {
-        Book clonedBook = (Book) super.clone();
-        if (getUser() != null) {
-            User clonedUser = new User(user.getId(), user.getName(), user.getEmail(), user.getAge(), user.getBooks());
-            clonedBook.setUser(clonedUser);
-        }
-        return clonedBook;
-    }
-
-
-    @Override
-    public String toString() {
-        return id + ", " + name + ", " + author + ", " + pages + ", " + "(" + user + ")";
+    public void setUserId(long userId) {
+        this.userId = userId;
     }
 }

@@ -5,14 +5,29 @@ import entity.User;
 import exceptions.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.stereotype.Service;
 import validator.UserValidator;
 
 import java.util.List;
 
+@Service
 public class UserServiceImpl implements UserService {
     private static final Logger LOGGER = LogManager.getLogger(UserServiceImpl.class);
-    private UserDao userDao;
-    private UserValidator userValidator;
+    private final UserDao userDao;
+    private final UserValidator userValidator;
+
+    public UserServiceImpl(UserDao userDao, UserValidator userValidator) {
+        this.userDao = userDao;
+        this.userValidator = userValidator;
+    }
+
+/*    public void initializeCache(List<Book> books) {
+        try {
+           userDao.initializeCache(books);
+        } catch (UserDaoException e) {
+            throw new UserServiceException(e);
+        }
+    }*/
 
     @Override
     public List<User> readAllUsers() throws UserServiceException {
@@ -86,13 +101,5 @@ public class UserServiceImpl implements UserService {
             LOGGER.error("Deleting users failed");
             throw new UserServiceException(e);
         }
-    }
-
-    public void setUserDao(UserDao userDao) {
-        this.userDao = userDao;
-    }
-
-    public void setUserValidator(UserValidator userValidator) {
-        this.userValidator = userValidator;
     }
 }

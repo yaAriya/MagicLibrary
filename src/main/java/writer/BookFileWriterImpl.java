@@ -5,16 +5,22 @@ import entity.Book;
 import exceptions.BookFileWriterException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.stereotype.Component;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
+@Component
 public class BookFileWriterImpl implements BookFileWriter {
     private static final Logger LOGGER = LogManager.getLogger();
     private static final String BOOK_FILE_PATH = "src/main/resources/book.txt";
-    private BookConverter bookConverter;
+    private final BookConverter bookConverter;
+
+    public BookFileWriterImpl(BookConverter bookConverter){
+        this.bookConverter = bookConverter;
+    }
 
     @Override
     public void addBookToFile(Book book) throws BookFileWriterException {
@@ -41,9 +47,5 @@ public class BookFileWriterImpl implements BookFileWriter {
             LOGGER.error("Writing books to file failed");
             throw new BookFileWriterException(e);
         }
-    }
-
-    public void setBookConverter(BookConverter bookConverter){
-        this.bookConverter = bookConverter;
     }
 }

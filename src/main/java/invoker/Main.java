@@ -1,29 +1,21 @@
 package invoker;
 
-import context.ApplicationContext;
-import context.ApplicationContextImpl;
-import dao.*;
-import exceptions.ApplicationContextException;
+import config.ApplicationConfig;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import printer.Printer;
-import service.BookService;
-import service.UserService;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 
 public class Main {
     private static final Logger LOGGER = LogManager.getLogger(Main.class);
 
-    public static void main(String[] args) throws ApplicationContextException {
+    public static void main(String[] args) {
         LOGGER.info("Process run");
-        ApplicationContext applicationContext = new ApplicationContextImpl();
-        applicationContext.initializeContext();
-
-
-        Printer printer = ((Printer) applicationContext.getBean("printer"));
-        BookService bookService = ((BookService) applicationContext.getBean("bookService"));
-        UserService userService = ((UserService) applicationContext.getBean("userService"));
-        FileBasedBookDao fileBasedBookDao = (FileBasedBookDao) applicationContext.getBean("fileBasedBookDao");
-        FileBasedUserDao fileBasedUserDao = ((FileBasedUserDao) applicationContext.getBean("FileBasedUserDao"));
+        AnnotationConfigApplicationContext context =
+                new AnnotationConfigApplicationContext(ApplicationConfig.class);
+        String[] beanNames = context.getBeanDefinitionNames();
+        for (String name : beanNames) {
+            System.out.println(name);
+        }
     }
 }

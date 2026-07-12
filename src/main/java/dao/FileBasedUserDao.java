@@ -29,8 +29,8 @@ public class FileBasedUserDao implements UserDao {
     public void initializeCache(List<Book> books) throws UserDaoException {
         try {
             users = userFileReader.readUsersFromFile();
-            for(Book book: books) {
-                if(book.getUserId()!= 0L){
+            for (Book book : books) {
+                if (book.getUserId() != 0L) {
                     addBookToUser(read(book.getUserId()), book);
                 }
             }
@@ -46,7 +46,7 @@ public class FileBasedUserDao implements UserDao {
     }
 
     @Override
-    public List<User> readAllUsers() throws UserDaoException {
+    public List<User> readAllUsers() {
         try {
             List<User> clonedUsers = new ArrayList<>();
             for (User user : getUsers()) {
@@ -56,24 +56,24 @@ public class FileBasedUserDao implements UserDao {
             return clonedUsers;
         } catch (CloneNotSupportedException e) {
             LOGGER.error("Users reading failed");
-            throw new UserDaoException(e);
+            throw new RuntimeException(e);
         }
     }
 
     @Override
-    public void add(User user) throws UserDaoException {
+    public void add(User user) {
         try {
             getUsers().add(user);
             userFileWriter.addUserToFile(user);
             LOGGER.info("User adding completed successfully");
         } catch (UserFileWriterException e) {
             LOGGER.error("User adding failed");
-            throw new UserDaoException(e);
+            throw new RuntimeException(e);
         }
     }
 
     @Override
-    public User read(long id) throws UserDaoException {
+    public User read(long id) {
         try {
             for (User user : getUsers()) {
                 if (user.getId() == id) {
@@ -83,13 +83,13 @@ public class FileBasedUserDao implements UserDao {
             LOGGER.info("User reading completed successfully");
         } catch (CloneNotSupportedException e) {
             LOGGER.error("User reading failed");
-            throw new UserDaoException(e);
+            throw new RuntimeException(e);
         }
         return null;
     }
 
     @Override
-    public void update(User user) throws UserDaoException {
+    public void update(User user) {
         try {
             for (int i = 0; i < getUsers().size(); i++) {
                 if (getUsers().get(i).getId() == user.getId()) {
@@ -104,19 +104,19 @@ public class FileBasedUserDao implements UserDao {
             LOGGER.info("Users updating completed successfully");
         } catch (UserFileWriterException e) {
             LOGGER.error("User updating failed");
-            throw new UserDaoException(e);
+            throw new RuntimeException(e);
         }
     }
 
     @Override
-    public void delete(long id) throws UserDaoException {
+    public void delete(long id) {
         getUsers().remove(read(id));
         try {
             userFileWriter.writeUsersToFile(getUsers());
             LOGGER.info("Users deleting completed successfully");
         } catch (UserFileWriterException e) {
             LOGGER.error("User deleting failed");
-            throw new UserDaoException(e);
+            throw new RuntimeException(e);
         }
     }
 

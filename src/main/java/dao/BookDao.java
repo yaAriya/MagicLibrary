@@ -2,22 +2,21 @@ package dao;
 
 import entity.Book;
 import entity.User;
-import exceptions.BookDaoException;
 
 import java.util.List;
 
 public interface BookDao {
-    List<Book> readAllBooks() throws BookDaoException;
+    List<Book> readAllBooks();
 
-    void add(Book book) throws BookDaoException;
+    void add(Book book);
 
-    Book read(long id) throws BookDaoException;
+    Book read(long id);
 
-    void update(Book book) throws BookDaoException;
+    void update(Book book);
 
-    void delete(long id) throws BookDaoException;
+    void delete(long id);
 
-    void rentBook(User user, Book book) throws BookDaoException;
+    void rentBook(User user, Book book);
 
-    void returnBook(User user, Book book) throws BookDaoException;
+    void returnBook(User user, Book book);
 }

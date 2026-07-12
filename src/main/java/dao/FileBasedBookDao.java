@@ -36,7 +36,7 @@ public class FileBasedBookDao implements BookDao {
     }
 
     @Override
-    public List<Book> readAllBooks() throws BookDaoException {
+    public List<Book> readAllBooks() {
         try {
             List<Book> clonedBooks = new ArrayList<>();
             for (Book book : getBooks()) {
@@ -46,24 +46,28 @@ public class FileBasedBookDao implements BookDao {
             return clonedBooks;
         } catch (CloneNotSupportedException e) {
             LOGGER.error("Books reading failed");
-            throw new BookDaoException(e);
+            throw new RuntimeException(e);
         }
     }
 
     @Override
-    public void add(Book book) throws BookDaoException {
+    public void add(Book book) {
         try {
             getBooks().add(book);
             bookFileWriter.addBookToFile(book);
             LOGGER.info("Book adding completed successfully");
         } catch (BookFileWriterException e) {
             LOGGER.error("Book adding failed");
-            throw new BookDaoException(e);
+            try {
+                throw new BookDaoException(e);
+            } catch (BookDaoException ex) {
+                throw new RuntimeException(ex);
+            }
         }
     }
 
     @Override
-    public Book read(long id) throws BookDaoException {
+    public Book read(long id) {
         try {
             for (Book book : getBooks()) {
                 if (book.getId() == id) {
@@ -73,13 +77,13 @@ public class FileBasedBookDao implements BookDao {
             LOGGER.info("Book reading completed successfully");
         } catch (CloneNotSupportedException e) {
             LOGGER.error("Book reading failed");
-            throw new BookDaoException(e);
+            throw new RuntimeException(e);
         }
         return null;
     }
 
     @Override
-    public void update(Book book) throws BookDaoException {
+    public void update(Book book) {
         try {
             for (int i = 0; i < getBooks().size(); i++) {
                 if (getBooks().get(i).getId() == book.getId()) {
@@ -94,19 +98,19 @@ public class FileBasedBookDao implements BookDao {
             LOGGER.info("Books updating completed successfully");
         } catch (BookFileWriterException e) {
             LOGGER.error("Book updating failed");
-            throw new BookDaoException(e);
+            throw new RuntimeException(e);
         }
     }
 
     @Override
-    public void delete(long id) throws BookDaoException {
+    public void delete(long id) {
         try {
             getBooks().remove(read(id));
             bookFileWriter.writeBookToFile(getBooks());
             LOGGER.info("Books deleting completed successfully");
         } catch (BookFileWriterException e) {
             LOGGER.error("Book deleting failed");
-            throw new BookDaoException(e);
+            throw new RuntimeException(e);
         }
     }
 

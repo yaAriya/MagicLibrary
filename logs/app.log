@@ -402,3 +402,821 @@ java.lang.NullPointerException: Cannot invoke "entity.User.setName(String)" beca
 2026-07-11 19:41:07,788 INFO invoker.Main - Process run
 2026-07-11 19:41:16,104 INFO invoker.Main - Process run
 2026-07-11 20:36:11,335 INFO invoker.Main - Process run
+2026-07-12 15:45:07,850 INFO invoker.Main - Process run
+2026-07-12 15:45:08,687 INFO org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.50.Final
+2026-07-12 15:45:08,790 INFO org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-07-12 15:45:09,666 WARN org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-12 15:45:09,668 WARN org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2026-07-12 15:45:09,702 INFO org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-12 15:45:11,278 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-12 15:49:41,427 INFO invoker.Main - Process run
+2026-07-12 15:49:42,453 INFO org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.50.Final
+2026-07-12 15:49:42,597 INFO org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-07-12 15:49:42,953 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-07-12 15:49:43,574 INFO com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@cbc8d0f
+2026-07-12 15:49:43,576 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-07-12 15:49:43,660 WARN org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-12 15:49:43,663 WARN org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2026-07-12 15:49:43,702 INFO org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-12 15:49:45,403 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-12 15:50:49,149 INFO invoker.Main - Process run
+2026-07-12 15:50:49,945 INFO org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.50.Final
+2026-07-12 15:50:50,013 INFO org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-07-12 15:50:50,609 WARN org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-12 15:50:50,611 WARN org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2026-07-12 15:50:50,642 INFO org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-12 15:50:51,978 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-12 15:52:54,058 INFO invoker.Main - Process run
+2026-07-12 15:52:54,969 INFO org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.50.Final
+2026-07-12 15:52:55,155 INFO org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-07-12 15:52:58,043 WARN org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-12 15:52:58,047 WARN org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2026-07-12 15:52:58,148 INFO org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-12 15:53:07,218 INFO invoker.Main - Process run
+2026-07-12 15:53:08,177 INFO org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.50.Final
+2026-07-12 15:53:08,262 INFO org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-07-12 15:53:09,008 WARN org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-12 15:53:09,010 WARN org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2026-07-12 15:53:09,036 INFO org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-12 15:53:10,886 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-12 15:55:09,350 INFO invoker.Main - Process run
+2026-07-12 15:55:10,402 INFO org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.50.Final
+2026-07-12 15:55:10,516 INFO org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-07-12 15:55:11,441 WARN org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-12 15:55:11,444 WARN org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2026-07-12 15:55:11,483 INFO org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-12 15:55:13,079 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-12 15:56:30,793 INFO invoker.Main - Process run
+2026-07-12 15:56:31,561 INFO org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.50.Final
+2026-07-12 15:56:31,625 INFO org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-07-12 15:56:32,192 WARN org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-12 15:56:32,194 WARN org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2026-07-12 15:56:32,213 INFO org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-12 15:56:33,842 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-13 10:54:44,130 INFO invoker.Main - Process run
+2026-07-13 10:54:45,531 INFO org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.50.Final
+2026-07-13 10:54:45,660 INFO org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-07-13 10:54:46,050 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-07-13 10:54:46,633 INFO com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@36fc05ff
+2026-07-13 10:54:46,636 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-07-13 10:54:46,774 WARN org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-13 10:54:46,777 WARN org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2026-07-13 10:54:46,822 INFO org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-13 10:54:49,248 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-13 11:00:46,979 INFO invoker.Main - Process run
+2026-07-13 11:09:58,600 INFO invoker.Main - Process run
+2026-07-13 11:10:00,007 INFO org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.50.Final
+2026-07-13 11:10:00,122 INFO org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-07-13 11:10:00,443 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-07-13 11:10:01,214 INFO com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@36fc05ff
+2026-07-13 11:10:01,216 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-07-13 11:10:01,314 WARN org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-13 11:10:01,318 WARN org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2026-07-13 11:10:01,363 INFO org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-13 11:10:03,308 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-13 11:10:24,532 INFO invoker.Main - Process run
+2026-07-13 11:10:25,793 INFO org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.50.Final
+2026-07-13 11:10:25,901 INFO org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-07-13 11:10:26,154 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-07-13 11:10:26,820 INFO com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@36fc05ff
+2026-07-13 11:10:26,821 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-07-13 11:10:26,914 WARN org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-13 11:10:26,917 WARN org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2026-07-13 11:10:26,953 INFO org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-13 11:10:28,766 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-13 11:11:07,549 INFO invoker.Main - Process run
+2026-07-13 11:11:08,760 INFO org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.50.Final
+2026-07-13 11:11:08,891 INFO org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-07-13 11:11:09,154 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-07-13 11:11:09,812 INFO com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@36fc05ff
+2026-07-13 11:11:09,814 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-07-13 11:11:09,904 WARN org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-13 11:11:09,906 WARN org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2026-07-13 11:11:09,940 INFO org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-13 11:11:12,040 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-13 11:12:02,291 INFO invoker.Main - Process run
+2026-07-13 11:12:03,524 INFO org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.50.Final
+2026-07-13 11:12:03,656 INFO org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-07-13 11:12:03,950 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-07-13 11:12:04,534 INFO com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@36fc05ff
+2026-07-13 11:12:04,537 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-07-13 11:12:04,637 WARN org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-13 11:12:04,639 WARN org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2026-07-13 11:12:04,681 INFO org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-13 11:12:06,780 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-13 11:14:06,662 INFO invoker.Main - Process run
+2026-07-13 11:14:07,953 INFO org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.50.Final
+2026-07-13 11:14:08,061 INFO org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-07-13 11:14:08,308 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-07-13 11:14:08,819 INFO com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@36fc05ff
+2026-07-13 11:14:08,822 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-07-13 11:14:08,911 WARN org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-13 11:14:08,913 WARN org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2026-07-13 11:14:08,943 INFO org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-13 11:14:10,740 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-13 11:14:32,156 INFO invoker.Main - Process run
+2026-07-13 11:14:33,470 INFO org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.50.Final
+2026-07-13 11:14:33,573 INFO org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-07-13 11:14:33,844 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-07-13 11:14:34,439 INFO com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@36fc05ff
+2026-07-13 11:14:34,442 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-07-13 11:14:34,606 WARN org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-13 11:14:34,610 WARN org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2026-07-13 11:14:34,674 INFO org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-13 11:14:36,961 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-13 11:15:04,631 INFO invoker.Main - Process run
+2026-07-13 11:15:06,194 INFO org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.50.Final
+2026-07-13 11:15:06,340 INFO org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-07-13 11:15:06,667 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-07-13 11:15:07,385 INFO com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@36fc05ff
+2026-07-13 11:15:07,389 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-07-13 11:15:07,575 WARN org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-13 11:15:07,591 WARN org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2026-07-13 11:15:07,670 INFO org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-13 11:15:10,963 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-13 12:00:41,212 INFO invoker.Main - Process run
+2026-07-13 12:00:42,355 INFO org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.50.Final
+2026-07-13 12:00:42,476 INFO org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-07-13 12:00:42,826 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-07-13 12:00:43,510 INFO com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@36fc05ff
+2026-07-13 12:00:43,511 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-07-13 12:00:43,601 WARN org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-13 12:00:43,603 WARN org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2026-07-13 12:00:43,641 INFO org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-13 12:00:45,823 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-13 12:03:31,545 INFO invoker.Main - Process run
+2026-07-13 12:03:32,656 INFO org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.50.Final
+2026-07-13 12:03:32,743 INFO org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-07-13 12:03:32,987 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-07-13 12:03:33,477 INFO com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@36fc05ff
+2026-07-13 12:03:33,479 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-07-13 12:03:33,561 WARN org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-13 12:03:33,562 WARN org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2026-07-13 12:03:33,594 INFO org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-13 12:03:35,574 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-13 12:04:19,907 INFO invoker.Main - Process run
+2026-07-13 12:04:21,061 INFO org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.50.Final
+2026-07-13 12:04:21,155 INFO org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-07-13 12:04:21,412 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-07-13 12:04:21,873 INFO com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@36fc05ff
+2026-07-13 12:04:21,876 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-07-13 12:04:21,984 WARN org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-13 12:04:21,988 WARN org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2026-07-13 12:04:22,033 INFO org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-13 12:04:23,892 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-13 12:05:37,236 INFO invoker.Main - Process run
+2026-07-13 12:05:38,345 INFO org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.50.Final
+2026-07-13 12:05:38,422 INFO org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-07-13 12:05:38,647 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-07-13 12:05:39,082 INFO com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@36fc05ff
+2026-07-13 12:05:39,084 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-07-13 12:05:39,192 WARN org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-13 12:05:39,195 WARN org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2026-07-13 12:05:39,242 INFO org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-13 12:05:41,057 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-13 12:06:05,506 INFO invoker.Main - Process run
+2026-07-13 12:06:06,520 INFO org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.50.Final
+2026-07-13 12:06:06,608 INFO org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-07-13 12:06:06,848 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-07-13 12:06:07,333 INFO com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@36fc05ff
+2026-07-13 12:06:07,337 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-07-13 12:06:07,459 WARN org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-13 12:06:07,463 WARN org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2026-07-13 12:06:07,512 INFO org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-13 12:06:09,356 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-13 12:08:25,387 INFO invoker.Main - Process run
+2026-07-13 12:08:26,430 INFO org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.50.Final
+2026-07-13 12:08:26,507 INFO org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-07-13 12:08:26,734 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-07-13 12:08:27,179 INFO com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@36fc05ff
+2026-07-13 12:08:27,182 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-07-13 12:08:27,286 WARN org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-13 12:08:27,289 WARN org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2026-07-13 12:08:27,332 INFO org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-13 12:08:29,095 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-13 12:10:46,543 INFO invoker.Main - Process run
+2026-07-13 12:10:47,606 INFO org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.50.Final
+2026-07-13 12:10:47,693 INFO org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-07-13 12:10:47,925 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-07-13 12:10:48,365 INFO com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@36fc05ff
+2026-07-13 12:10:48,368 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-07-13 12:10:48,452 WARN org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-13 12:10:48,455 WARN org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2026-07-13 12:10:48,496 INFO org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-13 12:10:50,151 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-13 12:12:05,402 INFO invoker.Main - Process run
+2026-07-13 12:12:06,432 INFO org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.50.Final
+2026-07-13 12:12:06,520 INFO org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-07-13 12:12:06,742 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-07-13 12:12:07,235 INFO com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@36fc05ff
+2026-07-13 12:12:07,238 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-07-13 12:12:07,340 WARN org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-13 12:12:07,342 WARN org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2026-07-13 12:12:07,384 INFO org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-13 12:12:09,105 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-13 12:12:55,622 INFO invoker.Main - Process run
+2026-07-13 12:12:56,680 INFO org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.50.Final
+2026-07-13 12:12:56,760 INFO org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-07-13 12:12:57,072 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-07-13 12:12:57,516 INFO com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@36fc05ff
+2026-07-13 12:12:57,519 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-07-13 12:12:57,627 WARN org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-13 12:12:57,630 WARN org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2026-07-13 12:12:57,671 INFO org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-13 12:12:59,486 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-13 12:13:46,379 INFO invoker.Main - Process run
+2026-07-13 12:13:47,556 INFO org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.50.Final
+2026-07-13 12:13:47,705 INFO org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-07-13 12:13:47,970 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-07-13 12:13:48,503 INFO com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@36fc05ff
+2026-07-13 12:13:48,506 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-07-13 12:13:48,611 WARN org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-13 12:13:48,615 WARN org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2026-07-13 12:13:48,650 INFO org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-13 12:13:54,453 INFO invoker.Main - Process run
+2026-07-13 12:13:55,552 INFO org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.50.Final
+2026-07-13 12:13:55,643 INFO org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-07-13 12:13:55,879 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-07-13 12:13:56,364 INFO com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@36fc05ff
+2026-07-13 12:13:56,366 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-07-13 12:13:56,474 WARN org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-13 12:13:56,477 WARN org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2026-07-13 12:13:56,515 INFO org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-13 12:13:58,330 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-13 12:14:22,765 INFO invoker.Main - Process run
+2026-07-13 12:14:23,780 INFO org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.50.Final
+2026-07-13 12:14:23,869 INFO org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-07-13 12:14:24,087 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-07-13 12:14:24,554 INFO com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@36fc05ff
+2026-07-13 12:14:24,557 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-07-13 12:14:24,656 WARN org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-13 12:14:24,659 WARN org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2026-07-13 12:14:24,701 INFO org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-13 12:14:26,463 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-13 12:15:19,616 INFO invoker.Main - Process run
+2026-07-13 12:15:20,677 INFO org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.50.Final
+2026-07-13 12:15:20,755 INFO org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-07-13 12:15:20,987 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-07-13 12:15:21,446 INFO com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@36fc05ff
+2026-07-13 12:15:21,449 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-07-13 12:15:21,568 WARN org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-13 12:15:21,571 WARN org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2026-07-13 12:15:21,616 INFO org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-13 12:15:23,323 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-13 12:16:41,304 INFO invoker.Main - Process run
+2026-07-13 12:16:42,335 INFO org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.50.Final
+2026-07-13 12:16:42,423 INFO org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-07-13 12:16:42,652 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-07-13 12:16:43,163 INFO com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@36fc05ff
+2026-07-13 12:16:43,166 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-07-13 12:16:43,285 WARN org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-13 12:16:43,288 WARN org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2026-07-13 12:16:43,334 INFO org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-13 12:16:45,146 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-13 12:16:45,899 ERROR service.BookServiceImpl - Book already has user or user already has books
+2026-07-13 12:16:45,899 ERROR service.BookServiceImpl - Renting book failed
+exceptions.InvalidEntityException: Book already has user or user already has books
+	at service.BookServiceImpl.rentBook(BookServiceImpl.java:128)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:359)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:190)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:158)
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:133)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:371)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:130)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:222)
+	at jdk.proxy2/jdk.proxy2.$Proxy88.rentBook(Unknown Source)
+	at invoker.Main.main(Main.java:29)
+2026-07-13 12:17:03,273 INFO invoker.Main - Process run
+2026-07-13 12:17:04,260 INFO org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.50.Final
+2026-07-13 12:17:04,354 INFO org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-07-13 12:17:04,656 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-07-13 12:17:05,107 INFO com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@36fc05ff
+2026-07-13 12:17:05,110 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-07-13 12:17:05,251 WARN org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-13 12:17:05,254 WARN org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2026-07-13 12:17:05,290 INFO org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-13 12:17:07,100 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-13 12:17:34,029 INFO invoker.Main - Process run
+2026-07-13 12:17:35,084 INFO org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.50.Final
+2026-07-13 12:17:35,164 INFO org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-07-13 12:17:35,403 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-07-13 12:17:35,888 INFO com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@36fc05ff
+2026-07-13 12:17:35,891 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-07-13 12:17:36,006 WARN org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-13 12:17:36,010 WARN org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2026-07-13 12:17:36,065 INFO org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-13 12:17:37,919 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-13 13:34:20,708 INFO invoker.Main - Process run
+2026-07-13 13:34:21,925 INFO org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.50.Final
+2026-07-13 13:34:22,032 INFO org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-07-13 13:34:22,378 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-07-13 13:34:23,095 INFO com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@36fc05ff
+2026-07-13 13:34:23,097 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-07-13 13:34:23,217 WARN org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-13 13:34:23,219 WARN org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2026-07-13 13:34:23,268 INFO org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-13 13:34:25,487 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-13 13:34:26,318 ERROR service.BookServiceImpl - Book already has user or user already has books
+2026-07-13 13:34:26,318 ERROR service.BookServiceImpl - Renting book failed
+exceptions.InvalidEntityException: Book already has user or user already has books
+	at service.BookServiceImpl.rentBook(BookServiceImpl.java:129)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:359)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:190)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:158)
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:133)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:371)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:130)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:222)
+	at jdk.proxy2/jdk.proxy2.$Proxy88.rentBook(Unknown Source)
+	at invoker.Main.main(Main.java:29)
+2026-07-13 13:34:52,420 INFO invoker.Main - Process run
+2026-07-13 13:34:53,448 INFO org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.50.Final
+2026-07-13 13:34:53,526 INFO org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-07-13 13:34:53,795 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-07-13 13:34:54,300 INFO com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@36fc05ff
+2026-07-13 13:34:54,302 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-07-13 13:34:54,419 WARN org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-13 13:34:54,422 WARN org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2026-07-13 13:34:54,473 INFO org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-13 13:34:56,155 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-13 13:35:21,372 INFO invoker.Main - Process run
+2026-07-13 13:35:22,394 INFO org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.50.Final
+2026-07-13 13:35:22,478 INFO org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-07-13 13:35:22,691 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-07-13 13:35:23,121 INFO com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@36fc05ff
+2026-07-13 13:35:23,123 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-07-13 13:35:23,205 WARN org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-13 13:35:23,208 WARN org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2026-07-13 13:35:23,241 INFO org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-13 13:35:25,077 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-13 13:46:57,194 INFO invoker.Main - Process run
+2026-07-13 13:46:58,296 INFO org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.50.Final
+2026-07-13 13:46:58,443 INFO org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-07-13 13:46:58,605 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-07-13 13:46:58,958 INFO com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@36fc05ff
+2026-07-13 13:46:58,960 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-07-13 13:46:59,047 WARN org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-13 13:46:59,050 WARN org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2026-07-13 13:46:59,084 INFO org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-13 13:47:00,968 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-13 13:47:01,512 ERROR service.BookServiceImpl - Book already has user or user already has books
+2026-07-13 13:47:01,513 ERROR service.BookServiceImpl - Renting book failed
+exceptions.InvalidEntityException: Book already has user or user already has books
+	at service.BookServiceImpl.rentBook(BookServiceImpl.java:128)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:359)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:190)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:158)
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:133)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:371)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:130)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:222)
+	at jdk.proxy2/jdk.proxy2.$Proxy88.rentBook(Unknown Source)
+	at invoker.Main.main(Main.java:29)
+2026-07-13 13:47:05,800 INFO invoker.Main - Process run
+2026-07-13 13:47:06,725 INFO org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.50.Final
+2026-07-13 13:47:06,795 INFO org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-07-13 13:47:06,983 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-07-13 13:47:07,342 INFO com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@36fc05ff
+2026-07-13 13:47:07,344 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-07-13 13:47:07,439 WARN org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-13 13:47:07,443 WARN org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2026-07-13 13:47:07,484 INFO org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-13 13:47:08,838 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-13 13:47:16,474 INFO invoker.Main - Process run
+2026-07-13 13:47:17,451 INFO org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.50.Final
+2026-07-13 13:47:17,536 INFO org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-07-13 13:47:17,732 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-07-13 13:47:18,183 INFO com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@36fc05ff
+2026-07-13 13:47:18,185 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-07-13 13:47:18,285 WARN org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-13 13:47:18,289 WARN org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2026-07-13 13:47:18,341 INFO org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-13 13:47:19,747 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-13 13:49:50,851 INFO invoker.Main - Process run
+2026-07-13 13:49:51,778 INFO org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.50.Final
+2026-07-13 13:49:51,860 INFO org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-07-13 13:49:52,059 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-07-13 13:49:52,522 INFO com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@36fc05ff
+2026-07-13 13:49:52,525 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-07-13 13:49:52,628 WARN org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-13 13:49:52,631 WARN org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2026-07-13 13:49:52,670 INFO org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-13 13:49:54,099 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-13 13:49:54,338 INFO service.BookServiceImpl - Reading all books
+2026-07-13 14:04:33,104 INFO invoker.Main - Process run
+2026-07-13 14:04:34,298 INFO org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.50.Final
+2026-07-13 14:04:34,409 INFO org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-07-13 14:04:34,700 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-07-13 14:04:35,322 INFO com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@36fc05ff
+2026-07-13 14:04:35,325 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-07-13 14:04:35,455 WARN org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-13 14:04:35,458 WARN org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2026-07-13 14:04:35,508 INFO org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-13 14:04:37,298 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-13 14:04:37,571 INFO service.BookServiceImpl - Reading all books
+2026-07-13 14:04:37,973 INFO service.UserServiceImpl - Reading all users
+2026-07-13 14:06:18,646 INFO invoker.Main - Process run
+2026-07-13 14:06:19,743 INFO org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.50.Final
+2026-07-13 14:06:19,847 INFO org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-07-13 14:06:20,091 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-07-13 14:06:20,626 INFO com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@36fc05ff
+2026-07-13 14:06:20,628 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-07-13 14:06:20,723 WARN org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-13 14:06:20,726 WARN org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2026-07-13 14:06:20,770 INFO org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-13 14:06:22,352 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-13 14:06:22,628 INFO service.BookServiceImpl - Reading all books
+2026-07-13 14:11:20,575 INFO invoker.Main - Process run
+2026-07-13 14:11:21,727 INFO org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.50.Final
+2026-07-13 14:11:21,827 INFO org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-07-13 14:11:22,083 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-07-13 14:11:22,640 INFO com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@36fc05ff
+2026-07-13 14:11:22,644 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-07-13 14:11:22,773 WARN org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-13 14:11:22,776 WARN org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2026-07-13 14:11:22,825 INFO org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-13 14:11:24,553 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-13 14:11:24,854 INFO service.BookServiceImpl - Reading all books
+2026-07-13 14:11:25,296 INFO service.UserServiceImpl - Reading all users
+2026-07-13 14:15:30,903 INFO invoker.Main - Process run
+2026-07-13 14:15:32,110 INFO org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.50.Final
+2026-07-13 14:15:32,206 INFO org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-07-13 14:15:32,474 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-07-13 14:15:33,034 INFO com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@36fc05ff
+2026-07-13 14:15:33,037 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-07-13 14:15:33,156 WARN org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-13 14:15:33,158 WARN org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2026-07-13 14:15:33,207 INFO org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-13 14:15:35,042 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-13 14:15:35,322 INFO service.BookServiceImpl - Reading all books
+2026-07-13 14:15:35,791 INFO service.UserServiceImpl - Reading all users
+2026-07-16 16:28:11,722 INFO invoker.Main - Process run
+2026-07-16 16:28:12,978 INFO org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.50.Final
+2026-07-16 16:28:13,119 INFO org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-07-16 16:28:13,504 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-07-16 16:28:14,255 INFO com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@36fc05ff
+2026-07-16 16:28:14,257 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-07-16 16:28:14,421 WARN org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-16 16:28:14,425 WARN org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2026-07-16 16:28:14,482 INFO org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-16 16:28:16,570 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-16 16:28:17,400 ERROR service.BookServiceImpl - Book already has user or user already has books
+2026-07-16 16:28:17,400 ERROR service.BookServiceImpl - Renting book failed
+exceptions.InvalidEntityException: Book already has user or user already has books
+	at service.BookServiceImpl.rentBook(BookServiceImpl.java:128)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:359)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:190)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:158)
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:133)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:371)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:130)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:222)
+	at jdk.proxy2/jdk.proxy2.$Proxy88.rentBook(Unknown Source)
+	at invoker.Main.main(Main.java:30)
+2026-07-16 16:30:47,456 INFO invoker.Main - Process run
+2026-07-16 16:30:48,546 INFO org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.50.Final
+2026-07-16 16:30:48,641 INFO org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-07-16 16:30:48,924 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-07-16 16:30:49,507 INFO com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@36fc05ff
+2026-07-16 16:30:49,510 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-07-16 16:30:49,626 WARN org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-16 16:30:49,628 WARN org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2026-07-16 16:30:49,687 INFO org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-16 16:30:51,761 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-16 16:31:37,759 INFO invoker.Main - Process run
+2026-07-16 16:31:38,949 INFO org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.50.Final
+2026-07-16 16:31:39,073 INFO org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-07-16 16:31:39,378 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-07-16 16:31:39,953 INFO com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@36fc05ff
+2026-07-16 16:31:39,956 INFO com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-07-16 16:31:40,072 WARN org.hibernate.orm.deprecation - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-16 16:31:40,075 WARN org.hibernate.orm.deprecation - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2026-07-16 16:31:40,133 INFO org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-16 16:31:42,016 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)

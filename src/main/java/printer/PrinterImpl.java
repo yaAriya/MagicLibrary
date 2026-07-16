@@ -2,9 +2,11 @@ package printer;
 
 import entity.Book;
 import entity.User;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class PrinterImpl implements Printer {
     @Override
     public void printAllBooks(List<Book> books) {
@@ -22,12 +24,12 @@ public class PrinterImpl implements Printer {
 
     @Override
     public void printUserObject(User userObject) {
-        System.out.println("Данные пользователя: " + userObject + "\n");
+        System.out.println("Данные пользователя: " + userObject  + "\n");
     }
 
     @Override
     public void printBookObject(Book bookObject) {
-        System.out.println("Данные книги: " + bookObject + "\n");
+        System.out.println("Данные книги: " + bookObject +"\n");
     }
 
     @Override

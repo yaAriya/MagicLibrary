@@ -19,7 +19,9 @@ public class MySQLBasedBookDao implements BookDao {
 
     @Override
     public List<Book> readAllBooks() {
-        return sessionFactory.getCurrentSession().createQuery("from Book", Book.class).list();
+        return sessionFactory.getCurrentSession()
+                .createQuery("select distinct b from Book b left join fetch b.user", Book.class)
+                .list();
     }
 
     @Override
@@ -29,7 +31,10 @@ public class MySQLBasedBookDao implements BookDao {
 
     @Override
     public Book read(long id) {
-        return sessionFactory.getCurrentSession().get(Book.class, id);
+        return sessionFactory.getCurrentSession()
+                .createQuery("select distinct b from Book b left join fetch b.user where b.id = :id", Book.class)
+                .setParameter("id", id)
+                .getSingleResult();
     }
 
     @Override

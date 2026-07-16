@@ -18,7 +18,9 @@ public class MySQLBasedUserDao implements UserDao {
 
     @Override
     public List<User> readAllUsers() {
-        return sessionFactory.getCurrentSession().createQuery("from User", User.class).list();
+        return sessionFactory.getCurrentSession()
+                .createQuery("select distinct u from User u left join fetch u.books", User.class)
+                .list();
     }
 
     @Override
@@ -28,7 +30,10 @@ public class MySQLBasedUserDao implements UserDao {
 
     @Override
     public User read(long id) {
-        return sessionFactory.getCurrentSession().get(User.class, id);
+        return sessionFactory.getCurrentSession()
+                .createQuery("select u from User u left join fetch u.books where u.id = :id", User.class)
+                .setParameter("id", id)
+                .getSingleResult();
     }
 
     @Override

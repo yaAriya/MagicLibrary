@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 @Configuration
-@ComponentScan(basePackages = {"invoker", "service", "validator", "dao", "reader", "writer", "converter"})
+@ComponentScan(basePackages = {"service", "validator", "dao", "reader", "writer", "converter", "printer"})
 @EnableTransactionManagement
 @PropertySource("application.properties")
 public class ApplicationConfig {

@@ -137,10 +137,6 @@ public class User implements Cloneable {
 
     @Override
     public String toString() {
-        List<Long> booksId = getBooks().stream()
-                .map(Book::getId)
-                .sorted()
-                .toList();
-        return id + ", " + name + ", " + email + ", " + age + ", " + booksId;
+        return id + ", " + name + ", " + email + ", " + age;
     }
 }

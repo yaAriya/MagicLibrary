@@ -1,0 +1,4 @@
+2,Pasha,Pashka@gmail.com,19,0
+3,Vika,Vichik@gmail.com,15,1
+1,Lisa,Lisochka@gmail.com,11
+4,Lera,Lerka@gmail.com,15

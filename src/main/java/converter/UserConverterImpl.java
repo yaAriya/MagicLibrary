@@ -1,0 +1,53 @@
+package converter;
+
+import entity.Book;
+import entity.User;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.stereotype.Component;
+
+import java.util.Arrays;
+import java.util.List;
+
+@Component
+public class UserConverterImpl implements UserConverter {
+    private static final Logger LOGGER = LogManager.getLogger(UserConverterImpl.class);
+    private static final String PARAMETER = ",";
+
+    @Override
+    public User convertLineToUser(String line) {
+        String[] parameters = Arrays.stream(line.split(PARAMETER))
+                .map(String::trim)
+                .toArray(String[]::new);
+
+        User user = new User();
+        user.setId(Long.parseLong(parameters[0].trim()));
+        user.setName(parameters[1]);
+        user.setEmail(parameters[2]);
+        user.setAge(Integer.parseInt(parameters[3]));
+        LOGGER.info("Converting line to user completed successful");
+        return user;
+    }
+
+    @Override
+    public String convertUserToLine(User user) {
+        String idToString = Long.toString(user.getId());
+        String ageToString = Integer.toString(user.getAge());
+
+        StringBuilder sb = new StringBuilder();
+        sb.append(idToString).append(PARAMETER);
+        sb.append(user.getName()).append(PARAMETER);
+        sb.append(user.getEmail()).append(PARAMETER);
+        sb.append(ageToString);
+
+        if (!user.getBooks().isEmpty()) {
+            sb.append(PARAMETER);
+            List<Long> booksId = user.getBooks().stream()
+                    .map(Book::getId)
+                    .toList();
+            sb.append(String.join(PARAMETER, booksId.stream().map(String::valueOf).toList()));
+        }
+        LOGGER.info("Converting user to line completed successful");
+        return sb.toString();
+    }
+}
